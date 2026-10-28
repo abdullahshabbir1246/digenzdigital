@@ -1267,7 +1267,9 @@ const server = http.createServer(async (req, res) => {
   // STATIC FILE SERVER
   // -------------------------------------------------------------
   let reqPath = pathname;
-  if (reqPath === '/' || reqPath === '') reqPath = '/index.htm';
+  if (reqPath === '/' || reqPath === '' || reqPath === '/index.html' || reqPath === '/index.htm') {
+    reqPath = '/index.html';
+  }
   if (reqPath === '/admin' || reqPath === '/admin/') reqPath = '/admin/index.html';
 
   let filePath = path.join(BASE_DIR, reqPath);
@@ -1278,11 +1280,14 @@ const server = http.createServer(async (req, res) => {
 
   if (fs.existsSync(filePath) && !fs.statSync(filePath).isDirectory()) {
     const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+    let contentType = MIME_TYPES[ext] || 'application/octet-stream';
+    if (reqPath === '/css') contentType = 'text/css; charset=utf-8';
+
     const content = fs.readFileSync(filePath);
     res.writeHead(200, {
       'Content-Type': contentType,
       'Content-Length': content.length,
+      'Access-Control-Allow-Origin': '*',
       'Cache-Control': ext === '.html' || ext === '.htm' ? 'no-cache' : 'public, max-age=3600'
     });
     return res.end(content);
