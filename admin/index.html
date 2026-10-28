@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DIGENZ — Master Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/admin/css/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- ========================================================================= -->
+  <!-- LOGIN SCREEN (Displayed if unauthenticated)                                -->
+  <!-- ========================================================================= -->
+  <div id="loginSection" class="login-container">
+    <div class="login-card">
+      <div class="login-brand">
+        <img src="/assets/images/digenz-logo-dark.svg" alt="DIGENZ" class="login-logo">
+        <p class="login-tagline">DIGITAL • CREATIVE • SERVICES</p>
+      </div>
+      <h2 class="login-title">Control Center</h2>
+      <p class="login-subtitle">Sign in to manage DIGENZ content, orders, and operations.</p>
+      
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="loginEmail">Administrator Email</label>
+          <input type="email" id="loginEmail" class="form-input" placeholder="admin@digenz.com" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Security Password</label>
+          <input type="password" id="loginPassword" class="form-input" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+        <div id="loginError" class="login-error-msg hidden"></div>
+        <button type="submit" id="loginBtn" class="btn btn-gold btn-block">
+          <span class="btn-text">Authenticate Access</span>
+          <span class="btn-spinner hidden"></span>
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p>🔒 End-to-End Encrypted Session. Unauthorized access is logged and strictly prohibited.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- ADMIN APP SHELL (Displayed when authenticated)                            -->
+  <!-- ========================================================================= -->
+  <div id="appSection" class="admin-shell hidden">
+    
+    <!-- SIDEBAR -->
+    <aside id="adminSidebar" class="admin-sidebar">
+      <div class="sidebar-header">
+        <a href="#dashboard" class="sidebar-brand">
+          <img src="/assets/images/digenz-logo-dark.svg" alt="DIGENZ" class="sidebar-logo">
+        </a>
+        <button id="sidebarCloseBtn" class="mobile-only-btn" title="Close Menu">✕</button>
+      </div>
+
+      <div class="sidebar-user-pill">
+        <div class="user-avatar" id="sidebarAvatar">A</div>
+        <div class="user-meta">
+          <strong id="sidebarUserName">DIGENZ Admin</strong>
+          <span id="sidebarUserRole">Superadmin</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group-title">MAIN OPERATIONS</div>
+        <a href="#dashboard" class="nav-item active" data-view="dashboard">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#orders" class="nav-item" data-view="orders">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span>Orders & Invoices</span>
+          <span class="nav-badge" id="ordersPendingBadge">0</span>
+        </a>
+        <a href="#products" class="nav-item" data-view="products">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <span>Products & Packages</span>
+        </a>
+        <a href="#categories" class="nav-item" data-view="categories">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <span>Categories</span>
+        </a>
+        <a href="#customers" class="nav-item" data-view="customers">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Customers</span>
+        </a>
+        <a href="#coupons" class="nav-item" data-view="coupons">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          <span>Discounts & Coupons</span>
+        </a>
+
+        <div class="nav-group-title">CONTENT & MARKETING</div>
+        <a href="#banners" class="nav-item" data-view="banners">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <span>Homepage Banners</span>
+        </a>
+        <a href="#content" class="nav-item" data-view="content">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span>Website CMS Pages</span>
+        </a>
+        <a href="#media" class="nav-item" data-view="media">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span>Media & Images</span>
+        </a>
+        <a href="#navigation" class="nav-item" data-view="navigation">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          <span>Menus & Footer</span>
+        </a>
+        <a href="#seo" class="nav-item" data-view="seo">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>SEO & Metadata</span>
+        </a>
+
+        <div class="nav-group-title">CONFIGURATION</div>
+        <a href="#settings" class="nav-item" data-view="settings">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Store Settings</span>
+        </a>
+        <a href="#audit" class="nav-item" data-view="audit">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Security & Logs</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" class="btn btn-outline-gold btn-sm btn-block">
+          <span>↗ View Live Site</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="admin-main">
+      
+      <!-- TOP NAVBAR -->
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button id="sidebarToggleBtn" class="topbar-icon-btn" title="Toggle Sidebar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <div class="breadcrumbs">
+            <span class="crumb-root">DIGENZ Admin</span>
+            <span class="crumb-separator">/</span>
+            <span id="currentViewTitle" class="crumb-current">Dashboard</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div id="liveSiteStatus" class="live-status-pill online">
+            <span class="status-dot"></span>
+            <span>Live Server Online</span>
+          </div>
+
+          <div class="user-menu-wrap">
+            <button id="userDropdownBtn" class="user-dropdown-btn">
+              <span id="topbarUserName">admin@digenz.com</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="userDropdownMenu" class="user-dropdown-menu hidden">
+              <a href="#settings" class="dropdown-link">Profile & Settings</a>
+              <a href="#audit" class="dropdown-link">Audit History</a>
+              <div class="dropdown-divider"></div>
+              <button id="logoutBtn" class="dropdown-link text-danger">Sign Out</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- CONTENT PANES -->
+      <main class="admin-content">
+
+        <!-- ============================================================= -->
+        <!-- VIEW 1: DASHBOARD OVERVIEW                                    -->
+        <!-- ============================================================= -->
+        <section id="view-dashboard" class="content-view active">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Executive Dashboard</h1>
+              <p class="view-desc">Real-time overview of products, active client orders, revenue, and system operations.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.openAddProductModal()">+ New Package</button>
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadDashboard()">↻ Refresh</button>
+            </div>
+          </div>
+
+          <!-- METRICS CARDS -->
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon gold-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Total Realized Revenue</span>
+                <h3 class="metric-value" id="statRevenue">$0.00</h3>
+                <span class="metric-sub text-success">From settled client orders</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon blue-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Total Orders & Leads</span>
+                <h3 class="metric-value" id="statOrders">0</h3>
+                <span class="metric-sub text-warning" id="statPendingOrders">0 pending</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon green-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Active Packages & Services</span>
+                <h3 class="metric-value" id="statProducts">0</h3>
+                <span class="metric-sub text-muted" id="statCategories">Across 8 categories</span>
+              </div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-icon purple-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              </div>
+              <div class="metric-info">
+                <span class="metric-label">Registered Clients</span>
+                <h3 class="metric-value" id="statCustomers">0</h3>
+                <span class="metric-sub text-success">Verified customer accounts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DASHBOARD TWO-COLUMNS: Recent Orders & Recent Activities -->
+          <div class="dashboard-grid">
+            <div class="card col-span-2">
+              <div class="card-header">
+                <h3 class="card-title">Recent Inquiries & Orders</h3>
+                <a href="#orders" class="card-link">View All Orders →</a>
+              </div>
+              <div class="card-body no-padding">
+                <div class="table-responsive">
+                  <table class="data-table">
+                    <thead>
+                      <tr>
+                        <th>Order #</th>
+                        <th>Client</th>
+                        <th>Item / Package</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dashRecentOrdersTable">
+                      <tr><td colspan="7" class="text-center py-4">Loading orders...</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Security & Audit Stream</h3>
+                <a href="#audit" class="card-link">Full Log →</a>
+              </div>
+              <div class="card-body">
+                <ul class="activity-timeline" id="dashActivityList">
+                  <li class="timeline-empty">Loading audit activity...</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 2: PRODUCTS & PACKAGES                                   -->
+        <!-- ============================================================= -->
+        <section id="view-products" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Products & Packages Management</h1>
+              <p class="view-desc">Create, edit, pricing, image galleries, variants, and SEO for all services.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.openAddProductModal()">+ Create Product</button>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body filter-bar">
+              <div class="filter-group">
+                <input type="text" id="productSearchInput" class="form-input" placeholder="Search by name, SKU, or keywords...">
+              </div>
+              <div class="filter-group">
+                <select id="productCategoryFilter" class="form-select">
+                  <option value="">All Categories</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <select id="productStatusFilter" class="form-select">
+                  <option value="">All Statuses</option>
+                  <option value="published">Published</option>
+                  <option value="draft">Draft</option>
+                </select>
+              </div>
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadProducts()">Apply Filter</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 70px;">Thumbnail</th>
+                      <th>Product Name</th>
+                      <th>SKU</th>
+                      <th>Category</th>
+                      <th>Regular Price</th>
+                      <th>Sale Price</th>
+                      <th>Badge</th>
+                      <th>Status</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsTableBody">
+                    <tr><td colspan="9" class="text-center py-4">Loading products...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer pagination-wrap" id="productsPagination"></div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 3: CATEGORIES                                            -->
+        <!-- ============================================================= -->
+        <section id="view-categories" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Category Architecture</h1>
+              <p class="view-desc">Manage primary services, subcategories, navigation toggles, and promotional banners.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.openAddCategoryModal()">+ Create Category</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 60px;">Icon</th>
+                      <th>Category Name</th>
+                      <th>URL Slug</th>
+                      <th>Order</th>
+                      <th>Show on Home</th>
+                      <th>Show in Nav</th>
+                      <th>Status</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="categoriesTableBody">
+                    <tr><td colspan="8" class="text-center py-4">Loading categories...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 4: ORDERS & INVOICES                                     -->
+        <!-- ============================================================= -->
+        <section id="view-orders" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Orders & Invoices</h1>
+              <p class="view-desc">Track client orders, leads, change statuses, manage tracking, and generate printable invoices.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadOrders()">↻ Refresh Orders</button>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body filter-bar">
+              <div class="filter-group">
+                <input type="text" id="orderSearchInput" class="form-input" placeholder="Search by order #, client name, or email...">
+              </div>
+              <div class="filter-group">
+                <select id="orderStatusFilter" class="form-select">
+                  <option value="">All Statuses</option>
+                  <option value="pending">Pending</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="processing">Processing</option>
+                  <option value="shipped">Shipped</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <select id="orderPaymentFilter" class="form-select">
+                  <option value="">All Payments</option>
+                  <option value="paid">Paid</option>
+                  <option value="unpaid">Unpaid</option>
+                  <option value="refunded">Refunded</option>
+                </select>
+              </div>
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadOrders()">Filter</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Order #</th>
+                      <th>Date</th>
+                      <th>Customer Details</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Fulfillment</th>
+                      <th>Payment</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody">
+                    <tr><td colspan="8" class="text-center py-4">Loading orders...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer pagination-wrap" id="ordersPagination"></div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 5: CUSTOMERS                                             -->
+        <!-- ============================================================= -->
+        <section id="view-customers" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Customer Relationship Directory</h1>
+              <p class="view-desc">Client profiles, contact details, total orders, and purchase records.</p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body filter-bar">
+              <div class="filter-group">
+                <input type="text" id="customerSearchInput" class="form-input" placeholder="Search by client name, email, or company...">
+              </div>
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadCustomers()">Search</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Client Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Company</th>
+                      <th>Location</th>
+                      <th>Orders</th>
+                      <th>Total Spent</th>
+                      <th>Status</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="customersTableBody">
+                    <tr><td colspan="9" class="text-center py-4">Loading customers...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 6: DISCOUNTS & COUPONS                                   -->
+        <!-- ============================================================= -->
+        <section id="view-coupons" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Discounts & Promo Coupons</h1>
+              <p class="view-desc">Configure promotional discount codes, validity, usage limits, and checkout badges.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.openAddCouponModal()">+ Create Coupon</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Coupon Code</th>
+                      <th>Discount Value</th>
+                      <th>Min Order</th>
+                      <th>Redemptions</th>
+                      <th>Expiry</th>
+                      <th>Status</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="couponsTableBody">
+                    <tr><td colspan="7" class="text-center py-4">Loading coupons...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 7: HOMEPAGE BANNERS                                      -->
+        <!-- ============================================================= -->
+        <section id="view-banners" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Homepage & Promotional Banners</h1>
+              <p class="view-desc">Visual banner management, desktop/mobile images, headlines, and destination links.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.openAddBannerModal()">+ Add New Banner</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 120px;">Banner Preview</th>
+                      <th>Headline</th>
+                      <th>Button Link</th>
+                      <th>Order</th>
+                      <th>Active Status</th>
+                      <th style="text-align: right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bannersTableBody">
+                    <tr><td colspan="6" class="text-center py-4">Loading banners...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 8: CONTENT CMS                                           -->
+        <!-- ============================================================= -->
+        <section id="view-content" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Website Content Management (CMS)</h1>
+              <p class="view-desc">Manage public page copy, company mission, FAQs, policy documents, and social links.</p>
+            </div>
+          </div>
+
+          <div class="cms-tabs-wrap">
+            <div class="cms-nav">
+              <button class="cms-tab-btn active" data-cmstab="about">About Us</button>
+              <button class="cms-tab-btn" data-cmstab="contact">Contact Information</button>
+              <button class="cms-tab-btn" data-cmstab="faqs">FAQs</button>
+              <button class="cms-tab-btn" data-cmstab="privacy">Privacy Policy</button>
+              <button class="cms-tab-btn" data-cmstab="terms">Terms & Conditions</button>
+              <button class="cms-tab-btn" data-cmstab="refund">Refund Policy</button>
+              <button class="cms-tab-btn" data-cmstab="footer">Footer & Socials</button>
+            </div>
+
+            <div class="card cms-card">
+              <!-- CMS TAB: ABOUT -->
+              <div id="cms-tab-about" class="cms-pane active">
+                <h3 class="card-title mb-3">About Us Page Content</h3>
+                <div class="form-group">
+                  <label>Hero Headline</label>
+                  <input type="text" id="cmsAboutHeading" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Hero Subheading</label>
+                  <textarea id="cmsAboutSubheading" class="form-textarea" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Company Story & Background</label>
+                  <textarea id="cmsAboutStory" class="form-textarea" rows="4"></textarea>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Company Mission</label>
+                    <textarea id="cmsAboutMission" class="form-textarea" rows="3"></textarea>
+                  </div>
+                  <div class="form-group col">
+                    <label>Company Vision</label>
+                    <textarea id="cmsAboutVision" class="form-textarea" rows="3"></textarea>
+                  </div>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="Admin.saveCMSSection('about')">Save About Us Changes</button>
+              </div>
+
+              <!-- CMS TAB: CONTACT -->
+              <div id="cms-tab-contact" class="cms-pane">
+                <h3 class="card-title mb-3">Contact Information</h3>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Primary Email</label>
+                    <input type="email" id="cmsContactEmail" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Sales Email</label>
+                    <input type="email" id="cmsContactSalesEmail" class="form-input">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Phone Number</label>
+                    <input type="text" id="cmsContactPhone" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Alternate / International Phone</label>
+                    <input type="text" id="cmsContactAltPhone" class="form-input">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Physical Registered Address</label>
+                  <input type="text" id="cmsContactAddress" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Business Operational Hours</label>
+                  <input type="text" id="cmsContactHours" class="form-input">
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="Admin.saveCMSSection('contact')">Save Contact Info</button>
+              </div>
+
+              <!-- CMS TAB: FAQS -->
+              <div id="cms-tab-faqs" class="cms-pane">
+                <div class="d-flex justify-between mb-3">
+                  <h3 class="card-title">Frequently Asked Questions</h3>
+                  <button class="btn btn-gold btn-sm" onclick="Admin.addFAQItem()">+ Add FAQ</button>
+                </div>
+                <div id="faqItemsContainer" class="faq-list"></div>
+                <button class="btn btn-gold btn-sm mt-3" onclick="Admin.saveFAQS()">Save All FAQs</button>
+              </div>
+
+              <!-- CMS TAB: PRIVACY -->
+              <div id="cms-tab-privacy" class="cms-pane">
+                <h3 class="card-title mb-3">Privacy Policy Document</h3>
+                <div class="form-group">
+                  <label>Last Updated Notice</label>
+                  <input type="text" id="cmsPrivacyUpdated" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Privacy Policy Body (HTML Supported)</label>
+                  <textarea id="cmsPrivacyBody" class="form-textarea" rows="10"></textarea>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="Admin.saveCMSSection('privacy')">Save Privacy Policy</button>
+              </div>
+
+              <!-- CMS TAB: TERMS -->
+              <div id="cms-tab-terms" class="cms-pane">
+                <h3 class="card-title mb-3">Terms & Conditions Document</h3>
+                <div class="form-group">
+                  <label>Last Updated Notice</label>
+                  <input type="text" id="cmsTermsUpdated" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Terms & Conditions Body (HTML Supported)</label>
+                  <textarea id="cmsTermsBody" class="form-textarea" rows="10"></textarea>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="Admin.saveCMSSection('terms')">Save Terms</button>
+              </div>
+
+              <!-- CMS TAB: REFUND -->
+              <div id="cms-tab-refund" class="cms-pane">
+                <h3 class="card-title mb-3">Refund & Cancellation Policy</h3>
+                <div class="form-group">
+                  <label>Last Updated Notice</label>
+                  <input type="text" id="cmsRefundUpdated" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Refund Policy Body</label>
+                  <textarea id="cmsRefundBody" class="form-textarea" rows="10"></textarea>
+                </div>
+                <button class="btn btn-gold btn-sm" onclick="Admin.saveCMSSection('refund')">Save Refund Policy</button>
+              </div>
+
+              <!-- CMS TAB: FOOTER -->
+              <div id="cms-tab-footer" class="cms-pane">
+                <h3 class="card-title mb-3">Footer Copy & Social Media Profiles</h3>
+                <div class="form-group">
+                  <label>Footer Brand Summary</label>
+                  <textarea id="cmsFooterTagline" class="form-textarea" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                  <label>Copyright Statement</label>
+                  <input type="text" id="cmsFooterCopyright" class="form-input">
+                </div>
+                <h4 class="section-subtitle mt-4 mb-2">Social Profiles</h4>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Facebook URL</label>
+                    <input type="text" id="cmsSocialFb" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Twitter / X URL</label>
+                    <input type="text" id="cmsSocialTw" class="form-input">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>LinkedIn URL</label>
+                    <input type="text" id="cmsSocialIn" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Instagram URL</label>
+                    <input type="text" id="cmsSocialIg" class="form-input">
+                  </div>
+                </div>
+                <button class="btn btn-gold btn-sm mt-2" onclick="Admin.saveCMSSection('footer')">Save Footer & Socials</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 9: MEDIA & IMAGES                                        -->
+        <!-- ============================================================= -->
+        <section id="view-media" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Centralized Media Library</h1>
+              <p class="view-desc">Browse, upload, inspect, copy links, and safely manage all website images and graphics.</p>
+            </div>
+            <div class="view-actions">
+              <label class="btn btn-gold btn-sm" style="cursor: pointer;">
+                <span>+ Upload New Image</span>
+                <input type="file" id="mediaUploadInput" accept="image/*" style="display: none;" onchange="Admin.handleMediaUpload(this)">
+              </label>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body filter-bar">
+              <input type="text" id="mediaSearchInput" class="form-input" placeholder="Search images by name or path...">
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadMedia()">Search</button>
+            </div>
+          </div>
+
+          <div class="media-grid" id="mediaGrid">
+            <div class="loading-placeholder">Scanning media assets...</div>
+          </div>
+          <div class="pagination-wrap mt-4" id="mediaPagination"></div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 10: MENUS & FOOTER                                       -->
+        <!-- ============================================================= -->
+        <section id="view-navigation" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Navigation & Menus Structure</h1>
+              <p class="view-desc">Manage top header navigation items, dropdown hierarchies, and footer link columns.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.saveNavigation()">Save Menus</button>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="card col-span-2">
+              <div class="card-header">
+                <h3 class="card-title">Header Navigation Menu</h3>
+                <button class="btn btn-outline-gold btn-sm" onclick="Admin.addNavItem()">+ Add Nav Item</button>
+              </div>
+              <div class="card-body">
+                <div id="navItemsList" class="menu-builder-list"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Footer Navigation Columns</h3>
+              </div>
+              <div class="card-body">
+                <div id="footerColsList" class="footer-columns-editor"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 11: SEO & METADATA                                       -->
+        <!-- ============================================================= -->
+        <section id="view-seo" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">SEO & Metadata Engine</h1>
+              <p class="view-desc">Configure search indexing, canonical domains, OpenGraph previews, and XML sitemaps.</p>
+            </div>
+            <div class="view-actions">
+              <a href="/sitemap.xml" target="_blank" class="btn btn-outline-gold btn-sm">↗ Open Live sitemap.xml</a>
+              <button class="btn btn-gold btn-sm" onclick="Admin.saveSEO()">Save SEO Settings</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="form-group">
+                <label>Homepage Browser Title Tag</label>
+                <input type="text" id="seoHomeTitle" class="form-input">
+              </div>
+              <div class="form-group">
+                <label>Global Meta Description</label>
+                <textarea id="seoHomeDesc" class="form-textarea" rows="3"></textarea>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <label>Canonical Site Domain</label>
+                  <input type="text" id="seoCanonicalUrl" class="form-input" placeholder="https://www.digenzstore.com/">
+                </div>
+                <div class="form-group col">
+                  <label>Meta Keywords</label>
+                  <input type="text" id="seoKeywords" class="form-input">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <label>OpenGraph Social Share Title</label>
+                  <input type="text" id="seoOgTitle" class="form-input">
+                </div>
+                <div class="form-group col">
+                  <label>OpenGraph Share Image Path</label>
+                  <input type="text" id="seoOgImage" class="form-input">
+                </div>
+              </div>
+              <div class="form-group">
+                <label>OpenGraph Description</label>
+                <textarea id="seoOgDesc" class="form-textarea" rows="2"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 12: STORE SETTINGS                                       -->
+        <!-- ============================================================= -->
+        <section id="view-settings" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Global Store Settings</h1>
+              <p class="view-desc">Brand identity, announcement banner, currencies, contact details, and maintenance mode.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.saveSettings()">Save All Settings</button>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <div class="card">
+              <div class="card-header"><h3 class="card-title">Brand Identity</h3></div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label>Website Name</label>
+                  <input type="text" id="setSiteName" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Brand Tagline</label>
+                  <input type="text" id="setSiteTagline" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Dark Background Logo</label>
+                  <input type="text" id="setLogoDark" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label>Favicon Path</label>
+                  <input type="text" id="setFavicon" class="form-input">
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header"><h3 class="card-title">Announcement Banner</h3></div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="checkbox-label">
+                    <input type="checkbox" id="setAnnounceEnabled">
+                    <strong>Enable Top Announcement Bar</strong>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label>Announcement Message</label>
+                  <textarea id="setAnnounceText" class="form-textarea" rows="2"></textarea>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Action Button Text</label>
+                    <input type="text" id="setAnnounceBtn" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Action Button Link</label>
+                    <input type="text" id="setAnnounceLink" class="form-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card col-span-2">
+              <div class="card-header"><h3 class="card-title">Regional & Support Parameters</h3></div>
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label>Currency Symbol</label>
+                    <input type="text" id="setCurrencySymbol" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Currency ISO Code</label>
+                    <input type="text" id="setCurrencyCode" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Support Email</label>
+                    <input type="email" id="setSupportEmail" class="form-input">
+                  </div>
+                  <div class="form-group col">
+                    <label>Support Phone</label>
+                    <input type="text" id="setSupportPhone" class="form-input">
+                  </div>
+                </div>
+
+                <div class="p-3 mt-2" style="background: rgba(216,44,32,0.1); border: 1px solid rgba(216,44,32,0.3); border-radius: 6px;">
+                  <label class="checkbox-label text-danger">
+                    <input type="checkbox" id="setMaintenanceMode">
+                    <strong>Enable Emergency Maintenance Mode (Public visitors will see scheduled maintenance screen)</strong>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- VIEW 13: SECURITY & AUDIT LOGS                                -->
+        <!-- ============================================================= -->
+        <section id="view-audit" class="content-view">
+          <div class="view-header">
+            <div>
+              <h1 class="view-title">Security & Audit Log History</h1>
+              <p class="view-desc">Immutable audit trail of administrator sessions, data updates, and security events.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-gold btn-sm" onclick="Admin.openProfileModal()">Update Admin Credentials</button>
+              <button class="btn btn-outline-gold btn-sm" onclick="Admin.loadAuditLogs()">↻ Refresh Logs</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body no-padding">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 170px;">Timestamp</th>
+                      <th>Admin Actor</th>
+                      <th>Event Action</th>
+                      <th>Module</th>
+                      <th>Audit Details</th>
+                      <th>Client IP</th>
+                    </tr>
+                  </thead>
+                  <tbody id="auditTableBody">
+                    <tr><td colspan="6" class="text-center py-4">Loading audit logs...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS CONTAINER                                                          -->
+  <!-- ========================================================================= -->
+
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="productModalTitle" class="modal-title">Create New Package</h3>
+        <button class="modal-close-btn" onclick="Admin.closeModal('productModal')">✕</button>
+      </div>
+      <form id="productForm" onsubmit="Admin.handleProductSubmit(event)">
+        <input type="hidden" id="pmId">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-2">
+              <label>Package / Product Name *</label>
+              <input type="text" id="pmName" class="form-input" required>
+            </div>
+            <div class="form-group col">
+              <label>SKU Code</label>
+              <input type="text" id="pmSku" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Service Category *</label>
+              <select id="pmCategory" class="form-select" required></select>
+            </div>
+            <div class="form-group col">
+              <label>Regular Price ($) *</label>
+              <input type="number" id="pmPrice" class="form-input" step="0.01" required>
+            </div>
+            <div class="form-group col">
+              <label>Sale Price ($)</label>
+              <input type="number" id="pmSalePrice" class="form-input" step="0.01">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Promotional Badge (e.g. Best Seller)</label>
+              <input type="text" id="pmBadge" class="form-input" placeholder="Best Seller / 75% OFF">
+            </div>
+            <div class="form-group col">
+              <label>Status</label>
+              <select id="pmStatus" class="form-select">
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+              </select>
+            </div>
+            <div class="form-group col d-flex items-center pt-4">
+              <label class="checkbox-label">
+                <input type="checkbox" id="pmFeatured">
+                <strong>Featured Product</strong>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Primary Thumbnail Image Path</label>
+            <input type="text" id="pmImage" class="form-input" placeholder="/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg">
+          </div>
+
+          <div class="form-group">
+            <label>Package Description & Target Audience</label>
+            <textarea id="pmDesc" class="form-textarea" rows="2"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Features Included (One feature per line)</label>
+            <textarea id="pmFeatures" class="form-textarea" rows="6" placeholder="3 Unique Logo Concepts&#10;Unlimited Revisions&#10;Full Copyright Ownership&#10;All Final Files Format (PNG, SVG, AI)"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-gold btn-sm" onclick="Admin.closeModal('productModal')">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm">Save Package</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CATEGORY MODAL -->
+  <div id="categoryModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="categoryModalTitle" class="modal-title">Create Category</h3>
+        <button class="modal-close-btn" onclick="Admin.closeModal('categoryModal')">✕</button>
+      </div>
+      <form id="categoryForm" onsubmit="Admin.handleCategorySubmit(event)">
+        <input type="hidden" id="cmId">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col-2">
+              <label>Category Name *</label>
+              <input type="text" id="cmName" class="form-input" required>
+            </div>
+            <div class="form-group col">
+              <label>URL Slug</label>
+              <input type="text" id="cmSlug" class="form-input">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Parent Category (Leave empty for root)</label>
+              <select id="cmParentId" class="form-select">
+                <option value="">None (Top Level)</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label>Display Order</label>
+              <input type="number" id="cmOrder" class="form-input" value="1">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Icon Image Path</label>
+              <input type="text" id="cmImage" class="form-input">
+            </div>
+            <div class="form-group col">
+              <label>Hero Banner Image Path</label>
+              <input type="text" id="cmBanner" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Category Summary</label>
+            <textarea id="cmDesc" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label class="checkbox-label">
+                <input type="checkbox" id="cmHome" checked>
+                <strong>Show on Homepage</strong>
+              </label>
+            </div>
+            <div class="form-group col">
+              <label class="checkbox-label">
+                <input type="checkbox" id="cmNav" checked>
+                <strong>Show in Main Menu</strong>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-gold btn-sm" onclick="Admin.closeModal('categoryModal')">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- BANNER MODAL -->
+  <div id="bannerModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="bannerModalTitle" class="modal-title">Add Homepage Banner</h3>
+        <button class="modal-close-btn" onclick="Admin.closeModal('bannerModal')">✕</button>
+      </div>
+      <form id="bannerForm" onsubmit="Admin.handleBannerSubmit(event)">
+        <input type="hidden" id="bmId">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Banner Headline *</label>
+            <input type="text" id="bmTitle" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label>Subtitle / Supporting Text</label>
+            <textarea id="bmSubtitle" class="form-textarea" rows="2"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Action Button Text</label>
+              <input type="text" id="bmBtnText" class="form-input">
+            </div>
+            <div class="form-group col">
+              <label>Destination Link</label>
+              <input type="text" id="bmBtnLink" class="form-input">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Desktop Banner Image Path</label>
+              <input type="text" id="bmDesktop" class="form-input">
+            </div>
+            <div class="form-group col">
+              <label>Mobile Banner Image Path</label>
+              <input type="text" id="bmMobile" class="form-input">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Display Order</label>
+              <input type="number" id="bmOrder" class="form-input" value="1">
+            </div>
+            <div class="form-group col d-flex items-center pt-4">
+              <label class="checkbox-label">
+                <input type="checkbox" id="bmActive" checked>
+                <strong>Banner Active & Visible</strong>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-gold btn-sm" onclick="Admin.closeModal('bannerModal')">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm">Save Banner</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- COUPON MODAL -->
+  <div id="couponModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="couponModalTitle" class="modal-title">Create Promo Coupon</h3>
+        <button class="modal-close-btn" onclick="Admin.closeModal('couponModal')">✕</button>
+      </div>
+      <form id="couponForm" onsubmit="Admin.handleCouponSubmit(event)">
+        <input type="hidden" id="cpmId">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Coupon Code * (e.g. DIGENZ10)</label>
+              <input type="text" id="cpmCode" class="form-input" required>
+            </div>
+            <div class="form-group col">
+              <label>Discount Type</label>
+              <select id="cpmType" class="form-select">
+                <option value="percentage">Percentage (%)</option>
+                <option value="fixed">Fixed Amount ($)</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label>Discount Value *</label>
+              <input type="number" id="cpmValue" class="form-input" step="0.01" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Min Order Value ($)</label>
+              <input type="number" id="cpmMin" class="form-input" value="0">
+            </div>
+            <div class="form-group col">
+              <label>Usage Limit (Max Uses)</label>
+              <input type="number" id="cpmMax" class="form-input" value="500">
+            </div>
+            <div class="form-group col">
+              <label>Expiry Date</label>
+              <input type="date" id="cpmExpiry" class="form-input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="cpmActive" checked>
+              <strong>Coupon Active for Public Checkout</strong>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-gold btn-sm" onclick="Admin.closeModal('couponModal')">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm">Save Coupon</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER DETAILS MODAL -->
+  <div id="orderModal" class="modal-backdrop hidden">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3 id="omOrderNumber" class="modal-title">Order Details</h3>
+          <span id="omDate" class="text-muted" style="font-size: 12px;"></span>
+        </div>
+        <div class="d-flex items-center gap-2">
+          <button id="omInvoiceBtn" class="btn btn-outline-gold btn-sm">🖨 Printable Invoice</button>
+          <button class="modal-close-btn" onclick="Admin.closeModal('orderModal')">✕</button>
+        </div>
+      </div>
+      <div class="modal-body" id="omContent"></div>
+    </div>
+  </div>
+
+  <!-- ADMIN PROFILE MODAL -->
+  <div id="profileModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Admin Profile & Password</h3>
+        <button class="modal-close-btn" onclick="Admin.closeModal('profileModal')">✕</button>
+      </div>
+      <form id="profileForm" onsubmit="Admin.handleProfileSubmit(event)">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Administrator Name</label>
+            <input type="text" id="profName" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="profEmail" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label>Change Password (Leave blank to keep current)</label>
+            <input type="password" id="profPassword" class="form-input" placeholder="New minimum 8 character password">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-gold btn-sm" onclick="Admin.closeModal('profileModal')">Cancel</button>
+          <button type="submit" class="btn btn-gold btn-sm">Update Profile</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION MODAL -->
+  <div id="confirmModal" class="modal-backdrop hidden">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 id="confirmTitle" class="modal-title">Confirm Action</h3>
+        <button class="modal-close-btn" onclick="Admin.closeModal('confirmModal')">✕</button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmMessage" class="text-muted"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-gold btn-sm" onclick="Admin.closeModal('confirmModal')">Cancel</button>
+        <button type="button" id="confirmActionBtn" class="btn btn-danger btn-sm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="/admin/js/admin.js"></script>
+</body>
+</html>

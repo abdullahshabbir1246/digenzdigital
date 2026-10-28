@@ -1,0 +1,471 @@
+Uri: https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\umd\latest\for-form-embed-handler.js
+Content Type: text/javascript
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ajax\libs\font-awesome\4.7.0\fonts\fontawesome-webfont-1.eot
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ajax\libs\font-awesome\4.7.0\fonts\fontawesome-webfont.eot
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ajax\libs\font-awesome\4.7.0\fonts\fontawesome-webfont.svg
+Content Type: image/svg+xml
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ajax\libs\font-awesome\4.7.0\fonts\fontawesome-webfont.ttf
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ajax\libs\font-awesome\4.7.0\fonts\fontawesome-webfont.woff2
+Content Type: application/octet-stream
+
+Uri: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ajax\libs\font-awesome\4.7.0\fonts\fontawesome-webfont.woff
+Content Type: application/octet-stream
+
+Uri: https://fonts.googleapis.com/css?family=Bai+Jamjuree:300,400,500,600,700|Libre+Franklin:400,500,600,700,800,900&display=swap
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\css
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/baijamjuree/v13/LDI1apSCOBt_aeQQ7ftydoa8XsLO.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\baijamjuree\v13\LDI1apSCOBt_aeQQ7ftydoa8XsLO.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/baijamjuree/v13/LDIqapSCOBt_aeQQ7ftydoa05efelJox.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\baijamjuree\v13\LDIqapSCOBt_aeQQ7ftydoa05efelJox.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/baijamjuree/v13/LDIqapSCOBt_aeQQ7ftydoa09eDelJox.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\baijamjuree\v13\LDIqapSCOBt_aeQQ7ftydoa09eDelJox.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/baijamjuree/v13/LDIqapSCOBt_aeQQ7ftydoa0gebelJox.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\baijamjuree\v13\LDIqapSCOBt_aeQQ7ftydoa0gebelJox.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/baijamjuree/v13/LDIqapSCOBt_aeQQ7ftydoa0reHelJox.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\baijamjuree\v13\LDIqapSCOBt_aeQQ7ftydoa0reHelJox.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduh8MKkANDM.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\librefranklin\v20\jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduh8MKkANDM.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhh8KkANDM.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\librefranklin\v20\jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhh8KkANDM.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhHMWkANDM.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\librefranklin\v20\jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhHMWkANDM.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhLsWkANDM.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\librefranklin\v20\jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhLsWkANDM.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhrsKkANDM.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\librefranklin\v20\jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhrsKkANDM.ttf
+Content Type: font/ttf
+
+Uri: https://fonts.gstatic.com/s/librefranklin/v20/jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDM.ttf
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\s\librefranklin\v20\jizOREVItHgc8qDIbSTKq4XkRg8T88bjFuXOnduhycKkANDM.ttf
+Content Type: font/ttf
+
+Uri: https://pk.digenz.com/
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\index.htm
+Content Type: text/html
+
+Uri: https://pk.digenz.com/about/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\about\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/assets/css/fonts/slick-2.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\css\fonts\slick-2.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/assets/css/fonts/slick.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\css\fonts\slick.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/assets/css/fonts/slickd41dd41d.html?
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\css\fonts\slickd41dd41d.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/assets/css/m-style.css
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\css\m-style.css
+Content Type: text/css
+
+Uri: https://pk.digenz.com/assets/css/style.css
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\css\style.css
+Content Type: text/css
+
+Uri: https://pk.digenz.com/assets/images/abt/ecommerce-website-development.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\abt\ecommerce-website-development.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/awards/best-awards-1.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\awards\best-awards-1.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/awards/best-awards-2.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\awards\best-awards-2.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/bannericons/domain-and-hosting.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\bannericons\domain-and-hosting.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/bannericons/website-maintainance.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\bannericons\website-maintainance.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/banners/wordpress.webp
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\banners\wordpress.webp
+Content Type: image/webp
+
+Uri: https://pk.digenz.com/assets/images/book-publishing/popup-inner/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\book-publishing\popup-inner\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/assets/images/dedicated-team-web.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\dedicated-team-web.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/dedicated-team.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\dedicated-team.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/fixed-price-web.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\fixed-price-web.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/fixed-price.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\fixed-price.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/ico-expand-1.webp
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\ico-expand-1.webp
+Content Type: image/webp
+
+Uri: https://pk.digenz.com/assets/images/ico-user-chat-1.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\ico-user-chat-1.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/linda-dok.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\linda-dok.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/ownership-rights.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\ownership-rights.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/branding/branding-new/10.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\branding\branding-new\10.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/branding/branding-new/4.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\branding\branding-new\4.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/ecommerce/thumbnail/t-1.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\ecommerce\thumbnail\t-1.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/ecommerce/thumbnail/t-2.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\ecommerce\thumbnail\t-2.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/mobapp/10t.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\mobapp\10t.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/mobapp/2.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\mobapp\2.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/mobapp/2t.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\mobapp\2t.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/mobapp/6t.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\mobapp\6t.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/mobapp/7t.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\mobapp\7t.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/webapp/thumbnail/t-9.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\webapp\thumbnail\t-9.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/serviceportfolio/websitedesign/web/inner/8.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\serviceportfolio\websitedesign\web\inner\8.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/time-and-material-web.jpg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\time-and-material-web.jpg
+Content Type: image/jpeg
+
+Uri: https://pk.digenz.com/assets/images/time-and-material.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\time-and-material.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/trust.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\trust.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/VerifiedAgencyv1.svg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\VerifiedAgencyv1.svg
+Content Type: image/svg+xml
+
+Uri: https://pk.digenz.com/assets/images/web-01.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\web-01.png
+Content Type: image/png
+
+Uri: https://pk.digenz.com/assets/images/web-white.svg
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\images\web-white.svg
+Content Type: image/svg+xml
+
+Uri: https://pk.digenz.com/assets/js/functions.js
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\js\functions.js
+Content Type: application/x-javascript
+
+Uri: https://pk.digenz.com/assets/js/jquery.cookie.js
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\js\jquery.cookie.js
+Content Type: application/x-javascript
+
+Uri: https://pk.digenz.com/assets/js/mlib.js
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\assets\js\mlib.js
+Content Type: application/x-javascript
+
+Uri: https://pk.digenz.com/backend-development/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\backend-development\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/branding/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\branding\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\cdnjs.cloudflare.com\ajax\libs\font-awesome\4.7.0\css\font-awesome.css
+Content Type: text/css
+
+Uri: https://pk.digenz.com/contact-us/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\contact-us\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/custom-website-design/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\custom-website-design\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/domain-and-hosting/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\domain-and-hosting\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/ecommerce-website-development/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\ecommerce-website-development\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/favicon.ico
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\favicon.ico
+Content Type: image/x-icon
+
+Uri: https://pk.digenz.com/get-a-quote/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\get-a-quote\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/mobile-application/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\mobile-application\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/portfolio/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\portfolio\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/automatedinteractive-conferencing-portal-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\automatedinteractive-conferencing-portal-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/automatedinteractive-e-commerce-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\automatedinteractive-e-commerce-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/basic-combo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\basic-combo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/beginners-e-commerce-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\beginners-e-commerce-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/branding-premium-collateral-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\branding-premium-collateral-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/business-website-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\business-website-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/classic-video-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\classic-video-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/collateral-classic-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\collateral-classic-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/complete-branding-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\complete-branding-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/corporate-combo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\corporate-combo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/corporate-e-commerce-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\corporate-e-commerce-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/custom-crm-erp-portal-website/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\custom-crm-erp-portal-website\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/custom-crm-portal-website/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\custom-crm-portal-website\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/custom-e-commerce-marketplace-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\custom-e-commerce-marketplace-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/deluxe-video-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\deluxe-video-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/elite-combo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\elite-combo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/elite-e-commerce-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\elite-e-commerce-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/elite-seo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\elite-seo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/elite-website-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\elite-website-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/identity-seo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\identity-seo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/premium-video-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\premium-video-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/professional-combo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\professional-combo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/professional-seo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\professional-seo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/professional-website-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\professional-website-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/silver-website-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\silver-website-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/startup-collateral-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\startup-collateral-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/startup-combo-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\startup-combo-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/startup-seo-website-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\startup-seo-website-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/startup-video-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\startup-video-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/startup-website-package/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\startup-website-package\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/teaser-intro-video-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\teaser-intro-video-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/pricing/unlimited-collateral-packages/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pricing\unlimited-collateral-packages\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/privacy-policy/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\privacy-policy\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/refund.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\refund.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/seo/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\seo\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/smm/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\smm\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/static.zdassets.com/ekr/snippetd063.js?key=48f6ced6-5f2c-47f8-8b3c-4807592dfd9a
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\static.zdassets.com\ekr\snippetd063.js.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/technologies/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\technologies\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/terms-conditions/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\terms-conditions\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/video-animation/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\video-animation\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/web-application-development/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\web-application-development\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/website-maintenace/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\website-maintenace\index.html
+Content Type: text/html
+
+Uri: https://pk.digenz.com/wordpress-development/index.html
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\wordpress-development\index.html
+Content Type: text/html
+
+Uri: https://w7.pngwing.com/pngs/679/550/png-transparent-visa-mastercard-logos-mastercard-discover-card-payment-american-express-visa-visa-master-card-text-logo-payment.png
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\pngs\679\550\png-transparent-visa-mastercard-logos-mastercard-discover-card-payment-american-express-visa-visa-master-card-text-logo-payment.png
+Content Type: image/png
+
+Uri: https://www.googletagmanager.com/gtag/js?id=G-2CH6FKCYL9
+File Name: C:\Downloaded Web Sitesss\pk.digenz.com\gtag\js
+Content Type: application/javascript
