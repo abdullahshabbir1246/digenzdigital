@@ -28,10 +28,19 @@ a.ordrrrr {
     display: none;
 }
 
-:root{
-    --first-color: #fdb52c;
-    --second-color: #1a1a1a;
-    --third-color: #FFFEF0;
+:root {
+    --first-color: #6D2038;        /* Burgundy: primary brand accent, buttons, active nav */
+    --second-color: #421323;       /* Deep Burgundy: dark section backgrounds, footer, header */
+    --third-color: #F8F4EC;        /* Ivory: light backgrounds, content sections, readable text */
+    --burgundy: #6D2038;
+    --deep-burgundy: #421323;
+    --warm-sand: #D8C0A3;          /* Warm Sand: secondary accents, subtle borders, card details */
+    --ivory: #F8F4EC;              /* Ivory: light backgrounds, readable text */
+    --warm-neutral: #E8DED1;        /* Warm Neutral: secondary backgrounds, dividers, muted UI */
+    --primary-color: #6D2038;
+    --primary-color-dark: #421323;
+    --secondary-color: #D8C0A3;
+    --secondary-color-dark: #6D2038;
 }
 
 a:focus,
@@ -652,7 +661,7 @@ padding: 0; cursor: pointer; }
 .footer-nav2 li:before { position: absolute; content: ""; width: 1px; height: 13px; background: white; left: 0px; top: 30%; }
 .footer-nav2 li:first-child:before { display: none; }
 .footer-nav2 li a {font-size: 13px;font-weight: 400;color: #cbd6e2;}
-.footer-nav2 li a:hover {color: #fdb52c !important;}
+.footer-nav2 li a:hover {color: #D8C0A3 !important;}
 .copyright {padding: 10px 0 0px 0;margin: 0px;font-size: 12px;color: #cbd6e2;}
 .copyright span {color: #cbd6e2;}
 .disclaimer-area { background: black; padding: 10px 0; }
@@ -1481,8 +1490,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 
 .footer-top .linkinglist li a.address{cursor: default;}
 .footer-top .linkinglist li a.address:hover{color: #cbd6e2;}
-.footer-top .linkinglist li a:hover{color: #fdb52c !important;}
-.footer-top .linkinglist li a:focus,.footer-top .linkinglist li a:focus-visible{color: #fdb52c !important;outline: 2px dashed #fdb52c !important;outline-offset: 3px !important;}
+.footer-top .linkinglist li a:hover{color: #D8C0A3 !important;}
+.footer-top .linkinglist li a:focus,.footer-top .linkinglist li a:focus-visible{color: #D8C0A3 !important;outline: 2px dashed #D8C0A3 !important;outline-offset: 3px !important;}
 
 .accordlist{}
 .accordlist li{color: #687087;padding-left: 20px;position: relative;}
@@ -4406,16 +4415,333 @@ a.action-chat.clearfix.pull-right.sea {
 
 
 /* ==========================================================================
-   DIGENZ FOOTER SPECIFICITY OVERRIDES
-   - Removes background logo and golden outline/border completely
-   - All footer links remain clearly legible in normal state (#e5e5ea)
-   - Hover, active, and focus states shine in DIGENZ Gold (#fdb52c)
-   - Headings retain clean white/cream color and red underline (#ff5349)
-   - Keyboard focus rings provide full accessibility
+   DIGENZ WEBSITE THEME — BURGUNDY + WARM SAND + IVORY
+   - Burgundy:       #6D2038 (Primary brand accent, buttons, active nav, selected UI)
+   - Warm Sand:      #D8C0A3 (Secondary accents, subtle borders, card details, decorative highlights)
+   - Ivory:          #F8F4EC (Light backgrounds, content sections, readable text on dark surfaces)
+   - Deep Burgundy:  #421323 (Dark section backgrounds, footer backgrounds, subtle depth)
+   - Warm Neutral:   #E8DED1 (Secondary backgrounds, dividers, muted UI elements)
    ========================================================================== */
+
+/* --- GLOBAL BODY & SELECTION --- */
+body {
+    background-color: #421323 !important;
+    color: #F8F4EC !important;
+}
+
+::selection {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+}
+
+::-moz-selection {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+}
+
+/* --- HEADER & NAVIGATION --- */
+.nav-area-full,
+.top-bar,
+.header-main.fixed {
+    background: #421323 !important;
+    border-bottom: 1px solid rgba(216, 192, 163, 0.25) !important;
+}
+
+.main-menu > ul > li > a {
+    color: #F8F4EC !important;
+    transition: color 0.3s ease !important;
+}
+
+.main-menu > ul > li:hover > a,
+.main-menu > ul > li > a.active,
+.main-menu > ul > li > a:focus {
+    color: #D8C0A3 !important;
+}
+
+.main-menu > ul > li.head-no > a {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+    transition: all 0.3s ease !important;
+}
+
+.main-menu > ul > li.head-no > a:hover {
+    background-color: #D8C0A3 !important;
+    color: #421323 !important;
+    border-color: #D8C0A3 !important;
+}
+
+.main-menu > ul > li.book-call > a {
+    border: 2px solid #D8C0A3 !important;
+    color: #F8F4EC !important;
+    transition: all 0.3s ease !important;
+}
+
+.main-menu > ul > li.book-call > a:hover {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border-color: #6D2038 !important;
+}
+
+.dropdown {
+    background-color: #421323 !important;
+    border: 1px solid #D8C0A3 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dropdown > ul > li > a {
+    color: #F8F4EC !important;
+    transition: all 0.2s ease !important;
+}
+
+.dropdown > ul > li > a:hover,
+.dropdown > ul > li.active > a {
+    color: #D8C0A3 !important;
+    background-color: rgba(109, 32, 56, 0.5) !important;
+}
+
+/* Mobile Nav */
+.mobile-nav {
+    background: #421323 !important;
+    border-left: 1px solid #D8C0A3 !important;
+}
+
+.mobile-nav nav li a {
+    color: #F8F4EC !important;
+}
+
+.mobile-nav nav li a.active,
+.mobile-nav nav li a:hover {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+}
+
+.mobile-nav-btn span,
+.mobile-nav-btn span:before,
+.mobile-nav-btn span:after {
+    background-color: #D8C0A3 !important;
+}
+
+/* --- BUTTONS --- */
+.btn-red,
+button.btn-red {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #6D2038 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-red:hover,
+button.btn-red:hover {
+    background-color: #421323 !important;
+    color: #D8C0A3 !important;
+    border-color: #D8C0A3 !important;
+    transform: translateY(-3.925px) !important;
+}
+
+.btn-black {
+    background-color: #D8C0A3 !important;
+    color: #421323 !important;
+    border: 1px solid #D8C0A3 !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-black:hover {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border-color: #6D2038 !important;
+    transform: translateY(-3.925px) !important;
+}
+
+.btn-black-custom {
+    background-color: #421323 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-black-custom:hover {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border-color: #6D2038 !important;
+}
+
+.banner-btn {
+    color: #F8F4EC !important;
+    background-color: transparent !important;
+    border: 1px solid #D8C0A3 !important;
+    transition: all 0.3s ease !important;
+}
+
+.banner-btn:hover {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border-color: #6D2038 !important;
+}
+
+.custom-link,
+.disrupt-section .custom-link {
+    background: #6D2038 !important;
+    border: 1px solid #6D2038 !important;
+    color: #F8F4EC !important;
+    transition: all 0.3s ease !important;
+}
+
+.custom-link:hover,
+.disrupt-section .custom-link:hover {
+    background: transparent !important;
+    color: #D8C0A3 !important;
+    border-color: #D8C0A3 !important;
+}
+
+.btn-theme,
+.btn-packages {
+    background-color: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-theme:hover,
+.btn-packages:hover {
+    background-color: #421323 !important;
+    color: #D8C0A3 !important;
+    border-color: #D8C0A3 !important;
+}
+
+/* --- HERO & BANNERS --- */
+.home-banner-content h1 {
+    color: #F8F4EC !important;
+}
+
+.home-banner-content h1:after {
+    background: #D8C0A3 !important;
+}
+
+.home-banner-content .subtitle {
+    color: #D8C0A3 !important;
+}
+
+.ban-form input[type="submit"] {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+    transition: all 0.3s ease !important;
+}
+
+.ban-form input[type="submit"]:hover {
+    background: #D8C0A3 !important;
+    color: #421323 !important;
+    border-color: #D8C0A3 !important;
+}
+
+.proofbox {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+}
+
+/* --- SERVICES, PACKAGES & TABS --- */
+.tab-custom .tabbing-links li {
+    color: #F8F4EC !important;
+    border: 1px solid rgba(216, 192, 163, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.tab-custom .tabbing-links li:hover {
+    color: #D8C0A3 !important;
+    border-color: #D8C0A3 !important;
+}
+
+.tab-custom .tabbing-links li.current,
+.portfoliopg .build-to-win .tab-custom .tabbing-links li.current {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+}
+
+/* Decorative Headings & Accents */
+.cta-fold h2 strong {
+    border-bottom: solid 2px #D8C0A3 !important;
+}
+
+.innerbanner-text h6 strong {
+    border-top: solid 2px #D8C0A3 !important;
+}
+
+.innserservice-commonfolds h6,
+.inerservice-banner form p,
+.detailsec h2 {
+    color: #D8C0A3 !important;
+}
+
+.cstmwebdesgn .price h2,
+.price h2,
+.ourpackages h2 {
+    color: #D8C0A3 !important;
+}
+
+span.tick,
+.check,
+.ticklist2 li span,
+.ourprocesses .processlistdown li .check {
+    color: #D8C0A3 !important;
+}
+
+.popular,
+.badge-popular {
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+}
+
+/* --- FORMS & CONTACT --- */
+.contact-wrapper .submit,
+.bot-form .submit,
+.floatingform-sec .banner-form input[type="submit"] {
+    background: #6D2038 !important;
+    border: 1px solid #D8C0A3 !important;
+    color: #F8F4EC !important;
+    transition: all 0.3s ease !important;
+}
+
+.contact-wrapper .submit:hover,
+.bot-form .submit:hover,
+.floatingform-sec .banner-form input[type="submit"]:hover {
+    background: #D8C0A3 !important;
+    color: #421323 !important;
+    border-color: #D8C0A3 !important;
+}
+
+.contact-wrapper input,
+.contact-wrapper textarea,
+.bot-form input,
+.bot-form textarea,
+.banner-form input {
+    background: rgba(248, 244, 236, 0.08) !important;
+    border: 1px solid #D8C0A3 !important;
+    color: #F8F4EC !important;
+}
+
+.contact-wrapper input:focus,
+.contact-wrapper textarea:focus,
+.bot-form input:focus,
+.bot-form textarea:focus,
+.banner-form input:focus {
+    border-color: #6D2038 !important;
+    box-shadow: 0 0 8px rgba(109, 32, 56, 0.5) !important;
+    outline: none !important;
+}
+
+.contact-wrapper input::placeholder,
+.bot-form input::placeholder {
+    color: #E8DED1 !important;
+}
+
+/* --- FOOTER (DEEP BURGUNDY + WARM SAND + IVORY) --- */
 footer.footer-main,
 .footer-main {
-    background: #0a0a0c !important;
+    background: #421323 !important;
     background-image: none !important;
     border: none !important;
     outline: none !important;
@@ -4445,13 +4771,13 @@ footer.footer-main::after,
 .footer-main p,
 .footerleft p,
 .footerleft p.address-1 {
-    color: #e5e5ea !important;
+    color: #F8F4EC !important;
 }
 
 .footer-top h3 {
     padding-top: 22px !important;
-    color: #FFFEF0 !important;
-    border-bottom: solid 2px #ff5349 !important;
+    color: #F8F4EC !important;
+    border-bottom: solid 2px #D8C0A3 !important;
     padding-bottom: 7px !important;
     font-size: 13px !important;
     font-weight: 700 !important;
@@ -4462,7 +4788,7 @@ footer.footer-main::after,
     border-bottom: 0px !important;
 }
 
-/* Footer Links Normal State */
+/* Footer regular links (Services, About Us, Company, Contact info) */
 .footer-main a,
 .footer-main .linkinglist a,
 .footer-main .linkinglist li a,
@@ -4472,12 +4798,12 @@ footer.footer-main::after,
 .footer-top .linkinglist a,
 .footer-top .linkinglist li a,
 .footerleft a {
-    color: #e5e5ea !important;
+    color: #F8F4EC !important;
     text-decoration: none !important;
     transition: color 0.25s ease, opacity 0.25s ease !important;
 }
 
-/* Footer Links Hover, Focus, Active States - DIGENZ Gold (#fdb52c) */
+/* Footer links hover, focus, active: Warm Sand (#D8C0A3) */
 .footer-main a:hover,
 .footer-main a:focus,
 .footer-main a:focus-visible,
@@ -4509,40 +4835,41 @@ footer.footer-main::after,
 .footerleft a:hover,
 .footerleft a:focus,
 .footerleft a:focus-visible {
-    color: #fdb52c !important;
+    color: #D8C0A3 !important;
     text-decoration: none !important;
 }
 
-/* Visited Links Prevention */
+/* Visited links state */
 .footer-main a:visited,
 .footer-top a:visited,
 .footer-top .linkinglist li a:visited,
 .footerleft a:visited {
-    color: #e5e5ea !important;
+    color: #F8F4EC !important;
 }
 .footer-main a:visited:hover,
 .footer-top a:visited:hover,
 .footer-top .linkinglist li a:visited:hover,
 .footerleft a:visited:hover {
-    color: #fdb52c !important;
+    color: #D8C0A3 !important;
 }
 
-/* Accessible Keyboard Focus Outline */
+/* Accessible keyboard focus ring */
 .footer-main a:focus-visible,
 .footer-top .linkinglist li a:focus-visible,
 .footerleft a:focus-visible {
-    outline: 2px dashed #fdb52c !important;
+    outline: 2px dashed #D8C0A3 !important;
     outline-offset: 3px !important;
 }
 
-/* Copyright Bar (Footer Bottom) */
+/* Copyright Bar (Footer Bottom) — Burgundy (#6D2038) + Ivory (#F8F4EC) */
 .footer-bottom {
-    background: #fdb52c !important;
+    background: #6D2038 !important;
     padding: 16px 0 !important;
     text-align: center !important;
     border: none !important;
     outline: none !important;
 }
+
 .footer-bottom ul {
     display: flex !important;
     flex-wrap: wrap !important;
@@ -4552,40 +4879,46 @@ footer.footer-main::after,
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
-    color: #1a1a1a !important;
+    color: #F8F4EC !important;
     font-size: 11px !important;
     font-weight: 600 !important;
 }
+
 .footer-bottom ul li {
     display: inline-flex !important;
     align-items: center !important;
     padding: 0 4px !important;
     font-size: 11px !important;
-    color: #1a1a1a !important;
+    color: #F8F4EC !important;
 }
+
 .footer-bottom ul li a {
-    color: #1a1a1a !important;
+    color: #F8F4EC !important;
     font-size: 11px !important;
     font-weight: 600 !important;
     text-decoration: none !important;
     transition: color 0.2s ease, text-decoration 0.2s ease !important;
 }
+
 .footer-bottom ul li a:hover,
 .footer-bottom ul li a:focus,
 .footer-bottom ul li a:focus-visible,
 .footer-bottom ul li a:active {
-    color: #000000 !important;
+    color: #D8C0A3 !important;
     text-decoration: underline !important;
 }
+
 .footer-bottom ul li a:focus-visible {
-    outline: 2px solid #000000 !important;
+    outline: 2px solid #D8C0A3 !important;
     outline-offset: 2px !important;
 }
+
 .footer-bottom .payment-methods {
     display: inline-flex !important;
     align-items: center !important;
     margin-left: 12px !important;
 }
+
 .footer-bottom .payment-methods img {
     height: 22px !important;
     width: auto !important;
