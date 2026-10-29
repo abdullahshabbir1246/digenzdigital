@@ -590,7 +590,7 @@ padding: 0; cursor: pointer; }
 
 /* footer 
 ------------------------------------*/
-.footer-main {background: #160c28;}
+.footer-main {background: #0a0a0c !important;background-image: none !important;border: none !important;outline: none !important;}
 .footer-top {padding: 80px 0 0;}
 .footer-top h4 {color: white;font-size: 14px;font-weight: 700;text-transform: uppercase;margin: 10px 0;padding:0px;position: relative;}
 .footer-main p{color: var(--third-color);font-size: 15px;padding-bottom: 15px;}
@@ -652,7 +652,7 @@ padding: 0; cursor: pointer; }
 .footer-nav2 li:before { position: absolute; content: ""; width: 1px; height: 13px; background: white; left: 0px; top: 30%; }
 .footer-nav2 li:first-child:before { display: none; }
 .footer-nav2 li a {font-size: 13px;font-weight: 400;color: #cbd6e2;}
-.footer-nav2 li a:hover {color: var(--second-color);}
+.footer-nav2 li a:hover {color: #fdb52c !important;}
 .copyright {padding: 10px 0 0px 0;margin: 0px;font-size: 12px;color: #cbd6e2;}
 .copyright span {color: #cbd6e2;}
 .disclaimer-area { background: black; padding: 10px 0; }
@@ -881,7 +881,7 @@ section.faqsection {}
     font-weight: 700;
 }
 
-.footer-top{background: url(../images/footer-bg-white.jpg)no-repeat top right;background-size: cover !important;background-color: var(--third-colo)!important;}
+.footer-top{background: transparent !important;background-image: none !important;border: none !important;outline: none !important;}
 .footer-top h3{
     padding-top: 22px;
     color: var(--third-color);
@@ -1481,7 +1481,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 
 .footer-top .linkinglist li a.address{cursor: default;}
 .footer-top .linkinglist li a.address:hover{color: #cbd6e2;}
-.footer-top .linkinglist li a:hover{color: var(--second-color);}
+.footer-top .linkinglist li a:hover{color: #fdb52c !important;}
+.footer-top .linkinglist li a:focus,.footer-top .linkinglist li a:focus-visible{color: #fdb52c !important;outline: 2px dashed #fdb52c !important;outline-offset: 3px !important;}
 
 .accordlist{}
 .accordlist li{color: #687087;padding-left: 20px;position: relative;}
@@ -3889,8 +3890,7 @@ a.action-chat.clearfix.pull-right.sea {
     
 }
 .footer-top{
-        padding: 200px 0 0; 
-        
+        padding: 60px 0 30px !important; 
 }
 
 .btn-black-white{
@@ -4404,3 +4404,206 @@ a.action-chat.clearfix.pull-right.sea {
 
 
 
+
+/* ==========================================================================
+   DIGENZ FOOTER SPECIFICITY OVERRIDES
+   - Removes background logo and golden outline/border completely
+   - All footer links remain clearly legible in normal state (#e5e5ea)
+   - Hover, active, and focus states shine in DIGENZ Gold (#fdb52c)
+   - Headings retain clean white/cream color and red underline (#ff5349)
+   - Keyboard focus rings provide full accessibility
+   ========================================================================== */
+footer.footer-main,
+.footer-main {
+    background: #0a0a0c !important;
+    background-image: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+footer.footer-main::before,
+footer.footer-main::after,
+.footer-main::before,
+.footer-main::after,
+.footer-top::before,
+.footer-top::after {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    background: none !important;
+}
+
+.footer-top {
+    background: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    outline: none !important;
+    padding: 60px 0 40px !important;
+}
+
+.footer-main p,
+.footerleft p,
+.footerleft p.address-1 {
+    color: #e5e5ea !important;
+}
+
+.footer-top h3 {
+    padding-top: 22px !important;
+    color: #FFFEF0 !important;
+    border-bottom: solid 2px #ff5349 !important;
+    padding-bottom: 7px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    margin-bottom: 6px !important;
+}
+
+.footer-top h3.nobrder {
+    border-bottom: 0px !important;
+}
+
+/* Footer Links Normal State */
+.footer-main a,
+.footer-main .linkinglist a,
+.footer-main .linkinglist li a,
+.footer-main .footerleft a,
+.footer-main .footer-level-nav a,
+.footer-top a,
+.footer-top .linkinglist a,
+.footer-top .linkinglist li a,
+.footerleft a {
+    color: #e5e5ea !important;
+    text-decoration: none !important;
+    transition: color 0.25s ease, opacity 0.25s ease !important;
+}
+
+/* Footer Links Hover, Focus, Active States - DIGENZ Gold (#fdb52c) */
+.footer-main a:hover,
+.footer-main a:focus,
+.footer-main a:focus-visible,
+.footer-main a:active,
+.footer-main .linkinglist a:hover,
+.footer-main .linkinglist a:focus,
+.footer-main .linkinglist a:focus-visible,
+.footer-main .linkinglist a:active,
+.footer-main .linkinglist li a:hover,
+.footer-main .linkinglist li a:focus,
+.footer-main .linkinglist li a:focus-visible,
+.footer-main .linkinglist li a:active,
+.footer-main .footerleft a:hover,
+.footer-main .footerleft a:focus,
+.footer-main .footerleft a:focus-visible,
+.footer-main .footerleft a:active,
+.footer-main .footer-level-nav a:hover,
+.footer-main .footer-level-nav a:focus,
+.footer-top a:hover,
+.footer-top a:focus,
+.footer-top a:focus-visible,
+.footer-top a:active,
+.footer-top .linkinglist a:hover,
+.footer-top .linkinglist a:focus,
+.footer-top .linkinglist a:focus-visible,
+.footer-top .linkinglist li a:hover,
+.footer-top .linkinglist li a:focus,
+.footer-top .linkinglist li a:focus-visible,
+.footerleft a:hover,
+.footerleft a:focus,
+.footerleft a:focus-visible {
+    color: #fdb52c !important;
+    text-decoration: none !important;
+}
+
+/* Visited Links Prevention */
+.footer-main a:visited,
+.footer-top a:visited,
+.footer-top .linkinglist li a:visited,
+.footerleft a:visited {
+    color: #e5e5ea !important;
+}
+.footer-main a:visited:hover,
+.footer-top a:visited:hover,
+.footer-top .linkinglist li a:visited:hover,
+.footerleft a:visited:hover {
+    color: #fdb52c !important;
+}
+
+/* Accessible Keyboard Focus Outline */
+.footer-main a:focus-visible,
+.footer-top .linkinglist li a:focus-visible,
+.footerleft a:focus-visible {
+    outline: 2px dashed #fdb52c !important;
+    outline-offset: 3px !important;
+}
+
+/* Copyright Bar (Footer Bottom) */
+.footer-bottom {
+    background: #fdb52c !important;
+    padding: 16px 0 !important;
+    text-align: center !important;
+    border: none !important;
+    outline: none !important;
+}
+.footer-bottom ul {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    color: #1a1a1a !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+}
+.footer-bottom ul li {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0 4px !important;
+    font-size: 11px !important;
+    color: #1a1a1a !important;
+}
+.footer-bottom ul li a {
+    color: #1a1a1a !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease, text-decoration 0.2s ease !important;
+}
+.footer-bottom ul li a:hover,
+.footer-bottom ul li a:focus,
+.footer-bottom ul li a:focus-visible,
+.footer-bottom ul li a:active {
+    color: #000000 !important;
+    text-decoration: underline !important;
+}
+.footer-bottom ul li a:focus-visible {
+    outline: 2px solid #000000 !important;
+    outline-offset: 2px !important;
+}
+.footer-bottom .payment-methods {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-left: 12px !important;
+}
+.footer-bottom .payment-methods img {
+    height: 22px !important;
+    width: auto !important;
+    max-width: 140px !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .footer-top {
+        padding: 40px 0 20px !important;
+    }
+    .footer-bottom ul {
+        flex-direction: column !important;
+        gap: 6px !important;
+    }
+    .footer-bottom .payment-methods {
+        margin-left: 0 !important;
+        margin-top: 8px !important;
+    }
+}
