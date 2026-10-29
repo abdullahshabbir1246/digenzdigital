@@ -18,56 +18,9 @@
         return;
       }
 
-      // 2. Announcement Bar
-      if (settings.announcementBar && settings.announcementBar.isEnabled && settings.announcementBar.text) {
-        let bar = document.getElementById('digenzAnnouncementBar');
-        if (!bar) {
-          bar = document.createElement('div');
-          bar.id = 'digenzAnnouncementBar';
-          bar.style.cssText = `
-            background: linear-gradient(90deg, #16161a 0%, #2a220d 50%, #16161a 100%);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.4);
-            color: #fdb52c;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 600;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            position: relative;
-            z-index: 999999;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-          `;
-          document.body.insertBefore(bar, document.body.firstChild);
-        }
-
-        bar.innerHTML = `
-          <span>${settings.announcementBar.text}</span>
-          ${settings.announcementBar.buttonText ? `
-            <a href="${settings.announcementBar.buttonLink || '/packages/'}" style="
-              background: #d4af37;
-              color: #111;
-              padding: 3px 10px;
-              border-radius: 4px;
-              text-decoration: none;
-              font-size: 11px;
-              font-weight: bold;
-              display: inline-block;
-              transition: all 0.2s;
-            " onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='none'">${settings.announcementBar.buttonText}</a>
-          ` : ''}
-          <button style="
-            background: transparent;
-            border: none;
-            color: #888;
-            cursor: pointer;
-            font-size: 14px;
-            margin-left: 8px;
-          " onclick="this.parentElement.remove()" title="Dismiss">✕</button>
-        `;
-      }
+      // 2. Announcement bar removed
+      const existingBar = document.getElementById('digenzAnnouncementBar');
+      if (existingBar) existingBar.remove();
 
       // 3. Form submission AJAX enhancement
       document.querySelectorAll('form').forEach(form => {

@@ -932,10 +932,10 @@
     "currencyCode": "USD",
     "taxRate": 0,
     "announcementBar": {
-      "isEnabled": true,
-      "text": "✨ LIMITED OFFER: Up to 75% OFF on all Web & Branding Packages! Use code DIGENZ10 for extra 10% OFF.",
-      "buttonText": "Claim Discount",
-      "buttonLink": "/packages/"
+      "isEnabled": false,
+      "text": "",
+      "buttonText": "",
+      "buttonLink": ""
     },
     "maintenanceMode": false,
     "supportEmail": "support@digenz.com",

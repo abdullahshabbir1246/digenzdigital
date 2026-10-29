@@ -4940,3 +4940,8 @@ footer.footer-main::after,
         margin-top: 8px !important;
     }
 }
+
+
+#digenzAnnouncementBar {
+    display: none !important;
+}
