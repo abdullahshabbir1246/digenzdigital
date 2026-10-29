@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Server Unit 1 (Top) -->
+  <rect x="8" y="9" width="32" height="7" rx="3.5" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="13" cy="12.5" r="1.5" fill="#3478F6" />
+  <circle cx="17" cy="12.5" r="1.5" fill="#D5B66D" />
+  <line x1="23" y1="12.5" x2="35" y2="12.5" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Server Unit 2 (Middle) -->
+  <rect x="8" y="20" width="32" height="7" rx="3.5" stroke="#3478F6" stroke-width="2" />
+  <circle cx="13" cy="23.5" r="1.5" fill="#D5B66D" />
+  <circle cx="17" cy="23.5" r="1.5" fill="#FFFFFF" />
+  <line x1="23" y1="23.5" x2="35" y2="23.5" stroke="#3478F6" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Server Unit 3 (Bottom) -->
+  <rect x="8" y="31" width="32" height="7" rx="3.5" stroke="#FFFFFF" stroke-width="2" />
+  <circle cx="13" cy="34.5" r="1.5" fill="#3478F6" />
+  <circle cx="17" cy="34.5" r="1.5" fill="#D5B66D" />
+  <line x1="23" y1="34.5" x2="35" y2="34.5" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Database / API connection indicators -->
+  <line x1="5" y1="12.5" x2="5" y2="34.5" stroke="#D5B66D" stroke-width="1.8" stroke-dasharray="2 2" />
+  <circle cx="43" cy="23.5" r="2.5" fill="#3478F6" stroke="#FFFFFF" stroke-width="1.2" />
+  <line x1="40" y1="23.5" x2="43" y2="23.5" stroke="#3478F6" stroke-width="1.5" />
+</svg>

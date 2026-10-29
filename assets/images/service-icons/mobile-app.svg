@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Smartphone Outline -->
+  <rect x="13" y="6" width="22" height="36" rx="4.5" stroke="#FFFFFF" stroke-width="2" />
+  <!-- Top Speaker / Notch -->
+  <line x1="21" y1="9.5" x2="27" y2="9.5" stroke="#D5B66D" stroke-width="2" stroke-linecap="round" />
+  <!-- Bottom Home / Gesture Bar -->
+  <line x1="20" y1="38.5" x2="28" y2="38.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+  <!-- App Grid Icons -->
+  <rect x="17" y="14" width="5.5" height="5.5" rx="1.8" fill="#3478F6" />
+  <rect x="25.5" y="14" width="5.5" height="5.5" rx="1.8" fill="#D5B66D" />
+  <rect x="17" y="22" width="5.5" height="5.5" rx="1.8" fill="#FFFFFF" />
+  <rect x="25.5" y="22" width="5.5" height="5.5" rx="1.8" fill="#3478F6" />
+  <rect x="17" y="30" width="5.5" height="5" rx="1.5" fill="#D5B66D" />
+  <rect x="25.5" y="30" width="5.5" height="5" rx="1.5" fill="#FFFFFF" />
+  <!-- Signal / Notification Sparkle -->
+  <circle cx="38" cy="10" r="2" fill="#D5B66D" stroke="#3478F6" stroke-width="1" />
+  <line x1="38" y1="6" x2="38" y2="7.5" stroke="#3478F6" stroke-width="1" stroke-linecap="round" />
+  <line x1="41" y1="10" x2="42.5" y2="10" stroke="#3478F6" stroke-width="1" stroke-linecap="round" />
+</svg>

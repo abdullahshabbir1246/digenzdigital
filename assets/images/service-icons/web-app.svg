@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Application Window Frame -->
+  <rect x="5" y="8" width="38" height="32" rx="4" stroke="#FFFFFF" stroke-width="2" />
+  <!-- Header Bar -->
+  <line x1="5" y1="16" x2="43" y2="16" stroke="#263449" stroke-width="1.5" />
+  <circle cx="10" cy="12" r="1.5" fill="#3478F6" />
+  <circle cx="15" cy="12" r="1.5" fill="#D5B66D" />
+  <line x1="34" y1="12" x2="39" y2="12" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Analytics Bar Chart -->
+  <rect x="10" y="27" width="4.5" height="8" rx="1" fill="#3478F6" />
+  <rect x="17" y="22" width="4.5" height="13" rx="1" fill="#FFFFFF" />
+  <rect x="24" y="18" width="4.5" height="17" rx="1" fill="#D5B66D" />
+  <!-- Ascending Trendline -->
+  <path d="M10 24 Q 17 19, 24 16 T 38 18" stroke="#3478F6" stroke-width="2" stroke-linecap="round" fill="none" />
+  <circle cx="38" cy="18" r="2" fill="#D5B66D" stroke="#FFFFFF" stroke-width="1" />
+  <!-- Mini Controls Card -->
+  <rect x="31" y="25" width="8" height="10" rx="1.5" stroke="#FFFFFF" stroke-width="1.5" fill="#263449" />
+  <line x1="33" y1="28" x2="37" y2="28" stroke="#D5B66D" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="33" y1="31" x2="36" y2="31" stroke="#3478F6" stroke-width="1.5" stroke-linecap="round" />
+</svg>

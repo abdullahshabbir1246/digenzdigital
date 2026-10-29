@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Cloud Hosting Shape -->
+  <path d="M12 28 C9.8 28 8 26.2 8 24 C8 22 9.5 20.3 11.5 20.1 C12.3 15.5 16.3 12 21 12 C25 12 28.5 14.7 29.6 18.5 C30.4 18.2 31.2 18 32 18 C35.3 18 38 20.7 38 24 C38 27.3 35.3 30 32 30" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" />
+  <!-- Server Base Under Cloud -->
+  <rect x="12" y="32" width="24" height="6" rx="2" stroke="#3478F6" stroke-width="2" />
+  <circle cx="16" cy="35" r="1.2" fill="#D5B66D" />
+  <circle cx="20" cy="35" r="1.2" fill="#FFFFFF" />
+  <line x1="25" y1="35" x2="32" y2="35" stroke="#3478F6" stroke-width="1.5" stroke-linecap="round" />
+  <!-- Globe / Network Orbit Line -->
+  <ellipse cx="24" cy="22" rx="10" ry="4" stroke="#D5B66D" stroke-width="1.4" stroke-dasharray="3 2" />
+</svg>

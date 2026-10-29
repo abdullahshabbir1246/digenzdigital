@@ -280,107 +280,53 @@ padding: 0; cursor: pointer; }
 .boxesinfo{padding: 60px 0;}
 .boxesinfo .wrp .listboxes{text-align: center;margin-bottom: 0;width: 100%;font-size: 0;display: inline-block;}
 .boxesinfo .wrp .listboxes li{padding: 0 15px;}
-.boxesinfo .wrp .listboxes li figure{margin-bottom: 0; }
-/*.boxesinfo .wrp .listboxes li figure img{height: 60px; width: auto; margin: 0 auto; display: table; }*/
-
-.boxesinfo .wrp .listboxes li figure {
-    background-image: url(../images/icon_sprite.png);
+.boxesinfo .wrp .listboxes li figure{
+    margin-bottom: 0;
+    width: 60px;
+    height: 60px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: none !important;
+    background-image: none !important;
 }
-.boxesinfo .wrp .listboxes li .develp {
-    width: 60px; height: 60px;
-    background-position: -170px -90px;
+.boxesinfo .wrp .listboxes li figure img,
+.boxesinfo .wrp .listboxes li figure .service-icon-svg {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    display: block !important;
+    margin: 0 auto !important;
+    object-fit: contain;
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+.boxesinfo .wrp .listboxes li:hover figure img,
+.boxesinfo .wrp .listboxes li:hover figure .service-icon-svg {
+    transform: translateY(-4px) scale(1.08);
+}
+.boxesinfo .wrp .listboxes li a {
+    text-decoration: none;
     display: block;
-    margin: 0 auto;
+    transition: color 0.25s ease;
 }
-
-.boxesinfo .wrp .listboxes li .wpres {
-       width: 60px; height: 60px;
-     background-position: -10px -90px;
-     display: block;
-    margin: 0 auto;
+.boxesinfo .wrp .listboxes li a:hover h4 {
+    color: var(--first-color) !important;
 }
-
-
-
-.boxesinfo .wrp .listboxes li .ecom {
- width: 60px; height: 60px;
-    background-position:  -90px -170px;
-    display: block;
-    margin: 0 auto;
-}
-
-
-
-
-.boxesinfo .wrp .listboxes li .appli {
-    width: 60px; height: 60px;
-     background-position: -90px -10px;
-     display: block;
-    margin: 0 auto;
-}
-
-
-.boxesinfo .wrp .listboxes li .backen {
-    width: 60px; height: 60px;
-    background-position:  -90px -90px;
-    display: block;
-    margin: 0 auto;
-}
-
-
-
-.boxesinfo .wrp .listboxes li .mobappl {
-    width: 60px; height: 60px;
-    background-position:  -170px -170px;
-    display: block;
-    margin: 0 auto;
-}
-
-
-
-.boxesinfo .wrp .listboxes li .mainten {
-  background-position: -250px -90px;
-  width: 60px;
-  height: 60px;
-  display: block;
-    margin: 0 auto;
-}
-
-
-
-
-
-.boxesinfo .wrp .listboxes li .domin {
- width: 60px; height: 60px;
-    background-position: -10px -170px;
-    display: block;
-    margin: 0 auto;
-}
-
-
-
-.boxesinfo .wrp .listboxes li .brendng {
-      width: 60px; height: 60px;
-    background-position: -170px -10px;
-    display: block;
-    margin: 0 auto;
-}
-
-
-
-.boxesinfo .wrp .listboxes li .animatn {
- width: 60px; height: 60px;
-    background-position: -10px -10px;
-    display: block;
-    margin: 0 auto;
-}
-
-
+.boxesinfo .wrp .listboxes li .develp,
+.boxesinfo .wrp .listboxes li .wpres,
+.boxesinfo .wrp .listboxes li .ecom,
+.boxesinfo .wrp .listboxes li .appli,
+.boxesinfo .wrp .listboxes li .backen,
+.boxesinfo .wrp .listboxes li .mobappl,
+.boxesinfo .wrp .listboxes li .mainten,
+.boxesinfo .wrp .listboxes li .domin,
+.boxesinfo .wrp .listboxes li .brendng,
+.boxesinfo .wrp .listboxes li .animatn,
 .boxesinfo .wrp .listboxes li .seeo {
- width: 60px; height: 60px;
-  background-position: -250px -10px;
-  display: block;
-    margin: 0 auto;
+    background-image: none !important;
+    background-position: 0 0 !important;
 }
 
 /*.boxesinfo .wrp .listboxes li .develp {*/
