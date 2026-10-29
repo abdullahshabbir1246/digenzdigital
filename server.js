@@ -111,6 +111,7 @@ function sanitizeHTML(html) {
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   let pathname = decodeURI(parsedUrl.pathname);
+  console.log(`[REQ] ${req.method} ${pathname}`);
   const method = req.method.toUpperCase();
   const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
 
