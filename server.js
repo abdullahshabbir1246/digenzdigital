@@ -9,6 +9,16 @@ const { db, hashPassword, verifyPassword } = require('./db');
 const PORT = process.env.PORT || 3000;
 const BASE_DIR = __dirname;
 const UPLOAD_DIR = path.join(BASE_DIR, 'assets', 'images', 'uploads');
+const CSS_DIR = path.join(BASE_DIR, 'assets', 'css');
+const JS_DIR = path.join(BASE_DIR, 'assets', 'js');
+const ADMIN_DIR = path.join(BASE_DIR, 'admin');
+
+// Ensure NFT bundles static directories in serverless builds
+try {
+  if (fs.existsSync(CSS_DIR)) fs.readdirSync(CSS_DIR);
+  if (fs.existsSync(JS_DIR)) fs.readdirSync(JS_DIR);
+  if (fs.existsSync(ADMIN_DIR)) fs.readdirSync(ADMIN_DIR);
+} catch (e) {}
 
 if (!fs.existsSync(UPLOAD_DIR)) {
   try { fs.mkdirSync(UPLOAD_DIR, { recursive: true }); } catch (e) {}

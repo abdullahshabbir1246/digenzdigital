@@ -1,7 +1,10 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "functions": {
+    "server.js": {
+      "includeFiles": "{assets/**,admin/**,data/**,*.html,*.htm,*/**/*.html}"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -30,10 +33,5 @@
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
-  ],
-  "rewrites": [
-    { "source": "/admin", "destination": "/admin/index.html" },
-    { "source": "/admin/", "destination": "/admin/index.html" },
-    { "source": "/", "destination": "/index.html" }
   ]
 }
