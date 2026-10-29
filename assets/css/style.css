@@ -1922,7 +1922,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
     color: var(--third-color);
 }
 .footerForm label {
-    color: var(--third-color);
+    color: #421323 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    display: block !important;
+    margin-bottom: 6px !important;
 }
 
 .footerForm  p {
@@ -4944,4 +4948,149 @@ footer.footer-main::after,
 
 #digenzAnnouncementBar {
     display: none !important;
+}
+
+
+/* ==========================================================================
+   GET AN INSTANT QUOTE FORM — HIGH CONTRAST & VISIBILITY FIX
+   ========================================================================== */
+.bot-form,
+.footerForm {
+    background: #F8F4EC !important;
+    border-radius: 16px !important;
+    padding: 35px 30px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25) !important;
+    border: 1px solid rgba(216, 192, 163, 0.5) !important;
+}
+
+.bot-form h4,
+.footerForm h4 {
+    color: #6D2038 !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin-bottom: 6px !important;
+    text-transform: capitalize !important;
+}
+
+.bot-form p.font-36,
+.footerForm p.font-36 {
+    color: #7a6b63 !important;
+    font-size: 15px !important;
+    text-align: center !important;
+    margin-bottom: 25px !important;
+    font-weight: 500 !important;
+}
+
+.bot-form p.font-36 b,
+.footerForm p.font-36 b {
+    color: #6D2038 !important;
+    font-weight: 700 !important;
+}
+
+/* Clear, crisp labels in Deep Burgundy */
+.bot-form label,
+.footerForm label,
+.from-control label {
+    display: block !important;
+    color: #421323 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin-bottom: 7px !important;
+    text-align: left !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.bot-form label span,
+.footerForm label span,
+.from-control label span {
+    color: #6D2038 !important;
+    font-weight: 700 !important;
+    margin-left: 2px !important;
+}
+
+.from-control {
+    margin-bottom: 18px !important;
+    padding: 0 !important;
+}
+
+/* Crisp, high-contrast inputs */
+.bot-form input[type="text"],
+.bot-form input[type="email"],
+.bot-form input[type="tel"],
+.bot-form input[type="number"],
+.bot-form textarea,
+.footerForm input[type="text"],
+.footerForm input[type="email"],
+.footerForm input[type="tel"],
+.footerForm input[type="number"],
+.footerForm textarea,
+.from-control input {
+    width: 100% !important;
+    height: 50px !important;
+    background: #FFFFFF !important;
+    border: 1px solid #D8C0A3 !important;
+    border-radius: 8px !important;
+    padding: 10px 16px !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    color: #421323 !important;
+    outline: none !important;
+    transition: all 0.25s ease !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Focus state with glowing burgundy ring */
+.bot-form input:focus,
+.bot-form textarea:focus,
+.footerForm input:focus,
+.footerForm textarea:focus,
+.from-control input:focus {
+    border-color: #6D2038 !important;
+    box-shadow: 0 0 0 3px rgba(109, 32, 56, 0.2) !important;
+    background: #FFFFFF !important;
+    color: #421323 !important;
+}
+
+/* Legible placeholders */
+.bot-form input::placeholder,
+.bot-form textarea::placeholder,
+.footerForm input::placeholder,
+.footerForm textarea::placeholder,
+.from-control input::placeholder {
+    color: #9c8e85 !important;
+    opacity: 1 !important;
+    font-size: 14px !important;
+}
+
+/* Submit Button */
+.bot-form input[type="submit"],
+.footerForm input[type="submit"],
+.bot-form .submit,
+.footerForm .submit {
+    width: 100% !important;
+    height: 52px !important;
+    background: #6D2038 !important;
+    color: #F8F4EC !important;
+    border: 1px solid #D8C0A3 !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(109, 32, 56, 0.35) !important;
+    margin-top: 10px !important;
+}
+
+.bot-form input[type="submit"]:hover,
+.footerForm input[type="submit"]:hover,
+.bot-form .submit:hover,
+.footerForm .submit:hover {
+    background: #D8C0A3 !important;
+    color: #421323 !important;
+    border-color: #D8C0A3 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
 }
