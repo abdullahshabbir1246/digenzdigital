@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const os = require('os');
 
 const DATA_DIR = path.join(__dirname, 'data');
 const DB_FILE = path.join(DATA_DIR, 'db.json');
@@ -408,7 +409,7 @@ function getInitialSeed() {
       discountValue: 10,
       minOrderValue: 50,
       maxUses: 1000,
-      usedCount: 42,
+      usedCount: 0,
       expiryDate: '2026-12-31',
       isActive: true,
       eligibleCategories: ['cat-logo', 'cat-webdesign', 'cat-ecommerce', 'cat-combo'],
@@ -421,7 +422,7 @@ function getInitialSeed() {
       discountValue: 75,
       minOrderValue: 100,
       maxUses: 500,
-      usedCount: 128,
+      usedCount: 0,
       expiryDate: '2026-12-31',
       isActive: true,
       eligibleCategories: [],
@@ -434,7 +435,7 @@ function getInitialSeed() {
       discountValue: 50,
       minOrderValue: 200,
       maxUses: 200,
-      usedCount: 15,
+      usedCount: 0,
       expiryDate: '2026-12-31',
       isActive: true,
       eligibleCategories: ['cat-webdesign', 'cat-combo'],
@@ -442,147 +443,9 @@ function getInitialSeed() {
     }
   ];
 
-  const customers = [
-    {
-      id: 'cust-101',
-      name: 'Alexander Wright',
-      email: 'a.wright@novatech.io',
-      phone: '+1 (415) 890-2341',
-      company: 'NovaTech Solutions',
-      address: '742 Evergreen Terrace',
-      city: 'San Francisco, CA',
-      country: 'United States',
-      status: 'active',
-      totalOrders: 2,
-      totalSpent: 948,
-      createdAt: '2026-01-10T14:22:00.000Z'
-    },
-    {
-      id: 'cust-102',
-      name: 'Sophia Chen',
-      email: 'sophia@luxurydesign.co',
-      phone: '+1 (212) 555-0199',
-      company: 'Luxury Studio NYC',
-      address: '5th Avenue Penthouse 12',
-      city: 'New York, NY',
-      country: 'United States',
-      status: 'active',
-      totalOrders: 1,
-      totalSpent: 399,
-      createdAt: '2026-01-18T10:15:00.000Z'
-    },
-    {
-      id: 'cust-103',
-      name: 'Marcus Vance',
-      email: 'm.vance@vancemedia.com',
-      phone: '+44 20 7946 0912',
-      company: 'Vance Digital UK',
-      address: '14 Oxford Court',
-      city: 'London',
-      country: 'United Kingdom',
-      status: 'active',
-      totalOrders: 1,
-      totalSpent: 899,
-      createdAt: '2026-01-22T08:30:00.000Z'
-    }
-  ];
+  const customers = [];
 
-  const orders = [
-    {
-      id: 'ord-1001',
-      orderNumber: 'DGZ-2026-1001',
-      customerId: 'cust-101',
-      customer: {
-        name: 'Alexander Wright',
-        email: 'a.wright@novatech.io',
-        phone: '+1 (415) 890-2341',
-        address: '742 Evergreen Terrace',
-        city: 'San Francisco, CA',
-        country: 'United States'
-      },
-      items: [
-        { productId: 'prod-startup-web', name: 'Startup Website Package', price: 199, quantity: 1 },
-        { productId: 'prod-prof-logo', name: 'Professional Logo Package', price: 99, quantity: 1 }
-      ],
-      subtotal: 298,
-      couponCode: 'DIGENZ10',
-      discount: 29.8,
-      tax: 0,
-      total: 268.2,
-      status: 'processing',
-      paymentStatus: 'paid',
-      paymentMethod: 'Stripe Credit Card',
-      trackingNumber: 'DGZ-TRK-98124',
-      courier: 'Digital Delivery / Cloud Repository',
-      internalNotes: [
-        { note: 'Client requested initial wireframe review by Friday.', author: 'admin@digenz.com', date: '2026-01-12T11:00:00.000Z' }
-      ],
-      createdAt: '2026-01-12T09:40:00.000Z',
-      updatedAt: '2026-01-14T15:20:00.000Z'
-    },
-    {
-      id: 'ord-1002',
-      orderNumber: 'DGZ-2026-1002',
-      customerId: 'cust-102',
-      customer: {
-        name: 'Sophia Chen',
-        email: 'sophia@luxurydesign.co',
-        phone: '+1 (212) 555-0199',
-        address: '5th Avenue Penthouse 12',
-        city: 'New York, NY',
-        country: 'United States'
-      },
-      items: [
-        { productId: 'prod-prof-web', name: 'Professional Website Package', price: 399, quantity: 1 }
-      ],
-      subtotal: 399,
-      couponCode: '',
-      discount: 0,
-      tax: 0,
-      total: 399,
-      status: 'confirmed',
-      paymentStatus: 'paid',
-      paymentMethod: 'PayPal Express',
-      trackingNumber: 'DGZ-TRK-98125',
-      courier: 'GitHub Worktree Access',
-      internalNotes: [
-        { note: 'Brief received, design moodboard submitted.', author: 'admin@digenz.com', date: '2026-01-19T14:10:00.000Z' }
-      ],
-      createdAt: '2026-01-19T10:15:00.000Z',
-      updatedAt: '2026-01-20T08:00:00.000Z'
-    },
-    {
-      id: 'ord-1003',
-      orderNumber: 'DGZ-2026-1003',
-      customerId: 'cust-103',
-      customer: {
-        name: 'Marcus Vance',
-        email: 'm.vance@vancemedia.com',
-        phone: '+44 20 7946 0912',
-        address: '14 Oxford Court',
-        city: 'London',
-        country: 'United Kingdom'
-      },
-      items: [
-        { productId: 'prod-corp-combo', name: 'Corporate Combo Package', price: 899, quantity: 1 }
-      ],
-      subtotal: 899,
-      couponCode: '',
-      discount: 0,
-      tax: 0,
-      total: 899,
-      status: 'pending',
-      paymentStatus: 'unpaid',
-      paymentMethod: 'Wire Transfer / Invoice',
-      trackingNumber: '',
-      courier: '',
-      internalNotes: [
-        { note: 'Awaiting bank clearance confirmation.', author: 'admin@digenz.com', date: '2026-01-22T09:00:00.000Z' }
-      ],
-      createdAt: '2026-01-22T08:30:00.000Z',
-      updatedAt: '2026-01-22T08:30:00.000Z'
-    }
-  ];
+  const orders = [];
 
   const content = {
     about: {
@@ -784,6 +647,28 @@ function getInitialSeed() {
   };
 }
 
+// Resolve writable database file path (supports serverless read-only filesystems)
+function resolveDbPath() {
+  try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+    const testFile = path.join(DATA_DIR, '.write_test_' + Date.now());
+    fs.writeFileSync(testFile, '1');
+    fs.unlinkSync(testFile);
+    return DB_FILE;
+  } catch (err) {
+    // Read-only filesystem (e.g. Vercel Lambda / Serverless)
+    const tmpDbPath = path.join(os.tmpdir(), 'digenz_db.json');
+    if (!fs.existsSync(tmpDbPath) && fs.existsSync(DB_FILE)) {
+      try {
+        fs.copyFileSync(DB_FILE, tmpDbPath);
+      } catch (e) {}
+    }
+    return tmpDbPath;
+  }
+}
+
 class Database {
   constructor() {
     this.data = null;
@@ -792,19 +677,16 @@ class Database {
   }
 
   init() {
-    if (!fs.existsSync(DATA_DIR)) {
-      fs.mkdirSync(DATA_DIR, { recursive: true });
-    }
-
-    if (!fs.existsSync(DB_FILE)) {
-      console.log('[DB] Seeding database at', DB_FILE);
+    const targetFile = resolveDbPath();
+    if (!fs.existsSync(targetFile)) {
+      console.log('[DB] Seeding database at', targetFile);
       this.data = getInitialSeed();
       this.save();
     } else {
       try {
-        const raw = fs.readFileSync(DB_FILE, 'utf8');
+        const raw = fs.readFileSync(targetFile, 'utf8');
         this.data = JSON.parse(raw);
-        console.log('[DB] Database loaded successfully.');
+        console.log('[DB] Database loaded successfully from', targetFile);
       } catch (err) {
         console.error('[DB] Error loading database file, re-initializing from seed:', err.message);
         this.data = getInitialSeed();
@@ -814,10 +696,16 @@ class Database {
   }
 
   save() {
+    const targetFile = resolveDbPath();
     try {
-      const tmpFile = DB_FILE + '.tmp';
+      const tmpFile = targetFile + '.tmp';
       fs.writeFileSync(tmpFile, JSON.stringify(this.data, null, 2), 'utf8');
-      fs.renameSync(tmpFile, DB_FILE);
+      fs.renameSync(tmpFile, targetFile);
+      if (targetFile !== DB_FILE) {
+        try {
+          fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), 'utf8');
+        } catch (e) {}
+      }
       return true;
     } catch (err) {
       console.error('[DB] Save error:', err.message);

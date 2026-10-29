@@ -67,6 +67,41 @@ const Admin = (function() {
     }, 4000);
   }
 
+  
+  // =========================================================================
+  // MODAL MEDIA UPLOAD HELPER
+  // =========================================================================
+  async function handleModalUpload(inputEl, targetInputId, previewContainerId) {
+    const file = inputEl.files && inputEl.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      showToast('Please select a valid image file (PNG, JPG, SVG, WebP).', 'error');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        showToast('Uploading image to media system...', 'info');
+        const res = await api('/media/upload', {
+          method: 'POST',
+          body: JSON.stringify({ filename: file.name, data: e.target.result })
+        });
+
+        document.getElementById(targetInputId).value = res.url;
+        const previewEl = document.getElementById(previewContainerId);
+        if (previewEl) {
+          previewEl.innerHTML = `<img src="${res.url}" style="height: 48px; border-radius: 4px; border: 1px solid #D5B66D; margin-top: 4px;">`;
+        }
+        showToast('Image uploaded successfully: ' + res.filename, 'success');
+      } catch (err) {
+        showToast('Upload error: ' + err.message, 'error');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
   // =========================================================================
   // MODAL HELPERS
   // =========================================================================
@@ -344,6 +379,7 @@ const Admin = (function() {
     document.getElementById('productModalTitle').textContent = 'Create New Service Package';
     document.getElementById('productForm').reset();
     document.getElementById('pmId').value = '';
+    const prev = document.getElementById('pmImagePreview'); if (prev) prev.innerHTML = '';
     openModal('productModal');
   }
 
@@ -371,6 +407,10 @@ const Admin = (function() {
 
   async function handleProductSubmit(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn ? btn.textContent : 'Save';
+    if (btn) { btn.disabled = true; btn.textContent = 'Saving...'; }
+
     const id = document.getElementById('pmId').value;
     const payload = {
       name: document.getElementById('pmName').value.trim(),
@@ -389,15 +429,17 @@ const Admin = (function() {
     try {
       if (id) {
         await api(`/products/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
-        showToast('Package updated successfully.', 'success');
+        showToast('Package updated successfully in database.', 'success');
       } else {
         await api('/products', { method: 'POST', body: JSON.stringify(payload) });
-        showToast('Package created successfully.', 'success');
+        showToast('Package created successfully in database.', 'success');
       }
       closeModal('productModal');
       loadProducts();
     } catch (err) {
       showToast('Error saving package: ' + err.message, 'error');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
     }
   }
 
@@ -487,6 +529,10 @@ const Admin = (function() {
 
   async function handleCategorySubmit(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn ? btn.textContent : 'Save';
+    if (btn) { btn.disabled = true; btn.textContent = 'Saving...'; }
+
     const id = document.getElementById('cmId').value;
     const payload = {
       name: document.getElementById('cmName').value.trim(),
@@ -503,16 +549,18 @@ const Admin = (function() {
     try {
       if (id) {
         await api(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
-        showToast('Category updated.', 'success');
+        showToast('Category updated successfully.', 'success');
       } else {
         await api('/categories', { method: 'POST', body: JSON.stringify(payload) });
-        showToast('Category created.', 'success');
+        showToast('Category created successfully.', 'success');
       }
       closeModal('categoryModal');
       loadCategories();
       loadCategoriesCache();
     } catch (err) {
       showToast('Error saving category: ' + err.message, 'error');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
     }
   }
 
@@ -909,6 +957,10 @@ const Admin = (function() {
 
   async function handleBannerSubmit(e) {
     e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn ? btn.textContent : 'Save';
+    if (btn) { btn.disabled = true; btn.textContent = 'Saving...'; }
+
     const id = document.getElementById('bmId').value;
     const payload = {
       title: document.getElementById('bmTitle').value.trim(),
@@ -924,15 +976,17 @@ const Admin = (function() {
     try {
       if (id) {
         await api(`/banners/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
-        showToast('Banner updated.', 'success');
+        showToast('Banner updated successfully.', 'success');
       } else {
         await api('/banners', { method: 'POST', body: JSON.stringify(payload) });
-        showToast('Banner created.', 'success');
+        showToast('Banner created successfully.', 'success');
       }
       closeModal('bannerModal');
       loadBanners();
     } catch (err) {
       showToast('Error saving banner: ' + err.message, 'error');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
     }
   }
 
@@ -1492,6 +1546,7 @@ const Admin = (function() {
     openAddBannerModal,
     openEditBannerModal,
     handleBannerSubmit,
+    handleModalUpload,
     deleteBanner,
     loadCMS,
     saveCMSSection,

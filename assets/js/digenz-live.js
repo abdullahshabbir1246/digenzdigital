@@ -1,88 +1,363 @@
 /**
- * DIGENZ Live Public Integration & Client Synchronization
- * Injects real-time announcement bar, updates contact info, and connects lead capture to backend
+ * DIGENZ Live Website Dynamic Synchronization Engine
+ * Automatically binds public website pages with the real-time DIGENZ database:
+ * - Dynamic Pricing & Package Cards Sync (name, price, sale price, features, badges, status)
+ * - Dynamic Banner Content Sync (headline, subtitle, button text & link)
+ * - Dynamic Category & Contact Info Sync
+ * - Production Lead Capture Pipeline (creates real database orders & customers)
  */
 
 (function() {
   'use strict';
 
-  async function initDigenzLive() {
+  const CACHE_BUST = Date.now();
+
+  async function fetchJSON(url) {
     try {
-      const res = await fetch('/api/settings');
-      if (!res.ok) return;
-      const settings = await res.json();
-
-      // 1. Maintenance Mode Check
-      if (settings.maintenanceMode && !window.location.pathname.startsWith('/admin')) {
-        window.location.reload();
-        return;
-      }
-
-      // 2. Announcement bar removed
-      const existingBar = document.getElementById('digenzAnnouncementBar');
-      if (existingBar) existingBar.remove();
-
-      // 3. Form submission AJAX enhancement
-      document.querySelectorAll('form').forEach(form => {
-        const action = form.getAttribute('action') || '';
-        if (action.includes('bannerFormController') || action.includes('/leads') || action.includes('floatingFormController')) {
-          form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const submitBtn = form.querySelector('button[type="submit"], input[type="submit"], .btn-submit, .submit');
-            const originalText = submitBtn ? (submitBtn.innerText || submitBtn.value) : '';
-            if (submitBtn) {
-              if (submitBtn.tagName === 'INPUT') submitBtn.value = 'Submitting...';
-              else submitBtn.innerText = 'Submitting...';
-              submitBtn.disabled = true;
-            }
-
-            const formData = new FormData(form);
-            const data = {};
-            formData.forEach((val, key) => { data[key] = val; });
-
-            try {
-              const postRes = await fetch('/leads/', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-                },
-                body: JSON.stringify(data)
-              });
-
-              const result = await postRes.json();
-              if (postRes.ok) {
-                // Show clean success notice
-                form.innerHTML = `
-                  <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; padding: 20px; border-radius: 8px; text-align: center; margin: 15px 0;">
-                    <h4 style="margin: 0 0 8px; color: #10b981; font-size: 18px;">Quote Request Received!</h4>
-                    <p style="margin: 0; font-size: 13px; color: #eee;">Thank you for contacting DIGENZ. Your request #${result.orderNumber || ''} has been registered and a specialist will contact you shortly.</p>
-                  </div>
-                `;
-              } else {
-                alert('Submission failed: ' + (result.error || 'Please try again.'));
-                if (submitBtn) {
-                  if (submitBtn.tagName === 'INPUT') submitBtn.value = originalText;
-                  else submitBtn.innerText = originalText;
-                  submitBtn.disabled = false;
-                }
-              }
-            } catch (err) {
-              // Fallback to standard form submit
-              form.submit();
-            }
-          });
-        }
+      const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}v=${CACHE_BUST}`, {
+        headers: { 'Accept': 'application/json' }
       });
-
-    } catch (err) {
-      console.log('[DIGENZ Live] Offline mode.');
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (e) {
+      return null;
     }
   }
 
+  // Helper: Normalize strings for matching
+  function norm(str) {
+    return (str || '').toLowerCase().replace(/<[^>]*>/g, '').replace(/[^a-z0-9]/g, '');
+  }
+
+  // =========================================================================
+  // 1. DYNAMIC PRODUCTS & PRICING SYNCHRONIZER
+  // =========================================================================
+  function syncProducts(products, settings) {
+    if (!Array.isArray(products) || products.length === 0) return;
+    const currency = (settings && settings.currencySymbol) || '$';
+
+    const categoryTabMap = {
+      'cat-logo': ['.tabs-logo', '.tabs-logodesign'],
+      'cat-webdesign': ['.tabs-webdesign', '.tabs-customwebsite', '.tabs-web'],
+      'cat-ecommerce': ['.tabs-ecommerce', '.tabs-ecom'],
+      'cat-branding': ['.tabs-branding', '.tabs-corporatebranding'],
+      'cat-animation': ['.tabs-animation', '.tabs-videoanimation'],
+      'cat-seo': ['.tabs-seo'],
+      'cat-smm': ['.tabs-smm'],
+      'cat-combo': ['.tabs-combo', '.tabs-packages']
+    };
+
+    // A. Update Existing Cards on Homepage & Packages Page
+    const cards = document.querySelectorAll('.packwrap');
+    const matchedProductIds = new Set();
+
+    cards.forEach(card => {
+      const h3 = card.querySelector('h3');
+      if (!h3) return;
+      const cardTitleNorm = norm(h3.innerText || h3.textContent);
+
+      // Find matching product by name or slug
+      const prod = products.find(p => norm(p.name) === cardTitleNorm || norm(p.slug) === cardTitleNorm);
+      if (!prod) return;
+
+      matchedProductIds.add(prod.id);
+      card.setAttribute('data-product-id', prod.id);
+
+      // If product is draft or inactive, hide card
+      const parentLi = card.closest('li');
+      if (prod.status !== 'published') {
+        if (parentLi) parentLi.style.display = 'none';
+        return;
+      } else {
+        if (parentLi) parentLi.style.display = '';
+      }
+
+      // 1. Update Title
+      if (prod.name) {
+        // Keep clean formatted text
+        h3.innerHTML = prod.name.replace(/ Package/i, ' <br> Package');
+      }
+
+      // 2. Update Pricing (h4)
+      const h4 = card.querySelector('h4');
+      if (h4) {
+        if (prod.salePrice && prod.salePrice < prod.price) {
+          h4.innerHTML = `<span>Starting at </span> ${currency}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currency}${Number(prod.price).toLocaleString()}</small>`;
+        } else {
+          h4.innerHTML = `<span>Starting at </span> ${currency}${Number(prod.price).toLocaleString()}`;
+        }
+      }
+
+      // 3. Update Subtitle / Description (h5 or h2)
+      const descEl = card.querySelector('h5, h2');
+      if (descEl && prod.description) {
+        descEl.textContent = prod.description;
+      }
+
+      // 4. Update Features List
+      const featuresUl = card.querySelector('ul.packfeatures, ul.listpacks');
+      if (featuresUl && Array.isArray(prod.features) && prod.features.length > 0) {
+        featuresUl.innerHTML = prod.features.map(f => `<li>${f}</li>`).join('');
+      }
+
+      // 5. Update Badge (Popular / Best Seller / Discount)
+      let badgeEl = card.querySelector('.digenz-badge');
+      if (prod.badge) {
+        if (!badgeEl) {
+          badgeEl = document.createElement('span');
+          badgeEl.className = 'digenz-badge';
+          badgeEl.style.cssText = 'background: #D5B66D; color: #101827; padding: 3px 10px; border-radius: 3px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;';
+          card.insertBefore(badgeEl, card.firstChild);
+        }
+        badgeEl.textContent = prod.badge;
+      } else if (badgeEl) {
+        badgeEl.remove();
+      }
+
+      // 6. Update CTA button link with product context
+      const btn = card.querySelector('.btn-pack');
+      if (btn) {
+        btn.setAttribute('data-pkg-name', prod.name);
+        btn.setAttribute('data-pkg-price', prod.salePrice || prod.price);
+      }
+    });
+
+    // B. Detail / Pricing Individual Pages (e.g. /pricing/startup-website-package/)
+    const subsPac = document.querySelector('.subs-pac');
+    if (subsPac) {
+      const pageTitleEl = document.querySelector('.myheading') || subsPac.querySelector('h3');
+      const pageTitleNorm = pageTitleEl ? norm(pageTitleEl.innerText || pageTitleEl.textContent) : '';
+      const prod = products.find(p => norm(p.name) === pageTitleNorm || norm(p.slug) === pageTitleNorm || window.location.pathname.includes(p.slug));
+      if (prod && prod.status === 'published') {
+        const h3 = subsPac.querySelector('h3');
+        if (h3) h3.innerHTML = prod.name.replace(/ Package/i, ' <br> Package');
+
+        const h6 = subsPac.querySelector('h6');
+        if (h6) {
+          if (prod.salePrice && prod.salePrice < prod.price) {
+            h6.innerHTML = `<span class="old">${currency}${Number(prod.price).toLocaleString()}</span> ${currency}${Number(prod.salePrice).toLocaleString()} <span><b class="monthss"></b>${prod.description || ''}</span>`;
+          } else {
+            h6.innerHTML = `${currency}${Number(prod.price).toLocaleString()} <span><b class="monthss"></b>${prod.description || ''}</span>`;
+          }
+        }
+
+        const subList = document.querySelector('.subscription-list');
+        if (subList && Array.isArray(prod.features) && prod.features.length > 0) {
+          subList.innerHTML = prod.features.map(f => `
+            <li>
+              <h6>${f}</h6>
+              <span class="tick"></span>
+            </li>
+          `).join('');
+        }
+      }
+    }
+
+    // C. Dynamic Insertion of Newly Created Admin Products
+    Object.entries(categoryTabMap).forEach(([catId, selectors]) => {
+      const catProducts = products.filter(p => p.categoryId === catId && p.status === 'published');
+      selectors.forEach(sel => {
+        const tabContainer = document.querySelector(sel);
+        if (!tabContainer) return;
+        const sliderUl = tabContainer.querySelector('ul.pckkslider');
+        if (!sliderUl) return;
+
+        catProducts.forEach(prod => {
+          if (!matchedProductIds.has(prod.id)) {
+            // Check if card with this title already exists in this tab
+            const exists = Array.from(sliderUl.querySelectorAll('.packwrap h3')).some(h => norm(h.textContent) === norm(prod.name));
+            if (!exists) {
+              const newLi = document.createElement('li');
+              const priceDisplay = prod.salePrice && prod.salePrice < prod.price
+                ? `<span>Starting at </span> ${currency}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currency}${Number(prod.price).toLocaleString()}</small>`
+                : `<span>Starting at </span> ${currency}${Number(prod.price).toLocaleString()}`;
+
+              const badgeHtml = prod.badge
+                ? `<span class="digenz-badge" style="background:#D5B66D; color:#101827; padding:3px 10px; border-radius:3px; font-size:11px; font-weight:700; display:inline-block; margin-bottom:8px; text-transform:uppercase;">${prod.badge}</span>`
+                : '';
+
+              const featuresHtml = (prod.features || []).map(f => `<li>${f}</li>`).join('');
+
+              newLi.innerHTML = `
+                <div class="packwrap" data-product-id="${prod.id}">
+                  ${badgeHtml}
+                  <h3>${prod.name.replace(/ Package/i, ' <br> Package')}</h3>
+                  <h4>${priceDisplay}</h4>
+                  <h5>${prod.description || ''}</h5>
+                  <a href="/get-a-quote/index.html?pkg=${encodeURIComponent(prod.name)}" class="btn-pack">Start</a>
+                  <ul class="packfeatures list-scroll">
+                    ${featuresHtml}
+                  </ul>
+                  <div class="actions row web">
+                    <div class="col-md-6 col-6"><a href="tel:+92 306 1284045" class="action-no clearfix pull-right sea"><span><small>Share your idea?</small>+92 306 1284045</span></a></div>
+                    <div class="col-md-6 col-6"><a href="javascript:;" onclick="setButtonURL();" class="action-chat clearfix pull-right sea"><span><small>Want to discuss?</small> Live Chat Now</span></a></div>
+                  </div>
+                </div>
+              `;
+              sliderUl.appendChild(newLi);
+            }
+          }
+        });
+      });
+    });
+  }
+
+  // =========================================================================
+  // 2. DYNAMIC BANNERS SYNCHRONIZER
+  // =========================================================================
+  function syncBanners(banners) {
+    if (!Array.isArray(banners) || banners.length === 0) return;
+    const activeBanner = banners.find(b => b.isActive) || banners[0];
+    if (!activeBanner) return;
+
+    // Homepage Hero Headline
+    const heroTitle = document.querySelector('.tophd-ind');
+    if (heroTitle && activeBanner.title) {
+      heroTitle.textContent = activeBanner.title;
+    }
+
+    // Hero Subtitle / Supporting text
+    if (activeBanner.subtitle) {
+      const heroSub = document.querySelector('.tophd-ind + .row p, .ban-text p, .offset-md-1 p');
+      if (heroSub && !heroSub.closest('.footer-top')) {
+        heroSub.textContent = activeBanner.subtitle;
+      }
+    }
+
+    // CTA Button
+    if (activeBanner.buttonText) {
+      const heroBtn = document.querySelector('.ban-form input[type="submit"], .ban-text a.btn-red, .btn-red');
+      if (heroBtn) {
+        if (heroBtn.tagName === 'INPUT') heroBtn.value = activeBanner.buttonText;
+        else heroBtn.textContent = activeBanner.buttonText;
+        if (activeBanner.buttonLink && heroBtn.tagName === 'A') {
+          heroBtn.setAttribute('href', activeBanner.buttonLink);
+        }
+      }
+    }
+  }
+
+  // =========================================================================
+  // 3. CONTACT & SETTINGS SYNCHRONIZER
+  // =========================================================================
+  function syncSettings(settings) {
+    if (!settings) return;
+
+    // Maintenance Mode Check
+    if (settings.maintenanceMode && !window.location.pathname.startsWith('/admin')) {
+      document.body.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:center; min-height:100vh; background:#101827; color:#F5F7FA; font-family:sans-serif; text-align:center; padding:20px;">
+          <div>
+            <h1 style="color:#D5B66D; font-size:36px; margin-bottom:15px;">System Scheduled Maintenance</h1>
+            <p style="font-size:18px; max-width:600px; line-height:1.6; color:#a0aec0;">We are currently upgrading the DIGENZ platform with high-performance enhancements. We will be back online shortly.</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    // Support phone update
+    if (settings.supportPhone) {
+      document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+        a.setAttribute('href', `tel:${settings.supportPhone.replace(/\s+/g, '')}`);
+        const span = a.querySelector('span');
+        if (span) {
+          const small = span.querySelector('small');
+          span.innerHTML = (small ? small.outerHTML : '') + ' ' + settings.supportPhone;
+        }
+      });
+    }
+  }
+
+  // =========================================================================
+  // 4. PRODUCTION LEAD CAPTURE & ORDER PIPELINE
+  // =========================================================================
+  function initLeadCapture() {
+    document.querySelectorAll('form').forEach(form => {
+      const action = form.getAttribute('action') || '';
+      if (
+        action.includes('bannerFormController') ||
+        action.includes('/leads') ||
+        action.includes('floatingFormController') ||
+        form.id === 'contactForm' ||
+        form.id === 'popupfrm'
+      ) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const submitBtn = form.querySelector('button[type="submit"], input[type="submit"], .btn-submit, .submit, .newbtn');
+          const originalText = submitBtn ? (submitBtn.innerText || submitBtn.value) : '';
+          if (submitBtn) {
+            if (submitBtn.tagName === 'INPUT') submitBtn.value = 'Submitting...';
+            else submitBtn.innerText = 'Submitting...';
+            submitBtn.disabled = true;
+          }
+
+          const formData = new FormData(form);
+          const data = {};
+          formData.forEach((val, key) => { data[key] = val; });
+
+          // Extract selected package if present in URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const pkgFromUrl = urlParams.get('pkg') || urlParams.get('package');
+          if (pkgFromUrl && !data.package) data.package = pkgFromUrl;
+
+          try {
+            const postRes = await fetch('/leads/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+
+            const result = await postRes.json();
+            if (postRes.ok) {
+              form.innerHTML = `
+                <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; color: #F5F7FA; padding: 22px; border-radius: 8px; text-align: center; margin: 15px 0;">
+                  <h4 style="margin: 0 0 10px; color: #10b981; font-size: 19px; font-weight: 700;">Inquiry Registered Successfully!</h4>
+                  <p style="margin: 0 0 8px; font-size: 14px; color: #e2e8f0;">Thank you for contacting DIGENZ. Your request reference number is <strong style="color:#D5B66D;">#${result.orderNumber || 'DGZ-REF'}</strong>.</p>
+                  <p style="margin: 0; font-size: 13px; color: #94a3b8;">Our senior digital consultant will contact you within 24 hours.</p>
+                </div>
+              `;
+            } else {
+              alert('Submission failed: ' + (result.error || 'Please check your inputs and try again.'));
+              if (submitBtn) {
+                if (submitBtn.tagName === 'INPUT') submitBtn.value = originalText;
+                else submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+              }
+            }
+          } catch (err) {
+            // Fallback submit
+            form.submit();
+          }
+        });
+      }
+    });
+  }
+
+  // =========================================================================
+  // INITIALIZATION
+  // =========================================================================
+  async function init() {
+    initLeadCapture();
+
+    // Fetch live data concurrently
+    const [settings, productsRes, bannersRes] = await Promise.all([
+      fetchJSON('/api/settings'),
+      fetchJSON('/api/products'),
+      fetchJSON('/api/banners')
+    ]);
+
+    if (settings) syncSettings(settings);
+    if (productsRes && productsRes.products) syncProducts(productsRes.products, settings);
+    if (bannersRes && bannersRes.banners) syncBanners(bannersRes.banners);
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initDigenzLive);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initDigenzLive();
+    init();
   }
 })();

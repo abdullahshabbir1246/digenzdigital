@@ -5,6 +5,7 @@ const url = require('url');
 const querystring = require('querystring');
 const crypto = require('crypto');
 const { db, hashPassword, verifyPassword } = require('./db');
+const { syncStaticHTMLPricingAndBanners } = require('./sync-html');
 
 const PORT = process.env.PORT || 3000;
 const BASE_DIR = __dirname;
@@ -237,7 +238,8 @@ const server = http.createServer(async (req, res) => {
       db.save();
       db.logAudit('website-visitor', 'LEAD_SUBMISSION', 'Orders', `New lead received from ${name} (${email}) for ${service}`, clientIp);
 
-      if (req.headers['accept'] && req.headers['accept'].includes('application/json')) {
+      const isJsonReq = (req.headers['accept'] && req.headers['accept'].includes('application/json')) || (req.headers['content-type'] && req.headers['content-type'].includes('application/json'));
+      if (isJsonReq) {
         return sendJSON(res, 200, { success: true, message: 'Thank you! Your quote request has been received.', orderNumber });
       } else {
         // Redirect back with success message

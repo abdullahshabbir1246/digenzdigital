@@ -1064,8 +1064,15 @@
           </div>
 
           <div class="form-group">
-            <label>Primary Thumbnail Image Path</label>
-            <input type="text" id="pmImage" class="form-input" placeholder="/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg">
+            <label>Primary Thumbnail Image</label>
+            <div style="display:flex; gap:10px; align-items:center;">
+              <input type="text" id="pmImage" class="form-input" placeholder="/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg" style="flex:1;">
+              <label class="btn btn-outline-gold btn-sm" style="margin:0; cursor:pointer; white-space:nowrap;">
+                Upload Image
+                <input type="file" id="pmImageFile" accept="image/*" style="display:none;" onchange="Admin.handleModalUpload(this, 'pmImage', 'pmImagePreview')">
+              </label>
+            </div>
+            <div id="pmImagePreview" style="margin-top:6px;"></div>
           </div>
 
           <div class="form-group">
@@ -1121,11 +1128,25 @@
           <div class="form-row">
             <div class="form-group col">
               <label>Icon Image Path</label>
-              <input type="text" id="cmImage" class="form-input">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <input type="text" id="cmImage" class="form-input" style="flex:1;">
+                <label class="btn btn-outline-gold btn-sm" style="margin:0; cursor:pointer; white-space:nowrap;">
+                  Upload
+                  <input type="file" id="cmImageFile" accept="image/*" style="display:none;" onchange="Admin.handleModalUpload(this, 'cmImage', 'cmImagePreview')">
+                </label>
+              </div>
+              <div id="cmImagePreview" style="margin-top:4px;"></div>
             </div>
             <div class="form-group col">
               <label>Hero Banner Image Path</label>
-              <input type="text" id="cmBanner" class="form-input">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <input type="text" id="cmBanner" class="form-input" style="flex:1;">
+                <label class="btn btn-outline-gold btn-sm" style="margin:0; cursor:pointer; white-space:nowrap;">
+                  Upload
+                  <input type="file" id="cmBannerFile" accept="image/*" style="display:none;" onchange="Admin.handleModalUpload(this, 'cmBanner', 'cmBannerPreview')">
+                </label>
+              </div>
+              <div id="cmBannerPreview" style="margin-top:4px;"></div>
             </div>
           </div>
           <div class="form-group">
@@ -1186,11 +1207,25 @@
           <div class="form-row">
             <div class="form-group col">
               <label>Desktop Banner Image Path</label>
-              <input type="text" id="bmDesktop" class="form-input">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <input type="text" id="bmDesktop" class="form-input" style="flex:1;">
+                <label class="btn btn-outline-gold btn-sm" style="margin:0; cursor:pointer; white-space:nowrap;">
+                  Upload
+                  <input type="file" id="bmDesktopFile" accept="image/*" style="display:none;" onchange="Admin.handleModalUpload(this, 'bmDesktop', 'bmDesktopPreview')">
+                </label>
+              </div>
+              <div id="bmDesktopPreview" style="margin-top:4px;"></div>
             </div>
             <div class="form-group col">
               <label>Mobile Banner Image Path</label>
-              <input type="text" id="bmMobile" class="form-input">
+              <div style="display:flex; gap:8px; align-items:center;">
+                <input type="text" id="bmMobile" class="form-input" style="flex:1;">
+                <label class="btn btn-outline-gold btn-sm" style="margin:0; cursor:pointer; white-space:nowrap;">
+                  Upload
+                  <input type="file" id="bmMobileFile" accept="image/*" style="display:none;" onchange="Admin.handleModalUpload(this, 'bmMobile', 'bmMobilePreview')">
+                </label>
+              </div>
+              <div id="bmMobilePreview" style="margin-top:4px;"></div>
             </div>
           </div>
           <div class="form-row">
