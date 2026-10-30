@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "server.js": {
-      "includeFiles": "{assets/**,admin/**,data/**,pngs/**,*.html,*.htm,*/**/*.html}"
+      "includeFiles": "{assets/**,admin/**,data/**,pngs/**,*.html,*.htm,*/**/*.html,*.svg,*.ico}"
     }
   },
   "headers": [
