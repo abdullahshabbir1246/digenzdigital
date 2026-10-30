@@ -184,10 +184,10 @@
                   <h3>${prod.name.replace(/ Package/i, ' <br> Package')}</h3>
                   <h4>${priceDisplay}</h4>
                   <h5>${prod.description || ''}</h5>
-                  <a href="/get-a-quote/index.html?pkg=${encodeURIComponent(prod.name)}" class="btn-pack">Start</a>
                   <ul class="packfeatures list-scroll">
                     ${featuresHtml}
                   </ul>
+                  <a href="/get-a-quote/index.html?pkg=${encodeURIComponent(prod.name)}" class="btn-pack">Start</a>
                   <div class="actions row web">
                     <div class="col-md-6 col-6"><a href="tel:+92 306 1284045" class="action-no clearfix pull-right sea"><span><small>Share your idea?</small>+92 306 1284045</span></a></div>
                     <div class="col-md-6 col-6"><a href="javascript:;" onclick="setButtonURL();" class="action-chat clearfix pull-right sea"><span><small>Want to discuss?</small> Live Chat Now</span></a></div>
