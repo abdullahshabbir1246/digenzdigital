@@ -377,7 +377,7 @@ function getInitialSeed() {
       subtitle: 'Award-winning web development, software engineering, and corporate branding solutions.',
       buttonText: 'EXPLORE PACKAGES',
       buttonLink: '/packages/',
-      desktopImage: '/assets/images/banners/branding.png',
+      desktopImage: '/assets/images/banners/digenz-home-hero.png',
       mobileImage: '/assets/images/popup-inner.png',
       displayOrder: 1,
       isActive: true,

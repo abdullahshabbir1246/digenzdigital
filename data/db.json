@@ -2216,12 +2216,12 @@
   "banners": [
     {
       "id": "ban-hero-1",
-      "title": "TRANSFORMING VISIONS INTO DIGITAL TRIUMPHS",
-      "subtitle": "Enterprise web development, custom software architectures, and global branding.",
+      "title": "DEVELOP WEBSITES AND APPS FOR YOUR BUSINESS",
+      "subtitle": "Uniquely showcase your brand and provide a great user experience on all devices. Creative Web Design Studio from New York.",
       "buttonText": "DISCOVER SOLUTIONS",
       "buttonLink": "/packages/",
-      "desktopImage": "/assets/images/banners/branding.png",
-      "mobileImage": "/assets/images/popup-inner.png",
+      "desktopImage": "/assets/images/banners/digenz-home-hero.png",
+      "mobileImage": "/assets/images/banners/digenz-home-hero.png",
       "displayOrder": 1,
       "isActive": true,
       "scheduleStart": "2026-01-01",

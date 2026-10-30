@@ -5084,3 +5084,48 @@ footer.footer-main::after,
         margin-top: 8px !important;
     }
 }
+
+
+/* --- HOMEPAGE HERO BANNER (DIGENZ HIGH RESOLUTION ARTWORK) --- */
+.home-banner {
+    width: 100% !important;
+    min-height: 520px !important;
+    background-image: url(../images/banners/digenz-home-hero.png) !important;
+    background-size: cover !important;
+    background-position: center right !important;
+    background-repeat: no-repeat !important;
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.home-banner::before,
+.home-banner::after,
+.home-banner:before,
+.home-banner:after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+}
+
+/* Visually conceal duplicate text overlay as it is rendered directly within the graphic */
+.home-banner-content {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .home-banner {
+        min-height: 380px !important;
+        background-position: center center !important;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .home-banner {
+        min-height: 240px !important;
+        background-size: cover !important;
+        background-position: center center !important;
+    }
+}
