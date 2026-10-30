@@ -4708,7 +4708,9 @@ span.tick,
 
 /* --- GET AN INSTANT QUOTE FORM (HIGH CONTRAST & VISIBILITY) --- */
 .bot-form,
-.footerForm {
+.footerForm,
+#contactForm,
+form.cmxform.footerForm {
     background: #F5F7FA !important;
     border-radius: 16px !important;
     padding: 35px 30px !important;
@@ -4717,7 +4719,8 @@ span.tick,
 }
 
 .bot-form h4,
-.footerForm h4 {
+.footerForm h4,
+#contactForm h4 {
     color: #101827 !important;
     font-size: 32px !important;
     font-weight: 700 !important;
@@ -4726,8 +4729,12 @@ span.tick,
     text-transform: capitalize !important;
 }
 
+.bot-form p,
+.footerForm p,
+#contactForm p,
 .bot-form p.font-36,
-.footerForm p.font-36 {
+.footerForm p.font-36,
+#contactForm p.font-36 {
     color: #64748B !important;
     font-size: 15px !important;
     text-align: center !important;
@@ -4735,8 +4742,12 @@ span.tick,
     font-weight: 500 !important;
 }
 
+.bot-form p b,
+.footerForm p b,
+#contactForm p b,
 .bot-form p.font-36 b,
-.footerForm p.font-36 b {
+.footerForm p.font-36 b,
+#contactForm p.font-36 b {
     color: #3478F6 !important;
     font-weight: 700 !important;
 }
@@ -4744,6 +4755,7 @@ span.tick,
 /* Clear, crisp labels in Midnight Navy */
 .bot-form label,
 .footerForm label,
+#contactForm label,
 .from-control label {
     display: block !important;
     color: #101827 !important;
@@ -4757,6 +4769,7 @@ span.tick,
 
 .bot-form label span,
 .footerForm label span,
+#contactForm label span,
 .from-control label span {
     color: #3478F6 !important;
     font-weight: 700 !important;
@@ -4779,6 +4792,11 @@ span.tick,
 .footerForm input[type="tel"],
 .footerForm input[type="number"],
 .footerForm textarea,
+#contactForm input[type="text"],
+#contactForm input[type="email"],
+#contactForm input[type="tel"],
+#contactForm input[type="number"],
+#contactForm textarea,
 .from-control input {
     width: 100% !important;
     height: 50px !important;
@@ -4799,6 +4817,8 @@ span.tick,
 .bot-form textarea:focus,
 .footerForm input:focus,
 .footerForm textarea:focus,
+#contactForm input:focus,
+#contactForm textarea:focus,
 .from-control input:focus {
     border-color: #3478F6 !important;
     box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.2) !important;
@@ -4811,6 +4831,8 @@ span.tick,
 .bot-form textarea::placeholder,
 .footerForm input::placeholder,
 .footerForm textarea::placeholder,
+#contactForm input::placeholder,
+#contactForm textarea::placeholder,
 .from-control input::placeholder {
     color: #94A3B8 !important;
     opacity: 1 !important;
@@ -4820,8 +4842,12 @@ span.tick,
 /* Submit Button */
 .bot-form input[type="submit"],
 .footerForm input[type="submit"],
+#contactForm input[type="submit"],
 .bot-form .submit,
-.footerForm .submit {
+.footerForm .submit,
+#contactForm .submit,
+.submit.bg-hover-red,
+.submit {
     width: 100% !important;
     height: 52px !important;
     background: #3478F6 !important;
@@ -4839,8 +4865,12 @@ span.tick,
 
 .bot-form input[type="submit"]:hover,
 .footerForm input[type="submit"]:hover,
+#contactForm input[type="submit"]:hover,
 .bot-form .submit:hover,
-.footerForm .submit:hover {
+.footerForm .submit:hover,
+#contactForm .submit:hover,
+.submit.bg-hover-red:hover,
+.submit:hover {
     background: #1e5dd6 !important;
     color: #FFFFFF !important;
     border-color: #1e5dd6 !important;

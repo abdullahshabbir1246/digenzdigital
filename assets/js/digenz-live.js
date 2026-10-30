@@ -341,6 +341,9 @@
   // INITIALIZATION
   // =========================================================================
   async function init() {
+    const oldBar = document.getElementById('digenzAnnouncementBar');
+    if (oldBar) oldBar.remove();
+
     initLeadCapture();
 
     // Fetch live data concurrently
