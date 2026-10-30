@@ -875,7 +875,7 @@
               <p class="view-desc">Brand identity, announcement banner, currencies, contact details, and maintenance mode.</p>
             </div>
             <div class="view-actions">
-              <button class="btn btn-gold btn-sm" onclick="Admin.saveSettings()">Save All Settings</button>
+              <button id="saveSettingsBtn" class="btn btn-gold btn-sm" onclick="Admin.saveSettings()">Save All Settings</button>
             </div>
           </div>
 
@@ -893,11 +893,23 @@
                 </div>
                 <div class="form-group">
                   <label>Dark Background Logo</label>
-                  <input type="text" id="setLogoDark" class="form-input">
+                  <div style="display: flex; gap: 8px;">
+                    <input type="text" id="setLogoDark" class="form-input" style="flex: 1;">
+                    <label class="btn btn-secondary btn-sm" style="margin: 0; display: inline-flex; align-items: center; cursor: pointer; white-space: nowrap;">
+                      Upload Logo
+                      <input type="file" accept="image/*" style="display: none;" onchange="Admin.handleModalUpload(this, 'setLogoDark')">
+                    </label>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>Favicon Path</label>
-                  <input type="text" id="setFavicon" class="form-input">
+                  <div style="display: flex; gap: 8px;">
+                    <input type="text" id="setFavicon" class="form-input" style="flex: 1;">
+                    <label class="btn btn-secondary btn-sm" style="margin: 0; display: inline-flex; align-items: center; cursor: pointer; white-space: nowrap;">
+                      Upload Favicon
+                      <input type="file" accept="image/*" style="display: none;" onchange="Admin.handleModalUpload(this, 'setFavicon')">
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>

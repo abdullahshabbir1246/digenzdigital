@@ -1385,6 +1385,13 @@ const Admin = (function() {
   }
 
   async function saveSettings() {
+    const btn = document.getElementById('saveSettingsBtn') || document.querySelector('button[onclick="Admin.saveSettings()"]');
+    const originalText = btn ? btn.textContent : 'Save All Settings';
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Saving Settings...';
+    }
+
     const payload = {
       siteName: document.getElementById('setSiteName').value.trim(),
       siteTagline: document.getElementById('setSiteTagline').value.trim(),
@@ -1405,9 +1412,14 @@ const Admin = (function() {
 
     try {
       await api('/settings', { method: 'PUT', body: JSON.stringify(payload) });
-      showToast('Settings saved successfully.', 'success');
+      showToast('Global store settings saved and synchronized successfully.', 'success');
     } catch (err) {
       showToast('Error saving settings: ' + err.message, 'error');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
     }
   }
 

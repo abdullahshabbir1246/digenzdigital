@@ -669,6 +669,38 @@ function resolveDbPath() {
   }
 }
 
+
+// Stateless Cryptographic HMAC-SHA256 Token Engine (Cross-Lambda Compatible)
+const SESSION_SECRET = process.env.SESSION_SECRET || 'digenz-session-master-secret-production-2026';
+
+function signToken(payload) {
+  const data = Buffer.from(JSON.stringify(payload)).toString('base64url');
+  const signature = crypto.createHmac('sha256', SESSION_SECRET).update(data).digest('base64url');
+  return `${data}.${signature}`;
+}
+
+function verifySignedToken(token) {
+  if (!token || typeof token !== 'string' || !token.includes('.')) return null;
+  const parts = token.split('.');
+  if (parts.length !== 2) return null;
+  const [dataB64, sig] = parts;
+  if (!dataB64 || !sig) return null;
+
+  try {
+    const expectedSig = crypto.createHmac('sha256', SESSION_SECRET).update(dataB64).digest('base64url');
+    if (sig.length !== expectedSig.length) return null;
+    const sigBuf = Buffer.from(sig);
+    const expBuf = Buffer.from(expectedSig);
+    if (!crypto.timingSafeEqual(sigBuf, expBuf)) return null;
+
+    const payload = JSON.parse(Buffer.from(dataB64, 'base64url').toString('utf8'));
+    if (!payload || !payload.expiresAt || Date.now() > payload.expiresAt) return null;
+    return payload;
+  } catch (err) {
+    return null;
+  }
+}
+
 class Database {
   constructor() {
     this.data = null;
@@ -713,29 +745,40 @@ class Database {
     }
   }
 
-  // Session handling
+  // Session handling (Stateless HMAC Cryptographic Token - Cross-Lambda Compatible)
   createSession(admin) {
-    const token = generateToken();
-    const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
-    this.sessions.set(token, {
+    const expiresAt = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30-day session
+    const payload = {
       adminId: admin.id,
       email: admin.email,
       name: admin.name,
       role: admin.role,
+      issuedAt: Date.now(),
       expiresAt
-    });
+    };
+    const token = signToken(payload);
+    this.sessions.set(token, payload);
     return { token, expiresAt };
   }
 
   verifySession(token) {
     if (!token) return null;
-    const session = this.sessions.get(token);
-    if (!session) return null;
-    if (Date.now() > session.expiresAt) {
-      this.sessions.delete(token);
-      return null;
+    // 1. Fast cache check
+    const cached = this.sessions.get(token);
+    if (cached) {
+      if (Date.now() > cached.expiresAt) {
+        this.sessions.delete(token);
+        return null;
+      }
+      return cached;
     }
-    return session;
+    // 2. Stateless HMAC cryptographic verification (cross-lambda serverless support)
+    const verified = verifySignedToken(token);
+    if (verified) {
+      this.sessions.set(token, verified);
+      return verified;
+    }
+    return null;
   }
 
   destroySession(token) {
