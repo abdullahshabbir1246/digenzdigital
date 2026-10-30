@@ -661,9 +661,12 @@ function resolveDbPath() {
   } catch (err) {
     // Read-only filesystem (e.g. Vercel Lambda / Serverless)
     const tmpDbPath = path.join(os.tmpdir(), 'digenz_db.json');
-    if (!fs.existsSync(tmpDbPath) && fs.existsSync(DB_FILE)) {
+    if (fs.existsSync(DB_FILE)) {
       try {
-        fs.copyFileSync(DB_FILE, tmpDbPath);
+        const shouldCopy = !fs.existsSync(tmpDbPath) || fs.statSync(DB_FILE).mtimeMs > fs.statSync(tmpDbPath).mtimeMs;
+        if (shouldCopy) {
+          fs.copyFileSync(DB_FILE, tmpDbPath);
+        }
       } catch (e) {}
     }
     return tmpDbPath;

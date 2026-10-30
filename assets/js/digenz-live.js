@@ -187,9 +187,10 @@
             const exists = Array.from(sliderUl.querySelectorAll('.packwrap h3')).some(h => norm(h.textContent) === norm(prod.name));
             if (!exists) {
               const newLi = document.createElement('li');
+              const currPrefix = currency.trim().length === 1 ? currency.trim() : (currency.trim() + " ");
               const priceDisplay = prod.salePrice && prod.salePrice < prod.price
-                ? `<span>Starting at </span> ${currency}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currency}${Number(prod.price).toLocaleString()}</small>`
-                : `<span>Starting at </span> ${currency}${Number(prod.price).toLocaleString()}`;
+                ? `<span>Starting at </span> ${currPrefix}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currPrefix}${Number(prod.price).toLocaleString()}</small>`
+                : `<span>Starting at </span> ${currPrefix}${Number(prod.price).toLocaleString()}`;
 
               const badgeHtml = prod.badge
                 ? `<span class="digenz-badge" style="background: #3478F6; color:#101827; padding:3px 10px; border-radius:3px; font-size:11px; font-weight:700; display:inline-block; margin-bottom:8px; text-transform:uppercase;">${prod.badge}</span>`
@@ -364,16 +365,27 @@
       });
     }
 
-    // D. Dynamic Currency Symbol Update on Pricing Cards
+    // D. Dynamic Currency Symbol & Add-On Update on Pricing Cards
     if (settings.currencySymbol) {
       const currency = settings.currencySymbol.trim();
+      const currPrefix = currency.length === 1 ? currency : (currency + " ");
       document.querySelectorAll('.packwrap h4, .subs-pac h6').forEach(el => {
         const html = el.innerHTML;
         const updatedHtml = html.replace(/(<span>Starting at\s*<\/span>\s*)([^\d<]+)(\d[\d,]*)/i, (m, p1, oldCur, p3) => {
-          return `${p1}${currency} ${p3}`;
+          return `${p1}${currPrefix}${p3}`;
         });
         if (updatedHtml !== html) {
           el.innerHTML = updatedHtml;
+        }
+      });
+
+      // Dynamic conversion of any legacy add-on notes
+      document.querySelectorAll('.extrainfo').forEach(el => {
+        if (el.textContent.includes('PKR')) {
+          el.textContent = el.textContent.replace(/PKR\s*3,?000/g, '$50')
+                                         .replace(/PKR\s*5,?000/g, '$50')
+                                         .replace(/PKR\s*9,?999/g, '$100')
+                                         .replace(/PKR\s*\d[\d,]*/g, '$50');
         }
       });
     }
