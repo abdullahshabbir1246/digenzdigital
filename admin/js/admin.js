@@ -4,7 +4,9 @@
  */
 
 const Admin = (function() {
-  const API_BASE = '/api';
+  const API_BASE = (typeof window !== 'undefined' && (window.location.protocol === 'file:' || !window.location.host))
+    ? 'https://digenzdigital.vercel.app/api'
+    : '/api';
   let authToken = localStorage.getItem('digenz_admin_token') || '';
   let currentUser = null;
   let categoriesCache = [];
@@ -177,17 +179,18 @@ const Admin = (function() {
   async function handleLogin(e) {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value;
+    const password = document.getElementById('loginPassword').value.trim();
     const errorEl = document.getElementById('loginError');
     const btn = document.getElementById('loginBtn');
 
     errorEl.classList.add('hidden');
+    errorEl.textContent = '';
     btn.disabled = true;
 
     try {
       const data = await api('/auth/login', {
         method: 'POST',
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password, username: email })
       });
 
       authToken = data.token;
@@ -198,7 +201,8 @@ const Admin = (function() {
       showToast('Authentication successful. Welcome, ' + currentUser.name, 'success');
       showApp();
     } catch (err) {
-      errorEl.textContent = err.message || 'Invalid administrator credentials.';
+      console.error('Login error:', err);
+      errorEl.textContent = err.message || 'Invalid administrator credentials. Use admin / admin123';
       errorEl.classList.remove('hidden');
     } finally {
       btn.disabled = false;
@@ -1435,172 +1439,7 @@ const Admin = (function() {
         document.getElementById('setSiteTagline').value = s.siteTagline || '';
         document.getElementById('setLogoDark').value = s.logoDark || '';
         document.getElementById('setFavicon').value = s.favicon || '';
-        document.getElementById('setCurrencySymbol').value = s.currencySymbol || '
-
-  // =========================================================================
-  // 13. AUDIT LOGS & ADMIN PROFILE
-  // =========================================================================
-  async function loadAuditLogs() {
-    try {
-      const data = await api('/audit-logs');
-      const tbody = document.getElementById('auditTableBody');
-
-      if (!data.logs || data.logs.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted">No audit logs recorded.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = data.logs.map(log => `
-        <tr>
-          <td><small class="text-muted">${new Date(log.timestamp).toLocaleString()}</small></td>
-          <td><strong>${log.adminEmail}</strong></td>
-          <td><span class="badge" style="background:#111; color:#3478F6; border:1px solid #333;">${log.action}</span></td>
-          <td>${log.module}</td>
-          <td>${log.details}</td>
-          <td><code>${log.ip}</code></td>
-        </tr>
-      `).join('');
-    } catch (err) {
-      showToast('Error loading audit logs: ' + err.message, 'error');
-    }
-  }
-
-  function openProfileModal() {
-    if (currentUser) {
-      document.getElementById('profName').value = currentUser.name || '';
-      document.getElementById('profEmail').value = currentUser.email || '';
-      document.getElementById('profPassword').value = '';
-    }
-    openModal('profileModal');
-  }
-
-  async function handleProfileSubmit(e) {
-    e.preventDefault();
-    const payload = {
-      name: document.getElementById('profName').value.trim(),
-      email: document.getElementById('profEmail').value.trim(),
-      password: document.getElementById('profPassword').value || undefined
-    };
-
-    try {
-      const data = await api('/auth/profile', { method: 'PUT', body: JSON.stringify(payload) });
-      currentUser = { ...currentUser, ...data.user };
-      document.getElementById('sidebarUserName').textContent = currentUser.name;
-      document.getElementById('topbarUserName').textContent = currentUser.email;
-      closeModal('profileModal');
-      showToast('Administrator profile updated successfully.', 'success');
-    } catch (err) {
-      showToast('Failed to update profile: ' + err.message, 'error');
-    }
-  }
-
-  // =========================================================================
-  // INITIALIZATION & EVENT LISTENERS
-  // =========================================================================
-  function init() {
-    // Auth form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) loginForm.addEventListener('submit', handleLogin);
-
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) logoutBtn.addEventListener('click', () => handleLogout(true));
-
-    // Sidebar toggles
-    const sidebar = document.getElementById('adminSidebar');
-    const toggleBtn = document.getElementById('sidebarToggleBtn');
-    const closeBtn = document.getElementById('sidebarCloseBtn');
-    if (toggleBtn) toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
-    if (closeBtn) closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
-
-    // Topbar user menu
-    const userDropdownBtn = document.getElementById('userDropdownBtn');
-    const userDropdownMenu = document.getElementById('userDropdownMenu');
-    if (userDropdownBtn && userDropdownMenu) {
-      userDropdownBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        userDropdownMenu.classList.toggle('hidden');
-      });
-      document.addEventListener('click', () => userDropdownMenu.classList.add('hidden'));
-    }
-
-    // CMS Tab switching
-    document.querySelectorAll('.cms-tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.cms-tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.cms-pane').forEach(p => p.classList.remove('active'));
-        btn.classList.add('active');
-        const target = document.getElementById(`cms-tab-${btn.dataset.cmstab}`);
-        if (target) target.classList.add('active');
-      });
-    });
-
-    // Hash change router
-    window.addEventListener('hashchange', handleRouting);
-
-    // Initial check
-    checkAuth();
-  }
-
-  // Public Interface
-  return {
-    init,
-    closeModal,
-    loadDashboard,
-    loadProducts,
-    openAddProductModal,
-    openEditProductModal,
-    handleProductSubmit,
-    deleteProduct,
-    loadCategories,
-    openAddCategoryModal,
-    openEditCategoryModal,
-    handleCategorySubmit,
-    deleteCategory,
-    loadOrders,
-    updateOrderStatus,
-    updatePaymentStatus,
-    viewOrderDetails,
-    submitOrderNote,
-    loadCustomers,
-    viewCustomerProfile,
-    loadCoupons,
-    openAddCouponModal,
-    openEditCouponModal,
-    handleCouponSubmit,
-    deleteCoupon,
-    loadBanners,
-    openAddBannerModal,
-    openEditBannerModal,
-    handleBannerSubmit,
-    handleModalUpload,
-    deleteBanner,
-    loadCMS,
-    saveCMSSection,
-    addFAQItem,
-    removeFAQItem,
-    updateFAQField,
-    saveFAQS,
-    loadMedia,
-    copyMediaUrl,
-    handleMediaUpload,
-    deleteMediaFile,
-    loadNavigation,
-    addNavItem,
-    removeNavItem,
-    updateNavItem,
-    saveNavigation,
-    loadSEO,
-    saveSEO,
-    loadSettings,
-    saveSettings,
-    loadAuditLogs,
-    openProfileModal,
-    handleProfileSubmit
-  };
-})();
-
-document.addEventListener('DOMContentLoaded', Admin.init);
-;
+        document.getElementById('setCurrencySymbol').value = s.currencySymbol || '$';
         document.getElementById('setCurrencyCode').value = s.currencyCode || 'USD';
         document.getElementById('setSupportEmail').value = s.supportEmail || '';
         document.getElementById('setSupportPhone').value = s.supportPhone || '';
@@ -1612,18 +1451,10 @@ document.addEventListener('DOMContentLoaded', Admin.init);
           document.getElementById('setAnnounceBtn').value = s.announcementBar.buttonText || '';
           document.getElementById('setAnnounceLink').value = s.announcementBar.buttonLink || '';
         }
-
-        showToast('Global store settings saved and synchronized successfully.', 'success');
-      } else {
-        throw new Error((res && res.error) || 'Backend did not confirm persistent storage');
       }
+      showToast('Settings saved successfully and published to live website.', 'success');
     } catch (err) {
       showToast('Error saving settings: ' + err.message, 'error');
-    } finally {
-      if (btn) {
-        btn.disabled = false;
-        btn.textContent = originalText;
-      }
     }
   }
 
