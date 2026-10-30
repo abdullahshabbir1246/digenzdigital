@@ -284,14 +284,15 @@
       return;
     }
 
-    // B. Support Phone Dynamic Update Across Entire Page
+        // B. Support Phone Dynamic Update Across Entire Page
     if (settings.supportPhone) {
       const phoneText = settings.supportPhone.trim();
-      const cleanPhone = phoneText.replace(/[\s()-]/g, '');
+      const cleanPhone = phoneText.replace(/[\s()+-]/g, '');
+      const telHref = 'tel:' + (phoneText.startsWith('+') ? '+' : '') + cleanPhone;
 
       // 1. Process all tel: anchor links
       document.querySelectorAll('a[href^="tel:"]').forEach(a => {
-        a.setAttribute('href', 'tel:' + cleanPhone);
+        a.setAttribute('href', telHref);
 
         // Subcase 1: Link contains a span (e.g. action-no with <small>Share your idea?</small>)
         const span = a.querySelector('span');
@@ -305,12 +306,12 @@
           return;
         }
 
-        // Subcase 2: Link contains an icon (e.g. <i class="fa fa-phone"></i> +92...)
-        const icon = a.querySelector('i');
+        // Subcase 2: Link contains an icon (e.g. <i class="fa fa-phone"></i> ...)
+        const icon = a.querySelector('i, svg');
         if (icon) {
           let updatedTextNode = false;
           a.childNodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE && /\d{4,}/.test(node.nodeValue)) {
+            if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
               node.nodeValue = ' ' + phoneText;
               updatedTextNode = true;
             }
@@ -323,26 +324,50 @@
 
         // Subcase 3: Plain text phone link
         const currentText = a.textContent.trim();
-        if (/^\+?[\d\s-]{8,}$/.test(currentText)) {
+        if (/^[\d\s()+-]{7,}$/.test(currentText)) {
           a.textContent = phoneText;
         }
       });
 
-      // 2. Non-anchor phone text elements
-      document.querySelectorAll('.call_wrap span, .callusnow span').forEach(el => {
-        el.textContent = phoneText;
-      });
-
-      document.querySelectorAll('.btn-black-custom').forEach(el => {
-        if (/^\+?[\d\s-]{8,}$/.test(el.textContent.trim())) {
+      // 2. Non-anchor phone text elements (.call_wrap span, .callusnow span, .btn-black-custom, etc.)
+      document.querySelectorAll('.call_wrap span, .callusnow span, .btn-black-custom, a.callus').forEach(el => {
+        const icon = el.querySelector('i, svg');
+        if (icon) {
+          let updatedNode = false;
+          el.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
+              node.nodeValue = ' ' + phoneText;
+              updatedNode = true;
+            }
+          });
+          if (!updatedNode) {
+            el.innerHTML = icon.outerHTML + ' ' + phoneText;
+          }
+        } else if (/^[\d\s()+-]{7,}$/.test(el.textContent.trim())) {
           el.textContent = phoneText;
         }
       });
 
       // 3. "or Call Now <b>...</b>" in banners and contact sections
-      document.querySelectorAll('p b, div b').forEach(b => {
-        if (/^\+?[\d\s-]{8,}$/.test(b.textContent.trim())) {
+      document.querySelectorAll('p b, div b, span b').forEach(b => {
+        if (/^[\d\s()+-]{7,}$/.test(b.textContent.trim())) {
           b.textContent = phoneText;
+        }
+      });
+
+      // 4. Global text node replacement for legacy hardcoded phone numbers
+      const oldPhonePatterns = [
+        /\+1\s*\(555\)\s*019-2834/g,
+        /\+1\s*\(213\)\s*221-2842/g
+      ];
+
+      document.querySelectorAll('a, p, span, div, b, strong, li').forEach(el => {
+        if (el.children.length === 0 && el.textContent) {
+          oldPhonePatterns.forEach(pat => {
+            if (pat.test(el.textContent)) {
+              el.textContent = el.textContent.replace(pat, phoneText);
+            }
+          });
         }
       });
     }

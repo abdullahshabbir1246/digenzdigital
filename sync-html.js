@@ -86,7 +86,8 @@ function syncStaticHTMLPricingAndBanners(products, banners, settings) {
 function syncStaticHTMLContactSettings(settings) {
   if (!settings) return;
   const newPhone = (settings.supportPhone || '').trim();
-  const cleanPhone = newPhone.replace(/[\s()-]/g, '');
+  const cleanPhone = newPhone.replace(/[\s()+-]/g, '');
+  const telHref = 'tel:' + (newPhone.startsWith('+') ? '+' : '') + cleanPhone;
   const newEmail = (settings.supportEmail || '').trim();
   const currency = (settings.currencySymbol || '').trim();
 
@@ -101,7 +102,7 @@ function syncStaticHTMLContactSettings(settings) {
       if (cleanPhone) {
         const phoneHrefRegex = /href="tel:[^"]*"/gi;
         if (phoneHrefRegex.test(content)) {
-          content = content.replace(phoneHrefRegex, `href="tel:${cleanPhone}"`);
+          content = content.replace(phoneHrefRegex, `href="${telHref}"`);
           changed = true;
         }
       }
@@ -117,57 +118,63 @@ function syncStaticHTMLContactSettings(settings) {
 
       // 3. Update known visible phone text patterns
       if (newPhone) {
-        // Pattern A: <small>Share your idea?</small>+92...
-        content = content.replace(/(<small>[^<]*<\/small>)\s*(\+?[\d\s-]{9,20})/gi, (match, p1) => {
+        // Pattern A: <small>Share your idea?</small>...
+        content = content.replace(/(<small>[^<]*<\/small>)\s*([\d\s()+-]{7,25})/gi, (match, p1) => {
           changed = true;
           return `${p1}${newPhone}`;
         });
 
-        // Pattern B: <i class="fa fa-phone"[^>]*></i>\s*(\+?[\d\s-]{9,20})
-        content = content.replace(/(<i class="fa fa-phone"[^>]*><\/i>)\s*(\+?[\d\s-]{9,20})/gi, (match, p1) => {
+        // Pattern B: <i class="fa fa-phone"[^>]*></i>\s*...
+        content = content.replace(/(<i class="fa fa-phone"[^>]*><\/i>)\s*([\d\s()+-]{7,25})/gi, (match, p1) => {
           changed = true;
           return `${p1} ${newPhone}`;
         });
 
         // Pattern C: <a class="...btn-black-custom...">\s*phone\s*</a>
-        content = content.replace(/(<a[^>]*class="[^"]*btn-black-custom[^"]*"[^>]*>)\s*(\+?[\d\s-]{9,20})\s*(<\/a>)/gi, (match, p1, p2, p3) => {
+        content = content.replace(/(<a[^>]*class="[^"]*btn-black-custom[^"]*"[^>]*>)\s*([\d\s()+-]{7,25})\s*(<\/a>)/gi, (match, p1, p2, p3) => {
           changed = true;
           return `${p1}${newPhone}${p3}`;
         });
 
         // Pattern D: class="call_wrap"[^>]*><span>phone</span>
-        content = content.replace(/(class="call_wrap"[^>]*>\s*<span>)\s*(\+?[\d\s-]{9,20})\s*(<\/span>)/gi, (match, p1, p2, p3) => {
+        content = content.replace(/(class="call_wrap"[^>]*>\s*<span>)\s*([\d\s()+-]{7,25})\s*(<\/span>)/gi, (match, p1, p2, p3) => {
           changed = true;
           return `${p1}${newPhone}${p3}`;
         });
 
         // Pattern E: or Call Now <b>phone</b>
-        content = content.replace(/(or Call Now\s*<b>)\s*(\+?[\d\s-]{9,20})\s*(<\/b>)/gi, (match, p1, p2, p3) => {
+        content = content.replace(/(or Call Now\s*<b>)\s*([\d\s()+-]{7,25})\s*(<\/b>)/gi, (match, p1, p2, p3) => {
           changed = true;
           return `${p1}${newPhone}${p3}`;
         });
 
         // Pattern F: <a href="tel:[^"]*">\s*phone\s*</a>
-        content = content.replace(/(<a\s+href="tel:[^"]*">\s*)(\+?[\d\s-]{9,20})(\s*<\/a>)/gi, (match, p1, p2, p3) => {
+        content = content.replace(/(<a\s+href="tel:[^"]*">\s*)([\d\s()+-]{7,25})(\s*<\/a>)/gi, (match, p1, p2, p3) => {
           changed = true;
           return `${p1}${newPhone}${p3}`;
         });
+
+        // Pattern G: Direct fallback for +1 (555) 019-2834
+        if (content.includes('+1 (555) 019-2834')) {
+          content = content.replace(/\+1\s*\(555\)\s*019-2834/g, newPhone);
+          changed = true;
+        }
       }
 
       // 4. Update known visible email text patterns
       if (newEmail) {
-        // Pattern: href="mailto:[^"]*">\s*email\s*</a>
         content = content.replace(/(href="mailto:[^"]*">\s*)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\s*<\/a>)/gi, (match, p1, p2, p3) => {
           changed = true;
           return `${p1}${newEmail}${p3}`;
         });
       }
 
-      // 5. Update currency in static cards if symbol is supplied
+      // 5. Update currency
       if (currency) {
+        const currPrefix = currency.length === 1 ? currency : (currency + " ");
         content = content.replace(/(<span>Starting at\s*<\/span>\s*)([^\d<]+)(\d[\d,]*)/gi, (m, p1, oldCur, p3) => {
           changed = true;
-          return `${p1}${currency} ${p3}`;
+          return `${p1}${currPrefix}${p3}`;
         });
       }
 
