@@ -5305,25 +5305,27 @@ footer.footer-main::after,
     font-family: var(--secondary-font-family) !important;
 }
 
-/* 6. Feature List (.packfeatures) — Fully visible, zero clipping, no awkward line-breaks */
+/* 6. STRICT VERTICAL FEATURE LIST (Flexbox: fixed-width 18px icon + flexible text) */
 .packwrap .packfeatures,
-.packwrap .list-scroll {
+.packwrap .list-scroll,
+.packfeatures {
     order: 4 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 0 !important;
+    margin: 0 0 20px 0 !important;
+    list-style: none !important;
+    width: 100% !important;
     height: auto !important;
     max-height: none !important;
     min-height: auto !important;
     overflow: visible !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 0 !important;
-    padding: 0 !important;
-    margin: 0 0 16px 0 !important;
-    list-style: none !important;
     text-align: left !important;
     flex: 1 1 auto !important;
 }
 
-/* Hide awkward scrollbar tools if injected */
+/* Hide scrollbar tools if injected */
 .packwrap .mCustomScrollBox,
 .packwrap .mCSB_container {
     max-height: none !important;
@@ -5334,39 +5336,71 @@ footer.footer-main::after,
     display: none !important;
 }
 
-/* Feature Items */
+/* 1. Each feature occupies its own separate row */
+.feature-item,
 .packwrap .packfeatures li,
 .packwrap .list-scroll li {
-    position: relative !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
     width: 100% !important;
-    text-align: left !important;
-    color: #FFFFFF !important; /* Pure White text */
-    font-size: 13px !important;
-    line-height: 1.42 !important;
-    padding-left: 22px !important;
-    padding-bottom: 8px !important;
+    padding: 0 !important;
     margin: 0 !important;
-    white-space: normal !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
     box-sizing: border-box !important;
+    list-style: none !important;
+    position: relative !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* 2 & 6. Fixed-width Blue Icon Container (aligned in one straight vertical column) */
+.feature-icon,
+.packwrap .packfeatures li .feature-icon,
+.packwrap .list-scroll li .feature-icon {
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    height: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 1px !important;
+    line-height: 1 !important;
+}
+
+.feature-icon svg,
+.packwrap .packfeatures li .feature-icon svg,
+.packwrap .list-scroll li .feature-icon svg {
+    width: 18px !important;
+    height: 18px !important;
     display: block !important;
-    letter-spacing: -0.15px !important;
+    fill: #3478F6 !important;
+    color: #3478F6 !important;
+}
+
+/* 3 & 4. Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
+.feature-text,
+.packwrap .packfeatures li .feature-text,
+.packwrap .list-scroll li .feature-text {
+    flex: 1 !important;
+    min-width: 0 !important;
+    text-align: left !important;
+    color: #FFFFFF !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    white-space: normal !important;
     font-family: var(--primary-font-family) !important;
 }
 
-/* Bullet checkmark icon — Golden Amber Circular Icon (#f2af2e) */
+/* Suppress all legacy pseudo-elements on feature items */
 .packwrap .packfeatures li::before,
-.packwrap .list-scroll li::before {
-    content: "" !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 2px !important;
-    width: 14px !important;
-    height: 14px !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f2af2e'%3E%3Cpath fill-rule='evenodd' d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.74-5.25z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
+.packwrap .list-scroll li::before,
+.feature-item::before {
+    display: none !important;
+    content: none !important;
 }
 
 /* 7. Add-on Section (.extrainfo) — Pinned cleanly to the bottom across all cards */
