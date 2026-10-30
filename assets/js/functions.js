@@ -171,9 +171,18 @@ $(function() {
         }
     });
 
-    $(".list-scroll").not('.packwrap .list-scroll, .packwrap .packfeatures').mCustomScrollbar({
+    $(".list-scroll").filter(function() {
+        return !$(this).closest('.packwrap, .ourpackages, .packfeatures, .tab-custom').length;
+    }).mCustomScrollbar({
         scrollButtons: {
             enable: false
+        }
+    });
+
+    // Ensure package feature lists use clean native browser scrolling without mCustomScrollbar wrappers
+    $('.packwrap .packfeatures, .packfeatures').each(function() {
+        if ($(this).hasClass('mCustomScrollbar')) {
+            try { $(this).mCustomScrollbar('destroy'); } catch(e) {}
         }
     });
 

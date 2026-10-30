@@ -87,9 +87,11 @@
       const h4 = card.querySelector('h4');
       if (h4) {
         if (prod.salePrice && prod.salePrice < prod.price) {
-          h4.innerHTML = `<span>Starting at </span> ${currency}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currency}${Number(prod.price).toLocaleString()}</small>`;
+          const currPrefix = currency.trim() ? (currency.trim() + " ") : "";
+          h4.innerHTML = `<span>Starting at </span> ${currPrefix}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currPrefix}${Number(prod.price).toLocaleString()}</small>`;
         } else {
-          h4.innerHTML = `<span>Starting at </span> ${currency}${Number(prod.price).toLocaleString()}`;
+          const currPrefix = currency.trim() ? (currency.trim() + " ") : "";
+          h4.innerHTML = `<span>Starting at </span> ${currPrefix}${Number(prod.price).toLocaleString()}`;
         }
       }
 
@@ -101,6 +103,12 @@
 
       // 4. Update Features List (Strict Vertical Layout with Fixed Icon & Flexible Text)
       const featuresUl = card.querySelector('ul.packfeatures, ul.listpacks');
+      if (featuresUl) {
+        featuresUl.classList.remove('list-scroll');
+        if (window.jQuery && $(featuresUl).hasClass('mCustomScrollbar')) {
+          try { $(featuresUl).mCustomScrollbar('destroy'); } catch(e) {}
+        }
+      }
       if (featuresUl && Array.isArray(prod.features) && prod.features.length > 0) {
         const iconSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#f2af2e" width="18" height="18" aria-hidden="true"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.74-5.25z" clip-rule="evenodd"/></svg>';
         featuresUl.innerHTML = prod.features.map(f => `
@@ -201,7 +209,7 @@
                   <h3>${prod.name.replace(/ Package/i, ' <br> Package')}</h3>
                   <h4>${priceDisplay}</h4>
                   <h5>${prod.description || ''}</h5>
-                  <ul class="packfeatures list-scroll">
+                  <ul class="packfeatures">
                     ${featuresHtml}
                   </ul>
                   <a href="/get-a-quote/index.html?pkg=${encodeURIComponent(prod.name)}" class="btn-pack">Start</a>

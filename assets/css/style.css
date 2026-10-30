@@ -5537,7 +5537,7 @@ p.extrainfo {
 
 .tabs .pckkslider .slick-slide,
 .tabs .pckkslider > li,
-.ourpackages .tab-custom .tabs ul li {
+.ourpackages .tab-custom .tabs ul.pckkslider > li {
     float: none !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -5549,22 +5549,37 @@ p.extrainfo {
     box-sizing: border-box !important;
 }
 
-/* Responsive Grid */
-@media (max-width: 991px) {
+/* Tablet: 2 cards per row */
+@media (max-width: 991px) and (min-width: 768px) {
     .tabs .pckkslider,
     .ourpackages .tab-custom .tabs ul.pckkslider,
+    .cstmwebdesgn .ourpackages .tab-custom .tabs ul.pckkslider,
     .tabs .pckkslider.slick-initialized .slick-track {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px !important;
     }
 }
 
+/* Mobile: 1 card per row (Full Width, never squished into 2 columns) */
 @media (max-width: 767px) {
     .tabs .pckkslider,
     .ourpackages .tab-custom .tabs ul.pckkslider,
+    .cstmwebdesgn .ourpackages .tab-custom .tabs ul.pckkslider,
     .tabs .pckkslider.slick-initialized .slick-track {
+        display: grid !important;
         grid-template-columns: 1fr !important;
-        gap: 20px !important;
+        gap: 24px !important;
+        width: 100% !important;
+    }
+    .tabs .pckkslider .slick-slide,
+    .tabs .pckkslider > li,
+    .ourpackages .tab-custom .tabs ul li,
+    .ourpackages .tab-custom .tabs ul.pckkslider > li {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        float: none !important;
+        margin: 0 0 20px 0 !important;
     }
 }
 
@@ -5687,7 +5702,7 @@ p.extrainfo {
     overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 12px !important;
     padding: 0 6px 12px 0 !important;
     margin: 0 0 16px 0 !important;
     list-style: none !important;
@@ -5719,14 +5734,22 @@ p.extrainfo {
     background: #aaaaaa !important;
 }
 
-/* Feature Item Row */
+/* Feature Item Row - STRICT FLEX ROW FULL WIDTH */
 .feature-item,
 .packwrap .packfeatures li,
-.packwrap .list-scroll li {
+.packwrap .packfeatures > li,
+.packwrap .list-scroll li,
+.packwrap .mCSB_container li {
     display: flex !important;
+    flex-direction: row !important;
     align-items: flex-start !important;
+    justify-content: flex-start !important;
     gap: 12px !important;
     width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    clear: both !important;
     padding: 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
@@ -5740,7 +5763,8 @@ p.extrainfo {
 /* Fixed-width Yellow Icon Container (Aligned in one straight vertical column) */
 .feature-icon,
 .packwrap .packfeatures li .feature-icon,
-.packwrap .list-scroll li .feature-icon {
+.packwrap .list-scroll li .feature-icon,
+.packwrap .mCSB_container li .feature-icon {
     flex: 0 0 18px !important;
     width: 18px !important;
     min-width: 18px !important;
@@ -5755,7 +5779,8 @@ p.extrainfo {
 
 .feature-icon svg,
 .packwrap .packfeatures li .feature-icon svg,
-.packwrap .list-scroll li .feature-icon svg {
+.packwrap .list-scroll li .feature-icon svg,
+.packwrap .mCSB_container li .feature-icon svg {
     width: 18px !important;
     height: 18px !important;
     display: block !important;
@@ -5766,8 +5791,9 @@ p.extrainfo {
 /* Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
 .feature-text,
 .packwrap .packfeatures li .feature-text,
-.packwrap .list-scroll li .feature-text {
-    flex: 1 !important;
+.packwrap .list-scroll li .feature-text,
+.packwrap .mCSB_container li .feature-text {
+    flex: 1 1 auto !important;
     min-width: 0 !important;
     text-align: left !important;
     color: #FFFFFF !important;
@@ -5777,6 +5803,24 @@ p.extrainfo {
     word-break: normal !important;
     white-space: normal !important;
     font-family: var(--primary-font-family) !important;
+}
+
+/* Suppress all legacy mCustomScrollbar markup if injected */
+.packwrap .mCustomScrollBox,
+.packwrap .mCSB_container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    position: static !important;
+}
+.packwrap .mCSB_scrollTools {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 /* Suppress all legacy pseudo-elements that caused scattering */
