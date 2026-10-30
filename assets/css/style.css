@@ -2872,10 +2872,10 @@ button.btn-red{border: none;cursor: pointer;}
     padding: 0px 0 15px;
     margin-top: 0;
 }
-.ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li{position: relative;width: 100%;text-align: left;color: var(--third-color);font-size: 14px;padding-left: 22px;padding-bottom: 10px;font-family: var(--primary-font-family);}
-.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before{color: var(--first-color);}
-.ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before{content: "\e962";position: absolute;left: 0;font-family: 'icomoon' !important;top: 1px;font-size: 13px;color: var(--first-color);}
-.ourpackages .tab-custom .tabs ul li .packwrap.popular .packfeatures li:before{content: "\e962";position: absolute;left: 0;font-family: 'icomoon' !important;top: 1px;font-size: 13px;color: var(--third-color);}
+.ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li{position: relative;width: 100%;text-align: left;color: #FFFFFF;font-size: 13.5px;padding-left: 0;padding-bottom: 0;font-family: var(--primary-font-family);}
+.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before{content: none !important; display: none !important;}
+.ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before{content: none !important; display: none !important;}
+.ourpackages .tab-custom .tabs ul li .packwrap.popular .packfeatures li:before{content: none !important; display: none !important;}
 
 
 .ourpackages .tab-custom .tabs ul li p.extrainfo{
@@ -5503,4 +5503,322 @@ p.extrainfo {
 .pckkslider .slick-dots li.slick-active button:before {
     color: #f2af2e !important;
     opacity: 1 !important;
+}
+
+
+/* ========================================================================= */
+/* MASTER PRICING CARDS REDESIGN — EXACT MATCH TO REFERENCE SCREENSHOT       */
+/* ========================================================================= */
+
+/* 1. Equal-width Grid Layout for 3 cards */
+.tabs .pckkslider,
+.ourpackages .tab-custom .tabs ul.pckkslider,
+.cstmwebdesgn .ourpackages .tab-custom .tabs ul.pckkslider {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    list-style: none !important;
+    transform: none !important;
+}
+
+/* Slick Track grid compatibility */
+.tabs .pckkslider.slick-initialized .slick-track,
+.pckkslider .slick-track {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    transform: none !important;
+}
+
+.tabs .pckkslider .slick-slide,
+.tabs .pckkslider > li,
+.ourpackages .tab-custom .tabs ul li {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Responsive Grid */
+@media (max-width: 991px) {
+    .tabs .pckkslider,
+    .ourpackages .tab-custom .tabs ul.pckkslider,
+    .tabs .pckkslider.slick-initialized .slick-track {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .tabs .pckkslider,
+    .ourpackages .tab-custom .tabs ul.pckkslider,
+    .tabs .pckkslider.slick-initialized .slick-track {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
+/* 2 & 3. Card Container — Solid Dark Grey #4A4A4A with 12px rounded corners */
+.packwrap,
+.ourpackages .tab-custom .tabs ul li .packwrap,
+.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
+    background: #4A4A4A !important;
+    background-color: #4A4A4A !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 38px 24px 26px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    height: 100% !important;
+    min-height: 520px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    text-align: center !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+
+.packwrap:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+.packwrap.popular {
+    background: #4A4A4A !important;
+    border: none !important;
+}
+
+/* 4 & 5. Plan Titles — Bold, White, Centered */
+.packwrap h3,
+.ourpackages .tab-custom .tabs ul li .packwrap h3 {
+    order: 1 !important;
+    font-size: 22px !important;
+    line-height: 1.25 !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    text-align: center !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    font-family: var(--heading-font-family) !important;
+    display: block !important;
+    min-height: 55px !important;
+}
+
+/* 6. Starting Price Prominently in Large, Bold White Text */
+.packwrap h4,
+.ourpackages .tab-custom .tabs ul li .packwrap h4 {
+    order: 2 !important;
+    font-size: 36px !important;
+    line-height: 1.15 !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    text-align: center !important;
+    margin: 0 0 12px 0 !important;
+    padding: 0 !important;
+    font-family: var(--heading-font-family) !important;
+    letter-spacing: -0.5px !important;
+    display: block !important;
+}
+
+.packwrap h4 span,
+.ourpackages .tab-custom .tabs ul li .packwrap h4 span {
+    font-size: 13.5px !important;
+    font-weight: 400 !important;
+    color: #a6b0ba !important;
+    display: block !important;
+    text-transform: capitalize !important;
+    margin-bottom: 6px !important;
+    font-family: var(--secondary-font-family) !important;
+    letter-spacing: 0.2px !important;
+}
+
+.packwrap h4 small {
+    display: none !important;
+}
+
+/* 7. Description Centered Below the Price */
+.packwrap h5,
+.packwrap h2,
+.ourpackages .tab-custom .tabs ul li .packwrap h5 {
+    order: 3 !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    color: #d1d5db !important;
+    text-align: center !important;
+    font-weight: 400 !important;
+    margin: 0 0 20px 0 !important;
+    padding: 0 4px !important;
+    min-height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    font-family: var(--secondary-font-family) !important;
+}
+
+/* 8, 9 & 12. Vertically Scrollable Feature List with Yellow Check-Circle Icons */
+.packwrap .packfeatures,
+.packwrap .list-scroll,
+.packfeatures {
+    order: 4 !important;
+    height: 195px !important;
+    max-height: 195px !important;
+    min-height: 195px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 0 6px 12px 0 !important;
+    margin: 0 0 16px 0 !important;
+    list-style: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #888888 transparent !important;
+    text-align: left !important;
+    flex: 1 1 auto !important;
+}
+
+/* Sleek Webkit Scrollbar */
+.packwrap .packfeatures::-webkit-scrollbar,
+.packwrap .list-scroll::-webkit-scrollbar {
+    width: 5px !important;
+}
+.packwrap .packfeatures::-webkit-scrollbar-track,
+.packwrap .list-scroll::-webkit-scrollbar-track {
+    background: transparent !important;
+    border-radius: 4px !important;
+}
+.packwrap .packfeatures::-webkit-scrollbar-thumb,
+.packwrap .list-scroll::-webkit-scrollbar-thumb {
+    background: #888888 !important;
+    border-radius: 4px !important;
+}
+.packwrap .packfeatures::-webkit-scrollbar-thumb:hover,
+.packwrap .list-scroll::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa !important;
+}
+
+/* Feature Item Row */
+.feature-item,
+.packwrap .packfeatures li,
+.packwrap .list-scroll li {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    list-style: none !important;
+    position: relative !important;
+    border: none !important;
+    background: transparent !important;
+    text-align: left !important;
+}
+
+/* Fixed-width Yellow Icon Container (Aligned in one straight vertical column) */
+.feature-icon,
+.packwrap .packfeatures li .feature-icon,
+.packwrap .list-scroll li .feature-icon {
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    height: 18px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 1px !important;
+    line-height: 1 !important;
+}
+
+.feature-icon svg,
+.packwrap .packfeatures li .feature-icon svg,
+.packwrap .list-scroll li .feature-icon svg {
+    width: 18px !important;
+    height: 18px !important;
+    display: block !important;
+    fill: #f2af2e !important;
+    color: #f2af2e !important;
+}
+
+/* Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
+.feature-text,
+.packwrap .packfeatures li .feature-text,
+.packwrap .list-scroll li .feature-text {
+    flex: 1 !important;
+    min-width: 0 !important;
+    text-align: left !important;
+    color: #FFFFFF !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+    overflow-wrap: break-word !important;
+    word-break: normal !important;
+    white-space: normal !important;
+    font-family: var(--primary-font-family) !important;
+}
+
+/* Suppress all legacy pseudo-elements that caused scattering */
+.packwrap .packfeatures li::before,
+.packwrap .list-scroll li::before,
+.ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before,
+.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before,
+.feature-item::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* 10. ADD ON / Rush Delivery Information at the bottom */
+.packwrap .extrainfo,
+p.extrainfo,
+.ourpackages .tab-custom .tabs ul li p.extrainfo {
+    order: 5 !important;
+    display: block !important;
+    width: 100% !important;
+    color: #a6b0ba !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 12px 0 0 0 !important;
+    margin: auto 0 0 0 !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    font-family: var(--secondary-font-family) !important;
+}
+
+/* Hide internal buttons & badges */
+.packwrap .btn-pack,
+.btn-pack,
+.packwrap .viewdetails,
+.packwrap .actions,
+.packwrap .actions.row.web,
+.actions.row.web,
+.packwrap .digenz-badge,
+.packwrap.popular:after {
+    display: none !important;
 }
