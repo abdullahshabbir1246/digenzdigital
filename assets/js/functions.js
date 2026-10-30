@@ -171,7 +171,7 @@ $(function() {
         }
     });
 
-    $(".list-scroll").mCustomScrollbar({
+    $(".list-scroll").not('.packwrap .list-scroll, .packwrap .packfeatures').mCustomScrollbar({
         scrollButtons: {
             enable: false
         }
