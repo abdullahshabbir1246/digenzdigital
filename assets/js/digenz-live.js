@@ -87,10 +87,10 @@
       const h4 = card.querySelector('h4');
       if (h4) {
         if (prod.salePrice && prod.salePrice < prod.price) {
-          const currPrefix = currency.trim() ? (currency.trim() + " ") : "";
+          const currPrefix = currency.trim().length === 1 ? currency.trim() : (currency.trim() + " ");
           h4.innerHTML = `<span>Starting at </span> ${currPrefix}${Number(prod.salePrice).toLocaleString()} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currPrefix}${Number(prod.price).toLocaleString()}</small>`;
         } else {
-          const currPrefix = currency.trim() ? (currency.trim() + " ") : "";
+          const currPrefix = currency.trim().length === 1 ? currency.trim() : (currency.trim() + " ");
           h4.innerHTML = `<span>Starting at </span> ${currPrefix}${Number(prod.price).toLocaleString()}`;
         }
       }
