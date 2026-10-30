@@ -3,6 +3,24 @@ const path = require('path');
 
 const BASE_DIR = __dirname;
 
+function getAllHtmlFiles(dir) {
+  let results = [];
+  try {
+    const list = fs.readdirSync(dir);
+    for (const file of list) {
+      if (file === '.git' || file === 'node_modules' || file === 'admin') continue;
+      const fullPath = path.join(dir, file);
+      const stat = fs.statSync(fullPath);
+      if (stat.isDirectory()) {
+        results = results.concat(getAllHtmlFiles(fullPath));
+      } else if (file.endsWith('.html') || file.endsWith('.htm')) {
+        results.push(fullPath);
+      }
+    }
+  } catch (e) {}
+  return results;
+}
+
 function syncStaticHTMLPricingAndBanners(products, banners, settings) {
   try {
     const currency = (settings && settings.currencySymbol) || '$';
@@ -65,4 +83,101 @@ function syncStaticHTMLPricingAndBanners(products, banners, settings) {
   }
 }
 
-module.exports = { syncStaticHTMLPricingAndBanners };
+function syncStaticHTMLContactSettings(settings) {
+  if (!settings) return;
+  const newPhone = (settings.supportPhone || '').trim();
+  const cleanPhone = newPhone.replace(/[\s()-]/g, '');
+  const newEmail = (settings.supportEmail || '').trim();
+  const currency = (settings.currencySymbol || '').trim();
+
+  try {
+    const files = getAllHtmlFiles(BASE_DIR);
+
+    for (const filePath of files) {
+      let content = fs.readFileSync(filePath, 'utf8');
+      let changed = false;
+
+      // 1. Update phone tel: links href
+      if (cleanPhone) {
+        const phoneHrefRegex = /href="tel:[^"]*"/gi;
+        if (phoneHrefRegex.test(content)) {
+          content = content.replace(phoneHrefRegex, `href="tel:${cleanPhone}"`);
+          changed = true;
+        }
+      }
+
+      // 2. Update email mailto: links href
+      if (newEmail) {
+        const emailHrefRegex = /href="mailto:[^"]*"/gi;
+        if (emailHrefRegex.test(content)) {
+          content = content.replace(emailHrefRegex, `href="mailto:${newEmail}"`);
+          changed = true;
+        }
+      }
+
+      // 3. Update known visible phone text patterns
+      if (newPhone) {
+        // Pattern A: <small>Share your idea?</small>+92...
+        content = content.replace(/(<small>[^<]*<\/small>)\s*(\+?[\d\s-]{9,20})/gi, (match, p1) => {
+          changed = true;
+          return `${p1}${newPhone}`;
+        });
+
+        // Pattern B: <i class="fa fa-phone"[^>]*></i>\s*(\+?[\d\s-]{9,20})
+        content = content.replace(/(<i class="fa fa-phone"[^>]*><\/i>)\s*(\+?[\d\s-]{9,20})/gi, (match, p1) => {
+          changed = true;
+          return `${p1} ${newPhone}`;
+        });
+
+        // Pattern C: <a class="...btn-black-custom...">\s*phone\s*</a>
+        content = content.replace(/(<a[^>]*class="[^"]*btn-black-custom[^"]*"[^>]*>)\s*(\+?[\d\s-]{9,20})\s*(<\/a>)/gi, (match, p1, p2, p3) => {
+          changed = true;
+          return `${p1}${newPhone}${p3}`;
+        });
+
+        // Pattern D: class="call_wrap"[^>]*><span>phone</span>
+        content = content.replace(/(class="call_wrap"[^>]*>\s*<span>)\s*(\+?[\d\s-]{9,20})\s*(<\/span>)/gi, (match, p1, p2, p3) => {
+          changed = true;
+          return `${p1}${newPhone}${p3}`;
+        });
+
+        // Pattern E: or Call Now <b>phone</b>
+        content = content.replace(/(or Call Now\s*<b>)\s*(\+?[\d\s-]{9,20})\s*(<\/b>)/gi, (match, p1, p2, p3) => {
+          changed = true;
+          return `${p1}${newPhone}${p3}`;
+        });
+
+        // Pattern F: <a href="tel:[^"]*">\s*phone\s*</a>
+        content = content.replace(/(<a\s+href="tel:[^"]*">\s*)(\+?[\d\s-]{9,20})(\s*<\/a>)/gi, (match, p1, p2, p3) => {
+          changed = true;
+          return `${p1}${newPhone}${p3}`;
+        });
+      }
+
+      // 4. Update known visible email text patterns
+      if (newEmail) {
+        // Pattern: href="mailto:[^"]*">\s*email\s*</a>
+        content = content.replace(/(href="mailto:[^"]*">\s*)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\s*<\/a>)/gi, (match, p1, p2, p3) => {
+          changed = true;
+          return `${p1}${newEmail}${p3}`;
+        });
+      }
+
+      // 5. Update currency in static cards if symbol is supplied
+      if (currency) {
+        content = content.replace(/(<span>Starting at\s*<\/span>\s*)([^\d<]+)(\d[\d,]*)/gi, (m, p1, oldCur, p3) => {
+          changed = true;
+          return `${p1}${currency} ${p3}`;
+        });
+      }
+
+      if (changed) {
+        fs.writeFileSync(filePath, content, 'utf8');
+      }
+    }
+  } catch (err) {
+    console.error('[Contact Sync] Failed to sync static HTML files:', err.message);
+  }
+}
+
+module.exports = { syncStaticHTMLPricingAndBanners, syncStaticHTMLContactSettings };

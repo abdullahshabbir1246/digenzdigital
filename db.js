@@ -745,6 +745,53 @@ class Database {
     }
   }
 
+  // Persist settings to MongoDB if URI is configured in environment
+  async syncSettingsToMongoDB(settings) {
+    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
+    if (!mongoUri) return;
+    try {
+      const { MongoClient } = require('mongodb');
+      const client = new MongoClient(mongoUri);
+      await client.connect();
+      const dbName = process.env.MONGODB_DB_NAME || 'digenz';
+      const col = client.db(dbName).collection('settings');
+      await col.updateOne(
+        { _id: 'global_settings' },
+        { $set: { ...settings, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      await client.close();
+      console.log('[DB] Settings successfully persisted to MongoDB collection "settings".');
+    } catch (err) {
+      console.warn('[DB] MongoDB persistence sync notice:', err.message);
+    }
+  }
+
+  // Dedicated atomic Settings saver with partial field protection
+  saveSettings(updatedFields) {
+    if (!this.data) this.init();
+    if (!this.data.settings) this.data.settings = {};
+
+    const prevAnnounce = this.data.settings.announcementBar || {};
+    const newAnnounce = updatedFields.announcementBar ? {
+      ...prevAnnounce,
+      ...updatedFields.announcementBar
+    } : prevAnnounce;
+
+    // Merge cleanly without destroying unset fields
+    this.data.settings = {
+      ...this.data.settings,
+      ...updatedFields,
+      announcementBar: newAnnounce
+    };
+
+    const saved = this.save();
+    if (saved) {
+      this.syncSettingsToMongoDB(this.data.settings).catch(() => {});
+    }
+    return saved;
+  }
+
   // Session handling (Stateless HMAC Cryptographic Token - Cross-Lambda Compatible)
   createSession(admin) {
     const expiresAt = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30-day session

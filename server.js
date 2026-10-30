@@ -52,6 +52,9 @@ function sendJSON(res, statusCode, data) {
   res.writeHead(statusCode, {
     'Content-Type': 'application/json; charset=utf-8',
     'Content-Length': Buffer.byteLength(json),
+    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+    'Pragma': 'no-cache',
+    'Expires': '0',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
@@ -295,7 +298,14 @@ const server = http.createServer(async (req, res) => {
     if (apiPath === 'auth/me' && method === 'GET') {
       const session = requireAuth(req, res);
       if (!session) return;
-      const admin = db.data.admins.find(a => a.id === session.adminId);
+      const admin = (db.data.admins && db.data.admins.find(a => a.id === session.adminId)) ||
+                    (db.data.admins && db.data.admins.find(a => a.email === session.email)) || {
+        id: session.adminId || 'admin-root',
+        email: session.email || 'admin@digenz.com',
+        name: session.name || 'Master Admin',
+        role: session.role || 'superadmin',
+        lastLogin: new Date().toISOString()
+      };
       return sendJSON(res, 200, {
         user: { id: admin.id, email: admin.email, name: admin.name, role: admin.role, lastLogin: admin.lastLogin }
       });
@@ -1221,8 +1231,43 @@ const server = http.createServer(async (req, res) => {
       if (!session) return;
       const data = await parseBody(req);
 
-      Object.assign(db.data.settings, data);
-      db.save();
+      // Validate email format if provided
+      if (data.supportEmail !== undefined) {
+        data.supportEmail = String(data.supportEmail).trim();
+        if (data.supportEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.supportEmail)) {
+          return sendJSON(res, 400, { error: 'Invalid email address format.' });
+        }
+      }
+
+      if (data.supportPhone !== undefined) {
+        data.supportPhone = String(data.supportPhone).trim();
+      }
+
+      if (data.currencySymbol !== undefined) {
+        data.currencySymbol = String(data.currencySymbol).trim();
+      }
+
+      if (data.currencyCode !== undefined) {
+        data.currencyCode = String(data.currencyCode).trim().toUpperCase();
+      }
+
+      if (data.maintenanceMode !== undefined) {
+        data.maintenanceMode = Boolean(data.maintenanceMode);
+      }
+
+      const saved = db.saveSettings(data);
+      if (!saved) {
+        return sendJSON(res, 500, { error: 'Failed to write settings to persistent database storage.' });
+      }
+
+      // Synchronize public static HTML files on disk
+      try {
+        const { syncStaticHTMLContactSettings } = require('./sync-html');
+        syncStaticHTMLContactSettings(db.data.settings);
+      } catch (err) {
+        console.error('[Sync Error]', err.message);
+      }
+
       db.logAudit(session.email, 'UPDATE_SETTINGS', 'Settings', 'Updated website global settings', clientIp);
       return sendJSON(res, 200, { success: true, settings: db.data.settings });
     }

@@ -7,7 +7,7 @@
       "salt": "c5f40394f488d4412aebdeb24f3ee1fa",
       "name": "DIGENZ Master Admin",
       "role": "superadmin",
-      "lastLogin": "2026-10-30T15:39:52.948Z",
+      "lastLogin": "2026-10-30T18:01:59.152Z",
       "createdAt": "2026-01-01T00:00:00.000Z"
     }
   ],
@@ -2535,8 +2535,8 @@
     "logoDark": "/assets/images/digenz-logo-dark.svg",
     "logoLight": "/assets/images/digenz-logo-light.svg",
     "favicon": "/favicon.svg",
-    "currencySymbol": "$",
-    "currencyCode": "USD",
+    "currencySymbol": "PKR",
+    "currencyCode": "PKR",
     "taxRate": 0,
     "announcementBar": {
       "isEnabled": false,
@@ -2546,10 +2546,154 @@
     },
     "maintenanceMode": false,
     "supportEmail": "support@digenz.com",
-    "supportPhone": "+1 (213) 221-2842",
+    "supportPhone": "+92 306 1284045",
     "enablePublicQuotes": true
   },
   "auditLogs": [
+    {
+      "id": "log-1793383319960-756",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:01:59.960Z"
+    },
+    {
+      "id": "log-1793383319776-465",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:01:59.776Z"
+    },
+    {
+      "id": "log-1793383319626-788",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:01:59.626Z"
+    },
+    {
+      "id": "log-1793383319475-73",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:01:59.475Z"
+    },
+    {
+      "id": "log-1793383319322-938",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:01:59.322Z"
+    },
+    {
+      "id": "log-1793383319156-962",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:01:59.156Z"
+    },
+    {
+      "id": "log-1793383231731-577",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:00:31.731Z"
+    },
+    {
+      "id": "log-1793383231584-377",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:00:31.584Z"
+    },
+    {
+      "id": "log-1793383231424-548",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:00:31.424Z"
+    },
+    {
+      "id": "log-1793383231256-857",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:00:31.256Z"
+    },
+    {
+      "id": "log-1793383152318-54",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T17:59:12.318Z"
+    },
+    {
+      "id": "log-1793383152166-452",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T17:59:12.166Z"
+    },
+    {
+      "id": "log-1793383152016-109",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T17:59:12.016Z"
+    },
+    {
+      "id": "log-1793383151755-547",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T17:59:11.755Z"
+    },
+    {
+      "id": "log-1793381221739-133",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T17:27:01.739Z"
+    },
+    {
+      "id": "log-1793381221723-470",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T17:27:01.723Z"
+    },
     {
       "id": "log-1793374793199-71",
       "adminEmail": "admin@digenz.com",

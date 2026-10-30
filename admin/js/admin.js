@@ -18,18 +18,28 @@ const Admin = (function() {
       ...(options.headers || {})
     };
 
+    headers['Cache-Control'] = 'no-cache, no-store, must-revalidate';
+    headers['Pragma'] = 'no-cache';
+
     if (authToken) {
       headers['Authorization'] = `Bearer ${authToken}`;
+      headers['x-admin-token'] = authToken;
     }
 
+    const method = (options.method || 'GET').toUpperCase();
+    const sep = endpoint.includes('?') ? '&' : '?';
+    const finalUrl = method === 'GET'
+      ? `${API_BASE}${endpoint}${sep}_t=${Date.now()}`
+      : `${API_BASE}${endpoint}`;
+
     try {
-      const res = await fetch(`${API_BASE}${endpoint}`, {
+      const res = await fetch(finalUrl, {
+        cache: 'no-store',
         ...options,
         headers
       });
 
       if (res.status === 401 && !endpoint.includes('auth/login')) {
-        // Session expired or invalid
         handleLogout(false);
         showToast('Session expired. Please sign in again.', 'error');
         throw new Error('Unauthorized');
@@ -1387,6 +1397,13 @@ const Admin = (function() {
   async function saveSettings() {
     const btn = document.getElementById('saveSettingsBtn') || document.querySelector('button[onclick="Admin.saveSettings()"]');
     const originalText = btn ? btn.textContent : 'Save All Settings';
+
+    const supportEmail = document.getElementById('setSupportEmail').value.trim();
+    if (supportEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(supportEmail)) {
+      showToast('Please enter a valid support email address (e.g., support@digenz.com).', 'error');
+      return;
+    }
+
     if (btn) {
       btn.disabled = true;
       btn.textContent = 'Saving Settings...';
@@ -1399,7 +1416,7 @@ const Admin = (function() {
       favicon: document.getElementById('setFavicon').value.trim(),
       currencySymbol: document.getElementById('setCurrencySymbol').value.trim(),
       currencyCode: document.getElementById('setCurrencyCode').value.trim(),
-      supportEmail: document.getElementById('setSupportEmail').value.trim(),
+      supportEmail: supportEmail,
       supportPhone: document.getElementById('setSupportPhone').value.trim(),
       maintenanceMode: document.getElementById('setMaintenanceMode').checked,
       announcementBar: {
@@ -1411,8 +1428,195 @@ const Admin = (function() {
     };
 
     try {
-      await api('/settings', { method: 'PUT', body: JSON.stringify(payload) });
-      showToast('Global store settings saved and synchronized successfully.', 'success');
+      const res = await api('/settings', { method: 'PUT', body: JSON.stringify(payload) });
+      if (res && res.success && res.settings) {
+        const s = res.settings;
+        document.getElementById('setSiteName').value = s.siteName || '';
+        document.getElementById('setSiteTagline').value = s.siteTagline || '';
+        document.getElementById('setLogoDark').value = s.logoDark || '';
+        document.getElementById('setFavicon').value = s.favicon || '';
+        document.getElementById('setCurrencySymbol').value = s.currencySymbol || '
+
+  // =========================================================================
+  // 13. AUDIT LOGS & ADMIN PROFILE
+  // =========================================================================
+  async function loadAuditLogs() {
+    try {
+      const data = await api('/audit-logs');
+      const tbody = document.getElementById('auditTableBody');
+
+      if (!data.logs || data.logs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center py-4 text-muted">No audit logs recorded.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.logs.map(log => `
+        <tr>
+          <td><small class="text-muted">${new Date(log.timestamp).toLocaleString()}</small></td>
+          <td><strong>${log.adminEmail}</strong></td>
+          <td><span class="badge" style="background:#111; color:#3478F6; border:1px solid #333;">${log.action}</span></td>
+          <td>${log.module}</td>
+          <td>${log.details}</td>
+          <td><code>${log.ip}</code></td>
+        </tr>
+      `).join('');
+    } catch (err) {
+      showToast('Error loading audit logs: ' + err.message, 'error');
+    }
+  }
+
+  function openProfileModal() {
+    if (currentUser) {
+      document.getElementById('profName').value = currentUser.name || '';
+      document.getElementById('profEmail').value = currentUser.email || '';
+      document.getElementById('profPassword').value = '';
+    }
+    openModal('profileModal');
+  }
+
+  async function handleProfileSubmit(e) {
+    e.preventDefault();
+    const payload = {
+      name: document.getElementById('profName').value.trim(),
+      email: document.getElementById('profEmail').value.trim(),
+      password: document.getElementById('profPassword').value || undefined
+    };
+
+    try {
+      const data = await api('/auth/profile', { method: 'PUT', body: JSON.stringify(payload) });
+      currentUser = { ...currentUser, ...data.user };
+      document.getElementById('sidebarUserName').textContent = currentUser.name;
+      document.getElementById('topbarUserName').textContent = currentUser.email;
+      closeModal('profileModal');
+      showToast('Administrator profile updated successfully.', 'success');
+    } catch (err) {
+      showToast('Failed to update profile: ' + err.message, 'error');
+    }
+  }
+
+  // =========================================================================
+  // INITIALIZATION & EVENT LISTENERS
+  // =========================================================================
+  function init() {
+    // Auth form
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
+
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) logoutBtn.addEventListener('click', () => handleLogout(true));
+
+    // Sidebar toggles
+    const sidebar = document.getElementById('adminSidebar');
+    const toggleBtn = document.getElementById('sidebarToggleBtn');
+    const closeBtn = document.getElementById('sidebarCloseBtn');
+    if (toggleBtn) toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+    if (closeBtn) closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+
+    // Topbar user menu
+    const userDropdownBtn = document.getElementById('userDropdownBtn');
+    const userDropdownMenu = document.getElementById('userDropdownMenu');
+    if (userDropdownBtn && userDropdownMenu) {
+      userDropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdownMenu.classList.toggle('hidden');
+      });
+      document.addEventListener('click', () => userDropdownMenu.classList.add('hidden'));
+    }
+
+    // CMS Tab switching
+    document.querySelectorAll('.cms-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cms-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.cms-pane').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const target = document.getElementById(`cms-tab-${btn.dataset.cmstab}`);
+        if (target) target.classList.add('active');
+      });
+    });
+
+    // Hash change router
+    window.addEventListener('hashchange', handleRouting);
+
+    // Initial check
+    checkAuth();
+  }
+
+  // Public Interface
+  return {
+    init,
+    closeModal,
+    loadDashboard,
+    loadProducts,
+    openAddProductModal,
+    openEditProductModal,
+    handleProductSubmit,
+    deleteProduct,
+    loadCategories,
+    openAddCategoryModal,
+    openEditCategoryModal,
+    handleCategorySubmit,
+    deleteCategory,
+    loadOrders,
+    updateOrderStatus,
+    updatePaymentStatus,
+    viewOrderDetails,
+    submitOrderNote,
+    loadCustomers,
+    viewCustomerProfile,
+    loadCoupons,
+    openAddCouponModal,
+    openEditCouponModal,
+    handleCouponSubmit,
+    deleteCoupon,
+    loadBanners,
+    openAddBannerModal,
+    openEditBannerModal,
+    handleBannerSubmit,
+    handleModalUpload,
+    deleteBanner,
+    loadCMS,
+    saveCMSSection,
+    addFAQItem,
+    removeFAQItem,
+    updateFAQField,
+    saveFAQS,
+    loadMedia,
+    copyMediaUrl,
+    handleMediaUpload,
+    deleteMediaFile,
+    loadNavigation,
+    addNavItem,
+    removeNavItem,
+    updateNavItem,
+    saveNavigation,
+    loadSEO,
+    saveSEO,
+    loadSettings,
+    saveSettings,
+    loadAuditLogs,
+    openProfileModal,
+    handleProfileSubmit
+  };
+})();
+
+document.addEventListener('DOMContentLoaded', Admin.init);
+;
+        document.getElementById('setCurrencyCode').value = s.currencyCode || 'USD';
+        document.getElementById('setSupportEmail').value = s.supportEmail || '';
+        document.getElementById('setSupportPhone').value = s.supportPhone || '';
+        document.getElementById('setMaintenanceMode').checked = Boolean(s.maintenanceMode);
+
+        if (s.announcementBar) {
+          document.getElementById('setAnnounceEnabled').checked = Boolean(s.announcementBar.isEnabled);
+          document.getElementById('setAnnounceText').value = s.announcementBar.text || '';
+          document.getElementById('setAnnounceBtn').value = s.announcementBar.buttonText || '';
+          document.getElementById('setAnnounceLink').value = s.announcementBar.buttonLink || '';
+        }
+
+        showToast('Global store settings saved and synchronized successfully.', 'success');
+      } else {
+        throw new Error((res && res.error) || 'Backend did not confirm persistent storage');
+      }
     } catch (err) {
       showToast('Error saving settings: ' + err.message, 'error');
     } finally {

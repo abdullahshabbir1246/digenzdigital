@@ -14,8 +14,13 @@
 
   async function fetchJSON(url) {
     try {
-      const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}v=${CACHE_BUST}`, {
-        headers: { 'Accept': 'application/json' }
+      const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}v=${Date.now()}`, {
+        cache: 'no-store',
+        headers: {
+          'Accept': 'application/json',
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache'
+        }
       });
       if (!res.ok) return null;
       return await res.json();
@@ -243,27 +248,112 @@
   function syncSettings(settings) {
     if (!settings) return;
 
-    // Maintenance Mode Check
+    // A. Maintenance Mode Check
     if (settings.maintenanceMode && !window.location.pathname.startsWith('/admin')) {
       document.body.innerHTML = `
         <div style="display:flex; align-items:center; justify-content:center; min-height:100vh; background:#101827; color:#F5F7FA; font-family:sans-serif; text-align:center; padding:20px;">
           <div>
-            <h1 style="color: #3478F6; font-size:36px; margin-bottom:15px;">System Scheduled Maintenance</h1>
-            <p style="font-size:18px; max-width:600px; line-height:1.6; color:#a0aec0;">We are currently upgrading the DIGENZ platform with high-performance enhancements. We will be back online shortly.</p>
+            <h1 style="color: #3478F6; font-size:36px; margin-bottom:15px; font-weight:700;">System Scheduled Maintenance</h1>
+            <p style="font-size:18px; max-width:600px; line-height:1.6; color:#a0aec0; margin: 0 auto 20px;">We are currently upgrading the DIGENZ platform with high-performance enhancements. We will be back online shortly.</p>
+            ${settings.supportEmail ? `<p style="margin: 8px 0; color:#80B5FF; font-size:15px;">Email Support: <a href="mailto:${settings.supportEmail}" style="color:#FFFFFF; text-decoration:underline;">${settings.supportEmail}</a></p>` : ''}
+            ${settings.supportPhone ? `<p style="margin: 8px 0; color:#80B5FF; font-size:15px;">Phone Support: <a href="tel:${settings.supportPhone.replace(/[\s()-]/g, '')}" style="color:#FFFFFF; text-decoration:underline;">${settings.supportPhone}</a></p>` : ''}
           </div>
         </div>
       `;
       return;
     }
 
-    // Support phone update
+    // B. Support Phone Dynamic Update Across Entire Page
     if (settings.supportPhone) {
+      const phoneText = settings.supportPhone.trim();
+      const cleanPhone = phoneText.replace(/[\s()-]/g, '');
+
+      // 1. Process all tel: anchor links
       document.querySelectorAll('a[href^="tel:"]').forEach(a => {
-        a.setAttribute('href', `tel:${settings.supportPhone.replace(/\s+/g, '')}`);
+        a.setAttribute('href', 'tel:' + cleanPhone);
+
+        // Subcase 1: Link contains a span (e.g. action-no with <small>Share your idea?</small>)
         const span = a.querySelector('span');
         if (span) {
           const small = span.querySelector('small');
-          span.innerHTML = (small ? small.outerHTML : '') + ' ' + settings.supportPhone;
+          if (small) {
+            span.innerHTML = small.outerHTML + ' ' + phoneText;
+          } else {
+            span.textContent = phoneText;
+          }
+          return;
+        }
+
+        // Subcase 2: Link contains an icon (e.g. <i class="fa fa-phone"></i> +92...)
+        const icon = a.querySelector('i');
+        if (icon) {
+          let updatedTextNode = false;
+          a.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE && /\d{4,}/.test(node.nodeValue)) {
+              node.nodeValue = ' ' + phoneText;
+              updatedTextNode = true;
+            }
+          });
+          if (!updatedTextNode) {
+            a.innerHTML = icon.outerHTML + ' ' + phoneText;
+          }
+          return;
+        }
+
+        // Subcase 3: Plain text phone link
+        const currentText = a.textContent.trim();
+        if (/^\+?[\d\s-]{8,}$/.test(currentText)) {
+          a.textContent = phoneText;
+        }
+      });
+
+      // 2. Non-anchor phone text elements
+      document.querySelectorAll('.call_wrap span, .callusnow span').forEach(el => {
+        el.textContent = phoneText;
+      });
+
+      document.querySelectorAll('.btn-black-custom').forEach(el => {
+        if (/^\+?[\d\s-]{8,}$/.test(el.textContent.trim())) {
+          el.textContent = phoneText;
+        }
+      });
+
+      // 3. "or Call Now <b>...</b>" in banners and contact sections
+      document.querySelectorAll('p b, div b').forEach(b => {
+        if (/^\+?[\d\s-]{8,}$/.test(b.textContent.trim())) {
+          b.textContent = phoneText;
+        }
+      });
+    }
+
+    // C. Support Email Dynamic Update Across Entire Page
+    if (settings.supportEmail) {
+      const email = settings.supportEmail.trim();
+
+      // 1. All mailto: anchors
+      document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+        a.setAttribute('href', 'mailto:' + email);
+        if (a.textContent.includes('@')) {
+          a.textContent = email;
+        }
+      });
+
+      // 2. Explicit email class containers
+      document.querySelectorAll('.support-email, .contact-email, .footer-email').forEach(el => {
+        el.textContent = email;
+      });
+    }
+
+    // D. Dynamic Currency Symbol Update on Pricing Cards
+    if (settings.currencySymbol) {
+      const currency = settings.currencySymbol.trim();
+      document.querySelectorAll('.packwrap h4, .subs-pac h6').forEach(el => {
+        const html = el.innerHTML;
+        const updatedHtml = html.replace(/(<span>Starting at\s*<\/span>\s*)([^\d<]+)(\d[\d,]*)/i, (m, p1, oldCur, p3) => {
+          return `${p1}${currency} ${p3}`;
+        });
+        if (updatedHtml !== html) {
+          el.innerHTML = updatedHtml;
         }
       });
     }
