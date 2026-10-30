@@ -2746,7 +2746,7 @@ button.btn-red{border: none;cursor: pointer;}
     margin-bottom: 0;
     margin-top: 40px;
 }
-.ourpackages .tab-custom .tabs ul li{
+.ourpackages .tab-custom .tabs ul.pckkslider > li {
     vertical-align: top;
     display: inline-block;
     text-align: center;
@@ -2867,10 +2867,7 @@ button.btn-red{border: none;cursor: pointer;}
     color: var(--second-color);
 }
 .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures{
-    display: inline-block;
-    text-align: left;
-    padding: 0px 0 15px;
-    margin-top: 0;
+    display: flex; flex-direction: column; text-align: left; padding: 0 0 15px; margin-top: 0;
 }
 .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li{position: relative;width: 100%;text-align: left;color: #FFFFFF;font-size: 13.5px;padding-left: 0;padding-bottom: 0;font-family: var(--primary-font-family);}
 .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before{content: none !important; display: none !important;}
@@ -3774,7 +3771,7 @@ a.action-chat.clearfix.pull-right.sea {
   .home-banner {padding-top: 0;margin-top: 108px;background-position: center;}
   .webtech .general .tab-content-panel figure img {display: none;}
   .slick-prev,.slick-next{display: none!important;}
-  .ourpackages .tab-custom .tabs ul li{width: 100%;    padding: 0 20px;}
+  .ourpackages .tab-custom .tabs ul.pckkslider > li {width: 100%;    padding: 0 20px;}
   .portfolio_arch .fixdwrap .portfoliogridlist li{width: 100%;}
   .portfolio_arch .fixdwrap .portfoliogridlist{padding: 0 30px;}
   .ourpackages .tab-custom .tabbing-links li{    font-size: 14px;padding: 14px 15px;margin-bottom: 10px;border-radius: 10px;}
@@ -3875,7 +3872,7 @@ a.action-chat.clearfix.pull-right.sea {
 @media only screen and (max-width: 769px) and (min-width: 0px){
     .portfolio_arch .fixdwrap .portfoliogridlist{    text-align: center;}
     .portfolio_arch .fixdwrap .portfoliogridlist li{    margin: 10px 3px;     width: 45%;}
-    .ourpackages .tab-custom .tabs ul li{    width: 45%;}
+    /* .ourpackages .tab-custom .tabs ul li { width: 45%; } */
     .btn-black{    font-size: 15px;     width: 120px !important;}
     .btn-red{  font-size: 13px;
     width: 126px !important;}
@@ -3909,7 +3906,7 @@ a.action-chat.clearfix.pull-right.sea {
     .siloed .main-heading h3{font-size: 34px;}
     .contactbtm-box{    width: 100%;}
     .siloed .main-heading{     max-width: 100%;}
-    .ourpackages .tab-custom .tabs ul li{    width: 100%;}
+    .ourpackages .tab-custom .tabs ul.pckkslider > li {    width: 100%;}
     .mobile-nav-btn{    top: 58px;}
     .portfolio_arch .fixdwrap .portfoliogridlist li{width: 50% !important;
     padding-left: 1% !important;
@@ -3949,7 +3946,7 @@ a.action-chat.clearfix.pull-right.sea {
       .portfoliopg .build-to-win .tab-custom .tabbing-links li{    padding: 10px 15px !important;     font-size: 12px !important;}
       .mtech ul li{    width: 85%;}
       .mtech h2{font-size: 40px;}
-      .ourpackages .tab-custom .tabs ul li{    width: 90%;}
+      /* .ourpackages .tab-custom .tabs ul li { width: 90%; } */
       .ways h2{    max-width: 100%;    font-size: 39px;}
       .ways .main-heading{    padding: 0 0 10px;}
       .awards-process{    padding: 60px 0 60px;}
@@ -5131,17 +5128,18 @@ footer.footer-main::after,
     }
 }
 
+/* ========================================================================= */
+/* DIGENZ — MASTER PRICING PACKAGE CARDS (EXACT REFERENCE REDESIGN)          */
+/* ========================================================================= */
 
-/* ==========================================================================
-   DIGENZ — PRICING PACKAGE CARDS RESPONSIVE ALIGNMENT & OVERFLOW ENGINE
-   ========================================================================== */
-
-/* 1. Track & Slide Layout — Equal Height Columns */
+/* 1. Track & Slides Carousel / Grid */
 .ourpackages .tab-custom .tabs ul.pckkslider {
     display: block !important;
     width: 100% !important;
+    max-width: 1200px !important;
     margin: 30px auto 40px !important;
     padding: 0 !important;
+    list-style: none !important;
 }
 
 .pckkslider .slick-track {
@@ -5155,7 +5153,7 @@ footer.footer-main::after,
     height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    padding: 12px 14px !important;
+    padding: 0 12px !important;
     box-sizing: border-box !important;
     float: none !important;
 }
@@ -5167,136 +5165,143 @@ footer.footer-main::after,
     width: 100% !important;
 }
 
-/* Fallback when slick is not yet initialized */
-.ourpackages .tab-custom .tabs ul:not(.slick-initialized) {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 24px !important;
-    margin-top: 30px !important;
-    padding: 0 !important;
-}
-
-.ourpackages .tab-custom .tabs ul:not(.slick-initialized) li {
-    flex: 0 0 calc(33.333% - 24px) !important;
-    max-width: calc(33.333% - 24px) !important;
-    width: calc(33.333% - 24px) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 0 !important;
-    vertical-align: top !important;
-}
-
-@media only screen and (max-width: 991px) {
-    .ourpackages .tab-custom .tabs ul:not(.slick-initialized) li {
-        flex: 0 0 calc(50% - 20px) !important;
-        max-width: calc(50% - 20px) !important;
-        width: calc(50% - 20px) !important;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .ourpackages .tab-custom .tabs ul:not(.slick-initialized) li {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-}
-
-/* 2. Card Container (.packwrap) — Exact Match to Reference Screenshot (#4a4a4a, Sleek, Compact) */
-.packwrap {
-    background: #4a4a4a !important; /* Exact Charcoal Gray from reference */
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-radius: 12px !important;
-    padding: 34px 20px 24px !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+/* Card slide list-item (Only targets the card slide, NEVER the feature items) */
+.pckkslider .slick-slide > div > li,
+.ourpackages .tab-custom .tabs ul.pckkslider > li {
     display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
-    min-height: auto !important;
-    max-height: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    list-style: none !important;
+}
+
+/* Fallback if slick is uninitialized */
+.ourpackages .tab-custom .tabs ul.pckkslider:not(.slick-initialized) {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+}
+
+@media (max-width: 991px) {
+    .ourpackages .tab-custom .tabs ul.pckkslider:not(.slick-initialized) {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .ourpackages .tab-custom .tabs ul.pckkslider:not(.slick-initialized) {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    .ourpackages .tab-custom .tabs ul li {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* 2. Card Container — Solid Dark Grey #4A4A4A with 12px rounded corners */
+.packwrap,
+.ourpackages .tab-custom .tabs ul li .packwrap,
+.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
+    background: #4A4A4A !important;
+    background-color: #4A4A4A !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 34px 22px 24px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    height: 100% !important;
+    min-height: 520px !important;
     width: 100% !important;
     box-sizing: border-box !important;
     position: relative !important;
-    overflow: visible !important;
     text-align: center !important;
     transition: transform 0.25s ease, box-shadow 0.25s ease !important;
-    flex: 1 1 auto !important;
     cursor: pointer !important;
+    margin: 0 !important;
+    overflow: hidden !important;
 }
 
 .packwrap:hover {
     transform: translateY(-4px) !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Popular Card subtle accent */
 .packwrap.popular {
-    background: #4a4a4a !important;
-    border: 1px solid rgba(242, 175, 46, 0.4) !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35) !important;
+    background: #4A4A4A !important;
+    border: none !important;
 }
 
-/* 3. Package Name (h3) */
-.packwrap h3 {
+/* 3. Plan Titles — Bold, White, Centered */
+.packwrap h3,
+.ourpackages .tab-custom .tabs ul li .packwrap h3 {
     order: 1 !important;
-    font-size: 23px !important;
+    font-size: 22px !important;
     line-height: 1.25 !important;
     font-weight: 700 !important;
-    color: #FFFFFF !important; /* Pure White */
+    color: #FFFFFF !important;
     text-align: center !important;
     margin: 0 0 10px 0 !important;
     padding: 0 !important;
-    min-height: 58px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
     white-space: normal !important;
     word-break: break-word !important;
     font-family: var(--heading-font-family) !important;
+    display: block !important;
+    min-height: 55px !important;
 }
 
-/* 4. Starting at & Price (h4) */
-.packwrap h4 {
+/* 4. Starting Price — Large, Bold White Text */
+.packwrap h4,
+.ourpackages .tab-custom .tabs ul li .packwrap h4 {
     order: 2 !important;
     font-size: 36px !important;
     line-height: 1.15 !important;
     font-weight: 800 !important;
-    color: #FFFFFF !important; /* Pure White, exactly as in screenshot! */
+    color: #FFFFFF !important;
     text-align: center !important;
-    margin: 0 0 14px 0 !important;
+    margin: 0 0 10px 0 !important;
     padding: 0 !important;
     font-family: var(--heading-font-family) !important;
     letter-spacing: -0.5px !important;
+    display: block !important;
 }
 
-.packwrap h4 span {
-    font-size: 13px !important;
+.packwrap h4 span,
+.ourpackages .tab-custom .tabs ul li .packwrap h4 span {
+    font-size: 13.5px !important;
     font-weight: 400 !important;
-    color: #a6b0ba !important; /* Slate Gray */
+    color: #a6b0ba !important;
     display: block !important;
     text-transform: capitalize !important;
-    letter-spacing: 0.3px !important;
     margin-bottom: 6px !important;
     font-family: var(--secondary-font-family) !important;
+    letter-spacing: 0.2px !important;
 }
 
 .packwrap h4 small {
     display: none !important;
 }
 
-/* 5. Short Package Description (h5 / h2) */
+/* 5. Description Centered Below the Price */
 .packwrap h5,
-.packwrap h2 {
+.packwrap h2,
+.ourpackages .tab-custom .tabs ul li .packwrap h5 {
     order: 3 !important;
     font-size: 13px !important;
     line-height: 1.45 !important;
-    color: #d1d5db !important; /* Soft Light Gray */
+    color: #d1d5db !important;
     text-align: center !important;
     font-weight: 400 !important;
-    margin: 0 0 20px 0 !important;
-    padding: 0 8px !important;
-    min-height: 40px !important;
+    margin: 0 0 16px 0 !important;
+    padding: 0 4px !important;
+    min-height: 38px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -5305,58 +5310,78 @@ footer.footer-main::after,
     font-family: var(--secondary-font-family) !important;
 }
 
-/* 6. STRICT VERTICAL FEATURE LIST (Flexbox: fixed-width 18px icon + flexible text) */
+/* 6. Feature List Container — Fixed 195px height with native sleek scrolling */
 .packwrap .packfeatures,
-.packwrap .list-scroll,
 .packfeatures {
     order: 4 !important;
+    width: 100% !important;
+    height: 195px !important;
+    max-height: 195px !important;
+    min-height: 195px !important;
+    flex: 0 0 195px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
     display: flex !important;
     flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
     gap: 12px !important;
-    padding: 0 !important;
-    margin: 0 0 20px 0 !important;
+    padding: 0 6px 12px 0 !important;
+    margin: 0 0 16px 0 !important;
     list-style: none !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    min-height: auto !important;
-    overflow: visible !important;
+    box-sizing: border-box !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #888888 transparent !important;
     text-align: left !important;
-    flex: 1 1 auto !important;
 }
 
-/* Hide scrollbar tools if injected */
-.packwrap .mCustomScrollBox,
-.packwrap .mCSB_container {
-    max-height: none !important;
-    height: auto !important;
-    overflow: visible !important;
+/* Sleek Webkit Scrollbar */
+.packwrap .packfeatures::-webkit-scrollbar {
+    width: 5px !important;
 }
-.packwrap .mCSB_scrollTools {
-    display: none !important;
+.packwrap .packfeatures::-webkit-scrollbar-track {
+    background: transparent !important;
+    border-radius: 4px !important;
+}
+.packwrap .packfeatures::-webkit-scrollbar-thumb {
+    background: #888888 !important;
+    border-radius: 4px !important;
+}
+.packwrap .packfeatures::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa !important;
 }
 
-/* 1. Each feature occupies its own separate row */
+/* 7. Feature Item Row — STRICT FLEX ROW (Icon on Left, Text on Right) */
 .feature-item,
 .packwrap .packfeatures li,
-.packwrap .list-scroll li {
+.packwrap .packfeatures > li {
     display: flex !important;
+    flex-direction: row !important;
     align-items: flex-start !important;
+    justify-content: flex-start !important;
     gap: 12px !important;
     width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
     padding: 0 !important;
     margin: 0 !important;
     box-sizing: border-box !important;
     list-style: none !important;
+    background: transparent !important;
+    text-align: left !important;
+    float: none !important;
+    clear: both !important;
     position: relative !important;
     border: none !important;
-    background: transparent !important;
 }
 
-/* 2 & 6. Fixed-width Blue Icon Container (aligned in one straight vertical column) */
+/* Fixed-width Yellow Icon Container (Aligned in one straight vertical column on left) */
 .feature-icon,
-.packwrap .packfeatures li .feature-icon,
-.packwrap .list-scroll li .feature-icon {
+.packwrap .packfeatures li .feature-icon {
     flex: 0 0 18px !important;
     width: 18px !important;
     min-width: 18px !important;
@@ -5370,20 +5395,18 @@ footer.footer-main::after,
 }
 
 .feature-icon svg,
-.packwrap .packfeatures li .feature-icon svg,
-.packwrap .list-scroll li .feature-icon svg {
+.packwrap .packfeatures li .feature-icon svg {
     width: 18px !important;
     height: 18px !important;
     display: block !important;
-    fill: #3478F6 !important;
-    color: #3478F6 !important;
+    fill: #f2af2e !important;
+    color: #f2af2e !important;
 }
 
-/* 3 & 4. Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
+/* Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
 .feature-text,
-.packwrap .packfeatures li .feature-text,
-.packwrap .list-scroll li .feature-text {
-    flex: 1 !important;
+.packwrap .packfeatures li .feature-text {
+    flex: 1 1 auto !important;
     min-width: 0 !important;
     text-align: left !important;
     color: #FFFFFF !important;
@@ -5393,73 +5416,54 @@ footer.footer-main::after,
     word-break: normal !important;
     white-space: normal !important;
     font-family: var(--primary-font-family) !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-/* Suppress all legacy pseudo-elements on feature items */
+/* Suppress all pseudo-elements */
 .packwrap .packfeatures li::before,
-.packwrap .list-scroll li::before,
+.packwrap .packfeatures li:before,
 .feature-item::before {
     display: none !important;
     content: none !important;
 }
 
-/* 7. Add-on Section (.extrainfo) — Pinned cleanly to the bottom across all cards */
+/* 8. ADD ON / Rush Delivery Information Pinned to Bottom */
 .packwrap .extrainfo,
-p.extrainfo {
+p.extrainfo,
+.ourpackages .tab-custom .tabs ul li p.extrainfo {
     order: 5 !important;
     display: block !important;
     width: 100% !important;
-    color: #a6b0ba !important; /* Soft Slate Gray from reference */
+    color: #a6b0ba !important;
     background: transparent !important;
     border: none !important;
     border-radius: 0 !important;
     padding: 12px 0 0 0 !important;
-    margin: auto 0 0 0 !important;
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
     text-align: center !important;
     font-size: 12px !important;
     font-weight: 400 !important;
     line-height: 1.4 !important;
     box-sizing: border-box !important;
     white-space: normal !important;
-    word-break: break-word !important;
     font-family: var(--secondary-font-family) !important;
 }
 
-/* Equalize Card Heights in Slick Carousel */
-.pckkslider .slick-track {
-    display: flex !important;
-    align-items: stretch !important;
-}
-.pckkslider .slick-slide {
-    height: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-}
-.pckkslider .slick-slide > div {
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    flex: 1 1 auto !important;
-}
-.pckkslider .slick-slide li {
-    height: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    flex: 1 1 auto !important;
-}
-
-/* 8. Hide button & action bar inside the card to match reference screenshot */
+/* 9. Hide internal buttons, action bars, and badges */
 .packwrap .btn-pack,
 .btn-pack,
 .packwrap .viewdetails,
 .packwrap .actions,
 .packwrap .actions.row.web,
 .actions.row.web,
-.packwrap .digenz-badge {
+.packwrap .digenz-badge,
+.packwrap.popular:after {
     display: none !important;
 }
 
-/* 9. Slick Navigation Arrows & Dots */
+/* 10. Sleek Slick Carousel Arrows & Dots */
 .pckkslider .slick-prev,
 .pckkslider .slick-next {
     width: 44px !important;
@@ -5505,307 +5509,7 @@ p.extrainfo {
     opacity: 1 !important;
 }
 
-
-/* ========================================================================= */
-/* MASTER PRICING CARDS REDESIGN — EXACT MATCH TO REFERENCE SCREENSHOT       */
-/* ========================================================================= */
-
-/* 1. Equal-width Grid Layout for 3 cards */
-.tabs .pckkslider,
-.ourpackages .tab-custom .tabs ul.pckkslider,
-.cstmwebdesgn .ourpackages .tab-custom .tabs ul.pckkslider {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 24px !important;
-    width: 100% !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    list-style: none !important;
-    transform: none !important;
-}
-
-/* Slick Track grid compatibility */
-.tabs .pckkslider.slick-initialized .slick-track,
-.pckkslider .slick-track {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 24px !important;
-    width: 100% !important;
-    transform: none !important;
-}
-
-.tabs .pckkslider .slick-slide,
-.tabs .pckkslider > li,
-.ourpackages .tab-custom .tabs ul.pckkslider > li {
-    float: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-}
-
-/* Tablet: 2 cards per row */
-@media (max-width: 991px) and (min-width: 768px) {
-    .tabs .pckkslider,
-    .ourpackages .tab-custom .tabs ul.pckkslider,
-    .cstmwebdesgn .ourpackages .tab-custom .tabs ul.pckkslider,
-    .tabs .pckkslider.slick-initialized .slick-track {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
-    }
-}
-
-/* Mobile: 1 card per row (Full Width, never squished into 2 columns) */
-@media (max-width: 767px) {
-    .tabs .pckkslider,
-    .ourpackages .tab-custom .tabs ul.pckkslider,
-    .cstmwebdesgn .ourpackages .tab-custom .tabs ul.pckkslider,
-    .tabs .pckkslider.slick-initialized .slick-track {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-        width: 100% !important;
-    }
-    .tabs .pckkslider .slick-slide,
-    .tabs .pckkslider > li,
-    .ourpackages .tab-custom .tabs ul li,
-    .ourpackages .tab-custom .tabs ul.pckkslider > li {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
-        float: none !important;
-        margin: 0 0 20px 0 !important;
-    }
-}
-
-/* 2 & 3. Card Container — Solid Dark Grey #4A4A4A with 12px rounded corners */
-.packwrap,
-.ourpackages .tab-custom .tabs ul li .packwrap,
-.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
-    background: #4A4A4A !important;
-    background-color: #4A4A4A !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 38px 24px 26px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    height: 100% !important;
-    min-height: 520px !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    position: relative !important;
-    text-align: center !important;
-    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
-    cursor: pointer !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-}
-
-.packwrap:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4) !important;
-}
-
-.packwrap.popular {
-    background: #4A4A4A !important;
-    border: none !important;
-}
-
-/* 4 & 5. Plan Titles — Bold, White, Centered */
-.packwrap h3,
-.ourpackages .tab-custom .tabs ul li .packwrap h3 {
-    order: 1 !important;
-    font-size: 22px !important;
-    line-height: 1.25 !important;
-    font-weight: 700 !important;
-    color: #FFFFFF !important;
-    text-align: center !important;
-    margin: 0 0 12px 0 !important;
-    padding: 0 !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    font-family: var(--heading-font-family) !important;
-    display: block !important;
-    min-height: 55px !important;
-}
-
-/* 6. Starting Price Prominently in Large, Bold White Text */
-.packwrap h4,
-.ourpackages .tab-custom .tabs ul li .packwrap h4 {
-    order: 2 !important;
-    font-size: 36px !important;
-    line-height: 1.15 !important;
-    font-weight: 800 !important;
-    color: #FFFFFF !important;
-    text-align: center !important;
-    margin: 0 0 12px 0 !important;
-    padding: 0 !important;
-    font-family: var(--heading-font-family) !important;
-    letter-spacing: -0.5px !important;
-    display: block !important;
-}
-
-.packwrap h4 span,
-.ourpackages .tab-custom .tabs ul li .packwrap h4 span {
-    font-size: 13.5px !important;
-    font-weight: 400 !important;
-    color: #a6b0ba !important;
-    display: block !important;
-    text-transform: capitalize !important;
-    margin-bottom: 6px !important;
-    font-family: var(--secondary-font-family) !important;
-    letter-spacing: 0.2px !important;
-}
-
-.packwrap h4 small {
-    display: none !important;
-}
-
-/* 7. Description Centered Below the Price */
-.packwrap h5,
-.packwrap h2,
-.ourpackages .tab-custom .tabs ul li .packwrap h5 {
-    order: 3 !important;
-    font-size: 13px !important;
-    line-height: 1.45 !important;
-    color: #d1d5db !important;
-    text-align: center !important;
-    font-weight: 400 !important;
-    margin: 0 0 20px 0 !important;
-    padding: 0 4px !important;
-    min-height: 38px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    white-space: normal !important;
-    word-break: break-word !important;
-    font-family: var(--secondary-font-family) !important;
-}
-
-/* 8, 9 & 12. Vertically Scrollable Feature List with Yellow Check-Circle Icons */
-.packwrap .packfeatures,
-.packwrap .list-scroll,
-.packfeatures {
-    order: 4 !important;
-    height: 195px !important;
-    max-height: 195px !important;
-    min-height: 195px !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    padding: 0 6px 12px 0 !important;
-    margin: 0 0 16px 0 !important;
-    list-style: none !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    scrollbar-width: thin !important;
-    scrollbar-color: #888888 transparent !important;
-    text-align: left !important;
-    flex: 1 1 auto !important;
-}
-
-/* Sleek Webkit Scrollbar */
-.packwrap .packfeatures::-webkit-scrollbar,
-.packwrap .list-scroll::-webkit-scrollbar {
-    width: 5px !important;
-}
-.packwrap .packfeatures::-webkit-scrollbar-track,
-.packwrap .list-scroll::-webkit-scrollbar-track {
-    background: transparent !important;
-    border-radius: 4px !important;
-}
-.packwrap .packfeatures::-webkit-scrollbar-thumb,
-.packwrap .list-scroll::-webkit-scrollbar-thumb {
-    background: #888888 !important;
-    border-radius: 4px !important;
-}
-.packwrap .packfeatures::-webkit-scrollbar-thumb:hover,
-.packwrap .list-scroll::-webkit-scrollbar-thumb:hover {
-    background: #aaaaaa !important;
-}
-
-/* Feature Item Row - STRICT FLEX ROW FULL WIDTH */
-.feature-item,
-.packwrap .packfeatures li,
-.packwrap .packfeatures > li,
-.packwrap .list-scroll li,
-.packwrap .mCSB_container li {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    gap: 12px !important;
-    width: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    float: none !important;
-    clear: both !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    list-style: none !important;
-    position: relative !important;
-    border: none !important;
-    background: transparent !important;
-    text-align: left !important;
-}
-
-/* Fixed-width Yellow Icon Container (Aligned in one straight vertical column) */
-.feature-icon,
-.packwrap .packfeatures li .feature-icon,
-.packwrap .list-scroll li .feature-icon,
-.packwrap .mCSB_container li .feature-icon {
-    flex: 0 0 18px !important;
-    width: 18px !important;
-    min-width: 18px !important;
-    max-width: 18px !important;
-    height: 18px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    margin-top: 1px !important;
-    line-height: 1 !important;
-}
-
-.feature-icon svg,
-.packwrap .packfeatures li .feature-icon svg,
-.packwrap .list-scroll li .feature-icon svg,
-.packwrap .mCSB_container li .feature-icon svg {
-    width: 18px !important;
-    height: 18px !important;
-    display: block !important;
-    fill: #f2af2e !important;
-    color: #f2af2e !important;
-}
-
-/* Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
-.feature-text,
-.packwrap .packfeatures li .feature-text,
-.packwrap .list-scroll li .feature-text,
-.packwrap .mCSB_container li .feature-text {
-    flex: 1 1 auto !important;
-    min-width: 0 !important;
-    text-align: left !important;
-    color: #FFFFFF !important;
-    font-size: 13.5px !important;
-    line-height: 1.45 !important;
-    overflow-wrap: break-word !important;
-    word-break: normal !important;
-    white-space: normal !important;
-    font-family: var(--primary-font-family) !important;
-}
-
-/* Suppress all legacy mCustomScrollbar markup if injected */
+/* Completely suppress any mCustomScrollbar markup */
 .packwrap .mCustomScrollBox,
 .packwrap .mCSB_container {
     display: flex !important;
@@ -5813,7 +5517,6 @@ p.extrainfo {
     width: 100% !important;
     height: 100% !important;
     max-height: 100% !important;
-    overflow-y: auto !important;
     position: static !important;
 }
 .packwrap .mCSB_scrollTools {
@@ -5821,48 +5524,4 @@ p.extrainfo {
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
-}
-
-/* Suppress all legacy pseudo-elements that caused scattering */
-.packwrap .packfeatures li::before,
-.packwrap .list-scroll li::before,
-.ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before,
-.cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .packfeatures li:before,
-.feature-item::before {
-    display: none !important;
-    content: none !important;
-}
-
-/* 10. ADD ON / Rush Delivery Information at the bottom */
-.packwrap .extrainfo,
-p.extrainfo,
-.ourpackages .tab-custom .tabs ul li p.extrainfo {
-    order: 5 !important;
-    display: block !important;
-    width: 100% !important;
-    color: #a6b0ba !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 12px 0 0 0 !important;
-    margin: auto 0 0 0 !important;
-    text-align: center !important;
-    font-size: 12px !important;
-    font-weight: 400 !important;
-    line-height: 1.4 !important;
-    box-sizing: border-box !important;
-    white-space: normal !important;
-    font-family: var(--secondary-font-family) !important;
-}
-
-/* Hide internal buttons & badges */
-.packwrap .btn-pack,
-.btn-pack,
-.packwrap .viewdetails,
-.packwrap .actions,
-.packwrap .actions.row.web,
-.actions.row.web,
-.packwrap .digenz-badge,
-.packwrap.popular:after {
-    display: none !important;
 }
