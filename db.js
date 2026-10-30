@@ -25,7 +25,7 @@ function generateToken() {
 
 // Initial seed data generator
 function getInitialSeed() {
-  const defaultAdmin = hashPassword('Admin@Digenz2026!');
+  const defaultAdmin = hashPassword('admin123');
 
   const categories = [
     {
@@ -624,6 +624,7 @@ function getInitialSeed() {
     admins: [
       {
         id: 'adm-001',
+        username: 'admin',
         email: 'admin@digenz.com',
         passwordHash: defaultAdmin.hash,
         salt: defaultAdmin.salt,

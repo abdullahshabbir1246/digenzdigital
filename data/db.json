@@ -2,12 +2,13 @@
   "admins": [
     {
       "id": "adm-001",
+      "username": "admin",
       "email": "admin@digenz.com",
-      "passwordHash": "fa9f74fd9e5944dd0a27f985d8756dc78693316527feb0fa722f5314d8c7d483d15645eab79ccbee81f4c5a38439453435da3aeea685c4d6625651e8c96f9922",
-      "salt": "c5f40394f488d4412aebdeb24f3ee1fa",
-      "name": "DIGENZ Master Admin",
+      "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
+      "salt": "ac0f718011f4b8ade251f157148f4534",
+      "name": "DIGENZ Admin",
       "role": "superadmin",
-      "lastLogin": "2026-10-30T18:01:59.152Z",
+      "lastLogin": "2026-10-30T18:44:54.465Z",
       "createdAt": "2026-01-01T00:00:00.000Z"
     }
   ],
@@ -2550,6 +2551,33 @@
     "enablePublicQuotes": true
   },
   "auditLogs": [
+    {
+      "id": "log-1793385894479-47",
+      "adminEmail": "admin",
+      "action": "LOGIN_FAILED",
+      "module": "Auth",
+      "details": "Failed login attempt with invalid credentials",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:44:54.479Z"
+    },
+    {
+      "id": "log-1793385894468-215",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:44:54.468Z"
+    },
+    {
+      "id": "log-1793385894454-845",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T18:44:54.454Z"
+    },
     {
       "id": "log-1793383319960-756",
       "adminEmail": "admin@digenz.com",
