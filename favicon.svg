@@ -2,35 +2,34 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
      width="64px" height="64px" viewBox="0 0 92 92" xml:space="preserve">
   <defs>
-    <linearGradient id="fav_goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FCEBA2" />
-      <stop offset="25%" stop-color="#E5BE64" />
-      <stop offset="50%" stop-color="#FBF0B5" />
-      <stop offset="75%" stop-color="#C59634" />
-      <stop offset="100%" stop-color="#8E6516" />
+    <linearGradient id="fav_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80B5FF" />
+      <stop offset="35%" stop-color="#3478F6" />
+      <stop offset="70%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#103c8c" />
     </linearGradient>
-    <linearGradient id="fav_goldLight" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#DFB15B" />
-      <stop offset="45%" stop-color="#FFF5B8" />
-      <stop offset="100%" stop-color="#C5932E" />
+    <linearGradient id="fav_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3478F6" />
+      <stop offset="50%" stop-color="#80B5FF" />
+      <stop offset="100%" stop-color="#FFFFFF" />
     </linearGradient>
-    <linearGradient id="fav_goldDark" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#C5932E" />
-      <stop offset="100%" stop-color="#734F0C" />
+    <linearGradient id="fav_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#0f2b66" />
     </linearGradient>
   </defs>
 
-  <rect width="92" height="92" rx="18" fill="#121212" stroke="url(#fav_goldDark)" stroke-width="1.5" />
+  <rect width="92" height="92" rx="18" fill="#101827" stroke="#3478F6" stroke-width="2" />
 
   <g transform="translate(4, -1)">
-    <polygon points="18,27 26,19 32,19 32,44 18,44" fill="url(#fav_goldLight)" />
-    <polygon points="18,48 32,48 32,73 26,73 18,65" fill="url(#fav_goldDark)" />
-    <polygon points="28,43 36,43 36,49 28,49" fill="url(#fav_goldGrad)" />
-    <polygon points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#fav_goldLight)" />
-    <polygon points="72,35 72,57 60,57 60,35" fill="url(#fav_goldGrad)" />
-    <polygon points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#fav_goldDark)" />
-    <polygon points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#fav_goldLight)" opacity="0.95" />
-    <circle cx="26" cy="19" r="2.2" fill="#FFFDF0" />
-    <circle cx="56" cy="19" r="2.2" fill="#FFFDF0" />
+    <polygon points="18,27 26,19 32,19 32,44 18,44" fill="url(#fav_blueLight)" />
+    <polygon points="18,48 32,48 32,73 26,73 18,65" fill="url(#fav_blueDark)" />
+    <polygon points="28,43 36,43 36,49 28,49" fill="url(#fav_blueGrad)" />
+    <polygon points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#fav_blueLight)" />
+    <polygon points="72,35 72,57 60,57 60,35" fill="url(#fav_blueGrad)" />
+    <polygon points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#fav_blueDark)" />
+    <polygon points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#fav_blueLight)" opacity="0.95" />
+    <circle cx="26" cy="19" r="2.2" fill="#FFFFFF" />
+    <circle cx="56" cy="19" r="2.2" fill="#FFFFFF" />
   </g>
 </svg>

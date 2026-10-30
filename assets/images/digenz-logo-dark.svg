@@ -2,26 +2,25 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
      width="350px" height="92px" viewBox="0 0 350 92" xml:space="preserve">
   <defs>
-    <linearGradient id="d_goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FCEBA2" />
-      <stop offset="25%" stop-color="#E5BE64" />
-      <stop offset="50%" stop-color="#FBF0B5" />
-      <stop offset="75%" stop-color="#C59634" />
-      <stop offset="100%" stop-color="#8E6516" />
+    <linearGradient id="d_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80B5FF" />
+      <stop offset="30%" stop-color="#3478F6" />
+      <stop offset="70%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#103c8c" />
     </linearGradient>
-    <linearGradient id="d_goldLight" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#DFB15B" />
-      <stop offset="45%" stop-color="#FFF5B8" />
-      <stop offset="100%" stop-color="#C5932E" />
+    <linearGradient id="d_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3478F6" />
+      <stop offset="50%" stop-color="#80B5FF" />
+      <stop offset="100%" stop-color="#FFFFFF" />
     </linearGradient>
-    <linearGradient id="d_goldDark" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#C5932E" />
-      <stop offset="100%" stop-color="#734F0C" />
+    <linearGradient id="d_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#0f2b66" />
     </linearGradient>
-    <linearGradient id="d_goldMid" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#AA7C1E" />
-      <stop offset="50%" stop-color="#E2B756" />
-      <stop offset="100%" stop-color="#AA7C1E" />
+    <linearGradient id="d_blueMid" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e5dd6" />
+      <stop offset="50%" stop-color="#3478F6" />
+      <stop offset="100%" stop-color="#80B5FF" />
     </linearGradient>
   </defs>
 
@@ -30,35 +29,35 @@
     <!-- Left Tech Pillar (Foundation, Backend Architecture, Structure) -->
     <!-- Top Chamfered Pillar Segment -->
     <polygon points="18,27 26,19 32,19 32,44 18,44" 
-             fill="url(#d_goldLight)" />
+             fill="url(#d_blueLight)" />
     <!-- Bottom Chamfered Pillar Segment -->
     <polygon points="18,48 32,48 32,73 26,73 18,65" 
-             fill="url(#d_goldDark)" />
+             fill="url(#d_blueDark)" />
 
     <!-- Center Bridge Node (Connectivity, API & Data Flow) -->
     <polygon points="28,43 36,43 36,49 28,49" 
-             fill="url(#d_goldGrad)" />
+             fill="url(#d_blueGrad)" />
 
     <!-- Right Dynamic Geometric 'D' Loop (Frontend, Innovation, Creative Solutions) -->
     <!-- Top Horizontal & Diagonal Chamfer -->
     <polygon points="38,19 56,19 72,35 60,35 48,27 38,27" 
-             fill="url(#d_goldLight)" />
+             fill="url(#d_blueLight)" />
 
     <!-- Right Vertical Data Spine -->
     <polygon points="72,35 72,57 60,57 60,35" 
-             fill="url(#d_goldGrad)" />
+             fill="url(#d_blueGrad)" />
 
     <!-- Bottom Horizontal & Diagonal Chamfer -->
     <polygon points="72,57 56,73 38,73 38,65 48,65 60,57" 
-             fill="url(#d_goldDark)" />
+             fill="url(#d_blueDark)" />
 
     <!-- Digital Forward Arrow Core (representing Progress, Code, Innovation) -->
     <polygon points="41,36 51,46 41,56 46,56 56,46 46,36" 
-             fill="url(#d_goldLight)" opacity="0.95" />
+             fill="url(#d_blueLight)" opacity="0.95" />
 
     <!-- Tech Nodes at Apex -->
-    <circle cx="26" cy="19" r="2.2" fill="#FFFDF0" />
-    <circle cx="56" cy="19" r="2.2" fill="#FFFDF0" />
+    <circle cx="26" cy="19" r="2.2" fill="#FFFFFF" />
+    <circle cx="56" cy="19" r="2.2" fill="#FFFFFF" />
   </g>
 
   <!-- DIGENZ Vector Wordmark & Tagline -->
@@ -85,13 +84,13 @@
       <path d="M 286,23 L 319.5,23 L 319.5,28.5 L 295.5,53.5 L 320,53.5 L 320,59 L 285.5,59 L 285.5,53.5 L 310,28.5 L 286,28.5 Z" />
     </g>
 
-    <!-- Tagline: DIGITAL • CREATIVE • SERVICES -->
+    <!-- Tagline: DIGITAL • CREATIVE • SERVICES in Light Blue -->
     <text x="93" y="74" 
           font-family="'Century Gothic', 'Montserrat', -apple-system, sans-serif" 
           font-size="6.8" 
           font-weight="600" 
           letter-spacing="3.8" 
-          fill="url(#d_goldLight)" 
+          fill="#80B5FF" 
           opacity="0.95">DIGITAL • CREATIVE • SERVICES</text>
   </g>
 </svg>

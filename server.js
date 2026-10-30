@@ -721,16 +721,16 @@ const server = http.createServer(async (req, res) => {
   <style>
     body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 40px; color: #1a1a1a; background: #fff; }
     .invoice-card { max-width: 800px; margin: 0 auto; border: 1px solid #e0e0e0; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-    .header { display: flex; justify-content: space-between; border-bottom: 2px solid #d4af37; padding-bottom: 20px; margin-bottom: 30px; }
+    .header { display: flex; justify-content: space-between; border-bottom: 2px solid #3478F6; padding-bottom: 20px; margin-bottom: 30px; }
     .brand h1 { margin: 0; font-size: 28px; letter-spacing: 2px; color: #111; }
-    .brand p { margin: 4px 0 0; color: #d4af37; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; }
+    .brand p { margin: 4px 0 0; color: #3478F6; font-size: 11px; font-weight: bold; letter-spacing: 1.5px; }
     .inv-details { text-align: right; }
     .inv-details h2 { margin: 0; color: #333; font-size: 22px; }
     .parties { display: flex; justify-content: space-between; margin-bottom: 30px; }
     .col { width: 48%; }
     .col h4 { margin: 0 0 10px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-    th { background: #111; color: #d4af37; text-align: left; padding: 12px; font-size: 12px; text-transform: uppercase; }
+    th { background: #111; color: #3478F6; text-align: left; padding: 12px; font-size: 12px; text-transform: uppercase; }
     td { padding: 12px; border-bottom: 1px solid #eee; font-size: 14px; }
     .totals { margin-left: auto; width: 300px; }
     .totals-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; }
@@ -744,7 +744,7 @@ const server = http.createServer(async (req, res) => {
 </head>
 <body>
   <div class="no-print" style="max-width: 800px; margin: 0 auto 20px; text-align: right;">
-    <button onclick="window.print()" style="background: #d4af37; color: #111; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">Print / Save as PDF</button>
+    <button onclick="window.print()" style="background: #3478F6; color: #111; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">Print / Save as PDF</button>
   </div>
   <div class="invoice-card">
     <div class="header">
@@ -1253,10 +1253,10 @@ const server = http.createServer(async (req, res) => {
   <style>
     body { background: #0f0f11; color: #fff; font-family: 'Helvetica Neue', Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
     .box { max-width: 600px; padding: 40px; border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; background: #16161a; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
-    h1 { color: #d4af37; font-size: 32px; letter-spacing: 2px; margin-bottom: 10px; }
+    h1 { color: #3478F6; font-size: 32px; letter-spacing: 2px; margin-bottom: 10px; }
     p { color: #aaa; line-height: 1.6; font-size: 16px; }
     .contact { margin-top: 30px; padding-top: 20px; border-top: 1px solid #333; font-size: 13px; color: #777; }
-    .contact a { color: #d4af37; text-decoration: none; }
+    .contact a { color: #3478F6; text-decoration: none; }
   </style>
 </head>
 <body>

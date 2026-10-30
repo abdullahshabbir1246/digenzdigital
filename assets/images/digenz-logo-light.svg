@@ -2,59 +2,38 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
      width="350px" height="92px" viewBox="0 0 350 92" xml:space="preserve">
   <defs>
-    <linearGradient id="l_goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E2B756" />
-      <stop offset="25%" stop-color="#C5932E" />
-      <stop offset="50%" stop-color="#F7DE89" />
-      <stop offset="75%" stop-color="#B28220" />
-      <stop offset="100%" stop-color="#7A520E" />
+    <linearGradient id="l_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3478F6" />
+      <stop offset="50%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#101827" />
     </linearGradient>
-    <linearGradient id="l_goldLight" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#C5932E" />
-      <stop offset="50%" stop-color="#F2D377" />
-      <stop offset="100%" stop-color="#B28220" />
+    <linearGradient id="l_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e5dd6" />
+      <stop offset="50%" stop-color="#3478F6" />
+      <stop offset="100%" stop-color="#80B5FF" />
     </linearGradient>
-    <linearGradient id="l_goldDark" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#A5761A" />
-      <stop offset="100%" stop-color="#5E3E08" />
+    <linearGradient id="l_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3478F6" />
+      <stop offset="100%" stop-color="#101827" />
     </linearGradient>
   </defs>
 
-  <!-- Modern Geometric 'D' Monogram for Digital & Creative Services -->
+  <!-- Modern Geometric 'D' Monogram for Light Backgrounds -->
   <g id="l_techD" transform="translate(6, 1)">
-    <!-- Left Tech Pillar -->
-    <polygon points="18,27 26,19 32,19 32,44 18,44" 
-             fill="url(#l_goldLight)" />
-    <polygon points="18,48 32,48 32,73 26,73 18,65" 
-             fill="url(#l_goldDark)" />
-
-    <!-- Center Bridge Node -->
-    <polygon points="28,43 36,43 36,49 28,49" 
-             fill="url(#l_goldGrad)" />
-
-    <!-- Right Dynamic Geometric 'D' Loop -->
-    <polygon points="38,19 56,19 72,35 60,35 48,27 38,27" 
-             fill="url(#l_goldLight)" />
-
-    <polygon points="72,35 72,57 60,57 60,35" 
-             fill="url(#l_goldGrad)" />
-
-    <polygon points="72,57 56,73 38,73 38,65 48,65 60,57" 
-             fill="url(#l_goldDark)" />
-
-    <!-- Digital Forward Arrow Core -->
-    <polygon points="41,36 51,46 41,56 46,56 56,46 46,36" 
-             fill="url(#l_goldLight)" opacity="0.95" />
-
-    <!-- Tech Nodes at Apex -->
-    <circle cx="26" cy="19" r="2.2" fill="#C5932E" />
-    <circle cx="56" cy="19" r="2.2" fill="#C5932E" />
+    <polygon points="18,27 26,19 32,19 32,44 18,44" fill="url(#l_blueLight)" />
+    <polygon points="18,48 32,48 32,73 26,73 18,65" fill="url(#l_blueDark)" />
+    <polygon points="28,43 36,43 36,49 28,49" fill="url(#l_blueGrad)" />
+    <polygon points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#l_blueLight)" />
+    <polygon points="72,35 72,57 60,57 60,35" fill="url(#l_blueGrad)" />
+    <polygon points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#l_blueDark)" />
+    <polygon points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#l_blueLight)" opacity="0.95" />
+    <circle cx="26" cy="19" r="2.2" fill="#3478F6" />
+    <circle cx="56" cy="19" r="2.2" fill="#3478F6" />
   </g>
 
-  <!-- DIGENZ Vector Wordmark & Tagline -->
+  <!-- DIGENZ Vector Wordmark in Deep Navy -->
   <g id="l_wordmark">
-    <!-- Deep Black Typography -->
-    <g fill="#141414">
+    <g fill="#101827">
       <path d="M 92,23 L 110,23 C 121,23 127.5,29.5 127.5,41 C 127.5,52.5 121,59 110,59 L 92,59 Z 
                M 98,28.5 L 98,53.5 L 109.5,53.5 C 116.5,53.5 121,49 121,41 C 121,33 116.5,28.5 109.5,28.5 Z" />
       <path d="M 137,23 L 143,23 L 143,59 L 137,59 Z" />
@@ -64,13 +43,13 @@
       <path d="M 286,23 L 319.5,23 L 319.5,28.5 L 295.5,53.5 L 320,53.5 L 320,59 L 285.5,59 L 285.5,53.5 L 310,28.5 L 286,28.5 Z" />
     </g>
 
-    <!-- Tagline: DIGITAL • CREATIVE • SERVICES in dark gold -->
+    <!-- Tagline: DIGITAL • CREATIVE • SERVICES in Electric Blue -->
     <text x="93" y="74" 
           font-family="'Century Gothic', 'Montserrat', -apple-system, sans-serif" 
           font-size="6.8" 
           font-weight="600" 
           letter-spacing="3.8" 
-          fill="#8E6516" 
+          fill="#3478F6" 
           opacity="0.95">DIGITAL • CREATIVE • SERVICES</text>
   </g>
 </svg>

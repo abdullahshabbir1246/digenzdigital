@@ -2,12 +2,12 @@
   <!-- Browser Frame -->
   <rect x="6" y="8" width="36" height="26" rx="3" stroke="#FFFFFF" stroke-width="2" />
   <line x1="6" y1="15" x2="42" y2="15" stroke="#3478F6" stroke-width="1.5" />
-  <circle cx="10" cy="11.5" r="1.2" fill="#D5B66D" />
+  <circle cx="10" cy="11.5" r="1.2" fill="#80B5FF" />
   <circle cx="14" cy="11.5" r="1.2" fill="#3478F6" />
   <!-- Maintenance Cog / Gear -->
   <circle cx="21" cy="24" r="4" stroke="#3478F6" stroke-width="2" />
-  <circle cx="21" cy="24" r="1.5" fill="#D5B66D" />
+  <circle cx="21" cy="24" r="1.5" fill="#80B5FF" />
   <!-- Wrench Tool -->
   <path d="M36 32 L28 40 M34 30 L38 34 M26 38 L30 42" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
-  <circle cx="34" cy="32" r="3" stroke="#D5B66D" stroke-width="2" fill="none" />
+  <circle cx="34" cy="32" r="3" stroke="#80B5FF" stroke-width="2" fill="none" />
 </svg>

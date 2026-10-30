@@ -92,7 +92,7 @@ const Admin = (function() {
         document.getElementById(targetInputId).value = res.url;
         const previewEl = document.getElementById(previewContainerId);
         if (previewEl) {
-          previewEl.innerHTML = `<img src="${res.url}" style="height: 48px; border-radius: 4px; border: 1px solid #D5B66D; margin-top: 4px;">`;
+          previewEl.innerHTML = `<img src="${res.url}" style="height: 48px; border-radius: 4px; border: 1px solid #3478F6; margin-top: 4px;">`;
         }
         showToast('Image uploaded successfully: ' + res.filename, 'success');
       } catch (err) {
@@ -356,7 +356,7 @@ const Admin = (function() {
               <div class="text-muted" style="font-size: 11px;">/${p.slug}</div>
             </td>
             <td><code>${p.sku || 'N/A'}</code></td>
-            <td><span class="badge" style="background:#222; color:#d4af37; border:1px solid #444;">${catName}</span></td>
+            <td><span class="badge" style="background:#222; color:#3478F6; border:1px solid #444;">${catName}</span></td>
             <td>$${p.price.toFixed(2)}</td>
             <td>${p.salePrice ? `<strong class="text-success">$${p.salePrice.toFixed(2)}</strong>` : '<span class="text-muted">-</span>'}</td>
             <td>${p.badge ? `<span class="promo-tag">${p.badge}</span>` : '-'}</td>
@@ -666,14 +666,14 @@ const Admin = (function() {
       content.innerHTML = `
         <div class="form-row mb-3">
           <div class="form-group col" style="background:#111; padding:12px; border-radius:6px; border:1px solid #333;">
-            <strong style="color:#d4af37; font-size:12px; text-transform:uppercase;">Customer Profile</strong><br>
+            <strong style="color:#3478F6; font-size:12px; text-transform:uppercase;">Customer Profile</strong><br>
             <strong>${o.customer.name}</strong><br>
             <span>Email: ${o.customer.email}</span><br>
             <span>Phone: ${o.customer.phone || 'N/A'}</span><br>
             <span>Location: ${o.customer.city || ''} ${o.customer.country || ''}</span>
           </div>
           <div class="form-group col" style="background:#111; padding:12px; border-radius:6px; border:1px solid #333;">
-            <strong style="color:#d4af37; font-size:12px; text-transform:uppercase;">Payment & Shipping</strong><br>
+            <strong style="color:#3478F6; font-size:12px; text-transform:uppercase;">Payment & Shipping</strong><br>
             <span>Method: <strong>${o.paymentMethod || 'Online'}</strong></span><br>
             <span>Payment Status: <strong class="text-success">${o.paymentStatus.toUpperCase()}</strong></span><br>
             <span>Fulfillment: <strong>${o.status.toUpperCase()}</strong></span><br>
@@ -701,7 +701,7 @@ const Admin = (function() {
         <div style="text-align:right; margin-bottom:20px; font-size:14px;">
           <div>Subtotal: <strong>$${o.subtotal.toFixed(2)}</strong></div>
           ${o.discount ? `<div class="text-success">Discount (${o.couponCode || 'Promo'}): <strong>-$${o.discount.toFixed(2)}</strong></div>` : ''}
-          <div style="font-size:18px; color:#d4af37; margin-top:4px;">Grand Total: <strong>$${o.total.toFixed(2)} USD</strong></div>
+          <div style="font-size:18px; color:#3478F6; margin-top:4px;">Grand Total: <strong>$${o.total.toFixed(2)} USD</strong></div>
         </div>
 
         <div class="form-group" style="border-top:1px solid #333; padding-top:16px;">
@@ -800,7 +800,7 @@ const Admin = (function() {
 
       tbody.innerHTML = data.coupons.map(c => `
         <tr>
-          <td><code style="font-size:14px; color:#d4af37; font-weight:bold;">${c.code}</code></td>
+          <td><code style="font-size:14px; color:#3478F6; font-weight:bold;">${c.code}</code></td>
           <td><strong>${c.discountValue}${c.discountType === 'percentage' ? '%' : '$'} OFF</strong></td>
           <td>$${c.minOrderValue}</td>
           <td>${c.usedCount} / ${c.maxUses}</td>
@@ -1277,7 +1277,7 @@ const Admin = (function() {
     const headerList = document.getElementById('navItemsList');
     headerList.innerHTML = navConfigCache.headerLinks.map((item, index) => `
       <div style="background:#111; border:1px solid #333; padding:12px; border-radius:6px; margin-bottom:8px; display:flex; align-items:center; gap:12px;">
-        <span style="color:#d4af37; font-weight:bold;">${index + 1}.</span>
+        <span style="color:#3478F6; font-weight:bold;">${index + 1}.</span>
         <input type="text" class="form-input" style="flex:1;" value="${item.label}" onchange="Admin.updateNavItem(${index}, 'label', this.value)">
         <input type="text" class="form-input" style="flex:1;" value="${item.url}" onchange="Admin.updateNavItem(${index}, 'url', this.value)">
         <button class="btn-icon danger" onclick="Admin.removeNavItem(${index})">✕</button>
@@ -1287,7 +1287,7 @@ const Admin = (function() {
     const footerCols = document.getElementById('footerColsList');
     footerCols.innerHTML = navConfigCache.footerColumns.map((col, cIndex) => `
       <div style="background:#111; border:1px solid #333; padding:12px; border-radius:6px; margin-bottom:12px;">
-        <strong style="color:#d4af37;">${col.title}</strong>
+        <strong style="color:#3478F6;">${col.title}</strong>
         <div style="margin-top:6px; font-size:12px; color:#aaa;">
           ${col.links.map(l => `<div>• ${l.label} (${l.url})</div>`).join('')}
         </div>
@@ -1440,7 +1440,7 @@ const Admin = (function() {
         <tr>
           <td><small class="text-muted">${new Date(log.timestamp).toLocaleString()}</small></td>
           <td><strong>${log.adminEmail}</strong></td>
-          <td><span class="badge" style="background:#111; color:#d4af37; border:1px solid #333;">${log.action}</span></td>
+          <td><span class="badge" style="background:#111; color:#3478F6; border:1px solid #333;">${log.action}</span></td>
           <td>${log.module}</td>
           <td>${log.details}</td>
           <td><code>${log.ip}</code></td>

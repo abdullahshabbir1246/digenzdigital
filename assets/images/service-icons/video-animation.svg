@@ -3,10 +3,10 @@
   <rect x="6" y="9" width="36" height="28" rx="4" stroke="#FFFFFF" stroke-width="2" />
   <!-- Top Clapper Strip -->
   <line x1="6" y1="17" x2="42" y2="17" stroke="#3478F6" stroke-width="2" />
-  <line x1="12" y1="9" x2="16" y2="17" stroke="#D5B66D" stroke-width="2" />
-  <line x1="22" y1="9" x2="26" y2="17" stroke="#D5B66D" stroke-width="2" />
-  <line x1="32" y1="9" x2="36" y2="17" stroke="#D5B66D" stroke-width="2" />
+  <line x1="12" y1="9" x2="16" y2="17" stroke="#80B5FF" stroke-width="2" />
+  <line x1="22" y1="9" x2="26" y2="17" stroke="#80B5FF" stroke-width="2" />
+  <line x1="32" y1="9" x2="36" y2="17" stroke="#80B5FF" stroke-width="2" />
   <!-- Center Play Triangle Button -->
   <polygon points="21,21 31,27 21,33" fill="#3478F6" stroke="#FFFFFF" stroke-width="1.5" stroke-linejoin="round" />
-  <circle cx="37" cy="29" r="1.8" fill="#D5B66D" />
+  <circle cx="37" cy="29" r="1.8" fill="#80B5FF" />
 </svg>

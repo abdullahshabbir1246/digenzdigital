@@ -2,12 +2,12 @@
   <!-- Shopping Cart Basket -->
   <path d="M6 10 H11 L16 28 H36 L41 15 H14" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
   <!-- Cart Wheels -->
-  <circle cx="18" cy="35" r="3" stroke="#3478F6" stroke-width="2" fill="#D5B66D" />
-  <circle cx="34" cy="35" r="3" stroke="#3478F6" stroke-width="2" fill="#D5B66D" />
+  <circle cx="18" cy="35" r="3" stroke="#3478F6" stroke-width="2" fill="#80B5FF" />
+  <circle cx="34" cy="35" r="3" stroke="#3478F6" stroke-width="2" fill="#80B5FF" />
   <circle cx="18" cy="35" r="1" fill="#FFFFFF" />
   <circle cx="34" cy="35" r="1" fill="#FFFFFF" />
   <!-- Shopping Bag / Package in Cart -->
-  <rect x="20" y="17" width="12" height="9" rx="2" fill="#3478F6" stroke="#D5B66D" stroke-width="1.5" />
+  <rect x="20" y="17" width="12" height="9" rx="2" fill="#3478F6" stroke="#80B5FF" stroke-width="1.5" />
   <path d="M23 17 V14 C23 12.5 24.5 11 26 11 C27.5 11 29 12.5 29 14 V17" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" />
   <line x1="26" y1="19" x2="26" y2="24" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
 </svg>

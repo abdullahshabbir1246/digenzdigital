@@ -2,11 +2,11 @@
   <!-- Outer Brand Circle -->
   <circle cx="24" cy="24" r="19" stroke="#3478F6" stroke-width="2" />
   <!-- Inner Gold Accent Ring -->
-  <circle cx="24" cy="24" r="16.5" stroke="#D5B66D" stroke-width="1.2" stroke-dasharray="5 3" />
+  <circle cx="24" cy="24" r="16.5" stroke="#80B5FF" stroke-width="1.2" stroke-dasharray="5 3" />
   <!-- WordPress Stylized 'W' -->
   <path d="M12.5 17.5 L17.5 32.5 L21.5 21 L24 28 L26.5 21 L30.5 32.5 L35.5 17.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-  <line x1="11" y1="17.5" x2="14" y2="17.5" stroke="#D5B66D" stroke-width="2" stroke-linecap="round" />
-  <line x1="34" y1="17.5" x2="37" y2="17.5" stroke="#D5B66D" stroke-width="2" stroke-linecap="round" />
+  <line x1="11" y1="17.5" x2="14" y2="17.5" stroke="#80B5FF" stroke-width="2" stroke-linecap="round" />
+  <line x1="34" y1="17.5" x2="37" y2="17.5" stroke="#80B5FF" stroke-width="2" stroke-linecap="round" />
   <!-- Accent Dots -->
-  <circle cx="24" cy="14" r="1.5" fill="#D5B66D" />
+  <circle cx="24" cy="14" r="1.5" fill="#80B5FF" />
 </svg>

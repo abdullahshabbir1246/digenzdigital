@@ -106,7 +106,7 @@
         if (!badgeEl) {
           badgeEl = document.createElement('span');
           badgeEl.className = 'digenz-badge';
-          badgeEl.style.cssText = 'background: #D5B66D; color: #101827; padding: 3px 10px; border-radius: 3px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;';
+          badgeEl.style.cssText = 'background: #3478F6; color: #101827; padding: 3px 10px; border-radius: 3px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;';
           card.insertBefore(badgeEl, card.firstChild);
         }
         badgeEl.textContent = prod.badge;
@@ -173,7 +173,7 @@
                 : `<span>Starting at </span> ${currency}${Number(prod.price).toLocaleString()}`;
 
               const badgeHtml = prod.badge
-                ? `<span class="digenz-badge" style="background:#D5B66D; color:#101827; padding:3px 10px; border-radius:3px; font-size:11px; font-weight:700; display:inline-block; margin-bottom:8px; text-transform:uppercase;">${prod.badge}</span>`
+                ? `<span class="digenz-badge" style="background: #3478F6; color:#101827; padding:3px 10px; border-radius:3px; font-size:11px; font-weight:700; display:inline-block; margin-bottom:8px; text-transform:uppercase;">${prod.badge}</span>`
                 : '';
 
               const featuresHtml = (prod.features || []).map(f => `<li>${f}</li>`).join('');
@@ -248,7 +248,7 @@
       document.body.innerHTML = `
         <div style="display:flex; align-items:center; justify-content:center; min-height:100vh; background:#101827; color:#F5F7FA; font-family:sans-serif; text-align:center; padding:20px;">
           <div>
-            <h1 style="color:#D5B66D; font-size:36px; margin-bottom:15px;">System Scheduled Maintenance</h1>
+            <h1 style="color: #3478F6; font-size:36px; margin-bottom:15px;">System Scheduled Maintenance</h1>
             <p style="font-size:18px; max-width:600px; line-height:1.6; color:#a0aec0;">We are currently upgrading the DIGENZ platform with high-performance enhancements. We will be back online shortly.</p>
           </div>
         </div>
@@ -316,7 +316,7 @@
               form.innerHTML = `
                 <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; color: #F5F7FA; padding: 22px; border-radius: 8px; text-align: center; margin: 15px 0;">
                   <h4 style="margin: 0 0 10px; color: #10b981; font-size: 19px; font-weight: 700;">Inquiry Registered Successfully!</h4>
-                  <p style="margin: 0 0 8px; font-size: 14px; color: #e2e8f0;">Thank you for contacting DIGENZ. Your request reference number is <strong style="color:#D5B66D;">#${result.orderNumber || 'DGZ-REF'}</strong>.</p>
+                  <p style="margin: 0 0 8px; font-size: 14px; color: #e2e8f0;">Thank you for contacting DIGENZ. Your request reference number is <strong style="color: #3478F6;">#${result.orderNumber || 'DGZ-REF'}</strong>.</p>
                   <p style="margin: 0; font-size: 13px; color: #94a3b8;">Our senior digital consultant will contact you within 24 hours.</p>
                 </div>
               `;

@@ -2,8 +2,8 @@
   <!-- Fountain Pen Nib -->
   <path d="M24 6 L32 16 L28 30 L24 38 L20 30 L16 16 Z" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" />
   <line x1="24" y1="14" x2="24" y2="28" stroke="#3478F6" stroke-width="2" stroke-linecap="round" />
-  <circle cx="24" cy="24" r="1.8" fill="#D5B66D" />
+  <circle cx="24" cy="24" r="1.8" fill="#80B5FF" />
   <!-- Creative Star / Sparkle Accents -->
-  <path d="M36 10 L37.5 14 L41.5 15.5 L37.5 17 L36 21 L34.5 17 L30.5 15.5 L34.5 14 Z" fill="#D5B66D" />
+  <path d="M36 10 L37.5 14 L41.5 15.5 L37.5 17 L36 21 L34.5 17 L30.5 15.5 L34.5 14 Z" fill="#80B5FF" />
   <circle cx="12" cy="18" r="2" fill="#3478F6" />
 </svg>

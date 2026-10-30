@@ -7,7 +7,7 @@
       "salt": "c5f40394f488d4412aebdeb24f3ee1fa",
       "name": "DIGENZ Master Admin",
       "role": "superadmin",
-      "lastLogin": "2026-10-30T14:46:59.993Z",
+      "lastLogin": "2026-10-30T15:11:06.586Z",
       "createdAt": "2026-01-01T00:00:00.000Z"
     }
   ],
@@ -2550,6 +2550,78 @@
     "enablePublicQuotes": true
   },
   "auditLogs": [
+    {
+      "id": "log-1793373066800-409",
+      "adminEmail": "admin@digenz.com",
+      "action": "DELETE_MEDIA",
+      "module": "Media Library",
+      "details": "Deleted media file \\assets\\images\\uploads\\1793373066623-test-badge.png",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.800Z"
+    },
+    {
+      "id": "log-1793373066771-676",
+      "adminEmail": "admin@digenz.com",
+      "action": "DELETE_PRODUCT",
+      "module": "Products",
+      "details": "Deleted product \"Quantum AI Enterprise Cloud Package\" (prod-1793373066648)",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.771Z"
+    },
+    {
+      "id": "log-1793373066725-563",
+      "adminEmail": "website-visitor",
+      "action": "LEAD_SUBMISSION",
+      "module": "Orders",
+      "details": "New lead received from Sarah Connor (sarah.connor@cyberdyne.org) for General Quote",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.725Z"
+    },
+    {
+      "id": "log-1793373066701-582",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_BANNER",
+      "module": "Banners",
+      "details": "Updated banner \"TRANSFORMING VISIONS INTO DIGITAL TRIUMPHS\"",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.701Z"
+    },
+    {
+      "id": "log-1793373066678-346",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_PRODUCT",
+      "module": "Products",
+      "details": "Updated product \"Quantum AI Enterprise Cloud Package\"",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.678Z"
+    },
+    {
+      "id": "log-1793373066651-320",
+      "adminEmail": "admin@digenz.com",
+      "action": "CREATE_PRODUCT",
+      "module": "Products",
+      "details": "Created product \"Quantum AI Enterprise Cloud Package\" (SKU: PKG-QAI-999)",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.651Z"
+    },
+    {
+      "id": "log-1793373066625-517",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPLOAD_MEDIA",
+      "module": "Media Library",
+      "details": "Uploaded image \"1793373066623-test-badge.png\" (70 bytes)",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.625Z"
+    },
+    {
+      "id": "log-1793373066599-505",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T15:11:06.599Z"
+    },
     {
       "id": "log-1793371620232-8",
       "adminEmail": "admin@digenz.com",

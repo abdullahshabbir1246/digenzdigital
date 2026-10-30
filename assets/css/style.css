@@ -36,7 +36,8 @@ a.ordrrrr {
     --electric-blue: #3478F6;      /* Electric Blue: primary buttons, active nav, interactive elements */
     --platinum-white: #F5F7FA;     /* Platinum White: clean content backgrounds, readable text */
     --slate-navy: #263449;         /* Slate Navy: secondary dark surfaces, subtle borders */
-    --champagne-gold: #D5B66D;     /* Champagne Gold: small premium accents complementing DIGENZ logo */
+    --light-blue: #80B5FF;
+    --accent-blue: #3478F6;     /* Champagne Gold: small premium accents complementing DIGENZ logo */
     --primary-color: #3478F6;
     --primary-color-dark: #1e5dd6;
     --secondary-color: #263449;
@@ -501,7 +502,7 @@ padding: 0; cursor: pointer; }
 .companies-inf .logosimg{max-width: 100%;}
 .cta-fold{padding:75px 0px 0 0;}
 .cta-fold h2{color:var(--third-color);font-size:12px;text-transform: capitalize;}
-.cta-fold h2 strong{    border-bottom: solid 2px #D5B66D; padding-bottom: 7px; display: inline-block; margin-bottom: 25px;}
+.cta-fold h2 strong{    border-bottom: solid 2px #3478F6; padding-bottom: 7px; display: inline-block; margin-bottom: 25px;}
 .cta-fold p{font-size: 38px;color: var(--third-color);line-height: 1.1em;margin-bottom: 30px;padding: 0px;font-weight: 700;font-family: var(--heading-font-family);}
 /* tabs custom (place nav and tabs anywhere separately)
 ------------------------------------*/
@@ -840,7 +841,7 @@ section.faqsection {}
 .footer-top h3{
     padding-top: 22px;
     color: var(--third-color);
-    border-bottom: solid 2px #D5B66D;
+    border-bottom: solid 2px #3478F6;
     padding-bottom: 7px;
     font-size: 13px;
     margin-bottom: 6px;
@@ -1523,7 +1524,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 .innerbanner .col-lg-4{vertical-align:top;}
 .innerbanner-text{text-align: center;padding: 150px 0 100px 0;}
 .innerbanner-text h6{color:var(--third-color); font-size:12px;text-transform: uppercase;}
-.innerbanner-text h6 strong{border-top: solid 2px #D5B66D;padding-top: 7px;display: inline-block;margin-bottom: 25px;}
+.innerbanner-text h6 strong{border-top: solid 2px #3478F6;padding-top: 7px;display: inline-block;margin-bottom: 25px;}
 .innerbanner-text h2{font-size: 45px;color:var(--third-color);line-height: 1.1em;margin-top: 0px;margin-bottom: 30px;padding:0px;}
 .innerbanner-text p{font-size: 30px;font-weight: 700;color: #111;}
 
@@ -2041,7 +2042,7 @@ body{
 .meet-team .team-box{text-align: center;}
 .meet-team .team-box figure{display: block;border-radius: 50%;width: 80%;margin: 0 auto 20px;}
 .meet-team .team-box figure img{width: 100%;border-radius: 50%;}
-.meet-team .team-box h4{color: #303133;border-bottom: 2px solid #D5B66D;font-size: 20px;padding: 0 0 4px;display: inline-block;}
+.meet-team .team-box h4{color: #303133;border-bottom: 2px solid #3478F6;font-size: 20px;padding: 0 0 4px;display: inline-block;}
 .meet-team .team-box p{color: var(--third-color);font-size: 11px!important;letter-spacing: 2px;text-transform: uppercase;padding: 10px 0 0;font-weight: 700;}
 
 
@@ -4370,7 +4371,7 @@ a.action-chat.clearfix.pull-right.sea {
    - Electric Blue:  #3478F6 (Primary buttons, active nav, links, interactive elements)
    - Platinum White: #F5F7FA (Clean content backgrounds, readable text on dark surfaces)
    - Slate Navy:     #263449 (Secondary dark surfaces, cards, subtle borders)
-   - Champagne Gold: #D5B66D (Premium accents complementing DIGENZ logo)
+   - Primary Electric Blue: #3478F6 & Light Blue: #80B5FF (Crisp Modern Brand Accents)
    ========================================================================== */
 
 /* --- GLOBAL BODY & SELECTION --- */
@@ -4632,11 +4633,11 @@ button.btn-red:hover {
 
 /* Headings & Accents */
 .cta-fold h2 strong {
-    border-bottom: solid 2px #D5B66D !important; /* Champagne Gold accent */
+    border-bottom: solid 2px #3478F6 !important; /* Champagne Gold accent */
 }
 
 .innerbanner-text h6 strong {
-    border-top: solid 2px #D5B66D !important; /* Champagne Gold accent */
+    border-top: solid 2px #3478F6 !important; /* Champagne Gold accent */
 }
 
 .innserservice-commonfolds h6,
@@ -4662,9 +4663,9 @@ span.tick,
 .popular,
 .badge-popular,
 .ourpackages .tab-custom .tabs ul li .packwrap.popular:after {
-    background: #D5B66D !important;
+    background: #3478F6 !important;
     color: #101827 !important;
-    border: 1px solid #D5B66D !important;
+    border: 1px solid #3478F6 !important;
     font-weight: 700 !important;
 }
 
@@ -4917,7 +4918,7 @@ footer.footer-main::after,
 .footer-top h3 {
     padding-top: 22px !important;
     color: #F5F7FA !important;
-    border-bottom: solid 2px #D5B66D !important; /* Champagne Gold underline */
+    border-bottom: solid 2px #3478F6 !important; /* Champagne Gold underline */
     padding-bottom: 7px !important;
     font-size: 13px !important;
     font-weight: 700 !important;
@@ -5241,7 +5242,7 @@ footer.footer-main::after,
     top: -13px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    background: #D5B66D !important;
+    background: #3478F6 !important;
     color: #101827 !important;
     font-size: 11px !important;
     font-weight: 800 !important;
@@ -5406,7 +5407,7 @@ footer.footer-main::after,
 }
 
 .packwrap.popular .packfeatures li::before {
-    color: #D5B66D !important;
+    color: #80B5FF !important;
 }
 
 /* 8. Add-on Section (.extrainfo) — Positioned Clearly Below Feature List */
@@ -5414,9 +5415,9 @@ footer.footer-main::after,
 p.extrainfo {
     display: block !important;
     width: 100% !important;
-    color: #D5B66D !important; /* Champagne Gold */
-    background: rgba(213, 182, 109, 0.08) !important;
-    border: 1px dashed rgba(213, 182, 109, 0.35) !important;
+    color: #80B5FF !important; /* Champagne Gold */
+    background: rgba(52, 120, 246, 0.08) !important;
+    border: 1px dashed rgba(52, 120, 246, 0.35) !important;
     border-radius: 8px !important;
     padding: 10px 14px !important;
     margin: 10px 0 20px 0 !important;
