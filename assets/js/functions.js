@@ -171,6 +171,24 @@ $(function() {
         }
     });
 
+    $(".list-scroll").mCustomScrollbar({
+        scrollButtons: {
+            enable: false
+        }
+    });
+
+    // Make full card interactive to get a quote
+    $(document).on('click', '.packwrap', function(e) {
+        if ($(e.target).closest('.mCSB_scrollTools, .mCSB_dragger, .mCSB_draggerRail').length) return;
+        const btn = $(this).find('.btn-pack');
+        if (btn.length && btn.attr('href') && btn.attr('href') !== 'javascript:;') {
+            window.location.href = btn.attr('href');
+        } else {
+            const title = $(this).find('h3').text().replace(/\s+/g, ' ').trim();
+            window.location.href = '/get-a-quote/index.html?pkg=' + encodeURIComponent(title);
+        }
+    });
+
 
 });
 
