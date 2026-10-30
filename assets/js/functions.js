@@ -96,22 +96,43 @@ $(document).ready(function() {
 
 
    $(".pckkslider").slick({
-        dots: false,
+        dots: true,
         arrows: true,
         infinite: false,
-        speed: 1000,
-        slidesToShow: 4,
+        speed: 600,
+        slidesToShow: 3,
+        slidesToScroll: 1,
         autoplay: false,
-        autoplaySpeed: 4000,
-        adaptiveHeight: true,
-        responsive: [{
-            breakpoint: 776,
-            settings: {
-                slidesToShow: 1,
-                dots: true
+        adaptiveHeight: false,
+        responsive: [
+            {
+                breakpoint: 1199,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 991,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: true
+                }
             }
-        }]
-
+        ]
     });
 
     // Tabbing 
@@ -137,7 +158,7 @@ $(function() {
     //Slim Scroller
 
     $.mCustomScrollbar.defaults.theme = "light-1"; //set "light-2" as the default theme
-    $(".list-scroll,.subscription-list").mCustomScrollbar({
+    $(".subscription-list").mCustomScrollbar({
         scrollButtons: {
             enable: true
         },
