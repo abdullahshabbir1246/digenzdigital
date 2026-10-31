@@ -88,6 +88,18 @@ $(document).ready(function() {
             $(this).parents('li').siblings('li').children('a').removeClass('active');
             $(this).parents('li').siblings('li').children('.firstlevel').slideUp();
         }
+    });
+
+    // Close mobile nav when tapping outside
+    $(document).on('click touchstart', function(e) {
+        if (!$(e.target).closest('.mobile-nav, .mobile-nav-btn').length && $('.mobile-nav').hasClass('active')) {
+            $('.mobile-nav-btn, .mobile-nav, .app-container').removeClass('active');
+        }
+    });
+
+    // Close mobile nav when tapping a destination link
+    $('.mobile-nav a[href]:not([href="javascript:;"]):not([href="#"])').on('click', function() {
+        $('.mobile-nav-btn, .mobile-nav, .app-container').removeClass('active');
     }); 
     
 });

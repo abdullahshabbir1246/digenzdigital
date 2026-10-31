@@ -295,7 +295,7 @@ const Admin = (function() {
     }
 
     // Close mobile sidebar if open
-    document.getElementById('adminSidebar').classList.remove('open');
+    const sb = document.getElementById('adminSidebar'); const sbd = document.getElementById('sidebarBackdrop'); if (sb) { sb.classList.remove('open'); } if (sbd) { sbd.classList.remove('open'); } document.body.style.overflow = '';
   }
 
   // =========================================================================
@@ -1582,8 +1582,33 @@ const Admin = (function() {
     const sidebar = document.getElementById('adminSidebar');
     const toggleBtn = document.getElementById('sidebarToggleBtn');
     const closeBtn = document.getElementById('sidebarCloseBtn');
-    if (toggleBtn) toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
-    if (closeBtn) closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+    const backdrop = document.getElementById('sidebarBackdrop');
+
+    function openSidebar() {
+      if (sidebar) sidebar.classList.add('open');
+      if (backdrop) backdrop.classList.add('open');
+      if (window.innerWidth <= 768) {
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeSidebar() {
+      if (sidebar) sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sidebar && sidebar.classList.contains('open')) {
+          closeSidebar();
+        } else {
+          openSidebar();
+        }
+      });
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
 
     // Topbar user menu
     const userDropdownBtn = document.getElementById('userDropdownBtn');

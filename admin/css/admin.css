@@ -1103,35 +1103,384 @@ body.admin-body {
 .mt-4 { margin-top: 16px; }
 .pt-4 { padding-top: 16px; }
 
-/* RESPONSIVE BREAKPOINTS */
-.mobile-only-btn { display: none; }
+/* ==========================================================================
+   DIGENZ ADMIN DASHBOARD — MASTER RESPONSIVE SYSTEM (320px - 1440px+)
+   ========================================================================== */
 
-@media (max-width: 992px) {
-  .dashboard-grid { grid-template-columns: 1fr; }
-  .col-span-2 { grid-column: span 1; }
-  .cms-tabs-wrap { flex-direction: column; }
-  .cms-nav { width: 100%; flex-direction: row; overflow-x: auto; }
+/* 1. Backdrop Overlay for Mobile Navigation Drawer */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.sidebar-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-only-btn {
+  display: none;
+}
+
+/* 2. Tablet & Medium Screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .col-span-2 {
+    grid-column: span 1;
+  }
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .cms-tabs-wrap {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .cms-nav {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    gap: 8px;
+    scrollbar-width: thin;
+  }
+  .cms-tab-btn {
+    white-space: nowrap;
+    padding: 10px 18px;
+    flex-shrink: 0;
+  }
+}
+
+/* 3. Standard Mobile & Small Tablets (max-width: 768px) */
 @media (max-width: 768px) {
+  /* Navigation Drawer */
   .admin-sidebar {
+    width: 280px;
+    max-width: 85vw;
     transform: translateX(-100%);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.9);
+    z-index: 1000;
   }
   .admin-sidebar.open {
     transform: translateX(0);
   }
   .admin-main {
-    margin-left: 0;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .sidebar-header {
+    padding: 0 16px;
+    height: 60px;
+  }
+  .sidebar-logo {
+    max-width: 130px;
   }
   .mobile-only-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     background: transparent;
     border: none;
     color: var(--text-muted);
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
   }
-  .admin-topbar { padding: 0 16px; }
-  .admin-content { padding: 20px 16px; }
-  .form-row { flex-direction: column; gap: 0; }
+  .mobile-only-btn:hover {
+    color: var(--gold-primary);
+    background: rgba(52, 120, 246, 0.1);
+  }
+
+  .nav-item {
+    min-height: 44px;
+    padding: 11px 16px;
+    font-size: 14px;
+  }
+
+  /* Topbar */
+  .admin-topbar {
+    height: 60px;
+    padding: 0 14px;
+  }
+  .topbar-left {
+    gap: 10px;
+  }
+  .topbar-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .topbar-icon-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  .crumb-root, .crumb-separator {
+    display: none;
+  }
+  .crumb-current {
+    font-size: 14px;
+  }
+
+  .topbar-right {
+    gap: 10px;
+  }
+  .live-status-pill {
+    padding: 5px 9px;
+    font-size: 11px;
+  }
+  .user-dropdown-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  #topbarUserName {
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .user-dropdown-menu {
+    right: 0;
+    width: 200px;
+  }
+
+  /* Content Views */
+  .admin-content {
+    padding: 18px 14px;
+  }
+  .view-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .view-title {
+    font-size: 20px;
+  }
+  .view-desc {
+    font-size: 12px;
+  }
+  .view-actions {
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 8px;
+  }
+  .view-actions .btn {
+    flex: 1;
+    min-width: 140px;
+    min-height: 44px;
+    font-size: 13px;
+    justify-content: center;
+  }
+
+  /* Filter Bar */
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .filter-group {
+    width: 100%;
+    min-width: 100%;
+  }
+  .filter-bar input,
+  .filter-bar select {
+    width: 100%;
+    min-height: 44px;
+    font-size: 16px !important;
+  }
+
+  /* Tables & Lists */
+  .table-responsive {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    -webkit-overflow-scrolling: touch;
+  }
+  .data-table {
+    min-width: 650px;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 12px 14px;
+    font-size: 12.5px;
+  }
+  .table-actions {
+    gap: 8px;
+  }
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  /* Forms & Settings */
+  .form-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    font-size: 12.5px;
+    margin-bottom: 6px;
+  }
+  .form-input,
+  .form-select,
+  .form-textarea {
+    width: 100%;
+    min-height: 44px;
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+    padding: 10px 14px;
+    box-sizing: border-box;
+  }
+  .checkbox-label {
+    min-height: 44px;
+    font-size: 13.5px;
+  }
+
+  /* Modals */
+  .modal-backdrop {
+    padding: 10px;
+  }
+  .modal-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 94vh !important;
+    border-radius: 14px;
+  }
+  .modal-header {
+    padding: 14px 18px;
+  }
+  .modal-title {
+    font-size: 16px;
+  }
+  .modal-close-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .modal-body {
+    padding: 16px 14px;
+    max-height: calc(94vh - 125px);
+    -webkit-overflow-scrolling: touch;
+  }
+  .modal-footer {
+    padding: 12px 14px;
+    flex-direction: column-reverse;
+    gap: 10px;
+    width: 100%;
+  }
+  .modal-footer .btn {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+    margin: 0;
+  }
+
+  /* Media Grid */
+  .media-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .media-preview-box {
+    height: 100px;
+  }
+  .media-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .media-actions .btn {
+    width: 100%;
+    min-height: 38px;
+  }
+
+  /* Cards */
+  .card-header {
+    padding: 14px 18px;
+  }
+  .card-body {
+    padding: 18px 14px;
+  }
+}
+
+/* 4. Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .metric-card {
+    padding: 16px;
+    gap: 14px;
+  }
+  .metric-icon {
+    width: 46px;
+    height: 46px;
+  }
+  .metric-value {
+    font-size: 22px;
+  }
+
+  /* Live site status pill: show icon only */
+  .live-status-pill span:not(.status-dot) {
+    display: none;
+  }
+  .live-status-pill {
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  .login-card {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+  .login-logo {
+    max-width: 150px;
+  }
+  .login-title {
+    font-size: 19px;
+  }
+  .login-form .form-input {
+    min-height: 46px;
+    font-size: 16px !important;
+  }
+  .login-form .btn {
+    min-height: 48px;
+    font-size: 15px;
+  }
+
+  .view-actions .btn {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+
+/* 5. Extra Small Mobile (max-width: 375px) */
+@media (max-width: 375px) {
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-content {
+    padding: 14px 10px;
+  }
+  .view-title {
+    font-size: 18px;
+  }
 }

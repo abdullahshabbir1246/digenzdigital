@@ -5851,3 +5851,556 @@ p.extrainfo,
     font-weight: 600 !important;
     text-decoration: underline !important;
 }
+
+
+/* ==========================================================================
+   DIGENZ MASTER WEBSITE RESPONSIVE SYSTEM (320px - 1440px+)
+   ========================================================================== */
+
+/* 1. Universal Layout & Overflow Prevention */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box !important;
+}
+
+.app-container {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+img, video, iframe {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* 2. Tablet & Medium Screens (max-width: 1024px) */
+@media only screen and (max-width: 1024px) {
+    .container {
+        max-width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    /* Top bar */
+    .top-bar {
+        padding: 6px 0 !important;
+    }
+    .top-bar .col-md-7 {
+        display: none !important;
+    }
+    .top-bar .col-md-5 {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    .top-bar .cntct ul {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Navigation */
+    .nav-area-full {
+        padding: 10px 0 !important;
+    }
+    .logo-area .logo img {
+        max-height: 42px !important;
+        width: auto !important;
+    }
+
+    /* Service boxes */
+    .smallboxes .smallbox {
+        width: 48% !important;
+        margin: 1% !important;
+        min-height: auto !important;
+    }
+
+    /* Disrupt section */
+    .disrupt-section .col-lg-6 {
+        margin-bottom: 30px !important;
+    }
+
+    /* Pricing Section */
+    .ourpackages .tab-custom .tabs ul.pckkslider:not(.slick-initialized) {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+/* 3. Standard Mobile & Tablets (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+    /* Header & Mobile Menu Button */
+    .header-main {
+        position: relative !important;
+        z-index: 999 !important;
+    }
+
+    .top-bar {
+        background: #0b111e !important;
+        padding: 6px 0 !important;
+        font-size: 12px !important;
+    }
+
+    .top-bar .cntct ul {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        flex-wrap: wrap !important;
+    }
+
+    .top-bar .cntct ul li a {
+        font-size: 12px !important;
+    }
+
+    .top-bar .cntct ul li.cstm-btn a {
+        padding: 4px 12px !important;
+        font-size: 11px !important;
+    }
+
+    .nav-area-full {
+        background: #101827 !important;
+        border-bottom: 1px solid #1e293b !important;
+        padding: 12px 16px !important;
+    }
+
+    .nav-area-full .row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+    }
+
+    .logo-area {
+        width: auto !important;
+        padding: 0 !important;
+        flex: 0 0 auto !important;
+    }
+
+    .logo-area .logo img {
+        max-height: 38px !important;
+        width: auto !important;
+    }
+
+    /* Mobile Hamburger Button */
+    .mobile-nav-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: fixed !important;
+        top: 48px !important;
+        right: 16px !important;
+        width: 44px !important;
+        height: 44px !important;
+        background: #1e293b !important;
+        border: 1px solid #3478F6 !important;
+        border-radius: 8px !important;
+        z-index: 10000 !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+        padding: 0 !important;
+    }
+
+    .mobile-nav-btn span,
+    .mobile-nav-btn span:before,
+    .mobile-nav-btn span:after {
+        background-color: #3478F6 !important;
+        width: 24px !important;
+        height: 3px !important;
+        display: block !important;
+        border-radius: 2px !important;
+    }
+
+    .mobile-nav-btn span {
+        position: relative !important;
+        top: 0 !important;
+        margin: 0 auto !important;
+    }
+
+    .mobile-nav-btn span:before {
+        content: '' !important;
+        position: absolute !important;
+        top: -7px !important;
+        left: 0 !important;
+    }
+
+    .mobile-nav-btn span:after {
+        content: '' !important;
+        position: absolute !important;
+        top: 7px !important;
+        left: 0 !important;
+    }
+
+    /* Mobile Drawer */
+    .mobile-nav {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 300px !important;
+        max-width: 85vw !important;
+        height: 100vh !important;
+        background: #101827 !important;
+        border-left: 1px solid #263449 !important;
+        z-index: 9999 !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.85) !important;
+        transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        padding: 24px 0 40px !important;
+    }
+
+    .mobile-nav.active {
+        right: 0 !important;
+    }
+
+    .mobile-nav .logo-main {
+        display: block !important;
+        padding: 0 20px 20px !important;
+        border-bottom: 1px solid #1e293b !important;
+        margin-bottom: 12px !important;
+    }
+
+    .mobile-nav .logo-main img {
+        max-height: 34px !important;
+        width: auto !important;
+    }
+
+    .mobile-nav nav ul.mainnav > li > a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 14px 20px !important;
+        color: #F5F7FA !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+        border-top: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        min-height: 48px !important;
+    }
+
+    .mobile-nav nav ul.mainnav > li > a:hover,
+    .mobile-nav nav ul.mainnav > li > a.active {
+        background: rgba(52, 120, 246, 0.15) !important;
+        color: #3478F6 !important;
+    }
+
+    .mobile-nav nav ul.firstlevel {
+        background: #0b111e !important;
+        padding: 6px 0 !important;
+    }
+
+    .mobile-nav nav ul.firstlevel li a {
+        padding: 10px 20px 10px 36px !important;
+        font-size: 13.5px !important;
+        color: #94a3b8 !important;
+        display: block !important;
+        min-height: 42px !important;
+        border: none !important;
+    }
+
+    .mobile-nav nav ul.firstlevel li a:hover {
+        color: #3478F6 !important;
+        background: rgba(52, 120, 246, 0.08) !important;
+    }
+
+    /* Homepage Hero Banner */
+    .home-banner {
+        min-height: 280px !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        padding: 40px 16px !important;
+    }
+
+    /* Pricing Section — Mobile Swipeable Carousel & Clean View */
+    .ourpackages {
+        padding: 40px 0 !important;
+    }
+
+    .ourpackages .pck-head h2 {
+        font-size: clamp(24px, 6vw, 34px) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .ourpackages .pck-head p {
+        font-size: 14px !important;
+        padding: 0 10px !important;
+    }
+
+    /* Horizontal Category Tabs for Packages */
+    .ourpackages .tab-custom ul.tabs,
+    ul.tabs {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 0 10px 10px !important;
+        gap: 8px !important;
+        scrollbar-width: thin !important;
+        justify-content: flex-start !important;
+    }
+
+    .ourpackages .tab-custom ul.tabs li,
+    ul.tabs li {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
+        padding: 8px 18px !important;
+        font-size: 13.5px !important;
+        border-radius: 20px !important;
+        min-height: 40px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+
+    /* Pricing Cards on Mobile: Full Content Visible, No Awkward Internal Scrollbar */
+    .ourpackages .tab-custom .tabs ul.pckkslider {
+        margin: 20px auto 30px !important;
+        padding: 0 !important;
+    }
+
+    .pckkslider .slick-slide {
+        padding: 0 8px !important;
+    }
+
+    .packwrap,
+    .ourpackages .tab-custom .tabs ul li .packwrap,
+    .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
+        padding: 26px 18px 22px !important;
+        min-height: auto !important;
+        max-width: 380px !important;
+        margin: 0 auto !important;
+    }
+
+    .packwrap h3,
+    .ourpackages .tab-custom .tabs ul li .packwrap h3 {
+        font-size: 20px !important;
+        min-height: auto !important;
+        margin-bottom: 8px !important;
+    }
+
+    .packwrap h4,
+    .ourpackages .tab-custom .tabs ul li .packwrap h4 {
+        font-size: 32px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .packwrap h5,
+    .packwrap h2,
+    .ourpackages .tab-custom .tabs ul li .packwrap h5 {
+        font-size: 12.5px !important;
+        min-height: auto !important;
+        margin-bottom: 14px !important;
+    }
+
+    /* ALL features visible without internal scrollbars on mobile */
+    .packwrap .packfeatures,
+    .packfeatures {
+        height: auto !important;
+        min-height: 120px !important;
+        max-height: none !important;
+        flex: 1 1 auto !important;
+        overflow-y: visible !important;
+        overflow-x: visible !important;
+        padding: 0 !important;
+        margin-bottom: 16px !important;
+        gap: 10px !important;
+    }
+
+    .packfeatures li {
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+    }
+
+    .packwrap .viewdetails {
+        min-height: 44px !important;
+        font-size: 13.5px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Slick Carousel Arrows & Dots */
+    .pckkslider .slick-prev,
+    .pckkslider .slick-next {
+        width: 38px !important;
+        height: 38px !important;
+        z-index: 10 !important;
+    }
+    .pckkslider .slick-prev { left: -6px !important; }
+    .pckkslider .slick-next { right: -6px !important; }
+
+    .pckkslider .slick-dots {
+        bottom: -28px !important;
+    }
+
+    /* Services Section */
+    .smallboxes .smallbox {
+        width: 100% !important;
+        margin: 0 0 20px 0 !important;
+        min-height: auto !important;
+        display: block !important;
+    }
+
+    /* Portfolio Section */
+    .portfolio-sec,
+    .portfoliosec {
+        padding: 40px 0 !important;
+    }
+    .portfolio-grid,
+    .port-boxes {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    /* Technologies Section */
+    .techboxes,
+    .technologies-boxes {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 12px !important;
+    }
+
+    /* Contact Forms */
+    .fldst-two {
+        width: 100% !important;
+        float: none !important;
+        margin-right: 0 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .fldst-two input,
+    .fldst-two select,
+    .fldst input,
+    .fldst select,
+    .from-control input,
+    .from-control select,
+    .from-control textarea {
+        width: 100% !important;
+        min-height: 48px !important;
+        font-size: 16px !important; /* Prevents auto-zoom on iOS */
+        padding: 10px 14px !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    button.btnsb,
+    button.newbtn,
+    .fldst button[type="submit"],
+    .fldst.btnattach button,
+    .contact-form button[type="submit"] {
+        width: 100% !important;
+        min-height: 48px !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        border-radius: 8px !important;
+    }
+
+    /* Footer */
+    .footer-top {
+        padding: 30px 0 15px !important;
+    }
+
+    .footer-bottom {
+        padding: 15px 0 !important;
+    }
+
+    .footer-bottom ul {
+        flex-direction: column !important;
+        gap: 8px !important;
+        text-align: center !important;
+    }
+
+    .footer-bottom .payment-methods {
+        margin: 10px auto 0 !important;
+        justify-content: center !important;
+    }
+
+    .socialmid ul.footersocial {
+        justify-content: center !important;
+        gap: 12px !important;
+    }
+
+    .socialmid ul.footersocial li a {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Modals & Popups on Website */
+    .book-call-ys-box,
+    .mypopup-wrap {
+        width: 95% !important;
+        max-width: 440px !important;
+        padding: 20px 16px !important;
+        border-radius: 12px !important;
+    }
+
+    /* Floating call/chat widget on mobile: Never obstruct navigation */
+    .floating_wrap,
+    .floatbutton {
+        display: none !important;
+    }
+}
+
+/* 4. Small Mobile Screens (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+    .home-banner {
+        min-height: 220px !important;
+        padding: 30px 12px !important;
+    }
+
+    .portfolio-grid,
+    .port-boxes {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+
+    .ourpackages .pck-head h2 {
+        font-size: 24px !important;
+    }
+
+    .packwrap {
+        max-width: 100% !important;
+        padding: 22px 14px 18px !important;
+    }
+
+    .packwrap h4 {
+        font-size: 28px !important;
+    }
+
+    .fldst-two input,
+    .fldst input {
+        min-height: 46px !important;
+    }
+
+    .mobile-nav-btn {
+        top: 42px !important;
+        right: 12px !important;
+    }
+}
+
+/* 5. Extra Small Mobile Screens (max-width: 360px) */
+@media only screen and (max-width: 360px) {
+    .logo-area .logo img {
+        max-height: 32px !important;
+    }
+    .packwrap h4 {
+        font-size: 26px !important;
+    }
+    .packfeatures li {
+        font-size: 12px !important;
+    }
+}
