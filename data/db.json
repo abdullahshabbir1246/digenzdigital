@@ -8,7 +8,7 @@
       "salt": "ac0f718011f4b8ade251f157148f4534",
       "name": "DIGENZ Admin",
       "role": "superadmin",
-      "lastLogin": "2026-10-30T18:44:54.465Z",
+      "lastLogin": "2026-10-30T22:55:09.612Z",
       "createdAt": "2026-01-01T00:00:00.000Z"
     }
   ],
@@ -2547,10 +2547,28 @@
     },
     "maintenanceMode": false,
     "supportEmail": "support@digenz.com",
-    "supportPhone": "+92 306 1284045",
+    "supportPhone": "03190039048",
     "enablePublicQuotes": true
   },
   "auditLogs": [
+    {
+      "id": "log-1793400909914-516",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::1",
+      "timestamp": "2026-10-30T22:55:09.914Z"
+    },
+    {
+      "id": "log-1793400909625-697",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-10-30T22:55:09.625Z"
+    },
     {
       "id": "log-1793398967157-604",
       "adminEmail": "admin@digenz.com",

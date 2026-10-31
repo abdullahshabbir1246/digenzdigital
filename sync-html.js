@@ -86,15 +86,22 @@ function syncStaticHTMLPricingAndBanners(products, banners, settings) {
 function syncStaticHTMLContactSettings(settings) {
   if (!settings) return;
   const newPhone = (settings.supportPhone || '').trim();
-  const cleanPhone = newPhone.replace(/[\s()+-]/g, '');
-  const telHref = 'tel:' + (newPhone.startsWith('+') ? '+' : '') + cleanPhone;
+  const rawDigits = newPhone.replace(/\D/g, '');
+  const cleanPhone = rawDigits.startsWith('92') ? rawDigits : (rawDigits.startsWith('03') ? ('92' + rawDigits.substring(1)) : (rawDigits.startsWith('0') ? ('92' + rawDigits.substring(1)) : rawDigits));
+  const telHref = 'tel:+' + cleanPhone;
   const newEmail = (settings.supportEmail || '').trim();
   const currency = (settings.currencySymbol || '').trim();
 
+  let files = [];
   try {
-    const files = getAllHtmlFiles(BASE_DIR);
+    files = getAllHtmlFiles(BASE_DIR);
+  } catch (err) {
+    console.error('[Contact Sync] Error reading directories:', err.message);
+    return;
+  }
 
-    for (const filePath of files) {
+  for (const filePath of files) {
+    try {
       let content = fs.readFileSync(filePath, 'utf8');
       let changed = false;
 
@@ -121,7 +128,7 @@ function syncStaticHTMLContactSettings(settings) {
         // Pattern A: <small>Share your idea?</small>...
         content = content.replace(/(<small>[^<]*<\/small>)\s*([\d\s()+-]{7,25})/gi, (match, p1) => {
           changed = true;
-          return `${p1}${newPhone}`;
+          return `${p1} ${newPhone}`;
         });
 
         // Pattern B: <i class="fa fa-phone"[^>]*></i>\s*...
@@ -136,7 +143,13 @@ function syncStaticHTMLContactSettings(settings) {
           return `${p1}${newPhone}${p3}`;
         });
 
-        // Pattern D: class="call_wrap"[^>]*><span>phone</span>
+        // Pattern D: class="call_wrap" with inner icon span and text span
+        content = content.replace(/(class="call_wrap"[^>]*>[\s\S]*?<span[^>]*class="icoo"[^>]*>[\s\S]*?<\/span>\s*<span>)[^<]*(<\/span>)/gi, (match, p1, p2) => {
+          changed = true;
+          return `${p1}${newPhone}${p2}`;
+        });
+
+        // Pattern D2: simple class="call_wrap"[^>]*><span>phone</span>
         content = content.replace(/(class="call_wrap"[^>]*>\s*<span>)\s*([\d\s()+-]{7,25})\s*(<\/span>)/gi, (match, p1, p2, p3) => {
           changed = true;
           return `${p1}${newPhone}${p3}`;
@@ -154,9 +167,28 @@ function syncStaticHTMLContactSettings(settings) {
           return `${p1}${newPhone}${p3}`;
         });
 
-        // Pattern G: Direct fallback for +1 (555) 019-2834
-        if (content.includes('+1 (555) 019-2834')) {
-          content = content.replace(/\+1\s*\(555\)\s*019-2834/g, newPhone);
+        // Pattern G: class="chatcta"
+        content = content.replace(/(<a[^>]*class="[^"]*chatcta[^"]*"[^>]*>)\s*([\d\s()+-]{7,25})\s*(<\/a>)/gi, (match, p1, p2, p3) => {
+          changed = true;
+          return `${p1}${newPhone}${p3}`;
+        });
+
+        // Pattern H: Give us a Call
+        content = content.replace(/(Give us a Call\s+)([\d\s()+-]{7,25})/gi, (match, p1) => {
+          changed = true;
+          return `${p1}${newPhone} `;
+        });
+
+        // Pattern I: Call us now to get started
+        content = content.replace(/(Call us now to get started\s*<\/span>\s*)([\d\s()+-]{7,25})/gi, (match, p1) => {
+          changed = true;
+          return `${p1}${newPhone} `;
+        });
+
+        // Pattern J: Direct regex replacement for known legacy numbers
+        const previousPhoneRegex = /\+?92\s*306\s*1284045|\+?923061284045|0306[\s-]?1284045|\+1\s*\(555\)\s*019-2834|\+1\s*\(213\)\s*221-2842/g;
+        if (previousPhoneRegex.test(content)) {
+          content = content.replace(previousPhoneRegex, newPhone);
           changed = true;
         }
       }
@@ -181,9 +213,9 @@ function syncStaticHTMLContactSettings(settings) {
       if (changed) {
         fs.writeFileSync(filePath, content, 'utf8');
       }
+    } catch (err) {
+      console.error(`[Contact Sync] Error processing ${filePath}:`, err.message);
     }
-  } catch (err) {
-    console.error('[Contact Sync] Failed to sync static HTML files:', err.message);
   }
 }
 

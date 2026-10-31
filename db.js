@@ -663,7 +663,7 @@ function resolveDbPath() {
     const tmpDbPath = path.join(os.tmpdir(), 'digenz_db.json');
     if (fs.existsSync(DB_FILE)) {
       try {
-        const shouldCopy = !fs.existsSync(tmpDbPath) || fs.statSync(DB_FILE).mtimeMs > fs.statSync(tmpDbPath).mtimeMs;
+        const shouldCopy = !fs.existsSync(tmpDbPath);
         if (shouldCopy) {
           fs.copyFileSync(DB_FILE, tmpDbPath);
         }

@@ -38,6 +38,10 @@
   // 1. DYNAMIC PRODUCTS & PRICING SYNCHRONIZER
   // =========================================================================
   function syncProducts(products, settings) {
+    const phoneText = (settings && settings.supportPhone) ? settings.supportPhone.trim() : '03190039048';
+    const rawDigits = phoneText.replace(/\D/g, '');
+    const cleanPhone = rawDigits.startsWith('92') ? rawDigits : (rawDigits.startsWith('03') ? ('92' + rawDigits.substring(1)) : (rawDigits.startsWith('0') ? ('92' + rawDigits.substring(1)) : rawDigits));
+    const telHref = 'tel:+' + cleanPhone;
     if (!Array.isArray(products) || products.length === 0) return;
     const currency = (settings && settings.currencySymbol) || '$';
 
@@ -215,7 +219,7 @@
                   </ul>
                   <a href="/get-a-quote/index.html?pkg=${encodeURIComponent(prod.name)}" class="btn-pack">Start</a>
                   <div class="actions row web">
-                    <div class="col-md-6 col-6"><a href="tel:+92 306 1284045" class="action-no clearfix pull-right sea"><span><small>Share your idea?</small>+92 306 1284045</span></a></div>
+                    <div class="col-md-6 col-6"><a href="${telHref}" class="action-no clearfix pull-right sea"><span><small>Share your idea?</small> ${phoneText}</span></a></div>
                     <div class="col-md-6 col-6"><a href="javascript:;" onclick="setButtonURL();" class="action-chat clearfix pull-right sea"><span><small>Want to discuss?</small> Live Chat Now</span></a></div>
                   </div>
                 </div>
@@ -287,8 +291,9 @@
         // B. Support Phone Dynamic Update Across Entire Page
     if (settings.supportPhone) {
       const phoneText = settings.supportPhone.trim();
-      const cleanPhone = phoneText.replace(/[\s()+-]/g, '');
-      const telHref = 'tel:' + (phoneText.startsWith('+') ? '+' : '') + cleanPhone;
+      const rawDigits = phoneText.replace(/\D/g, '');
+      const cleanPhone = rawDigits.startsWith('92') ? rawDigits : (rawDigits.startsWith('03') ? ('92' + rawDigits.substring(1)) : (rawDigits.startsWith('0') ? ('92' + rawDigits.substring(1)) : rawDigits));
+      const telHref = 'tel:+' + cleanPhone;
 
       // 1. Process all tel: anchor links
       document.querySelectorAll('a[href^="tel:"]').forEach(a => {
@@ -322,54 +327,116 @@
           return;
         }
 
-        // Subcase 3: Plain text phone link
+        // Subcase 3: Plain text phone link or .chatcta
         const currentText = a.textContent.trim();
         if (/^[\d\s()+-]{7,}$/.test(currentText)) {
           a.textContent = phoneText;
         }
       });
 
-      // 2. Non-anchor phone text elements (.call_wrap span, .callusnow span, .btn-black-custom, etc.)
-      document.querySelectorAll('.call_wrap span, .callusnow span, .btn-black-custom, a.callus').forEach(el => {
-        const icon = el.querySelector('i, svg');
-        if (icon) {
-          let updatedNode = false;
-          el.childNodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
-              node.nodeValue = ' ' + phoneText;
-              updatedNode = true;
-            }
-          });
-          if (!updatedNode) {
-            el.innerHTML = icon.outerHTML + ' ' + phoneText;
-          }
-        } else if (/^[\d\s()+-]{7,}$/.test(el.textContent.trim())) {
-          el.textContent = phoneText;
+      // 2. Floating Call Button (.call_wrap)
+      document.querySelectorAll('.call_wrap').forEach(wrap => {
+        wrap.setAttribute('href', telHref);
+        const textSpan = wrap.querySelector('span:not(.icoo)');
+        if (textSpan) {
+          textSpan.textContent = phoneText;
         }
       });
 
-      // 3. "or Call Now <b>...</b>" in banners and contact sections
-      document.querySelectorAll('p b, div b, span b').forEach(b => {
+      // 3. Non-anchor phone text elements (.call_wrap span, .callusnow span, .btn-black-custom, etc.)
+      document.querySelectorAll('.btn-black-custom').forEach(el => {
+        if (el.tagName === 'A') el.setAttribute('href', telHref);
+        el.textContent = phoneText;
+      });
+
+      document.querySelectorAll('a.callus').forEach(a => {
+        a.setAttribute('href', telHref);
+        const icon = a.querySelector('i, svg');
+        if (icon) {
+          let found = false;
+          a.childNodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
+              node.nodeValue = ' ' + phoneText;
+              found = true;
+            }
+          });
+          if (!found) {
+            a.innerHTML = 'Free writing consultation ' + icon.outerHTML + ' ' + phoneText;
+          }
+        }
+      });
+
+      document.querySelectorAll('a.chatcta').forEach(a => {
+        a.setAttribute('href', telHref);
+        if (/[\d()+-]{7,}/.test(a.textContent)) {
+          a.textContent = phoneText;
+        }
+      });
+
+      // 4. 'or Call Now <b>...</b>' in banners and contact sections
+      document.querySelectorAll('p b, div b, span b, .slash b').forEach(b => {
         if (/^[\d\s()+-]{7,}$/.test(b.textContent.trim())) {
           b.textContent = phoneText;
         }
       });
 
-      // 4. Global text node replacement for legacy hardcoded phone numbers
+      // 5. Global Deep Text-Node Replacement across all text nodes in DOM
       const oldPhonePatterns = [
+        /\+?92\s*306\s*1284045/g,
+        /\+?923061284045/g,
+        /0306[\s-]?1284045/g,
         /\+1\s*\(555\)\s*019-2834/g,
         /\+1\s*\(213\)\s*221-2842/g
       ];
 
-      document.querySelectorAll('a, p, span, div, b, strong, li').forEach(el => {
-        if (el.children.length === 0 && el.textContent) {
+      try {
+        const walker = document.createTreeWalker(
+          document.body,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: function(node) {
+              if (!node || !node.nodeValue) return NodeFilter.FILTER_REJECT;
+              const parent = node.parentElement;
+              if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE' || parent.tagName === 'TEXTAREA' || parent.tagName === 'INPUT')) {
+                return NodeFilter.FILTER_REJECT;
+              }
+              return NodeFilter.FILTER_ACCEPT;
+            }
+          },
+          false
+        );
+
+        let currentNode;
+        while ((currentNode = walker.nextNode())) {
+          let text = currentNode.nodeValue;
+          let changed = false;
           oldPhonePatterns.forEach(pat => {
-            if (pat.test(el.textContent)) {
-              el.textContent = el.textContent.replace(pat, phoneText);
+            if (pat.test(text)) {
+              text = text.replace(pat, phoneText);
+              changed = true;
             }
           });
+          if (changed) {
+            currentNode.nodeValue = text;
+          }
         }
-      });
+      } catch (e) {}
+
+      // 6. Update Slick carousel cloned slides
+      function updateSlickClones() {
+        document.querySelectorAll('.slick-cloned a[href^="tel:"]').forEach(a => {
+          a.setAttribute('href', telHref);
+          const span = a.querySelector('span');
+          if (span) {
+            const small = span.querySelector('small');
+            span.innerHTML = (small ? small.outerHTML : '') + ' ' + phoneText;
+          }
+        });
+      }
+      updateSlickClones();
+      setTimeout(updateSlickClones, 300);
+      setTimeout(updateSlickClones, 1000);
+      setTimeout(updateSlickClones, 2500);
     }
 
     // C. Support Email Dynamic Update Across Entire Page
@@ -503,6 +570,16 @@
     if (settings) syncSettings(settings);
     if (productsRes && productsRes.products) syncProducts(productsRes.products, settings);
     if (bannersRes && bannersRes.banners) syncBanners(bannersRes.banners);
+    if (settings) syncSettings(settings);
+
+    // Cross-tab real-time sync with Admin panel
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'digenz_settings_updated') {
+        fetchJSON('/api/settings').then(s => {
+          if (s) syncSettings(s);
+        });
+      }
+    });
   }
 
   if (document.readyState === 'loading') {

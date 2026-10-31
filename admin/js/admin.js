@@ -1453,6 +1453,7 @@ const Admin = (function() {
         }
       }
       showToast('Settings saved successfully and published to live website.', 'success');
+      try { localStorage.setItem('digenz_settings_updated', Date.now().toString()); } catch (e) {}
     } catch (err) {
       showToast('Error saving settings: ' + err.message, 'error');
     }
