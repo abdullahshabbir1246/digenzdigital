@@ -143,6 +143,27 @@
         btn.setAttribute('data-pkg-name', prod.name);
         btn.setAttribute('data-pkg-price', prod.salePrice || prod.price);
       }
+
+      // 7. Ensure VIEW DETAILS button is present and points to proper detail page
+      let vdLink = card.querySelector('.viewdetails');
+      if (!vdLink) {
+        vdLink = document.createElement('a');
+        vdLink.className = 'viewdetails';
+        card.appendChild(vdLink);
+      }
+      vdLink.textContent = 'VIEW DETAILS';
+      if (prod.slug) {
+        const isSubdir = window.location.pathname.includes('/pricing/') || 
+                         window.location.pathname.includes('/packages/') || 
+                         window.location.pathname.includes('/custom-') || 
+                         window.location.pathname.includes('/branding') || 
+                         window.location.pathname.includes('/seo') || 
+                         window.location.pathname.includes('/video-') || 
+                         window.location.pathname.includes('/web-') || 
+                         window.location.pathname.includes('/wordpress-') || 
+                         window.location.pathname.includes('/ecommerce-');
+        vdLink.href = (isSubdir ? '../' : '') + 'pricing/' + prod.slug + '/index.html';
+      }
     });
 
     // B. Detail / Pricing Individual Pages (e.g. /pricing/startup-website-package/)
@@ -172,6 +193,17 @@
               <span class="tick"></span>
             </li>
           `).join('');
+        }
+
+        const numberBtn = subsPac.querySelector('a.numberbtn');
+        if (numberBtn) {
+          numberBtn.href = telHref;
+          numberBtn.innerHTML = '<i class="fa fa-phone-square"></i> ' + phoneText;
+        }
+
+        const gvePlns = document.querySelector('.gveplns p');
+        if (gvePlns && gvePlns.innerText.includes('Give us a Call')) {
+          gvePlns.innerHTML = 'Give us a Call <a href="' + telHref + '" style="color: #3478F6;">' + phoneText + '</a> and we can set you up, or <a href="../../packages/index.html">check our pricing plans</a>';
         }
       }
     }
