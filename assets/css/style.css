@@ -5399,8 +5399,8 @@ footer.footer-main::after,
     width: 18px !important;
     height: 18px !important;
     display: block !important;
-    fill: #f2af2e !important;
-    color: #f2af2e !important;
+    fill: #3478F6 !important;
+    color: #3478F6 !important;
 }
 
 /* Flexible Text Container (Starts from same horizontal position; wrapped lines align with text above) */
@@ -5481,8 +5481,8 @@ p.extrainfo,
 
 .pckkslider .slick-prev:hover,
 .pckkslider .slick-next:hover {
-    background: #f2af2e !important;
-    border-color: #f2af2e !important;
+    background: #3478F6 !important;
+    border-color: #3478F6 !important;
     transform: scale(1.08) !important;
 }
 
@@ -5505,7 +5505,7 @@ p.extrainfo,
 }
 
 .pckkslider .slick-dots li.slick-active button:before {
-    color: #f2af2e !important;
+    color: #3478F6 !important;
     opacity: 1 !important;
 }
 
