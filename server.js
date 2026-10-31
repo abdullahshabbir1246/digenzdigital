@@ -268,7 +268,8 @@ const server = http.createServer(async (req, res) => {
         lastUpdated: (db.data.syncState && db.data.syncState.lastUpdated) || Date.now(),
         version: (db.data.syncState && db.data.syncState.version) || 1,
         lastModule: (db.data.syncState && db.data.syncState.lastModule) || 'general',
-        modules: (db.data.syncState && db.data.syncState.modules) || []
+        modules: (db.data.syncState && db.data.syncState.modules) || [],
+        dbInfo: db.getDatabaseInfo()
       });
     }
 

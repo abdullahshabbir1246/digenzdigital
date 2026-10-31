@@ -766,7 +766,11 @@
     }
   });
 
-  // Tier 3: Active Lightweight Sync-State Polling (every 2.5s)
+  // Tier 3: Adaptive Sync-State Polling (Stops/reduces when tab is inactive)
+  let pollTimeoutId = null;
+  const ACTIVE_POLL_MS = 2500;
+  const INACTIVE_POLL_MS = 45000; // 45s fallback when inactive
+
   async function checkLiveSyncState() {
     try {
       const state = await fetchJSON('/api/sync-state');
@@ -777,15 +781,31 @@
     } catch (e) {}
   }
 
-  // Tier 4: Tab Switch / Visibility Change Sync
+  function schedulePolling() {
+    if (pollTimeoutId) clearTimeout(pollTimeoutId);
+    const interval = document.hidden ? INACTIVE_POLL_MS : ACTIVE_POLL_MS;
+    pollTimeoutId = setTimeout(async () => {
+      // Only execute active network poll if tab is not hidden
+      if (!document.hidden) {
+        await checkLiveSyncState();
+      }
+      schedulePolling();
+    }, interval);
+  }
+
+  // Tier 4: Tab Switch / Visibility Change Sync (Instant sync on wakeup)
   document.addEventListener('visibilitychange', function() {
     if (!document.hidden) {
+      // User returned to tab: immediately sync fresh data and resume 2.5s polling
       checkLiveSyncState();
+      schedulePolling();
+    } else {
+      // Tab is in background: throttle/stop active polling to conserve resources
+      schedulePolling();
     }
   });
 
-  // Polling Interval
-  setInterval(checkLiveSyncState, 2500);
+  schedulePolling();
 
   // =========================================================================
   // INITIALIZATION

@@ -705,6 +705,45 @@ function verifySignedToken(token) {
   }
 }
 
+// =========================================================================
+// MONGO DB SINGLETON CONNECTION POOL & AUTHORITATIVE PERSISTENCE
+// =========================================================================
+let cachedMongoClient = null;
+let cachedMongoDb = null;
+
+async function getMongoDatabase() {
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
+  if (!mongoUri) return null;
+  if (cachedMongoDb) return cachedMongoDb;
+
+  let MongoClient;
+  try {
+    MongoClient = require('mongodb').MongoClient;
+  } catch (e) {
+    console.warn('[DB] mongodb driver not found:', e.message);
+    return null;
+  }
+
+  try {
+    if (!cachedMongoClient) {
+      cachedMongoClient = new MongoClient(mongoUri, {
+        serverSelectionTimeoutMS: 4000,
+        connectTimeoutMS: 4000,
+        maxPoolSize: 10
+      });
+      await cachedMongoClient.connect();
+    }
+    const dbName = process.env.MONGODB_DB_NAME || 'digenz';
+    cachedMongoDb = cachedMongoClient.db(dbName);
+    return cachedMongoDb;
+  } catch (err) {
+    console.warn('[DB] MongoDB connection unavailable (fallback to atomic local persistence):', err.message);
+    cachedMongoClient = null;
+    cachedMongoDb = null;
+    return null;
+  }
+}
+
 class Database {
   constructor() {
     this.data = null;
@@ -806,19 +845,13 @@ class Database {
     }
   }
 
-  // Load state from MongoDB if URI is configured in environment
+  
+  // Load authoritative state from MongoDB if URI is configured in environment
   async loadFromMongoDB() {
-    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
-    if (!mongoUri) return;
+    const mdb = await getMongoDatabase();
+    if (!mdb) return false;
     try {
-      let MongoClient;
-      try { MongoClient = require('mongodb').MongoClient; } catch(e) { return; }
-      const client = new MongoClient(mongoUri);
-      await client.connect();
-      const dbName = process.env.MONGODB_DB_NAME || 'digenz';
-      const mdb = client.db(dbName);
-      
-      const collections = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo'];
+      const collections = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo', 'coupons'];
       let loadedAny = false;
       for (const colName of collections) {
         const doc = await mdb.collection(colName).findOne({ _id: colName });
@@ -827,28 +860,30 @@ class Database {
           loadedAny = true;
         }
       }
-      await client.close();
-      if (loadedAny) {
-        console.log('[DB] Successfully synced fresh data from MongoDB into application memory.');
-        this.save();
+      const syncDoc = await mdb.collection('syncState').findOne({ _id: 'global_sync' });
+      if (syncDoc) {
+        this.data.syncState = {
+          lastUpdated: syncDoc.lastUpdated || Date.now(),
+          version: syncDoc.version || 1,
+          lastModule: syncDoc.lastModule || 'init',
+          modules: syncDoc.modules || []
+        };
       }
+      if (loadedAny) {
+        console.log('[DB] Synchronized authoritative records from MongoDB.');
+      }
+      return true;
     } catch (err) {
-      console.warn('[DB] MongoDB initial load notice:', err.message);
+      console.warn('[DB] MongoDB load notice:', err.message);
+      return false;
     }
   }
 
   // Persist all modules to MongoDB if URI is configured in environment
   async syncAllToMongoDB() {
-    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
-    if (!mongoUri) return;
+    const mdb = await getMongoDatabase();
+    if (!mdb) return false;
     try {
-      let MongoClient;
-      try { MongoClient = require('mongodb').MongoClient; } catch(e) { return; }
-      const client = new MongoClient(mongoUri);
-      await client.connect();
-      const dbName = process.env.MONGODB_DB_NAME || 'digenz';
-      const mdb = client.db(dbName);
-
       const modules = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo', 'coupons', 'orders'];
       for (const mod of modules) {
         if (this.data[mod] !== undefined) {
@@ -862,14 +897,33 @@ class Database {
 
       await mdb.collection('syncState').updateOne(
         { _id: 'global_sync' },
-        { $set: { ...this.data.syncState, updatedAt: new Date() } },
+        { 
+          $set: { 
+            lastUpdated: this.data.syncState.lastUpdated,
+            lastModule: this.data.syncState.lastModule,
+            modules: this.data.syncState.modules,
+            updatedAt: new Date()
+          },
+          $max: { version: this.data.syncState.version }
+        },
         { upsert: true }
       );
-
-      await client.close();
+      return true;
     } catch (err) {
-      console.warn('[DB] MongoDB persistence sync notice:', err.message);
+      console.warn('[DB] MongoDB write notice (atomic fallback maintained):', err.message);
+      return false;
     }
+  }
+
+  getDatabaseInfo() {
+    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
+    return {
+      authoritativeSource: mongoUri ? 'MongoDB Atlas (Persistent Remote)' : 'Atomic JSON Engine (Local Persistent)',
+      isMongoConfigured: Boolean(mongoUri),
+      activePath: resolveDbPath(),
+      syncVersion: (this.data && this.data.syncState && this.data.syncState.version) || 1,
+      lastUpdated: (this.data && this.data.syncState && this.data.syncState.lastUpdated) || Date.now()
+    };
   }
 
   // Dedicated atomic Settings saver with partial field protection
