@@ -1294,6 +1294,7 @@ const server = http.createServer(async (req, res) => {
       }
 
       const saved = db.saveSettings(data);
+      if (saved) db.touchSync('settings');
       if (!saved) {
         return sendJSON(res, 500, { error: 'Failed to write settings to persistent database storage.' });
       }

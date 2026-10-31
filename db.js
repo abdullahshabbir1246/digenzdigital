@@ -709,7 +709,40 @@ class Database {
   constructor() {
     this.data = null;
     this.sessions = new Map(); // token -> { adminId, email, expiresAt }
+    this.lastLoadedMtime = 0;
     this.init();
+  }
+
+  ensureFreshData() {
+    try {
+      const targetFile = resolveDbPath();
+      if (fs.existsSync(targetFile)) {
+        const stat = fs.statSync(targetFile);
+        if (stat.mtimeMs > this.lastLoadedMtime) {
+          const raw = fs.readFileSync(targetFile, 'utf8');
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') {
+            this.data = parsed;
+            this.lastLoadedMtime = stat.mtimeMs;
+          }
+        }
+      }
+    } catch (e) {}
+    return this.data;
+  }
+
+  touchSync(moduleName = 'general') {
+    if (!this.data) this.init();
+    if (!this.data.syncState) {
+      this.data.syncState = { lastUpdated: Date.now(), version: 1, modules: [] };
+    }
+    this.data.syncState.lastUpdated = Date.now();
+    this.data.syncState.version = (this.data.syncState.version || 0) + 1;
+    this.data.syncState.lastModule = moduleName;
+    if (!Array.isArray(this.data.syncState.modules)) this.data.syncState.modules = [];
+    if (!this.data.syncState.modules.includes(moduleName)) {
+      this.data.syncState.modules.push(moduleName);
+    }
   }
 
   init() {
@@ -717,31 +750,55 @@ class Database {
     if (!fs.existsSync(targetFile)) {
       console.log('[DB] Seeding database at', targetFile);
       this.data = getInitialSeed();
+      this.touchSync('init');
       this.save();
     } else {
       try {
         const raw = fs.readFileSync(targetFile, 'utf8');
         this.data = JSON.parse(raw);
+        const stat = fs.statSync(targetFile);
+        this.lastLoadedMtime = stat.mtimeMs;
+        if (!this.data.syncState) {
+          this.touchSync('init');
+        }
         console.log('[DB] Database loaded successfully from', targetFile);
       } catch (err) {
         console.error('[DB] Error loading database file, re-initializing from seed:', err.message);
         this.data = getInitialSeed();
+        this.touchSync('init');
         this.save();
       }
     }
+
+    // Attempt initial MongoDB load if configured
+    this.loadFromMongoDB().catch(() => {});
   }
 
-  save() {
+  save(moduleName = null) {
+    if (moduleName) {
+      this.touchSync(moduleName);
+    } else {
+      this.touchSync('general');
+    }
+
     const targetFile = resolveDbPath();
     try {
       const tmpFile = targetFile + '.tmp';
       fs.writeFileSync(tmpFile, JSON.stringify(this.data, null, 2), 'utf8');
       fs.renameSync(tmpFile, targetFile);
+      try {
+        const stat = fs.statSync(targetFile);
+        this.lastLoadedMtime = stat.mtimeMs;
+      } catch (e) {}
+
       if (targetFile !== DB_FILE) {
         try {
           fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), 'utf8');
         } catch (e) {}
       }
+
+      // Asynchronously mirror updates to MongoDB if URI is configured
+      this.syncAllToMongoDB().catch(() => {});
       return true;
     } catch (err) {
       console.error('[DB] Save error:', err.message);
@@ -749,23 +806,67 @@ class Database {
     }
   }
 
-  // Persist settings to MongoDB if URI is configured in environment
-  async syncSettingsToMongoDB(settings) {
+  // Load state from MongoDB if URI is configured in environment
+  async loadFromMongoDB() {
     const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
     if (!mongoUri) return;
     try {
-      const { MongoClient } = require('mongodb');
+      let MongoClient;
+      try { MongoClient = require('mongodb').MongoClient; } catch(e) { return; }
       const client = new MongoClient(mongoUri);
       await client.connect();
       const dbName = process.env.MONGODB_DB_NAME || 'digenz';
-      const col = client.db(dbName).collection('settings');
-      await col.updateOne(
-        { _id: 'global_settings' },
-        { $set: { ...settings, updatedAt: new Date() } },
+      const mdb = client.db(dbName);
+      
+      const collections = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo'];
+      let loadedAny = false;
+      for (const colName of collections) {
+        const doc = await mdb.collection(colName).findOne({ _id: colName });
+        if (doc && doc.data) {
+          this.data[colName] = doc.data;
+          loadedAny = true;
+        }
+      }
+      await client.close();
+      if (loadedAny) {
+        console.log('[DB] Successfully synced fresh data from MongoDB into application memory.');
+        this.save();
+      }
+    } catch (err) {
+      console.warn('[DB] MongoDB initial load notice:', err.message);
+    }
+  }
+
+  // Persist all modules to MongoDB if URI is configured in environment
+  async syncAllToMongoDB() {
+    const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
+    if (!mongoUri) return;
+    try {
+      let MongoClient;
+      try { MongoClient = require('mongodb').MongoClient; } catch(e) { return; }
+      const client = new MongoClient(mongoUri);
+      await client.connect();
+      const dbName = process.env.MONGODB_DB_NAME || 'digenz';
+      const mdb = client.db(dbName);
+
+      const modules = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo', 'coupons', 'orders'];
+      for (const mod of modules) {
+        if (this.data[mod] !== undefined) {
+          await mdb.collection(mod).updateOne(
+            { _id: mod },
+            { $set: { _id: mod, data: this.data[mod], updatedAt: new Date() } },
+            { upsert: true }
+          );
+        }
+      }
+
+      await mdb.collection('syncState').updateOne(
+        { _id: 'global_sync' },
+        { $set: { ...this.data.syncState, updatedAt: new Date() } },
         { upsert: true }
       );
+
       await client.close();
-      console.log('[DB] Settings successfully persisted to MongoDB collection "settings".');
     } catch (err) {
       console.warn('[DB] MongoDB persistence sync notice:', err.message);
     }

@@ -444,9 +444,11 @@ const Admin = (function() {
       if (id) {
         await api(`/products/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
         showToast('Package updated successfully in database.', 'success');
+        broadcastLiveUpdate('products', 'update', { id, ...payload });
       } else {
         await api('/products', { method: 'POST', body: JSON.stringify(payload) });
         showToast('Package created successfully in database.', 'success');
+        broadcastLiveUpdate('products', 'create', payload);
       }
       closeModal('productModal');
       loadProducts();
@@ -564,9 +566,11 @@ const Admin = (function() {
       if (id) {
         await api(`/categories/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
         showToast('Category updated successfully.', 'success');
+        broadcastLiveUpdate('categories', 'update', { id, ...payload });
       } else {
         await api('/categories', { method: 'POST', body: JSON.stringify(payload) });
         showToast('Category created successfully.', 'success');
+        broadcastLiveUpdate('categories', 'create', payload);
       }
       closeModal('categoryModal');
       loadCategories();
@@ -991,9 +995,11 @@ const Admin = (function() {
       if (id) {
         await api(`/banners/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
         showToast('Banner updated successfully.', 'success');
+        broadcastLiveUpdate('banners', 'update', { id, ...payload });
       } else {
         await api('/banners', { method: 'POST', body: JSON.stringify(payload) });
         showToast('Banner created successfully.', 'success');
+        broadcastLiveUpdate('banners', 'create', payload);
       }
       closeModal('bannerModal');
       loadBanners();
@@ -1366,6 +1372,7 @@ const Admin = (function() {
     try {
       await api('/seo', { method: 'PUT', body: JSON.stringify(payload) });
       showToast('SEO settings saved successfully.', 'success');
+      broadcastLiveUpdate('seo', 'update', payload);
     } catch (err) {
       showToast('Error saving SEO: ' + err.message, 'error');
     }

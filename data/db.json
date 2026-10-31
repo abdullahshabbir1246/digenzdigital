@@ -3568,5 +3568,14 @@
       "ip": "127.0.0.1",
       "timestamp": "2026-10-29T23:22:55.240Z"
     }
-  ]
+  ],
+  "syncState": {
+    "lastUpdated": 1793455094618,
+    "version": 5,
+    "modules": [
+      "init",
+      "products"
+    ],
+    "lastModule": "products"
+  }
 }

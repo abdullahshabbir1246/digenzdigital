@@ -556,6 +556,78 @@
   }
 
   // =========================================================================
+  // 3B. DYNAMIC CATEGORIES & SERVICES SYNCHRONIZER
+  // =========================================================================
+  function syncCategories(categories) {
+    if (!Array.isArray(categories) || categories.length === 0) return;
+    const servicesDropdown = document.querySelector('.main-menu .dropdown ul');
+    if (servicesDropdown) {
+      const activeCats = categories.filter(c => c.status === 'active' && c.showInNav);
+      if (activeCats.length > 0) {
+        servicesDropdown.innerHTML = activeCats.map(c => 
+          `<li><a href="${c.slug.startsWith('/') ? c.slug : ('/' + c.slug + '/index.html')}">${c.name}</a></li>`
+        ).join('');
+      }
+    }
+  }
+
+  // =========================================================================
+  // 3C. DYNAMIC CMS CONTENT SYNCHRONIZER (About Us, Contact, Footer)
+  // =========================================================================
+  function syncContent(content) {
+    if (!content || typeof content !== 'object') return;
+
+    // A. About Us Content
+    if (content.about) {
+      const ab = content.about;
+      if (window.location.pathname.includes('/about')) {
+        const h2 = document.querySelector('.about-banner h2, .inerservice .myheading');
+        if (h2 && ab.heroHeading) h2.textContent = ab.heroHeading;
+        const p = document.querySelector('.about-banner p, .inerservice .mytext');
+        if (p && ab.heroSubheading) p.textContent = ab.heroSubheading;
+      }
+    }
+
+    // B. Contact Us Content
+    if (content.contact) {
+      const ct = content.contact;
+      if (ct.email) {
+        document.querySelectorAll('a[href^="mailto:"]').forEach(a => {
+          a.href = 'mailto:' + ct.email;
+          if (a.textContent.includes('@')) a.textContent = ct.email;
+        });
+      }
+      if (ct.address) {
+        document.querySelectorAll('.address, .contact-address, .footer-address').forEach(el => {
+          el.textContent = ct.address;
+        });
+      }
+    }
+
+    // C. Footer Content
+    if (content.footer) {
+      const ft = content.footer;
+      if (ft.copyright) {
+        document.querySelectorAll('.copyright, .footer-copyright p, footer p.copy').forEach(el => {
+          el.textContent = ft.copyright;
+        });
+      }
+      if (ft.tagline) {
+        document.querySelectorAll('.footer-tagline, .footer-desc').forEach(el => {
+          el.textContent = ft.tagline;
+        });
+      }
+      if (ft.socialLinks && typeof ft.socialLinks === 'object') {
+        const s = ft.socialLinks;
+        if (s.facebook) document.querySelectorAll('a[href*="facebook.com"]').forEach(a => a.href = s.facebook);
+        if (s.twitter) document.querySelectorAll('a[href*="twitter.com"]').forEach(a => a.href = s.twitter);
+        if (s.linkedin) document.querySelectorAll('a[href*="linkedin.com"]').forEach(a => a.href = s.linkedin);
+        if (s.instagram) document.querySelectorAll('a[href*="instagram.com"]').forEach(a => a.href = s.instagram);
+      }
+    }
+  }
+
+  // =========================================================================
   // 4. PRODUCTION LEAD CAPTURE & ORDER PIPELINE
   // =========================================================================
   function initLeadCapture() {
@@ -624,6 +696,98 @@
   }
 
   // =========================================================================
+  // 5. REAL-TIME LIVE SYNCHRONIZATION ENGINE (Instant Broadcast + Polling)
+  // =========================================================================
+  let clientLastSync = 0;
+  let cachedSettings = null;
+  let isSyncing = false;
+
+  async function refreshLiveContent(targetModule = 'all') {
+    if (isSyncing) return;
+    isSyncing = true;
+    try {
+      const mod = String(targetModule || 'all').toLowerCase();
+      const syncAll = mod === 'all' || mod === 'general' || mod === 'init';
+      const needSettings = syncAll || mod.includes('setting') || mod.includes('contact');
+      const needProducts = syncAll || mod.includes('product') || mod.includes('setting');
+      const needBanners = syncAll || mod.includes('banner');
+      const needCategories = syncAll || mod.includes('categor');
+      const needContent = syncAll || mod.includes('content');
+
+      const [settings, productsRes, bannersRes, categoriesRes, abRes, ctRes, ftRes] = await Promise.all([
+        needSettings ? fetchJSON('/api/settings') : Promise.resolve(cachedSettings),
+        needProducts ? fetchJSON('/api/products') : Promise.resolve(null),
+        needBanners ? fetchJSON('/api/banners') : Promise.resolve(null),
+        needCategories ? fetchJSON('/api/categories') : Promise.resolve(null),
+        needContent ? fetchJSON('/api/content/about') : Promise.resolve(null),
+        needContent ? fetchJSON('/api/content/contact') : Promise.resolve(null),
+        needContent ? fetchJSON('/api/content/footer') : Promise.resolve(null)
+      ]);
+
+      if (settings) {
+        cachedSettings = settings;
+        syncSettings(settings);
+      }
+      if (productsRes && productsRes.products) {
+        syncProducts(productsRes.products, cachedSettings || settings);
+      }
+      if (bannersRes && bannersRes.banners) {
+        syncBanners(bannersRes.banners);
+      }
+      if (categoriesRes && categoriesRes.categories) {
+        syncCategories(categoriesRes.categories);
+      }
+      if (abRes || ctRes || ftRes) {
+        syncContent({ about: abRes, contact: ctRes, footer: ftRes });
+      }
+      clientLastSync = Date.now();
+    } catch (e) {
+      console.warn('[DIGENZ Live Sync] Warning:', e);
+    } finally {
+      isSyncing = false;
+    }
+  }
+
+  // Tier 1: Instant 0ms Cross-Tab BroadcastChannel
+  if (typeof BroadcastChannel !== 'undefined') {
+    try {
+      const liveChan = new BroadcastChannel('digenz_live_sync');
+      liveChan.onmessage = function(ev) {
+        const m = ev.data;
+        refreshLiveContent(m && m.module ? m.module : 'all');
+      };
+    } catch (e) {}
+  }
+
+  // Tier 2: Storage Event Cross-Tab Fallback
+  window.addEventListener('storage', function(e) {
+    if (e.key && e.key.startsWith('digenz_')) {
+      refreshLiveContent('all');
+    }
+  });
+
+  // Tier 3: Active Lightweight Sync-State Polling (every 2.5s)
+  async function checkLiveSyncState() {
+    try {
+      const state = await fetchJSON('/api/sync-state');
+      if (state && state.lastUpdated && state.lastUpdated > clientLastSync) {
+        clientLastSync = state.lastUpdated;
+        refreshLiveContent(state.lastModule || 'all');
+      }
+    } catch (e) {}
+  }
+
+  // Tier 4: Tab Switch / Visibility Change Sync
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      checkLiveSyncState();
+    }
+  });
+
+  // Polling Interval
+  setInterval(checkLiveSyncState, 2500);
+
+  // =========================================================================
   // INITIALIZATION
   // =========================================================================
   async function init() {
@@ -631,27 +795,7 @@
     if (oldBar) oldBar.remove();
 
     initLeadCapture();
-
-    // Fetch live data concurrently
-    const [settings, productsRes, bannersRes] = await Promise.all([
-      fetchJSON('/api/settings'),
-      fetchJSON('/api/products'),
-      fetchJSON('/api/banners')
-    ]);
-
-    if (settings) syncSettings(settings);
-    if (productsRes && productsRes.products) syncProducts(productsRes.products, settings);
-    if (bannersRes && bannersRes.banners) syncBanners(bannersRes.banners);
-    if (settings) syncSettings(settings);
-
-    // Cross-tab real-time sync with Admin panel
-    window.addEventListener('storage', function(e) {
-      if (e.key === 'digenz_settings_updated') {
-        fetchJSON('/api/settings').then(s => {
-          if (s) syncSettings(s);
-        });
-      }
-    });
+    await refreshLiveContent('all');
   }
 
   if (document.readyState === 'loading') {
