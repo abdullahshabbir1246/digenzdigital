@@ -663,7 +663,7 @@ function resolveDbPath() {
     const tmpDbPath = path.join(os.tmpdir(), 'digenz_db.json');
     if (fs.existsSync(DB_FILE)) {
       try {
-        const shouldCopy = !fs.existsSync(tmpDbPath);
+        const shouldCopy = !fs.existsSync(tmpDbPath) || (fs.statSync(DB_FILE).mtimeMs > fs.statSync(tmpDbPath).mtimeMs);
         if (shouldCopy) {
           fs.copyFileSync(DB_FILE, tmpDbPath);
         }
@@ -890,10 +890,8 @@ class Database {
       announcementBar: newAnnounce
     };
 
-    const saved = this.save();
-    if (saved) {
-      this.syncSettingsToMongoDB(this.data.settings).catch(() => {});
-    }
+    const saved = this.save('settings');
+
     return saved;
   }
 

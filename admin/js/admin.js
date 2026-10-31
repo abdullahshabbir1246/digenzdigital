@@ -81,6 +81,39 @@ const Admin = (function() {
 
   
   // =========================================================================
+  // REAL-TIME LIVE SYNCHRONIZATION BROADCASTER
+  // =========================================================================
+  let liveSyncChannel = null;
+  try {
+    if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+      liveSyncChannel = new BroadcastChannel('digenz_live_sync');
+    }
+  } catch (e) {}
+
+  function broadcastLiveUpdate(module, action, data = {}) {
+    const payload = {
+      module,
+      action,
+      data,
+      timestamp: Date.now()
+    };
+
+    // 1. Instant 0ms Cross-Tab Broadcast via BroadcastChannel
+    if (liveSyncChannel) {
+      try {
+        liveSyncChannel.postMessage(payload);
+      } catch (e) {}
+    }
+
+    // 2. Storage event fallback for older browsers / iframe boundaries
+    try {
+      localStorage.setItem('digenz_sync_ping', JSON.stringify(payload));
+      localStorage.setItem('digenz_last_module', module);
+      localStorage.setItem('digenz_settings_updated', Date.now().toString());
+    } catch (e) {}
+  }
+
+  // =========================================================================
   // MODAL MEDIA UPLOAD HELPER
   // =========================================================================
   async function handleModalUpload(inputEl, targetInputId, previewContainerId) {
@@ -466,6 +499,7 @@ const Admin = (function() {
       async () => {
         try {
           await api(`/products/${id}`, { method: 'DELETE' });
+          broadcastLiveUpdate('products', 'delete', { id, name });
           showToast(`Product "${name}" deleted.`, 'success');
           loadProducts();
         } catch (err) {
@@ -589,6 +623,7 @@ const Admin = (function() {
       async () => {
         try {
           await api(`/categories/${id}`, { method: 'DELETE' });
+          broadcastLiveUpdate('categories', 'delete', { id, name });
           showToast(`Category "${name}" deleted.`, 'success');
           loadCategories();
           loadCategoriesCache();
@@ -1017,6 +1052,7 @@ const Admin = (function() {
       async () => {
         try {
           await api(`/banners/${id}`, { method: 'DELETE' });
+          broadcastLiveUpdate('banners', 'delete', { id });
           showToast('Banner deleted.', 'success');
           loadBanners();
         } catch (err) {
@@ -1190,6 +1226,7 @@ const Admin = (function() {
 
     try {
       await api(`/content/${section}`, { method: 'PUT', body: JSON.stringify(payload) });
+      broadcastLiveUpdate('content', 'update', { section, payload });
       showToast(`CMS section "${section}" saved successfully.`, 'success');
     } catch (err) {
       showToast('Error saving CMS: ' + err.message, 'error');
@@ -1334,6 +1371,7 @@ const Admin = (function() {
   async function saveNavigation() {
     try {
       await api('/navigation', { method: 'PUT', body: JSON.stringify(navConfigCache) });
+      broadcastLiveUpdate('navigation', 'update', navConfigCache);
       showToast('Navigation structure saved.', 'success');
     } catch (err) {
       showToast('Failed to save menus: ' + err.message, 'error');
@@ -1460,9 +1498,15 @@ const Admin = (function() {
         }
       }
       showToast('Settings saved successfully and published to live website.', 'success');
+      broadcastLiveUpdate('settings', 'update', payload);
       try { localStorage.setItem('digenz_settings_updated', Date.now().toString()); } catch (e) {}
     } catch (err) {
       showToast('Error saving settings: ' + err.message, 'error');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
     }
   }
 

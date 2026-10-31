@@ -238,7 +238,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.orders.unshift(newOrder);
-      db.save();
+      db.save('orders');
       db.logAudit('website-visitor', 'LEAD_SUBMISSION', 'Orders', `New lead received from ${name} (${email}) for ${service}`, clientIp);
 
       const isJsonReq = (req.headers['accept'] && req.headers['accept'].includes('application/json')) || (req.headers['content-type'] && req.headers['content-type'].includes('application/json'));
@@ -258,7 +258,19 @@ const server = http.createServer(async (req, res) => {
   // REST API ROUTER (/api/*)
   // -------------------------------------------------------------
   if (pathname.startsWith('/api/')) {
+    db.ensureFreshData();
     const apiPath = pathname.substring(5); // strip '/api/'
+
+    // --- 0. REAL-TIME SYNC STATE ---
+    if (apiPath === 'sync-state' && method === 'GET') {
+      return sendJSON(res, 200, {
+        success: true,
+        lastUpdated: (db.data.syncState && db.data.syncState.lastUpdated) || Date.now(),
+        version: (db.data.syncState && db.data.syncState.version) || 1,
+        lastModule: (db.data.syncState && db.data.syncState.lastModule) || 'general',
+        modules: (db.data.syncState && db.data.syncState.modules) || []
+      });
+    }
 
     // --- 1. AUTHENTICATION ---
     if (apiPath === 'auth/login' && method === 'POST') {
@@ -566,7 +578,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.categories.push(newCategory);
-      db.save();
+      db.save('categories');
       db.logAudit(session.email, 'CREATE_CATEGORY', 'Categories', `Created category "${newCategory.name}"`, clientIp);
       return sendJSON(res, 201, { success: true, category: newCategory });
     }
@@ -650,7 +662,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.banners.push(newBanner);
-      db.save();
+      db.save('banners');
       db.logAudit(session.email, 'CREATE_BANNER', 'Banners', `Created banner "${newBanner.title}"`, clientIp);
       return sendJSON(res, 201, { success: true, banner: newBanner });
     }
@@ -900,7 +912,7 @@ const server = http.createServer(async (req, res) => {
 
       order.paymentStatus = paymentStatus;
       order.updatedAt = new Date().toISOString();
-      db.save();
+      db.save('orders');
       db.logAudit(session.email, 'UPDATE_PAYMENT_STATUS', 'Orders', `Updated order #${order.orderNumber} payment to "${paymentStatus}"`, clientIp);
       return sendJSON(res, 200, { success: true, order });
     }
@@ -1026,7 +1038,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.coupons.push(newCoupon);
-      db.save();
+      db.save('coupons');
       db.logAudit(session.email, 'CREATE_COUPON', 'Coupons', `Created coupon "${newCoupon.code}" (${newCoupon.discountValue}${newCoupon.discountType === 'percentage' ? '%' : '$'})`, clientIp);
       return sendJSON(res, 201, { success: true, coupon: newCoupon });
     }
