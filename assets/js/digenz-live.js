@@ -295,75 +295,115 @@
       const cleanPhone = rawDigits.startsWith('92') ? rawDigits : (rawDigits.startsWith('03') ? ('92' + rawDigits.substring(1)) : (rawDigits.startsWith('0') ? ('92' + rawDigits.substring(1)) : rawDigits));
       const telHref = 'tel:+' + cleanPhone;
 
-      // 1. Process all tel: anchor links
+      // 1. Process all tel: anchor links with precision
       document.querySelectorAll('a[href^="tel:"]').forEach(a => {
         a.setAttribute('href', telHref);
 
-        // Subcase 1: Link contains a span (e.g. action-no with <small>Share your idea?</small>)
-        const span = a.querySelector('span');
-        if (span) {
-          const small = span.querySelector('small');
-          if (small) {
-            span.innerHTML = small.outerHTML + ' ' + phoneText;
-          } else {
-            span.textContent = phoneText;
+        // A. Floating call widget (.call_wrap) - preserve icon in span.icoo, only update text span
+        if (a.classList.contains('call_wrap')) {
+          const textSpan = a.querySelector('span:not(.icoo)');
+          if (textSpan) {
+            textSpan.textContent = phoneText;
+          }
+          const icooSpan = a.querySelector('span.icoo');
+          if (icooSpan && !icooSpan.querySelector('i')) {
+            icooSpan.innerHTML = '<i class="icon-phone2"></i>';
           }
           return;
         }
 
-        // Subcase 2: Link contains an icon (e.g. <i class="fa fa-phone"></i> ...)
+        // B. Icon-only buttons (.callusnow) - never insert text
+        if (a.classList.contains('callusnow')) {
+          return;
+        }
+
+        // C. Fixed-label action buttons - preserve label
+        if (a.classList.contains('viewdetails') || a.classList.contains('btn-black')) {
+          return;
+        }
+
+        // D. Card action link (.action-no)
+        if (a.classList.contains('action-no')) {
+          const span = a.querySelector('span');
+          if (span) {
+            const small = span.querySelector('small');
+            span.innerHTML = (small ? small.outerHTML : '') + ' ' + phoneText;
+          } else {
+            a.textContent = phoneText;
+          }
+          return;
+        }
+
+        // E. Header phone link with icon (e.g. <li><a ...><i class="fa fa-phone"></i> phone</a></li>)
         const icon = a.querySelector('i, svg');
-        if (icon) {
-          let updatedTextNode = false;
+        if (icon && !a.classList.contains('callus')) {
+          let updatedText = false;
           a.childNodes.forEach(node => {
             if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
               node.nodeValue = ' ' + phoneText;
-              updatedTextNode = true;
+              updatedText = true;
             }
           });
-          if (!updatedTextNode) {
+          if (!updatedText) {
             a.innerHTML = icon.outerHTML + ' ' + phoneText;
           }
           return;
         }
 
-        // Subcase 3: Plain text phone link or .chatcta
+        // F. Callus banner ("Free writing consultation <i class="fa fa-phone"></i> phone")
+        if (a.classList.contains('callus')) {
+          const iconEl = a.querySelector('i, svg');
+          if (iconEl) {
+            let replaced = false;
+            a.childNodes.forEach(node => {
+              if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
+                node.nodeValue = ' ' + phoneText;
+                replaced = true;
+              }
+            });
+            if (!replaced) {
+              a.innerHTML = 'Free writing consultation ' + iconEl.outerHTML + ' ' + phoneText;
+            }
+          }
+          return;
+        }
+
+        // G. Links containing span:not(.icoo)
+        const innerSpan = a.querySelector('span:not(.icoo)');
+        if (innerSpan) {
+          const small = innerSpan.querySelector('small');
+          if (small) {
+            innerSpan.innerHTML = small.outerHTML + ' ' + phoneText;
+          } else {
+            innerSpan.textContent = phoneText;
+          }
+          return;
+        }
+
+        // H. Plain text phone link
         const currentText = a.textContent.trim();
         if (/^[\d\s()+-]{7,}$/.test(currentText)) {
           a.textContent = phoneText;
         }
       });
 
-      // 2. Floating Call Button (.call_wrap)
+      // 2. Floating Call Widget (.call_wrap) - explicit clean check
       document.querySelectorAll('.call_wrap').forEach(wrap => {
         wrap.setAttribute('href', telHref);
         const textSpan = wrap.querySelector('span:not(.icoo)');
         if (textSpan) {
           textSpan.textContent = phoneText;
         }
+        const icooSpan = wrap.querySelector('span.icoo');
+        if (icooSpan && !icooSpan.querySelector('i')) {
+          icooSpan.innerHTML = '<i class="icon-phone2"></i>';
+        }
       });
 
-      // 3. Non-anchor phone text elements (.call_wrap span, .callusnow span, .btn-black-custom, etc.)
+      // 3. Non-anchor phone text elements (.call_wrap span:not(.icoo), .btn-black-custom, etc.)
       document.querySelectorAll('.btn-black-custom').forEach(el => {
         if (el.tagName === 'A') el.setAttribute('href', telHref);
         el.textContent = phoneText;
-      });
-
-      document.querySelectorAll('a.callus').forEach(a => {
-        a.setAttribute('href', telHref);
-        const icon = a.querySelector('i, svg');
-        if (icon) {
-          let found = false;
-          a.childNodes.forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE && /[\d()+-]{6,}/.test(node.nodeValue)) {
-              node.nodeValue = ' ' + phoneText;
-              found = true;
-            }
-          });
-          if (!found) {
-            a.innerHTML = 'Free writing consultation ' + icon.outerHTML + ' ' + phoneText;
-          }
-        }
       });
 
       document.querySelectorAll('a.chatcta').forEach(a => {
@@ -380,7 +420,7 @@
         }
       });
 
-      // 5. Global Deep Text-Node Replacement across all text nodes in DOM
+      // 5. Global Deep Text-Node Replacement across all text nodes in DOM (excluding icons and scripts)
       const oldPhonePatterns = [
         /\+?92\s*306\s*1284045/g,
         /\+?923061284045/g,
@@ -397,7 +437,7 @@
             acceptNode: function(node) {
               if (!node || !node.nodeValue) return NodeFilter.FILTER_REJECT;
               const parent = node.parentElement;
-              if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE' || parent.tagName === 'TEXTAREA' || parent.tagName === 'INPUT')) {
+              if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE' || parent.tagName === 'TEXTAREA' || parent.tagName === 'INPUT' || parent.classList.contains('icoo'))) {
                 return NodeFilter.FILTER_REJECT;
               }
               return NodeFilter.FILTER_ACCEPT;
