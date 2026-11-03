@@ -1267,7 +1267,7 @@ const server = http.createServer(async (req, res) => {
       const data = await parseBody(req);
 
       Object.assign(db.data.seo, data);
-      db.save();
+      db.save('seo');
       db.logAudit(session.email, 'UPDATE_SEO', 'SEO Management', 'Updated SEO meta configuration', clientIp);
       return sendJSON(res, 200, { success: true, seo: db.data.seo });
     }

@@ -813,11 +813,13 @@ class Database {
     this.loadFromMongoDB().catch(() => {});
   }
 
-  save(moduleName = null) {
-    if (moduleName) {
-      this.touchSync(moduleName);
-    } else {
-      this.touchSync('general');
+  save(moduleName = null, touch = true) {
+    if (touch) {
+      if (moduleName) {
+        this.touchSync(moduleName);
+      } else {
+        this.touchSync('general');
+      }
     }
 
     const targetFile = resolveDbPath();
@@ -1003,7 +1005,7 @@ class Database {
     if (!this.data.auditLogs) this.data.auditLogs = [];
     this.data.auditLogs.unshift(log);
     if (this.data.auditLogs.length > 500) this.data.auditLogs.pop();
-    this.save();
+    this.save(null, false);
     return log;
   }
 }
