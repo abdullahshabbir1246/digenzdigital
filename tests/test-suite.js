@@ -86,10 +86,20 @@ server.listen(PORT, async () => {
     assert(coupon.status === 200 && coupon.body.discountAmount === 15, 'Coupon DIGENZ10 successfully applied 10% discount');
 
     // 9. Invoice View
-    const orders = await request({
+    let orders = await request({
       hostname: 'localhost', port: PORT, path: '/api/orders', method: 'GET',
       headers: { 'Authorization': `Bearer ${token}` }
     });
+    if (!orders.body.orders || orders.body.orders.length === 0) {
+      await request({
+        hostname: 'localhost', port: PORT, path: '/leads/', method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+      }, { name: 'Test Lead', email: 'lead@digenz.com', service: 'Branding', message: 'Test verification lead' });
+      orders = await request({
+        hostname: 'localhost', port: PORT, path: '/api/orders', method: 'GET',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+    }
     const orderId = orders.body.orders[0].id;
     const inv = await request({ hostname: 'localhost', port: PORT, path: `/api/orders/${orderId}/invoice`, method: 'GET' });
     assert(inv.status === 200 && inv.body.includes('DIGENZ') && inv.body.includes('INVOICE'), 'Printable invoice generated');

@@ -812,6 +812,7 @@
   // INITIALIZATION
   // =========================================================================
   async function init() {
+    window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
     if (oldBar) oldBar.remove();
 

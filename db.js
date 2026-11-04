@@ -158,295 +158,6 @@ function getInitialSeed() {
     }
   ];
 
-  const products = [
-    {
-      id: 'prod-startup-logo',
-      name: 'Startup Logo Package',
-      slug: 'startup-logo-package',
-      sku: 'PKG-LOGO-001',
-      categoryId: 'cat-logo',
-      subcategoryId: null,
-      price: 149,
-      salePrice: 49,
-      stockQuantity: 999,
-      availability: 'in_stock',
-      description: 'Suitable for potential super-startups and brand revamps for early-stage companies.',
-      features: [
-        '3 Logo Concepts',
-        '3 Revisions',
-        'By 2 Dedicated Designers',
-        '24 - 48 Hours Turn Around Time',
-        'All Final Files Format (PNG, JPG, Vector SVG)',
-        '100% Ownership Rights',
-        '100% Satisfaction Guarantee',
-        '100% Unique Design Guarantee',
-        '100% Money Back Guarantee'
-      ],
-      images: ['/assets/images/serviceportfolio/branding/branding-new/brand/1.png', '/assets/images/serviceportfolio/branding/branding-new/brand/2.png'],
-      primaryImage: '/assets/images/serviceportfolio/branding/branding-new/brand/1.png',
-      videoUrl: '',
-      variants: [
-        { name: 'Turnaround', options: ['Standard (48 hrs)', 'Rush 24 hrs (+$25)'] }
-      ],
-      isFeatured: true,
-      badge: 'Popular',
-      seoTitle: 'Startup Logo Package | DIGENZ',
-      seoDescription: 'Custom 3-concept startup logo design with complete vector source files.',
-      status: 'published',
-      createdAt: '2026-01-15T00:00:00.000Z',
-      updatedAt: '2026-01-15T00:00:00.000Z'
-    },
-    {
-      id: 'prod-prof-logo',
-      name: 'Professional Logo Package',
-      slug: 'professional-logo-package',
-      sku: 'PKG-LOGO-002',
-      categoryId: 'cat-logo',
-      subcategoryId: null,
-      price: 249,
-      salePrice: 99,
-      stockQuantity: 999,
-      availability: 'in_stock',
-      description: 'Comprehensive brand identity for established businesses looking for high distinctiveness.',
-      features: [
-        '5 Unique Logo Concepts',
-        'Unlimited Revisions',
-        'By 4 Dedicated Designers',
-        '24 - 48 Hours Turn Around Time',
-        'Free Icon Design & Favicon',
-        'Formats: AI, EPS, SVG, PNG, JPG, PDF',
-        'Full Copyright Ownership',
-        '100% Satisfaction Guarantee'
-      ],
-      images: ['/assets/images/serviceportfolio/branding/branding-new/brand/3.png', '/assets/images/serviceportfolio/branding/branding-new/brand/4.png'],
-      primaryImage: '/assets/images/serviceportfolio/branding/branding-new/brand/3.png',
-      videoUrl: '',
-      variants: [],
-      isFeatured: true,
-      badge: 'Best Seller',
-      seoTitle: 'Professional Logo Design Package | DIGENZ',
-      seoDescription: '5 concepts with unlimited revisions and complete copyright ownership.',
-      status: 'published',
-      createdAt: '2026-01-15T00:00:00.000Z',
-      updatedAt: '2026-01-15T00:00:00.000Z'
-    },
-    {
-      id: 'prod-startup-web',
-      name: 'Startup Website Package',
-      slug: 'startup-website-package',
-      sku: 'PKG-WEB-001',
-      categoryId: 'cat-webdesign',
-      subcategoryId: null,
-      price: 499,
-      salePrice: 199,
-      stockQuantity: 999,
-      availability: 'in_stock',
-      description: 'Clean, modern 5-page responsive website designed to build credibility and convert leads.',
-      features: [
-        '5 Custom Website Pages',
-        'Mobile Responsive & Cross-Browser Layout',
-        'Contact / Lead Capture Form',
-        'Hero Slider & Call to Action Banners',
-        'Complete W3C Certified Code',
-        'SEO Friendly URLs & Basic Optimization',
-        'Free 1-Month Technical Support',
-        '100% Ownership of Source Code'
-      ],
-      images: ['/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg', '/assets/images/serviceportfolio/webapp/thumbnail/t-2.jpg'],
-      primaryImage: '/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg',
-      videoUrl: '',
-      variants: [
-        { name: 'Hosting', options: ['Include 1 Yr Domain & Cloud Hosting (+$50)', 'Own Hosting'] }
-      ],
-      isFeatured: true,
-      badge: 'Most Popular',
-      seoTitle: 'Startup Website Development Package | DIGENZ',
-      seoDescription: '5-page responsive corporate website with lead forms and fast hosting setup.',
-      status: 'published',
-      createdAt: '2026-01-15T00:00:00.000Z',
-      updatedAt: '2026-01-15T00:00:00.000Z'
-    },
-    {
-      id: 'prod-prof-web',
-      name: 'Professional Website Package',
-      slug: 'professional-website-package',
-      sku: 'PKG-WEB-002',
-      categoryId: 'cat-webdesign',
-      subcategoryId: null,
-      price: 899,
-      salePrice: 399,
-      stockQuantity: 999,
-      availability: 'in_stock',
-      description: 'Up to 10 custom pages with dynamic CMS, interactive modules, and speed optimization.',
-      features: [
-        'Up to 10 Unique Pages',
-        'Custom CMS (WordPress / Node Engine)',
-        'Interactive Galleries & Services Catalog',
-        'Speed Optimization (< 1.5s load time)',
-        'Social Media Integration & Newsletter Form',
-        'On-Page SEO Optimization',
-        'Google Analytics & Search Console Setup',
-        'Free 3 Months Support & Maintenance'
-      ],
-      images: ['/assets/images/serviceportfolio/webapp/thumbnail/t-3.jpg', '/assets/images/serviceportfolio/webapp/thumbnail/t-4.jpg'],
-      primaryImage: '/assets/images/serviceportfolio/webapp/thumbnail/t-3.jpg',
-      videoUrl: '',
-      variants: [],
-      isFeatured: true,
-      badge: 'Hot',
-      seoTitle: 'Professional Business Website Package | DIGENZ',
-      seoDescription: '10 custom pages, CMS management, speed optimization, and full on-page SEO.',
-      status: 'published',
-      createdAt: '2026-01-15T00:00:00.000Z',
-      updatedAt: '2026-01-15T00:00:00.000Z'
-    },
-    {
-      id: 'prod-ecom-store',
-      name: 'Beginner Ecommerce Package',
-      slug: 'beginners-e-commerce-package',
-      sku: 'PKG-ECOM-001',
-      categoryId: 'cat-ecommerce',
-      subcategoryId: null,
-      price: 999,
-      salePrice: 449,
-      stockQuantity: 999,
-      availability: 'in_stock',
-      description: 'Turnkey online store with secure checkout, product catalog, and payment integration.',
-      features: [
-        'Custom Ecommerce Storefront',
-        'Up to 50 Products Catalog Setup',
-        'Payment Gateway (Stripe, PayPal, COD)',
-        'Shopping Cart & One-Page Checkout',
-        'Order & Inventory Management System',
-        'Automated Email Receipts & Invoices',
-        'Discount & Coupon Code Engine',
-        'Mobile Optimized Shopping Experience'
-      ],
-      images: ['/assets/images/serviceportfolio/ecommerce/thumbnail/t-1.jpg', '/assets/images/serviceportfolio/ecommerce/thumbnail/t-2.jpg'],
-      primaryImage: '/assets/images/serviceportfolio/ecommerce/thumbnail/t-1.jpg',
-      videoUrl: '',
-      variants: [],
-      isFeatured: true,
-      badge: 'Trending',
-      seoTitle: 'Beginner Ecommerce Store Package | DIGENZ',
-      seoDescription: 'Complete ecommerce website with Stripe/PayPal payments and coupon engine.',
-      status: 'published',
-      createdAt: '2026-01-15T00:00:00.000Z',
-      updatedAt: '2026-01-15T00:00:00.000Z'
-    },
-    {
-      id: 'prod-corp-combo',
-      name: 'Corporate Combo Package',
-      slug: 'corporate-combo-package',
-      sku: 'PKG-CMB-001',
-      categoryId: 'cat-combo',
-      subcategoryId: null,
-      price: 1999,
-      salePrice: 899,
-      stockQuantity: 999,
-      availability: 'in_stock',
-      description: 'The complete enterprise launch kit: Unlimited Logo Design, Custom Website, Stationery, and SEO.',
-      features: [
-        'Unlimited Logo Concepts & Revisions',
-        'Complete Stationery Design (Business Card, Letterhead, Envelope)',
-        'Up to 15 Pages Custom Web Portal',
-        'CMS & Content Architecture',
-        'Mobile Responsive & PWA Ready',
-        '6 Months Free SEO & Technical Maintenance',
-        'Free 1-Year Domain & Cloud Server',
-        'Dedicated Project Manager & 24/7 Priority Support'
-      ],
-      images: ['/assets/images/serviceportfolio/branding/branding-new/brand/5.png', '/assets/images/banners/branding.png'],
-      primaryImage: '/assets/images/serviceportfolio/branding/branding-new/brand/5.png',
-      videoUrl: '',
-      variants: [],
-      isFeatured: true,
-      badge: '75% OFF',
-      seoTitle: 'Corporate Combo Package | DIGENZ Digital Agency',
-      seoDescription: 'Full brand identity, custom website portal, and 6 months of ongoing growth SEO.',
-      status: 'published',
-      createdAt: '2026-01-15T00:00:00.000Z',
-      updatedAt: '2026-01-15T00:00:00.000Z'
-    }
-  ];
-
-  const banners = [
-    {
-      id: 'ban-hero-1',
-      title: 'DIGITAL INNOVATION MEETS CREATIVE EXPERTISE',
-      subtitle: 'Award-winning web development, software engineering, and corporate branding solutions.',
-      buttonText: 'EXPLORE PACKAGES',
-      buttonLink: '/packages/',
-      desktopImage: '/assets/images/banners/digenz-home-hero.png',
-      mobileImage: '/assets/images/popup-inner.png',
-      displayOrder: 1,
-      isActive: true,
-      scheduleStart: '2026-01-01',
-      scheduleEnd: '2026-12-31',
-      createdAt: '2026-01-15T00:00:00.000Z'
-    },
-    {
-      id: 'ban-promo-75',
-      title: 'LIMITED TIME: 75% OFF ALL DIGITAL SERVICES',
-      subtitle: 'Use coupon code DIGENZ10 at checkout for an additional 10% instant discount.',
-      buttonText: 'GET INSTANT QUOTE',
-      buttonLink: '/get-a-quote/',
-      desktopImage: '/assets/images/banners/technology-banner.png',
-      mobileImage: '/assets/images/popup-inner.png',
-      displayOrder: 2,
-      isActive: true,
-      scheduleStart: '2026-01-01',
-      scheduleEnd: '2026-12-31',
-      createdAt: '2026-01-15T00:00:00.000Z'
-    }
-  ];
-
-  const coupons = [
-    {
-      id: 'coup-digenz10',
-      code: 'DIGENZ10',
-      discountType: 'percentage',
-      discountValue: 10,
-      minOrderValue: 50,
-      maxUses: 1000,
-      usedCount: 0,
-      expiryDate: '2026-12-31',
-      isActive: true,
-      eligibleCategories: ['cat-logo', 'cat-webdesign', 'cat-ecommerce', 'cat-combo'],
-      createdAt: '2026-01-01T00:00:00.000Z'
-    },
-    {
-      id: 'coup-welcome75',
-      code: 'WELCOME75',
-      discountType: 'percentage',
-      discountValue: 75,
-      minOrderValue: 100,
-      maxUses: 500,
-      usedCount: 0,
-      expiryDate: '2026-12-31',
-      isActive: true,
-      eligibleCategories: [],
-      createdAt: '2026-01-01T00:00:00.000Z'
-    },
-    {
-      id: 'coup-vip50',
-      code: 'VIP50',
-      discountType: 'fixed',
-      discountValue: 50,
-      minOrderValue: 200,
-      maxUses: 200,
-      usedCount: 0,
-      expiryDate: '2026-12-31',
-      isActive: true,
-      eligibleCategories: ['cat-webdesign', 'cat-combo'],
-      createdAt: '2026-01-01T00:00:00.000Z'
-    }
-  ];
-
-  const customers = [];
-
-  const orders = [];
-
   const content = {
     about: {
       heroHeading: 'Innovating Through Digital Mastery',
@@ -456,51 +167,13 @@ function getInitialSeed() {
       vision: 'Becoming the world’s most trusted full-service digital and freelancing agency.'
     },
     contact: {
-      email: 'contact@digenz.com',
-      salesEmail: 'sales@digenz.com',
-      phone: '+1 (213) 221-2842',
-      alternatePhone: '+92 306 1284045',
+      email: 'support@digenz.com',
+      salesEmail: 'support@digenz.com',
+      phone: '03190039048',
+      alternatePhone: '03190039048',
       address: '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ',
       businessHours: 'Mon - Fri: 9:00 AM - 6:00 PM EST | 24/7 Priority Emergency Support',
       liveChatStatus: 'online'
-    },
-    faqs: [
-      {
-        id: 'faq-1',
-        category: 'Services',
-        question: 'What is included in the DIGENZ web development packages?',
-        answer: 'All our web packages include custom responsive frontend design, modern mobile-first styling, lead generation forms, clean semantic code, basic on-page SEO, source code ownership, and 30-90 days of technical support.'
-      },
-      {
-        id: 'faq-2',
-        category: 'Ordering',
-        question: 'How fast can DIGENZ deliver a new project?',
-        answer: 'Logo packages are delivered within 24 to 48 hours. Standard 5-page websites take 3 to 7 business days, while enterprise web applications and custom ecommerce portals take 2 to 4 weeks depending on specifications.'
-      },
-      {
-        id: 'faq-3',
-        category: 'Copyright',
-        question: 'Do I own 100% of the rights to the designs and source code?',
-        answer: 'Yes! Upon final approval and project completion, 100% full commercial copyright, source code, and design assets belong entirely to you with no hidden licensing fees.'
-      },
-      {
-        id: 'faq-4',
-        category: 'Refunds',
-        question: 'What is the DIGENZ refund policy?',
-        answer: 'We offer a 100% satisfaction guarantee. If initial concepts do not align with your design brief before subsequent revision cycles, you are eligible for a prompt refund per our Refund Policy.'
-      }
-    ],
-    privacy: {
-      lastUpdated: 'January 2026',
-      summary: 'DIGENZ respects your personal privacy. We do not sell, rent, or trade your personal or financial information to third parties. All client communications and project files are encrypted and confidential.'
-    },
-    terms: {
-      lastUpdated: 'January 2026',
-      summary: 'By engaging DIGENZ services, clients agree to accurate project briefs, prompt milestone feedback, and adherence to service payment schedules. All delivered custom assets become client property upon final payment settlement.'
-    },
-    refund: {
-      lastUpdated: 'January 2026',
-      summary: 'Clients may request revisions or a refund prior to approving final project deliverables. Once source files are delivered or deployed to live production servers, project milestones are considered accepted.'
     },
     footer: {
       tagline: 'DIGENZ is an elite digital creative agency delivering premier web development, corporate branding, mobile applications, and strategic search optimization.',
@@ -582,7 +255,7 @@ function getInitialSeed() {
     ogTitle: 'DIGENZ — Digital • Creative • Services',
     ogDescription: 'Top-tier web engineering, corporate identity design, and digital marketing services for forward-thinking brands.',
     ogImage: '/assets/images/digenz-logo-dark.png',
-    canonicalUrl: 'https://www.digenzstore.com/',
+    canonicalUrl: 'https://digenzdigital.vercel.app/',
     keywords: 'DIGENZ, web development, custom software, digital agency, corporate branding, logo design, ecommerce, SEO',
     sitemapEnabled: true
   };
@@ -604,7 +277,7 @@ function getInitialSeed() {
     },
     maintenanceMode: false,
     supportEmail: 'support@digenz.com',
-    supportPhone: '+1 (213) 221-2842',
+    supportPhone: '03190039048',
     enablePublicQuotes: true
   };
 
@@ -635,16 +308,22 @@ function getInitialSeed() {
       }
     ],
     categories,
-    products,
-    banners,
-    coupons,
-    customers,
-    orders,
+    products: [],
+    banners: [],
+    coupons: [],
+    customers: [],
+    orders: [],
     content,
     navigation,
     seo,
     settings,
-    auditLogs
+    auditLogs,
+    syncState: {
+      version: 1,
+      lastUpdated: Date.now(),
+      lastModule: 'init',
+      modules: ['init']
+    }
   };
 }
 
@@ -659,7 +338,6 @@ function resolveDbPath() {
     fs.unlinkSync(testFile);
     return DB_FILE;
   } catch (err) {
-    // Read-only filesystem (e.g. Vercel Lambda / Serverless)
     const tmpDbPath = path.join(os.tmpdir(), 'digenz_db.json');
     if (fs.existsSync(DB_FILE)) {
       try {
@@ -672,7 +350,6 @@ function resolveDbPath() {
     return tmpDbPath;
   }
 }
-
 
 // Stateless Cryptographic HMAC-SHA256 Token Engine (Cross-Lambda Compatible)
 const SESSION_SECRET = process.env.SESSION_SECRET || 'digenz-session-master-secret-production-2026';
@@ -706,15 +383,27 @@ function verifySignedToken(token) {
 }
 
 // =========================================================================
-// MONGO DB SINGLETON CONNECTION POOL & AUTHORITATIVE PERSISTENCE
+// MONGODB ATLAS SINGLETON CONNECTION POOL & AUTHORITATIVE PERSISTENCE
 // =========================================================================
 let cachedMongoClient = null;
 let cachedMongoDb = null;
+let indexesInitialized = false;
 
 async function getMongoDatabase() {
   const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
   if (!mongoUri) return null;
-  if (cachedMongoDb) return cachedMongoDb;
+
+  // Verify cached connection is responsive with ping
+  if (cachedMongoDb && cachedMongoClient) {
+    try {
+      await cachedMongoDb.command({ ping: 1 });
+      return cachedMongoDb;
+    } catch (e) {
+      console.warn('[DB] Existing MongoDB connection stale, reconnecting pool...');
+      cachedMongoClient = null;
+      cachedMongoDb = null;
+    }
+  }
 
   let MongoClient;
   try {
@@ -725,53 +414,140 @@ async function getMongoDatabase() {
   }
 
   try {
-    if (!cachedMongoClient) {
-      cachedMongoClient = new MongoClient(mongoUri, {
-        serverSelectionTimeoutMS: 4000,
-        connectTimeoutMS: 4000,
-        maxPoolSize: 10
-      });
-      await cachedMongoClient.connect();
-    }
-    const dbName = process.env.MONGODB_DB_NAME || 'digenz';
-    cachedMongoDb = cachedMongoClient.db(dbName);
+    const client = new MongoClient(mongoUri, {
+      maxPoolSize: 10,
+      minPoolSize: 1,
+      serverSelectionTimeoutMS: 5000,
+      connectTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      maxIdleTimeMS: 60000
+    });
+
+    await client.connect();
+    const dbName = process.env.MONGODB_DB_NAME || 'digenzstore';
+    const db = client.db(dbName);
+    cachedMongoClient = client;
+    cachedMongoDb = db;
+    console.log(`[DB] Connected to MongoDB Atlas cluster (Database: "${dbName}").`);
     return cachedMongoDb;
   } catch (err) {
-    console.warn('[DB] MongoDB connection unavailable (fallback to atomic local persistence):', err.message);
+    console.warn('[DB] MongoDB Atlas connection error (fallback active):', err.message);
     cachedMongoClient = null;
     cachedMongoDb = null;
     return null;
   }
 }
 
+// Initialize Indexes on Collections
+async function initMongoIndexes(mdb) {
+  if (indexesInitialized || !mdb) return;
+  try {
+    await Promise.allSettled([
+      mdb.collection('products').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('products').createIndex({ slug: 1 }),
+      mdb.collection('products').createIndex({ categoryId: 1 }),
+      mdb.collection('products').createIndex({ status: 1 }),
+      mdb.collection('categories').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('categories').createIndex({ slug: 1 }),
+      mdb.collection('categories').createIndex({ displayOrder: 1 }),
+      mdb.collection('banners').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('banners').createIndex({ displayOrder: 1 }),
+      mdb.collection('orders').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('orders').createIndex({ orderNumber: 1 }),
+      mdb.collection('orders').createIndex({ customerId: 1 }),
+      mdb.collection('orders').createIndex({ createdAt: -1 }),
+      mdb.collection('customers').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('customers').createIndex({ email: 1 }),
+      mdb.collection('coupons').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('coupons').createIndex({ code: 1 }),
+      mdb.collection('admins').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('admins').createIndex({ email: 1 }),
+      mdb.collection('auditLogs').createIndex({ timestamp: -1 }),
+      mdb.collection('media').createIndex({ id: 1 }, { unique: true }),
+      mdb.collection('media').createIndex({ filename: 1 })
+    ]);
+    indexesInitialized = true;
+    console.log('[DB] MongoDB Atlas collection indexes verified.');
+  } catch (e) {
+    console.warn('[DB] Index creation warning:', e.message);
+  }
+}
+
 class Database {
   constructor() {
     this.data = null;
-    this.sessions = new Map(); // token -> { adminId, email, expiresAt }
+    this.sessions = new Map();
     this.lastLoadedMtime = 0;
-    this.init();
+    this.isMongoLoaded = false;
+    this.initSync();
   }
 
-  ensureFreshData() {
-    try {
-      const targetFile = resolveDbPath();
-      if (fs.existsSync(targetFile)) {
+  // Synchronous init for baseline local memory & file
+  initSync() {
+    const targetFile = resolveDbPath();
+    if (fs.existsSync(targetFile)) {
+      try {
+        const raw = fs.readFileSync(targetFile, 'utf8');
+        this.data = JSON.parse(raw);
         const stat = fs.statSync(targetFile);
-        if (stat.mtimeMs > this.lastLoadedMtime) {
-          const raw = fs.readFileSync(targetFile, 'utf8');
-          const parsed = JSON.parse(raw);
-          if (parsed && typeof parsed === 'object') {
-            this.data = parsed;
-            this.lastLoadedMtime = stat.mtimeMs;
+        this.lastLoadedMtime = stat.mtimeMs;
+      } catch (err) {
+        this.data = getInitialSeed();
+      }
+    } else if (fs.existsSync(DB_FILE)) {
+      try {
+        const raw = fs.readFileSync(DB_FILE, 'utf8');
+        this.data = JSON.parse(raw);
+      } catch (err) {
+        this.data = getInitialSeed();
+      }
+    } else {
+      this.data = getInitialSeed();
+    }
+
+    if (!this.data.syncState) {
+      this.touchSync('init');
+    }
+  }
+
+  // Ensures the current process/lambda has authoritative, up-to-date data
+  async ensureFreshData() {
+    const mdb = await getMongoDatabase();
+    if (mdb) {
+      try {
+        await initMongoIndexes(mdb);
+        const syncDoc = await mdb.collection('syncState').findOne({ _id: 'global_sync' });
+        const remoteVersion = (syncDoc && syncDoc.version) || 0;
+        const localVersion = (this.data && this.data.syncState && this.data.syncState.version) || 0;
+
+        if (!this.isMongoLoaded || remoteVersion > localVersion || !this.data) {
+          await this.loadFromMongoDB();
+        }
+      } catch (err) {
+        console.warn('[DB] ensureFreshData MongoDB check failed:', err.message);
+      }
+    } else {
+      // Local file timestamp fallback
+      try {
+        const targetFile = resolveDbPath();
+        if (fs.existsSync(targetFile)) {
+          const stat = fs.statSync(targetFile);
+          if (stat.mtimeMs > this.lastLoadedMtime) {
+            const raw = fs.readFileSync(targetFile, 'utf8');
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === 'object') {
+              this.data = parsed;
+              this.lastLoadedMtime = stat.mtimeMs;
+            }
           }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
     return this.data;
   }
 
   touchSync(moduleName = 'general') {
-    if (!this.data) this.init();
+    if (!this.data) this.initSync();
     if (!this.data.syncState) {
       this.data.syncState = { lastUpdated: Date.now(), version: 1, modules: [] };
     }
@@ -784,44 +560,7 @@ class Database {
     }
   }
 
-  init() {
-    const targetFile = resolveDbPath();
-    if (!fs.existsSync(targetFile)) {
-      console.log('[DB] Seeding database at', targetFile);
-      this.data = getInitialSeed();
-      this.touchSync('init');
-      this.save();
-    } else {
-      try {
-        const raw = fs.readFileSync(targetFile, 'utf8');
-        this.data = JSON.parse(raw);
-        const stat = fs.statSync(targetFile);
-        this.lastLoadedMtime = stat.mtimeMs;
-        if (!this.data.syncState) {
-          this.touchSync('init');
-        }
-        console.log('[DB] Database loaded successfully from', targetFile);
-      } catch (err) {
-        console.error('[DB] Error loading database file, re-initializing from seed:', err.message);
-        this.data = getInitialSeed();
-        this.touchSync('init');
-        this.save();
-      }
-    }
-
-    // Attempt initial MongoDB load if configured
-    this.loadFromMongoDB().catch(() => {});
-  }
-
-  save(moduleName = null, touch = true) {
-    if (touch) {
-      if (moduleName) {
-        this.touchSync(moduleName);
-      } else {
-        this.touchSync('general');
-      }
-    }
-
+  saveToLocalFile() {
     const targetFile = resolveDbPath();
     try {
       const tmpFile = targetFile + '.tmp';
@@ -837,123 +576,599 @@ class Database {
           fs.writeFileSync(DB_FILE, JSON.stringify(this.data, null, 2), 'utf8');
         } catch (e) {}
       }
-
-      // Asynchronously mirror updates to MongoDB if URI is configured
-      this.syncAllToMongoDB().catch(() => {});
       return true;
     } catch (err) {
-      console.error('[DB] Save error:', err.message);
       return false;
     }
   }
 
-  
-  // Load authoritative state from MongoDB if URI is configured in environment
+  // Load authoritative state from MongoDB Atlas
   async loadFromMongoDB() {
     const mdb = await getMongoDatabase();
     if (!mdb) return false;
+
     try {
-      const collections = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo', 'coupons'];
-      let loadedAny = false;
-      for (const colName of collections) {
-        const doc = await mdb.collection(colName).findOne({ _id: colName });
-        if (doc && doc.data) {
-          this.data[colName] = doc.data;
-          loadedAny = true;
-        }
+      // Check if products collection is empty -> Auto-seed from local data
+      const prodCount = await mdb.collection('products').countDocuments();
+      if (prodCount === 0) {
+        console.log('[DB] MongoDB database "digenzstore" is empty. Performing initial migration and seed...');
+        await this.seedToMongoDB(mdb);
       }
-      const syncDoc = await mdb.collection('syncState').findOne({ _id: 'global_sync' });
+
+      // Load collections in parallel
+      const [
+        productsDocs,
+        categoriesDocs,
+        bannersDocs,
+        ordersDocs,
+        customersDocs,
+        couponsDocs,
+        adminsDocs,
+        auditLogsDocs,
+        settingsDocs,
+        contentDocs,
+        navDoc,
+        seoDoc,
+        syncDoc
+      ] = await Promise.all([
+        mdb.collection('products').find({}).toArray(),
+        mdb.collection('categories').find({}).sort({ displayOrder: 1 }).toArray(),
+        mdb.collection('banners').find({}).sort({ displayOrder: 1 }).toArray(),
+        mdb.collection('orders').find({}).sort({ createdAt: -1 }).toArray(),
+        mdb.collection('customers').find({}).toArray(),
+        mdb.collection('coupons').find({}).toArray(),
+        mdb.collection('admins').find({}).toArray(),
+        mdb.collection('auditLogs').find({}).sort({ timestamp: -1 }).limit(200).toArray(),
+        mdb.collection('settings').find({}).toArray(),
+        mdb.collection('content').find({}).toArray(),
+        mdb.collection('navigation').findOne({ _id: 'global' }),
+        mdb.collection('seo').findOne({ _id: 'meta' }),
+        mdb.collection('syncState').findOne({ _id: 'global_sync' })
+      ]);
+
+      // Populate local memory
+      if (!this.data) this.data = {};
+
+      if (productsDocs.length > 0) {
+        this.data.products = productsDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (categoriesDocs.length > 0) {
+        this.data.categories = categoriesDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (bannersDocs.length > 0) {
+        this.data.banners = bannersDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (ordersDocs.length > 0) {
+        this.data.orders = ordersDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (customersDocs.length > 0) {
+        this.data.customers = customersDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (couponsDocs.length > 0) {
+        this.data.coupons = couponsDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (adminsDocs.length > 0) {
+        this.data.admins = adminsDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      if (auditLogsDocs.length > 0) {
+        this.data.auditLogs = auditLogsDocs.map(doc => {
+          const { _id, ...rest } = doc;
+          return { ...rest, id: rest.id || _id };
+        });
+      }
+
+      // Reconstruct Settings object from documents
+      if (settingsDocs.length > 0) {
+        const settingsObj = {};
+        settingsDocs.forEach(doc => {
+          const { _id, updatedAt, ...rest } = doc;
+          if (_id === 'general') Object.assign(settingsObj, rest);
+          else if (_id === 'branding') Object.assign(settingsObj, rest);
+          else if (_id === 'contact') {
+            if (rest.phone) settingsObj.supportPhone = rest.phone;
+            if (rest.email) settingsObj.supportEmail = rest.email;
+          }
+          else if (_id === 'announcement') settingsObj.announcementBar = rest;
+          else Object.assign(settingsObj, rest);
+        });
+        this.data.settings = { ...this.data.settings, ...settingsObj };
+      }
+
+      // Reconstruct Content object
+      if (contentDocs.length > 0) {
+        const contentObj = {};
+        contentDocs.forEach(doc => {
+          const { _id, updatedAt, ...rest } = doc;
+          contentObj[_id] = rest;
+        });
+        this.data.content = { ...this.data.content, ...contentObj };
+      }
+
+      if (navDoc) {
+        const { _id, updatedAt, ...navData } = navDoc;
+        this.data.navigation = navData;
+      }
+
+      if (seoDoc) {
+        const { _id, updatedAt, ...seoData } = seoDoc;
+        this.data.seo = seoData;
+      }
+
       if (syncDoc) {
         this.data.syncState = {
-          lastUpdated: syncDoc.lastUpdated || Date.now(),
           version: syncDoc.version || 1,
+          lastUpdated: syncDoc.lastUpdated || Date.now(),
           lastModule: syncDoc.lastModule || 'init',
           modules: syncDoc.modules || []
         };
       }
-      if (loadedAny) {
-        console.log('[DB] Synchronized authoritative records from MongoDB.');
-      }
+
+      this.isMongoLoaded = true;
+      this.saveToLocalFile();
+      console.log(`[DB] Successfully synchronized ${this.data.products.length} products and website modules from MongoDB Atlas.`);
       return true;
     } catch (err) {
-      console.warn('[DB] MongoDB load notice:', err.message);
+      console.warn('[DB] MongoDB load error:', err.message);
       return false;
     }
   }
 
-  // Persist all modules to MongoDB if URI is configured in environment
-  async syncAllToMongoDB() {
-    const mdb = await getMongoDatabase();
-    if (!mdb) return false;
+  // Seed initial dataset into MongoDB Atlas collections
+  async seedToMongoDB(mdb) {
+    if (!this.data) this.initSync();
     try {
-      const modules = ['settings', 'products', 'categories', 'banners', 'content', 'navigation', 'seo', 'coupons', 'orders'];
-      for (const mod of modules) {
-        if (this.data[mod] !== undefined) {
-          await mdb.collection(mod).updateOne(
-            { _id: mod },
-            { $set: { _id: mod, data: this.data[mod], updatedAt: new Date() } },
+      const now = new Date();
+
+      // 1. Products
+      if (Array.isArray(this.data.products) && this.data.products.length > 0) {
+        const ops = this.data.products.map(p => ({
+          updateOne: {
+            filter: { _id: p.id },
+            update: { $set: { ...p, _id: p.id, updatedAt: p.updatedAt || now } },
+            upsert: true
+          }
+        }));
+        await mdb.collection('products').bulkWrite(ops);
+      }
+
+      // 2. Categories
+      if (Array.isArray(this.data.categories) && this.data.categories.length > 0) {
+        const ops = this.data.categories.map(c => ({
+          updateOne: {
+            filter: { _id: c.id },
+            update: { $set: { ...c, _id: c.id, updatedAt: c.updatedAt || now } },
+            upsert: true
+          }
+        }));
+        await mdb.collection('categories').bulkWrite(ops);
+      }
+
+      // 3. Banners
+      if (Array.isArray(this.data.banners) && this.data.banners.length > 0) {
+        const ops = this.data.banners.map(b => ({
+          updateOne: {
+            filter: { _id: b.id },
+            update: { $set: { ...b, _id: b.id, updatedAt: b.updatedAt || now } },
+            upsert: true
+          }
+        }));
+        await mdb.collection('banners').bulkWrite(ops);
+      }
+
+      // 4. Settings
+      if (this.data.settings) {
+        const s = this.data.settings;
+        await mdb.collection('settings').updateOne(
+          { _id: 'general' },
+          { $set: { _id: 'general', siteName: s.siteName, siteTagline: s.siteTagline, currencySymbol: s.currencySymbol, currencyCode: s.currencyCode, taxRate: s.taxRate, maintenanceMode: s.maintenanceMode, enablePublicQuotes: s.enablePublicQuotes, updatedAt: now } },
+          { upsert: true }
+        );
+        await mdb.collection('settings').updateOne(
+          { _id: 'branding' },
+          { $set: { _id: 'branding', logoDark: s.logoDark, logoLight: s.logoLight, favicon: s.favicon, updatedAt: now } },
+          { upsert: true }
+        );
+        await mdb.collection('settings').updateOne(
+          { _id: 'contact' },
+          { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', updatedAt: now } },
+          { upsert: true }
+        );
+        if (s.announcementBar) {
+          await mdb.collection('settings').updateOne(
+            { _id: 'announcement' },
+            { $set: { _id: 'announcement', ...s.announcementBar, updatedAt: now } },
             { upsert: true }
           );
         }
       }
 
+      // 5. Content
+      if (this.data.content) {
+        for (const [secName, secData] of Object.entries(this.data.content)) {
+          await mdb.collection('content').updateOne(
+            { _id: secName },
+            { $set: { _id: secName, ...secData, updatedAt: now } },
+            { upsert: true }
+          );
+        }
+      }
+
+      // 6. Navigation
+      if (this.data.navigation) {
+        await mdb.collection('navigation').updateOne(
+          { _id: 'global' },
+          { $set: { _id: 'global', ...this.data.navigation, updatedAt: now } },
+          { upsert: true }
+        );
+      }
+
+      // 7. SEO
+      if (this.data.seo) {
+        await mdb.collection('seo').updateOne(
+          { _id: 'meta' },
+          { $set: { _id: 'meta', ...this.data.seo, updatedAt: now } },
+          { upsert: true }
+        );
+      }
+
+      // 8. Admins
+      if (Array.isArray(this.data.admins) && this.data.admins.length > 0) {
+        const ops = this.data.admins.map(a => ({
+          updateOne: {
+            filter: { _id: a.id },
+            update: { $set: { ...a, _id: a.id } },
+            upsert: true
+          }
+        }));
+        await mdb.collection('admins').bulkWrite(ops);
+      }
+
+      // 9. SyncState
       await mdb.collection('syncState').updateOne(
         { _id: 'global_sync' },
-        { 
-          $set: { 
+        { $set: { _id: 'global_sync', version: 1, lastUpdated: Date.now(), lastModule: 'init', modules: ['init'], updatedAt: now } },
+        { upsert: true }
+      );
+
+      console.log('[DB] Seeding completed successfully.');
+      return true;
+    } catch (err) {
+      console.warn('[DB] Seeding error:', err.message);
+      return false;
+    }
+  }
+
+  // Persist modified module to MongoDB Atlas directly
+  async syncToMongoDB(moduleName = null) {
+    const mdb = await getMongoDatabase();
+    if (!mdb) return false;
+
+    try {
+      const now = new Date();
+
+      if (!moduleName || moduleName === 'products') {
+        if (Array.isArray(this.data.products)) {
+          const currentIds = this.data.products.map(p => p.id);
+          if (this.data.products.length > 0) {
+            const ops = this.data.products.map(p => ({
+              updateOne: {
+                filter: { _id: p.id },
+                update: { $set: { ...p, _id: p.id, updatedAt: p.updatedAt || now } },
+                upsert: true
+              }
+            }));
+            await mdb.collection('products').bulkWrite(ops);
+          }
+          await mdb.collection('products').deleteMany({ _id: { $nin: currentIds } });
+        }
+      }
+
+      if (!moduleName || moduleName === 'categories') {
+        if (Array.isArray(this.data.categories)) {
+          const currentIds = this.data.categories.map(c => c.id);
+          if (this.data.categories.length > 0) {
+            const ops = this.data.categories.map(c => ({
+              updateOne: {
+                filter: { _id: c.id },
+                update: { $set: { ...c, _id: c.id, updatedAt: c.updatedAt || now } },
+                upsert: true
+              }
+            }));
+            await mdb.collection('categories').bulkWrite(ops);
+          }
+          await mdb.collection('categories').deleteMany({ _id: { $nin: currentIds } });
+        }
+      }
+
+      if (!moduleName || moduleName === 'banners') {
+        if (Array.isArray(this.data.banners)) {
+          const currentIds = this.data.banners.map(b => b.id);
+          if (this.data.banners.length > 0) {
+            const ops = this.data.banners.map(b => ({
+              updateOne: {
+                filter: { _id: b.id },
+                update: { $set: { ...b, _id: b.id, updatedAt: b.updatedAt || now } },
+                upsert: true
+              }
+            }));
+            await mdb.collection('banners').bulkWrite(ops);
+          }
+          await mdb.collection('banners').deleteMany({ _id: { $nin: currentIds } });
+        }
+      }
+
+      if (!moduleName || moduleName === 'orders') {
+        if (Array.isArray(this.data.orders) && this.data.orders.length > 0) {
+          const ops = this.data.orders.map(o => ({
+            updateOne: {
+              filter: { _id: o.id },
+              update: { $set: { ...o, _id: o.id, updatedAt: o.updatedAt || now } },
+              upsert: true
+            }
+          }));
+          await mdb.collection('orders').bulkWrite(ops);
+        }
+      }
+
+      if (!moduleName || moduleName === 'customers') {
+        if (Array.isArray(this.data.customers) && this.data.customers.length > 0) {
+          const ops = this.data.customers.map(c => ({
+            updateOne: {
+              filter: { _id: c.id },
+              update: { $set: { ...c, _id: c.id, updatedAt: c.updatedAt || now } },
+              upsert: true
+            }
+          }));
+          await mdb.collection('customers').bulkWrite(ops);
+        }
+      }
+
+      if (!moduleName || moduleName === 'coupons') {
+        if (Array.isArray(this.data.coupons)) {
+          const currentIds = this.data.coupons.map(cp => cp.id);
+          if (this.data.coupons.length > 0) {
+            const ops = this.data.coupons.map(cp => ({
+              updateOne: {
+                filter: { _id: cp.id },
+                update: { $set: { ...cp, _id: cp.id, updatedAt: cp.updatedAt || now } },
+                upsert: true
+              }
+            }));
+            await mdb.collection('coupons').bulkWrite(ops);
+          }
+          await mdb.collection('coupons').deleteMany({ _id: { $nin: currentIds } });
+        }
+      }
+
+      if (!moduleName || moduleName === 'settings') {
+        if (this.data.settings) {
+          const s = this.data.settings;
+          await mdb.collection('settings').updateOne(
+            { _id: 'general' },
+            { $set: { _id: 'general', siteName: s.siteName, siteTagline: s.siteTagline, currencySymbol: s.currencySymbol, currencyCode: s.currencyCode, taxRate: s.taxRate, maintenanceMode: s.maintenanceMode, enablePublicQuotes: s.enablePublicQuotes, updatedAt: now } },
+            { upsert: true }
+          );
+          await mdb.collection('settings').updateOne(
+            { _id: 'branding' },
+            { $set: { _id: 'branding', logoDark: s.logoDark, logoLight: s.logoLight, favicon: s.favicon, updatedAt: now } },
+            { upsert: true }
+          );
+          await mdb.collection('settings').updateOne(
+            { _id: 'contact' },
+            { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', updatedAt: now } },
+            { upsert: true }
+          );
+          if (s.announcementBar) {
+            await mdb.collection('settings').updateOne(
+              { _id: 'announcement' },
+              { $set: { _id: 'announcement', ...s.announcementBar, updatedAt: now } },
+              { upsert: true }
+            );
+          }
+        }
+      }
+
+      if (!moduleName || moduleName === 'content') {
+        if (this.data.content) {
+          for (const [secName, secData] of Object.entries(this.data.content)) {
+            await mdb.collection('content').updateOne(
+              { _id: secName },
+              { $set: { _id: secName, ...secData, updatedAt: now } },
+              { upsert: true }
+            );
+          }
+        }
+      }
+
+      if (!moduleName || moduleName === 'navigation') {
+        if (this.data.navigation) {
+          await mdb.collection('navigation').updateOne(
+            { _id: 'global' },
+            { $set: { _id: 'global', ...this.data.navigation, updatedAt: now } },
+            { upsert: true }
+          );
+        }
+      }
+
+      if (!moduleName || moduleName === 'seo') {
+        if (this.data.seo) {
+          await mdb.collection('seo').updateOne(
+            { _id: 'meta' },
+            { $set: { _id: 'meta', ...this.data.seo, updatedAt: now } },
+            { upsert: true }
+          );
+        }
+      }
+
+      if (!moduleName || moduleName === 'admins') {
+        if (Array.isArray(this.data.admins) && this.data.admins.length > 0) {
+          const ops = this.data.admins.map(a => ({
+            updateOne: {
+              filter: { _id: a.id },
+              update: { $set: { ...a, _id: a.id } },
+              upsert: true
+            }
+          }));
+          await mdb.collection('admins').bulkWrite(ops);
+        }
+      }
+
+      // Always update syncState
+      await mdb.collection('syncState').updateOne(
+        { _id: 'global_sync' },
+        {
+          $set: {
+            _id: 'global_sync',
             lastUpdated: this.data.syncState.lastUpdated,
             lastModule: this.data.syncState.lastModule,
             modules: this.data.syncState.modules,
-            updatedAt: new Date()
+            updatedAt: now
           },
           $max: { version: this.data.syncState.version }
         },
         { upsert: true }
       );
+
       return true;
     } catch (err) {
-      console.warn('[DB] MongoDB write notice (atomic fallback maintained):', err.message);
+      console.warn('[DB] MongoDB Atlas write warning (fallback kept):', err.message);
+      return false;
+    }
+  }
+
+  // Primary atomic save method - Awaits MongoDB confirmation
+  async save(moduleName = null, touch = true) {
+    if (touch) {
+      this.touchSync(moduleName || 'general');
+    }
+    // 1. Write local JSON fallback
+    this.saveToLocalFile();
+    // 2. Await MongoDB Atlas write confirmation
+    const mongoSuccess = await this.syncToMongoDB(moduleName);
+    return true;
+  }
+
+  // Dedicated atomic Settings saver with partial field protection
+  async saveSettings(updatedFields) {
+    if (!this.data) this.initSync();
+    if (!this.data.settings) this.data.settings = {};
+
+    const clean = {};
+    if (updatedFields.siteName !== undefined) clean.siteName = String(updatedFields.siteName).trim();
+    if (updatedFields.siteTagline !== undefined) clean.siteTagline = String(updatedFields.siteTagline).trim();
+    if (updatedFields.supportEmail !== undefined) clean.supportEmail = String(updatedFields.supportEmail).trim();
+    if (updatedFields.supportPhone !== undefined) clean.supportPhone = String(updatedFields.supportPhone).trim();
+    if (updatedFields.currencySymbol !== undefined) clean.currencySymbol = String(updatedFields.currencySymbol).trim();
+    if (updatedFields.currencyCode !== undefined) clean.currencyCode = String(updatedFields.currencyCode).trim().toUpperCase();
+    if (updatedFields.logoDark !== undefined) clean.logoDark = updatedFields.logoDark;
+    if (updatedFields.logoLight !== undefined) clean.logoLight = updatedFields.logoLight;
+    if (updatedFields.favicon !== undefined) clean.favicon = updatedFields.favicon;
+    if (updatedFields.taxRate !== undefined) clean.taxRate = Number(updatedFields.taxRate) || 0;
+    if (updatedFields.maintenanceMode !== undefined) clean.maintenanceMode = Boolean(updatedFields.maintenanceMode);
+    if (updatedFields.enablePublicQuotes !== undefined) clean.enablePublicQuotes = Boolean(updatedFields.enablePublicQuotes);
+    if (updatedFields.announcementBar !== undefined) clean.announcementBar = updatedFields.announcementBar;
+
+    this.data.settings = { ...this.data.settings, ...clean };
+    await this.save('settings', true);
+    return this.data.settings;
+  }
+
+  // Save Media Reference permanently to MongoDB
+  async saveMedia(mediaDoc) {
+    const mdb = await getMongoDatabase();
+    if (!mdb) return false;
+    try {
+      await mdb.collection('media').updateOne(
+        { _id: mediaDoc.id },
+        { $set: { ...mediaDoc, _id: mediaDoc.id, updatedAt: new Date() } },
+        { upsert: true }
+      );
+      return true;
+    } catch (e) {
+      console.warn('[DB] saveMedia warning:', e.message);
+      return false;
+    }
+  }
+
+  // Fetch Media by Filename from MongoDB
+  async getMedia(filename) {
+    const mdb = await getMongoDatabase();
+    if (!mdb) return null;
+    try {
+      return await mdb.collection('media').findOne({ filename });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // List all media documents from MongoDB
+  async listMedia() {
+    const mdb = await getMongoDatabase();
+    if (!mdb) return [];
+    try {
+      return await mdb.collection('media').find({}, { projection: { dataBase64: 0 } }).toArray();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  // Delete Media from MongoDB
+  async deleteMedia(filename) {
+    const mdb = await getMongoDatabase();
+    if (!mdb) return false;
+    try {
+      await mdb.collection('media').deleteOne({ filename });
+      return true;
+    } catch (e) {
       return false;
     }
   }
 
   getDatabaseInfo() {
     const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
+    const dbName = process.env.MONGODB_DB_NAME || 'digenzstore';
     return {
-      authoritativeSource: mongoUri ? 'MongoDB Atlas (Persistent Remote)' : 'Atomic JSON Engine (Local Persistent)',
+      authoritativeSource: mongoUri ? `MongoDB Atlas (${dbName})` : 'Atomic JSON Engine (Local Persistent)',
       isMongoConfigured: Boolean(mongoUri),
+      databaseName: dbName,
+      connectionStatus: cachedMongoDb ? 'connected' : (mongoUri ? 'connecting_or_idle' : 'unconfigured'),
       activePath: resolveDbPath(),
       syncVersion: (this.data && this.data.syncState && this.data.syncState.version) || 1,
-      lastUpdated: (this.data && this.data.syncState && this.data.syncState.lastUpdated) || Date.now()
+      lastUpdated: (this.data && this.data.syncState && this.data.syncState.lastUpdated) || Date.now(),
+      lastModule: (this.data && this.data.syncState && this.data.syncState.lastModule) || 'init'
     };
   }
 
-  // Dedicated atomic Settings saver with partial field protection
-  saveSettings(updatedFields) {
-    if (!this.data) this.init();
-    if (!this.data.settings) this.data.settings = {};
-
-    const prevAnnounce = this.data.settings.announcementBar || {};
-    const newAnnounce = updatedFields.announcementBar ? {
-      ...prevAnnounce,
-      ...updatedFields.announcementBar
-    } : prevAnnounce;
-
-    // Merge cleanly without destroying unset fields
-    this.data.settings = {
-      ...this.data.settings,
-      ...updatedFields,
-      announcementBar: newAnnounce
-    };
-
-    const saved = this.save('settings');
-
-    return saved;
-  }
-
-  // Session handling (Stateless HMAC Cryptographic Token - Cross-Lambda Compatible)
   createSession(admin) {
-    const expiresAt = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30-day session
+    const expiresAt = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
     const payload = {
       adminId: admin.id,
       email: admin.email,
@@ -969,7 +1184,6 @@ class Database {
 
   verifySession(token) {
     if (!token) return null;
-    // 1. Fast cache check
     const cached = this.sessions.get(token);
     if (cached) {
       if (Date.now() > cached.expiresAt) {
@@ -978,7 +1192,6 @@ class Database {
       }
       return cached;
     }
-    // 2. Stateless HMAC cryptographic verification (cross-lambda serverless support)
     const verified = verifySignedToken(token);
     if (verified) {
       this.sessions.set(token, verified);
@@ -991,7 +1204,6 @@ class Database {
     if (token) this.sessions.delete(token);
   }
 
-  // Audit Log helper
   logAudit(adminEmail, action, module, details, ip = '127.0.0.1') {
     const log = {
       id: 'log-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
@@ -1002,10 +1214,11 @@ class Database {
       ip,
       timestamp: new Date().toISOString()
     };
+    if (!this.data) this.initSync();
     if (!this.data.auditLogs) this.data.auditLogs = [];
     this.data.auditLogs.unshift(log);
     if (this.data.auditLogs.length > 500) this.data.auditLogs.pop();
-    this.save(null, false);
+    this.save(null, false).catch(() => {});
     return log;
   }
 }
@@ -1013,5 +1226,6 @@ class Database {
 module.exports = {
   db: new Database(),
   hashPassword,
-  verifyPassword
+  verifyPassword,
+  getMongoDatabase
 };

@@ -139,6 +139,11 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
 
+  // Ensure authoritative data from MongoDB Atlas is loaded for dynamic, API, or page requests
+  if (pathname.startsWith('/api/') || pathname.startsWith('/leads') || pathname.startsWith('/admin') || pathname === '/' || pathname === '/index.html' || pathname === '/index.htm' || pathname.startsWith('/packages') || pathname.startsWith('/pricing') || pathname.endsWith('.html') || pathname.endsWith('.htm') || pathname === '/sitemap.xml') {
+    await db.ensureFreshData();
+  }
+
   // -------------------------------------------------------------
   // DYNAMIC SITEMAP.XML GENERATOR
   // -------------------------------------------------------------
@@ -238,7 +243,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.orders.unshift(newOrder);
-      db.save('orders');
+      await db.save('orders');
       db.logAudit('website-visitor', 'LEAD_SUBMISSION', 'Orders', `New lead received from ${name} (${email}) for ${service}`, clientIp);
 
       const isJsonReq = (req.headers['accept'] && req.headers['accept'].includes('application/json')) || (req.headers['content-type'] && req.headers['content-type'].includes('application/json'));
@@ -258,7 +263,7 @@ const server = http.createServer(async (req, res) => {
   // REST API ROUTER (/api/*)
   // -------------------------------------------------------------
   if (pathname.startsWith('/api/')) {
-    db.ensureFreshData();
+    await db.ensureFreshData();
     const apiPath = pathname.substring(5); // strip '/api/'
 
     // --- 0. REAL-TIME SYNC STATE ---
@@ -296,7 +301,7 @@ const server = http.createServer(async (req, res) => {
             salt: 'ac0f718011f4b8ade251f157148f4534',
             createdAt: '2026-01-01T00:00:00.000Z'
           }];
-          db.save();
+          await db.save('admins');
         }
 
         let admin = db.data.admins.find(a => 
@@ -326,7 +331,7 @@ const server = http.createServer(async (req, res) => {
 
         admin.lastLogin = new Date().toISOString();
         const session = db.createSession(admin);
-        db.save();
+        await db.save('admins');
         db.logAudit(admin.email, 'LOGIN_SUCCESS', 'Auth', 'Admin logged in successfully', clientIp);
 
         return sendJSON(res, 200, {
@@ -376,7 +381,7 @@ const server = http.createServer(async (req, res) => {
         admin.salt = hashed.salt;
       }
 
-      db.save();
+      await db.save('admins');
       db.logAudit(admin.email, 'PROFILE_UPDATE', 'Auth', 'Admin profile/password updated', clientIp);
       return sendJSON(res, 200, { success: true, user: { id: admin.id, email: admin.email, name: admin.name } });
     }
@@ -494,7 +499,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.products.unshift(newProduct);
-      db.save();
+      await db.save('products');
       db.logAudit(session.email, 'CREATE_PRODUCT', 'Products', `Created product "${newProduct.name}" (SKU: ${newProduct.sku})`, clientIp);
       return sendJSON(res, 201, { success: true, product: newProduct });
     }
@@ -531,7 +536,7 @@ const server = http.createServer(async (req, res) => {
         updatedAt: new Date().toISOString()
       });
 
-      db.save();
+      await db.save('products');
       db.logAudit(session.email, 'UPDATE_PRODUCT', 'Products', `Updated product "${product.name}"`, clientIp);
       return sendJSON(res, 200, { success: true, product });
     }
@@ -544,7 +549,7 @@ const server = http.createServer(async (req, res) => {
       if (index === -1) return sendJSON(res, 404, { error: 'Product not found' });
 
       const deleted = db.data.products.splice(index, 1)[0];
-      db.save();
+      await db.save('products');
       db.logAudit(session.email, 'DELETE_PRODUCT', 'Products', `Deleted product "${deleted.name}" (${deleted.id})`, clientIp);
       return sendJSON(res, 200, { success: true, message: `Product "${deleted.name}" deleted.` });
     }
@@ -579,7 +584,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.categories.push(newCategory);
-      db.save('categories');
+      await db.save('categories');
       db.logAudit(session.email, 'CREATE_CATEGORY', 'Categories', `Created category "${newCategory.name}"`, clientIp);
       return sendJSON(res, 201, { success: true, category: newCategory });
     }
@@ -607,7 +612,7 @@ const server = http.createServer(async (req, res) => {
         status: data.status !== undefined ? data.status : cat.status
       });
 
-      db.save();
+      await db.save('categories');
       db.logAudit(session.email, 'UPDATE_CATEGORY', 'Categories', `Updated category "${cat.name}"`, clientIp);
       return sendJSON(res, 200, { success: true, category: cat });
     }
@@ -632,7 +637,7 @@ const server = http.createServer(async (req, res) => {
       if (index === -1) return sendJSON(res, 404, { error: 'Category not found' });
 
       const deleted = db.data.categories.splice(index, 1)[0];
-      db.save();
+      await db.save('categories');
       db.logAudit(session.email, 'DELETE_CATEGORY', 'Categories', `Deleted category "${deleted.name}"`, clientIp);
       return sendJSON(res, 200, { success: true, message: `Category "${deleted.name}" deleted.` });
     }
@@ -663,7 +668,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.banners.push(newBanner);
-      db.save('banners');
+      await db.save('banners');
       db.logAudit(session.email, 'CREATE_BANNER', 'Banners', `Created banner "${newBanner.title}"`, clientIp);
       return sendJSON(res, 201, { success: true, banner: newBanner });
     }
@@ -689,7 +694,7 @@ const server = http.createServer(async (req, res) => {
         scheduleEnd: data.scheduleEnd !== undefined ? data.scheduleEnd : banner.scheduleEnd
       });
 
-      db.save();
+      await db.save('banners');
       db.logAudit(session.email, 'UPDATE_BANNER', 'Banners', `Updated banner "${banner.title}"`, clientIp);
       return sendJSON(res, 200, { success: true, banner });
     }
@@ -702,7 +707,7 @@ const server = http.createServer(async (req, res) => {
       if (index === -1) return sendJSON(res, 404, { error: 'Banner not found' });
 
       const deleted = db.data.banners.splice(index, 1)[0];
-      db.save();
+      await db.save('banners');
       db.logAudit(session.email, 'DELETE_BANNER', 'Banners', `Deleted banner "${deleted.title}"`, clientIp);
       return sendJSON(res, 200, { success: true, message: `Banner deleted.` });
     }
@@ -731,7 +736,7 @@ const server = http.createServer(async (req, res) => {
       }
 
       db.data.content[section] = data;
-      db.save();
+      await db.save('content');
       db.logAudit(session.email, 'UPDATE_CONTENT', 'Content CMS', `Updated section "${section}"`, clientIp);
       return sendJSON(res, 200, { success: true, content: db.data.content[section] });
     }
@@ -893,7 +898,7 @@ const server = http.createServer(async (req, res) => {
 
       order.status = status;
       order.updatedAt = new Date().toISOString();
-      db.save();
+      await db.save('orders');
       db.logAudit(session.email, 'UPDATE_ORDER_STATUS', 'Orders', `Updated order #${order.orderNumber} status to "${status}"`, clientIp);
       return sendJSON(res, 200, { success: true, order });
     }
@@ -913,7 +918,7 @@ const server = http.createServer(async (req, res) => {
 
       order.paymentStatus = paymentStatus;
       order.updatedAt = new Date().toISOString();
-      db.save('orders');
+      await db.save('orders');
       db.logAudit(session.email, 'UPDATE_PAYMENT_STATUS', 'Orders', `Updated order #${order.orderNumber} payment to "${paymentStatus}"`, clientIp);
       return sendJSON(res, 200, { success: true, order });
     }
@@ -935,7 +940,7 @@ const server = http.createServer(async (req, res) => {
         date: new Date().toISOString()
       });
       order.updatedAt = new Date().toISOString();
-      db.save();
+      await db.save('orders');
       return sendJSON(res, 201, { success: true, notes: order.internalNotes });
     }
 
@@ -950,7 +955,7 @@ const server = http.createServer(async (req, res) => {
       order.trackingNumber = trackingNumber || '';
       order.courier = courier || '';
       order.updatedAt = new Date().toISOString();
-      db.save();
+      await db.save('orders');
       return sendJSON(res, 200, { success: true, order });
     }
 
@@ -1006,7 +1011,7 @@ const server = http.createServer(async (req, res) => {
       if (data.country !== undefined) customer.country = data.country.trim();
       if (data.status) customer.status = data.status;
 
-      db.save();
+      await db.save('customers');
       db.logAudit(session.email, 'UPDATE_CUSTOMER', 'Customers', `Updated profile of ${customer.name}`, clientIp);
       return sendJSON(res, 200, { success: true, customer });
     }
@@ -1039,7 +1044,7 @@ const server = http.createServer(async (req, res) => {
       };
 
       db.data.coupons.push(newCoupon);
-      db.save('coupons');
+      await db.save('coupons');
       db.logAudit(session.email, 'CREATE_COUPON', 'Coupons', `Created coupon "${newCoupon.code}" (${newCoupon.discountValue}${newCoupon.discountType === 'percentage' ? '%' : '$'})`, clientIp);
       return sendJSON(res, 201, { success: true, coupon: newCoupon });
     }
@@ -1061,7 +1066,7 @@ const server = http.createServer(async (req, res) => {
       if (data.isActive !== undefined) coupon.isActive = Boolean(data.isActive);
       if (Array.isArray(data.eligibleCategories)) coupon.eligibleCategories = data.eligibleCategories;
 
-      db.save();
+      await db.save('coupons');
       db.logAudit(session.email, 'UPDATE_COUPON', 'Coupons', `Updated coupon "${coupon.code}"`, clientIp);
       return sendJSON(res, 200, { success: true, coupon });
     }
@@ -1074,7 +1079,7 @@ const server = http.createServer(async (req, res) => {
       if (idx === -1) return sendJSON(res, 404, { error: 'Coupon not found' });
 
       const deleted = db.data.coupons.splice(idx, 1)[0];
-      db.save();
+      await db.save('coupons');
       db.logAudit(session.email, 'DELETE_COUPON', 'Coupons', `Deleted coupon "${deleted.code}"`, clientIp);
       return sendJSON(res, 200, { success: true, message: `Coupon deleted.` });
     }
@@ -1160,6 +1165,24 @@ const server = http.createServer(async (req, res) => {
 
       walkMedia(imgDir);
 
+      // Merge media stored permanently in MongoDB Atlas
+      try {
+        const mongoMedia = await db.listMedia();
+        if (mongoMedia && mongoMedia.length > 0) {
+          mongoMedia.forEach(m => {
+            if (!files.some(f => f.name === m.filename || f.path === m.url)) {
+              files.unshift({
+                name: m.filename,
+                path: m.url || `/assets/images/uploads/${m.filename}`,
+                size: m.size || 0,
+                modified: m.createdAt ? new Date(m.createdAt) : new Date(),
+                ext: path.extname(m.filename).toLowerCase()
+              });
+            }
+          });
+        }
+      } catch (e) {}
+
       if (query.search) {
         const q = query.search.toLowerCase();
         files = files.filter(f => f.name.toLowerCase().includes(q) || f.path.toLowerCase().includes(q));
@@ -1200,9 +1223,23 @@ const server = http.createServer(async (req, res) => {
 
         const safeName = Date.now() + '-' + body.filename.replace(/[^a-zA-Z0-9.-]/g, '_');
         const targetPath = path.join(UPLOAD_DIR, safeName);
-        fs.writeFileSync(targetPath, buffer);
+        try { fs.writeFileSync(targetPath, buffer); } catch (e) {}
 
         const urlPath = `/assets/images/uploads/${safeName}`;
+
+        // Persist media permanently in MongoDB Atlas
+        await db.saveMedia({
+          id: safeName,
+          filename: safeName,
+          originalName: body.filename,
+          mimeType: MIME_TYPES[ext] || 'image/jpeg',
+          size: buffer.length,
+          url: urlPath,
+          dataBase64: base64Data,
+          uploadedBy: session.email,
+          createdAt: new Date().toISOString()
+        });
+
         db.logAudit(session.email, 'UPLOAD_MEDIA', 'Media Library', `Uploaded image "${safeName}" (${buffer.length} bytes)`, clientIp);
 
         return sendJSON(res, 201, {
@@ -1229,12 +1266,16 @@ const server = http.createServer(async (req, res) => {
       }
 
       const fullPath = path.join(BASE_DIR, cleanPath.startsWith('/') ? cleanPath.substring(1) : cleanPath);
+      let fileDeleted = false;
       if (fs.existsSync(fullPath)) {
-        fs.unlinkSync(fullPath);
+        try { fs.unlinkSync(fullPath); fileDeleted = true; } catch (e) {}
+      }
+      const mongoDeleted = await db.deleteMedia(path.basename(cleanPath));
+      if (fileDeleted || mongoDeleted) {
         db.logAudit(session.email, 'DELETE_MEDIA', 'Media Library', `Deleted media file ${cleanPath}`, clientIp);
         return sendJSON(res, 200, { success: true, message: 'File deleted.' });
       } else {
-        return sendJSON(res, 404, { error: 'File not found on disk.' });
+        return sendJSON(res, 404, { error: 'File not found.' });
       }
     }
 
@@ -1251,7 +1292,7 @@ const server = http.createServer(async (req, res) => {
       if (data.headerLinks) db.data.navigation.headerLinks = data.headerLinks;
       if (data.footerColumns) db.data.navigation.footerColumns = data.footerColumns;
 
-      db.save();
+      await db.save('navigation');
       db.logAudit(session.email, 'UPDATE_NAVIGATION', 'Navigation', 'Updated navigation and footer structures', clientIp);
       return sendJSON(res, 200, { success: true, navigation: db.data.navigation });
     }
@@ -1267,7 +1308,7 @@ const server = http.createServer(async (req, res) => {
       const data = await parseBody(req);
 
       Object.assign(db.data.seo, data);
-      db.save('seo');
+      await db.save('seo');
       db.logAudit(session.email, 'UPDATE_SEO', 'SEO Management', 'Updated SEO meta configuration', clientIp);
       return sendJSON(res, 200, { success: true, seo: db.data.seo });
     }
@@ -1306,7 +1347,7 @@ const server = http.createServer(async (req, res) => {
         data.maintenanceMode = Boolean(data.maintenanceMode);
       }
 
-      const saved = db.saveSettings(data);
+      const saved = await db.saveSettings(data);
       if (saved) db.touchSync('settings');
       if (!saved) {
         return sendJSON(res, 500, { error: 'Failed to write settings to persistent database storage.' });
@@ -1401,6 +1442,28 @@ const server = http.createServer(async (req, res) => {
       'Cache-Control': ext === '.html' || ext === '.htm' ? 'no-cache' : 'public, max-age=3600'
     });
     return res.end(content);
+  }
+
+  // Check if requested file is an uploaded asset in MongoDB Atlas
+  if (reqPath.startsWith('/assets/images/uploads/')) {
+    try {
+      const filename = path.basename(reqPath);
+      const media = await db.getMedia(filename);
+      if (media && media.dataBase64) {
+        const buf = Buffer.from(media.dataBase64, 'base64');
+        const ext = path.extname(filename).toLowerCase();
+        const contentType = media.mimeType || MIME_TYPES[ext] || 'application/octet-stream';
+        res.writeHead(200, {
+          'Content-Type': contentType,
+          'Content-Length': buf.length,
+          'Cache-Control': 'public, max-age=31536000, immutable',
+          'Access-Control-Allow-Origin': '*'
+        });
+        return res.end(buf);
+      }
+    } catch (e) {
+      console.warn('[Server] MongoDB media fallback error:', e.message);
+    }
   }
 
   // 404 handler
