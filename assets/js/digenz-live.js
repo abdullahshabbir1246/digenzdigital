@@ -249,6 +249,7 @@
                   <ul class="packfeatures">
                     ${featuresHtml}
                   </ul>
+                  <a href="/pricing/${prod.slug}/index.html" class="viewdetails">VIEW DETAILS</a>
                   <a href="/get-a-quote/index.html?pkg=${encodeURIComponent(prod.name)}" class="btn-pack">Start</a>
                   <div class="actions row web">
                     <div class="col-md-6 col-6"><a href="${telHref}" class="action-no clearfix pull-right sea"><span><small>Share your idea?</small> ${phoneText}</span></a></div>
