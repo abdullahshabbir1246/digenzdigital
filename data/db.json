@@ -1,160 +1,162 @@
 {
   "admins": [
     {
-      "id": "adm-001",
-      "username": "admin",
+      "createdAt": "2026-01-01T00:00:00.000Z",
       "email": "admin@digenz.com",
-      "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
-      "salt": "ac0f718011f4b8ade251f157148f4534",
+      "id": "adm-001",
+      "lastLogin": "2026-11-04T21:15:40.394Z",
       "name": "DIGENZ Admin",
+      "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
       "role": "superadmin",
-      "lastLogin": "2026-10-30T22:55:09.612Z",
-      "createdAt": "2026-01-01T00:00:00.000Z"
+      "salt": "ac0f718011f4b8ade251f157148f4534",
+      "username": "admin"
     }
   ],
   "categories": [
     {
-      "id": "cat-logo",
-      "name": "Logo Design",
-      "slug": "logo-design",
-      "parentId": null,
+      "bannerImage": "/assets/images/banners/branding.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Custom corporate, 3D, and minimalist branding logos.",
-      "image": "/assets/images/bannericons/branding.png",
-      "bannerImage": "/assets/images/banners/branding.png",
       "displayOrder": 1,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Custom Logo Design & Brand Monograms | DIGENZ",
-      "seoDescription": "Professional corporate and digital monogram logo design services.",
-      "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
-    },
-    {
-      "id": "cat-webdesign",
-      "name": "Web Design & Development",
-      "slug": "custom-website-design",
-      "parentId": null,
-      "description": "Modern, high-conversion responsive websites with modern architecture.",
-      "image": "/assets/images/bannericons/web-application-development.png",
-      "bannerImage": "/assets/images/banners/backend-development.png",
-      "displayOrder": 2,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Custom Web Design & Frontend Engineering | DIGENZ",
-      "seoDescription": "High performance, SEO-ready web applications and portals.",
-      "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
-    },
-    {
-      "id": "cat-ecommerce",
-      "name": "Ecommerce Solutions",
-      "slug": "ecommerce-website-development",
-      "parentId": null,
-      "description": "Scalable online stores built on Shopify, WooCommerce, and custom engines.",
-      "image": "/assets/images/bannericons/ecommerce-website-development.png",
-      "bannerImage": "/assets/images/banners/ecommerce.png",
-      "displayOrder": 3,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Ecommerce Web Development & Checkout Portals | DIGENZ",
-      "seoDescription": "Complete ecommerce stores with payment gateways and order management.",
-      "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
-    },
-    {
-      "id": "cat-branding",
-      "name": "Corporate Branding",
-      "slug": "branding",
-      "parentId": null,
-      "description": "Brand identity packages, style guides, stationery, and marketing collateral.",
+      "id": "cat-logo",
       "image": "/assets/images/bannericons/branding.png",
+      "name": "Logo Design",
+      "parentId": null,
+      "seoDescription": "Professional corporate and digital monogram logo design services.",
+      "seoTitle": "Custom Logo Design & Brand Monograms | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "logo-design",
+      "status": "active",
+      "updatedAt": "2026-11-04T19:41:58.684Z"
+    },
+    {
+      "bannerImage": "/assets/images/banners/backend-development.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "Modern, high-conversion responsive websites with modern architecture.",
+      "displayOrder": 2,
+      "id": "cat-webdesign",
+      "image": "/assets/images/bannericons/web-application-development.png",
+      "name": "Web Design & Development",
+      "parentId": null,
+      "seoDescription": "High performance, SEO-ready web applications and portals.",
+      "seoTitle": "Custom Web Design & Frontend Engineering | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "custom-website-design",
+      "status": "active",
+      "updatedAt": "2026-11-04T19:41:58.684Z"
+    },
+    {
+      "bannerImage": "/assets/images/banners/ecommerce.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "Scalable online stores built on Shopify, WooCommerce, and custom engines.",
+      "displayOrder": 3,
+      "id": "cat-ecommerce",
+      "image": "/assets/images/bannericons/ecommerce-website-development.png",
+      "name": "Ecommerce Solutions",
+      "parentId": null,
+      "seoDescription": "Complete ecommerce stores with payment gateways and order management.",
+      "seoTitle": "Ecommerce Web Development & Checkout Portals | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "ecommerce-website-development",
+      "status": "active",
+      "updatedAt": "2026-11-04T19:41:58.684Z"
+    },
+    {
       "bannerImage": "/assets/images/banners/branding.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "Brand identity packages, style guides, stationery, and marketing collateral.",
       "displayOrder": 4,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Corporate Identity & Brand Strategy | DIGENZ",
+      "id": "cat-branding",
+      "image": "/assets/images/bannericons/branding.png",
+      "name": "Corporate Branding",
+      "parentId": null,
       "seoDescription": "Holistic brand strategy, typography guidelines, and design collateral.",
+      "seoTitle": "Corporate Identity & Brand Strategy | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "branding",
       "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     },
     {
-      "id": "cat-animation",
-      "name": "Video Animation",
-      "slug": "video-animation",
-      "parentId": null,
-      "description": "2D/3D explainer videos, promo animations, and motion graphic teasers.",
-      "image": "/assets/images/bannericons/animation.png",
       "bannerImage": "/assets/images/banners/animation.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "2D/3D explainer videos, promo animations, and motion graphic teasers.",
       "displayOrder": 5,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Motion Graphics & 2D/3D Explainer Video Animation | DIGENZ",
+      "id": "cat-animation",
+      "image": "/assets/images/bannericons/animation.png",
+      "name": "Video Animation",
+      "parentId": null,
       "seoDescription": "Dynamic animated video commercials and product walkthroughs.",
+      "seoTitle": "Motion Graphics & 2D/3D Explainer Video Animation | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "video-animation",
       "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     },
     {
-      "id": "cat-seo",
-      "name": "Search Engine Optimization",
-      "slug": "seo",
-      "parentId": null,
-      "description": "Data-driven on-page, off-page, technical SEO and high-intent keyword ranking.",
-      "image": "/assets/images/bannericons/seo.png",
       "bannerImage": "/assets/images/banners/seo.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "Data-driven on-page, off-page, technical SEO and high-intent keyword ranking.",
       "displayOrder": 6,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Organic SEO & Technical Growth Optimization | DIGENZ",
+      "id": "cat-seo",
+      "image": "/assets/images/bannericons/seo.png",
+      "name": "Search Engine Optimization",
+      "parentId": null,
       "seoDescription": "Proven search ranking optimization to maximize organic conversions.",
+      "seoTitle": "Organic SEO & Technical Growth Optimization | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "seo",
       "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     },
     {
-      "id": "cat-mobile",
-      "name": "Mobile App Development",
-      "slug": "mobile-application",
-      "parentId": null,
-      "description": "Native iOS, Android, and cross-platform Flutter/React Native mobile applications.",
-      "image": "/assets/images/bannericons/mobile-development.png",
       "bannerImage": "/assets/images/banners/technology-banner.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "Native iOS, Android, and cross-platform Flutter/React Native mobile applications.",
       "displayOrder": 7,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "Mobile App Development for iOS & Android | DIGENZ",
+      "id": "cat-mobile",
+      "image": "/assets/images/bannericons/mobile-development.png",
+      "name": "Mobile App Development",
+      "parentId": null,
       "seoDescription": "High performance mobile apps tailored to modern enterprise workflows.",
+      "seoTitle": "Mobile App Development for iOS & Android | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "mobile-application",
       "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     },
     {
-      "id": "cat-combo",
-      "name": "Combo & Full-Stack Packages",
-      "slug": "combo-packages",
-      "parentId": null,
-      "description": "All-in-one digital agency packages covering branding, web, mobile, and marketing.",
-      "image": "/assets/images/digenz-icon.svg",
       "bannerImage": "/assets/images/banners/packages-banner.png",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "All-in-one digital agency packages covering branding, web, mobile, and marketing.",
       "displayOrder": 8,
-      "showOnHome": true,
-      "showInNav": true,
-      "seoTitle": "All-in-One Digital Agency Combo Packages | DIGENZ",
+      "id": "cat-combo",
+      "image": "/assets/images/digenz-icon.svg",
+      "name": "Combo & Full-Stack Packages",
+      "parentId": null,
       "seoDescription": "Complete full-suite digital solutions for startups and enterprises.",
+      "seoTitle": "All-in-One Digital Agency Combo Packages | DIGENZ",
+      "showInNav": true,
+      "showOnHome": true,
+      "slug": "combo-packages",
       "status": "active",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     }
   ],
   "products": [
     {
-      "id": "prod-startup-logo-package",
-      "name": "Startup Logo Package",
-      "slug": "startup-logo-package",
-      "sku": "PKG-STARTUP-LO",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 125,
-      "salePrice": 50,
-      "stockQuantity": 999,
       "availability": "in_stock",
-      "description": "Suitable for potential super-startups and brand revamps for companies.",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
+      "description": "Professional custom website package verified on 2026-11-04T21:15:40.599Z",
       "features": [
         "3 Logo Concepts",
         "3 Revisions",
@@ -166,31 +168,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee*"
       ],
+      "id": "prod-startup-logo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Startup Logo Package | DIGENZ",
+      "name": "Startup Logo Package",
+      "price": 125,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 50,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Startup Logo Package | DIGENZ",
+      "sku": "PKG-STARTUP-LO",
+      "slug": "startup-logo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-11-04T21:15:41.066Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-professional-logo-package",
-      "name": "Professional Logo Package",
-      "slug": "professional-logo-package",
-      "sku": "PKG-PROFESSION",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 250,
-      "salePrice": 100,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "5 Logo Concepts",
@@ -205,31 +207,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee*"
       ],
+      "id": "prod-professional-logo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Professional Logo Package | DIGENZ",
+      "name": "Professional Logo Package",
+      "price": 250,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 100,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Professional Logo Package | DIGENZ",
+      "sku": "PKG-PROFESSION",
+      "slug": "professional-logo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-elite-logo-package",
-      "name": "Elite Logo Package",
-      "slug": "elite-logo-package",
-      "sku": "PKG-ELITE-LOGO",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 405,
-      "salePrice": 162,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "UNLIMITED Logo Design Concepts",
@@ -243,31 +245,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee*"
       ],
+      "id": "prod-elite-logo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Elite Logo Package | DIGENZ",
+      "name": "Elite Logo Package",
+      "price": 405,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 162,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Elite Logo Package | DIGENZ",
+      "sku": "PKG-ELITE-LOGO",
+      "slug": "elite-logo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-silver-logo-package",
-      "name": "Silver Logo Package",
-      "slug": "silver-logo-package",
-      "sku": "PKG-SILVER-LOG",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 625,
-      "salePrice": 250,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "UNLIMITED Logo Design Concepts",
@@ -281,31 +283,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee*"
       ],
+      "id": "prod-silver-logo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Silver Logo Package | DIGENZ",
+      "name": "Silver Logo Package",
+      "price": 625,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 250,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Silver Logo Package | DIGENZ",
+      "sku": "PKG-SILVER-LOG",
+      "slug": "silver-logo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-business-logo-package",
-      "name": "Business Logo Package",
-      "slug": "business-logo-package",
-      "sku": "PKG-BUSINESS-L",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1093,
-      "salePrice": 437,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "UNLIMITED Logo Design Concepts",
@@ -319,31 +321,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee*"
       ],
+      "id": "prod-business-logo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Business Logo Package | DIGENZ",
+      "name": "Business Logo Package",
+      "price": 1093,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 437,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Business Logo Package | DIGENZ",
+      "sku": "PKG-BUSINESS-L",
+      "slug": "business-logo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-startup-website-package",
-      "name": "Startup Website Package",
-      "slug": "startup-website-package",
-      "sku": "PKG-STARTUP-WE",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 468,
-      "salePrice": 187,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "5 Stock Photos",
@@ -362,31 +364,31 @@
         "Mobile Responsive will be Additional $50",
         "CMS will be Additional $75"
       ],
+      "id": "prod-startup-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Startup Website Package | DIGENZ",
+      "name": "Startup Website Package",
+      "price": 468,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 187,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Startup Website Package | DIGENZ",
+      "sku": "PKG-STARTUP-WE",
+      "slug": "startup-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-professional-website-package",
-      "name": "Professional Website Package",
-      "slug": "professional-website-package",
-      "sku": "PKG-PROFESSION",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 938,
-      "salePrice": 375,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "10 Unique Pages Website",
@@ -406,31 +408,31 @@
         "100% Money Back Guarantee *",
         "Mobile Responsive will be Additional $50"
       ],
+      "id": "prod-professional-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Professional Website Package | DIGENZ",
+      "name": "Professional Website Package",
+      "price": 938,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 375,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Professional Website Package | DIGENZ",
+      "sku": "PKG-PROFESSION",
+      "slug": "professional-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-elite-website-package",
-      "name": "Elite Website Package",
-      "slug": "elite-website-package",
-      "sku": "PKG-ELITE-WEBS",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1563,
-      "salePrice": 625,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Upto 15 Unique Pages Website",
@@ -458,31 +460,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-elite-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Elite Website Package | DIGENZ",
+      "name": "Elite Website Package",
+      "price": 1563,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 625,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Elite Website Package | DIGENZ",
+      "sku": "PKG-ELITE-WEBS",
+      "slug": "elite-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-silver-website-package",
-      "name": "Silver Website Package",
-      "slug": "silver-website-package",
-      "sku": "PKG-SILVER-WEB",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 2500,
-      "salePrice": 1000,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "15 to 20 Pages Website",
@@ -516,31 +518,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-silver-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Silver Website Package | DIGENZ",
+      "name": "Silver Website Package",
+      "price": 2500,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1000,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Silver Website Package | DIGENZ",
+      "sku": "PKG-SILVER-WEB",
+      "slug": "silver-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-business-website-package",
-      "name": "Business Website Package",
-      "slug": "business-website-package",
-      "sku": "PKG-BUSINESS-W",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 4688,
-      "salePrice": 1875,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "15 to 20 Pages Website",
@@ -575,31 +577,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-business-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Business Website Package | DIGENZ",
+      "name": "Business Website Package",
+      "price": 4688,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1875,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Business Website Package | DIGENZ",
+      "sku": "PKG-BUSINESS-W",
+      "slug": "business-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-automated-interactive-conferencing-portal",
-      "name": "Automated/Interactive Conferencing Portal",
-      "slug": "automated-interactive-conferencing-portal",
-      "sku": "PKG-AUTOMATED-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 9375,
-      "salePrice": 3750,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential Mid Sized and Enterprise companies.",
       "features": [
         "Unlimited Page Website",
@@ -649,31 +651,31 @@
         "Online Communities &amp; Social Engagement",
         "Curation of Resources And Adding Own Resources"
       ],
+      "id": "prod-automated-interactive-conferencing-portal",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Automated/Interactive Conferencing Portal | DIGENZ",
+      "name": "Automated/Interactive Conferencing Portal",
+      "price": 9375,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 3750,
       "seoDescription": "Suitable for potential Mid Sized and Enterprise companies.",
+      "seoTitle": "Automated/Interactive Conferencing Portal | DIGENZ",
+      "sku": "PKG-AUTOMATED-",
+      "slug": "automated-interactive-conferencing-portal",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-custom-crm-portal-website-package",
-      "name": "Custom CRM Portal Website Package",
-      "slug": "custom-crm-portal-website-package",
-      "sku": "PKG-CUSTOM-CRM",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 15625,
-      "salePrice": 6250,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "(Job Portals, Real Estate Portals, I.T. Management Portals, HRM Portals, Dating Portals, Management Portals etc)",
       "features": [
         "Unlimited Page Website",
@@ -762,31 +764,31 @@
         "100% Unique Design Guarantee",
         "Money Back Guarantee"
       ],
+      "id": "prod-custom-crm-portal-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Custom CRM Portal Website Package | DIGENZ",
+      "name": "Custom CRM Portal Website Package",
+      "price": 15625,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 6250,
       "seoDescription": "(Job Portals, Real Estate Portals, I.T. Management Portals, HRM Portals, Dating Portals, Management Portals etc)",
+      "seoTitle": "Custom CRM Portal Website Package | DIGENZ",
+      "sku": "PKG-CUSTOM-CRM",
+      "slug": "custom-crm-portal-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-beginners-e-commerce-package",
-      "name": "Beginners E-Commerce Package",
-      "slug": "beginners-e-commerce-package",
-      "sku": "PKG-BEGINNERS-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1250,
-      "salePrice": 500,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Upto 15 Unique Pages Website",
@@ -814,31 +816,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee"
       ],
+      "id": "prod-beginners-e-commerce-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Beginners E-Commerce Package | DIGENZ",
+      "name": "Beginners E-Commerce Package",
+      "price": 1250,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 500,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Beginners E-Commerce Package | DIGENZ",
+      "sku": "PKG-BEGINNERS-",
+      "slug": "beginners-e-commerce-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-corporate-e-commerce-package",
-      "name": "Corporate E-Commerce Package",
-      "slug": "corporate-e-commerce-package",
-      "sku": "PKG-CORPORATE-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 2500,
-      "salePrice": 1000,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Unlimited Unique Pages Website",
@@ -867,31 +869,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee"
       ],
+      "id": "prod-corporate-e-commerce-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Corporate E-Commerce Package | DIGENZ",
+      "name": "Corporate E-Commerce Package",
+      "price": 2500,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1000,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Corporate E-Commerce Package | DIGENZ",
+      "sku": "PKG-CORPORATE-",
+      "slug": "corporate-e-commerce-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-elite-e-commerce-package",
-      "name": "Elite E-Commerce Package",
-      "slug": "elite-e-commerce-package",
-      "sku": "PKG-ELITE-E-CO",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 4688,
-      "salePrice": 1875,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "UNLIMITED Logo Design Concepts",
@@ -933,31 +935,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-elite-e-commerce-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Elite E-Commerce Package | DIGENZ",
+      "name": "Elite E-Commerce Package",
+      "price": 4688,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1875,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Elite E-Commerce Package | DIGENZ",
+      "sku": "PKG-ELITE-E-CO",
+      "slug": "elite-e-commerce-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-custom-e-commerce-marketplace-package",
-      "name": "Custom E Commerce Marketplace Package",
-      "slug": "custom-e-commerce-marketplace-package",
-      "sku": "PKG-CUSTOM-E-C",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 9375,
-      "salePrice": 3750,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Unlimited Page Website",
@@ -992,31 +994,31 @@
         "100% Unique Design Guarantee",
         "Money Back Guarantee"
       ],
+      "id": "prod-custom-e-commerce-marketplace-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Custom E Commerce Marketplace Package | DIGENZ",
+      "name": "Custom E Commerce Marketplace Package",
+      "price": 9375,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 3750,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Custom E Commerce Marketplace Package | DIGENZ",
+      "sku": "PKG-CUSTOM-E-C",
+      "slug": "custom-e-commerce-marketplace-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-automated-interactive-e-commerce-package",
-      "name": "Automated/Interactive E-Commerce Package",
-      "slug": "automated-interactive-e-commerce-package",
-      "sku": "PKG-AUTOMATED-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 18750,
-      "salePrice": 7500,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential Mid Sized and Enterprise companies.",
       "features": [
         "Unlimited Page Website",
@@ -1092,31 +1094,31 @@
         "Financial Reports",
         "Generate extremely detailed reports for your inventory, sales and services. Filter your reports by date-range and category to see what's making you the most money."
       ],
+      "id": "prod-automated-interactive-e-commerce-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Automated/Interactive E-Commerce Package | DIGENZ",
+      "name": "Automated/Interactive E-Commerce Package",
+      "price": 18750,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 7500,
       "seoDescription": "Suitable for potential Mid Sized and Enterprise companies.",
+      "seoTitle": "Automated/Interactive E-Commerce Package | DIGENZ",
+      "sku": "PKG-AUTOMATED-",
+      "slug": "automated-interactive-e-commerce-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-custom-crm-erp-portal-website-package",
-      "name": "Custom CRM/ERP Portal Website Package",
-      "slug": "custom-crm-erp-portal-website-package",
-      "sku": "PKG-CUSTOM-CRM",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 21875,
-      "salePrice": 8750,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Unlimited Page Website",
@@ -1217,31 +1219,31 @@
         "100% Unique Design Guarantee",
         "Money Back Guarantee"
       ],
+      "id": "prod-custom-crm-erp-portal-website-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Custom CRM/ERP Portal Website Package | DIGENZ",
+      "name": "Custom CRM/ERP Portal Website Package",
+      "price": 21875,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 8750,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Custom CRM/ERP Portal Website Package | DIGENZ",
+      "sku": "PKG-CUSTOM-CRM",
+      "slug": "custom-crm-erp-portal-website-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-startup-collateral-packages",
-      "name": "Startup Collateral Packages",
-      "slug": "startup-collateral-packages",
-      "sku": "PKG-STARTUP-CO",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 625,
-      "salePrice": 250,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "2 Stationery Design Set",
@@ -1251,31 +1253,31 @@
         "100% Satisfaction Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-startup-collateral-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Startup Collateral Packages | DIGENZ",
+      "name": "Startup Collateral Packages",
+      "price": 625,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 250,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Startup Collateral Packages | DIGENZ",
+      "sku": "PKG-STARTUP-CO",
+      "slug": "startup-collateral-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-collateral-classic-packages",
-      "name": "Collateral Classic Packages",
-      "slug": "collateral-classic-packages",
-      "sku": "PKG-COLLATERAL",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1563,
-      "salePrice": 625,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "2 Stationery Design Set",
@@ -1285,31 +1287,31 @@
         "100% Satisfaction Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-collateral-classic-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Collateral Classic Packages | DIGENZ",
+      "name": "Collateral Classic Packages",
+      "price": 1563,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 625,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Collateral Classic Packages | DIGENZ",
+      "sku": "PKG-COLLATERAL",
+      "slug": "collateral-classic-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-premium-collateral-packages",
-      "name": "Premium Collateral Packages",
-      "slug": "premium-collateral-packages",
-      "sku": "PKG-PREMIUM-CO",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 3125,
-      "salePrice": 1250,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "2 Stationery Design Set",
@@ -1319,31 +1321,31 @@
         "100% Satisfaction Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-premium-collateral-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Premium Collateral Packages | DIGENZ",
+      "name": "Premium Collateral Packages",
+      "price": 3125,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1250,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Premium Collateral Packages | DIGENZ",
+      "sku": "PKG-PREMIUM-CO",
+      "slug": "premium-collateral-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-unlimited-collateral-packages",
-      "name": "Unlimited Collateral Packages",
-      "slug": "unlimited-collateral-packages",
-      "sku": "PKG-UNLIMITED-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 6250,
-      "salePrice": 2500,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "2 Stationery Design Set",
@@ -1353,31 +1355,31 @@
         "100% Satisfaction Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-unlimited-collateral-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Unlimited Collateral Packages | DIGENZ",
+      "name": "Unlimited Collateral Packages",
+      "price": 6250,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 2500,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Unlimited Collateral Packages | DIGENZ",
+      "sku": "PKG-UNLIMITED-",
+      "slug": "unlimited-collateral-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-complete-branding-solution",
-      "name": "Complete Branding Solution",
-      "slug": "complete-branding-solution",
-      "sku": "PKG-COMPLETE-B",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 12500,
-      "salePrice": 5000,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for corporate companies.",
       "features": [
         "Unlimited Custom Logo Design Concepts",
@@ -1398,31 +1400,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee"
       ],
+      "id": "prod-complete-branding-solution",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Complete Branding Solution | DIGENZ",
+      "name": "Complete Branding Solution",
+      "price": 12500,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 5000,
       "seoDescription": "Suitable for corporate companies.",
+      "seoTitle": "Complete Branding Solution | DIGENZ",
+      "sku": "PKG-COMPLETE-B",
+      "slug": "complete-branding-solution",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-teaser-intro-video-package",
-      "name": "Teaser/Intro Video Package",
-      "slug": "teaser-intro-video-package",
-      "sku": "PKG-TEASER-INT",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 783,
-      "salePrice": 313,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "15s Duration - HD 1080",
@@ -1434,31 +1436,31 @@
         "Voice - Over &amp; Sound Effects (All accents) (M/F)",
         "Unlimited Revisions"
       ],
+      "id": "prod-teaser-intro-video-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Teaser/Intro Video Package | DIGENZ",
+      "name": "Teaser/Intro Video Package",
+      "price": 783,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 313,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Teaser/Intro Video Package | DIGENZ",
+      "sku": "PKG-TEASER-INT",
+      "slug": "teaser-intro-video-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-startup-video-package",
-      "name": "Startup Video Package",
-      "slug": "startup-video-package",
-      "sku": "PKG-STARTUP-VI",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1875,
-      "salePrice": 750,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "30s Duration - HD 1080",
@@ -1470,31 +1472,31 @@
         "Voice - Over &amp; Sound Effects (All accents) (M/F)",
         "Unlimited Revisions"
       ],
+      "id": "prod-startup-video-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Startup Video Package | DIGENZ",
+      "name": "Startup Video Package",
+      "price": 1875,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 750,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Startup Video Package | DIGENZ",
+      "sku": "PKG-STARTUP-VI",
+      "slug": "startup-video-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-classic-video-package",
-      "name": "Classic Video Package",
-      "slug": "classic-video-package",
-      "sku": "PKG-CLASSIC-VI",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 3750,
-      "salePrice": 1500,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "60 Second Video - HD 1080",
@@ -1506,31 +1508,31 @@
         "5 weeks Delivery",
         "Unlimited Revisions"
       ],
+      "id": "prod-classic-video-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Classic Video Package | DIGENZ",
+      "name": "Classic Video Package",
+      "price": 3750,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1500,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Classic Video Package | DIGENZ",
+      "sku": "PKG-CLASSIC-VI",
+      "slug": "classic-video-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-premium-video-package",
-      "name": "Premium Video Package",
-      "slug": "premium-video-package",
-      "sku": "PKG-PREMIUM-VI",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 7813,
-      "salePrice": 3125,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "90 Second Video - HD 1080",
@@ -1542,31 +1544,31 @@
         "6 Weeks Delivery",
         "Unlimited Revisions"
       ],
+      "id": "prod-premium-video-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Premium Video Package | DIGENZ",
+      "name": "Premium Video Package",
+      "price": 7813,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 3125,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Premium Video Package | DIGENZ",
+      "sku": "PKG-PREMIUM-VI",
+      "slug": "premium-video-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-deluxe-video-package",
-      "name": "Deluxe Video Package",
-      "slug": "deluxe-video-package",
-      "sku": "PKG-DELUXE-VID",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 15625,
-      "salePrice": 6250,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "120 Second Video - HD 1080",
@@ -1577,31 +1579,31 @@
         "Voice - Over &amp; Sound Effects",
         "Unlimited Revisions"
       ],
+      "id": "prod-deluxe-video-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Deluxe Video Package | DIGENZ",
+      "name": "Deluxe Video Package",
+      "price": 15625,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 6250,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Deluxe Video Package | DIGENZ",
+      "sku": "PKG-DELUXE-VID",
+      "slug": "deluxe-video-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-startup-seo-packages",
-      "name": "Startup SEO Packages",
-      "slug": "startup-seo-packages",
-      "sku": "PKG-STARTUP-SE",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 783,
-      "salePrice": 313,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "5 Keywords",
@@ -1631,31 +1633,31 @@
         "Monthly Action Plan",
         "Activity Report"
       ],
+      "id": "prod-startup-seo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Startup SEO Packages | DIGENZ",
+      "name": "Startup SEO Packages",
+      "price": 783,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 313,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Startup SEO Packages | DIGENZ",
+      "sku": "PKG-STARTUP-SE",
+      "slug": "startup-seo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-identity-seo-package",
-      "name": "Identity SEO Package",
-      "slug": "identity-seo-package",
-      "sku": "PKG-IDENTITY-S",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1563,
-      "salePrice": 625,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "10 Keywords",
@@ -1689,31 +1691,31 @@
         "Google Webmaster Tools Setup",
         "Google Analytics Setup &amp; Integration"
       ],
+      "id": "prod-identity-seo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Identity SEO Package | DIGENZ",
+      "name": "Identity SEO Package",
+      "price": 1563,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 625,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Identity SEO Package | DIGENZ",
+      "sku": "PKG-IDENTITY-S",
+      "slug": "identity-seo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-elite-seo-packages",
-      "name": "Elite SEO Packages",
-      "slug": "elite-seo-packages",
-      "sku": "PKG-ELITE-SEO-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 2813,
-      "salePrice": 1125,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "20 Keywords",
@@ -1747,31 +1749,31 @@
         "Blog Writing (2 - Per Month)",
         "Informational Content Writing &amp; Sharing (1 Per Month)"
       ],
+      "id": "prod-elite-seo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Elite SEO Packages | DIGENZ",
+      "name": "Elite SEO Packages",
+      "price": 2813,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1125,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Elite SEO Packages | DIGENZ",
+      "sku": "PKG-ELITE-SEO-",
+      "slug": "elite-seo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-professional-seo-packages",
-      "name": "Professional SEO Packages",
-      "slug": "professional-seo-packages",
-      "sku": "PKG-PROFESSION",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 4688,
-      "salePrice": 1875,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "30 Keywords",
@@ -1805,31 +1807,31 @@
         "Blog Writing (2 - Per Month)",
         "Informational Content Writing &amp; Sharing (1 Per Month)"
       ],
+      "id": "prod-professional-seo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Professional SEO Packages | DIGENZ",
+      "name": "Professional SEO Packages",
+      "price": 4688,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1875,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Professional SEO Packages | DIGENZ",
+      "sku": "PKG-PROFESSION",
+      "slug": "professional-seo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-social-startup-package",
-      "name": "Social Startup Package",
-      "slug": "social-startup-package",
-      "sku": "PKG-SOCIAL-STA",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 783,
-      "salePrice": 313,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "3 postings per week Facebook + Twitter + Instagram (Any Two)",
@@ -1840,31 +1842,31 @@
         "Monthly Progress report",
         "Copy Writing"
       ],
+      "id": "prod-social-startup-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Social Startup Package | DIGENZ",
+      "name": "Social Startup Package",
+      "price": 783,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 313,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Social Startup Package | DIGENZ",
+      "sku": "PKG-SOCIAL-STA",
+      "slug": "social-startup-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-social-scaling-package",
-      "name": "Social Scaling Package",
-      "slug": "social-scaling-package",
-      "sku": "PKG-SOCIAL-SCA",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 1563,
-      "salePrice": 625,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Copywriting & Visual designs",
@@ -1879,31 +1881,31 @@
         "Social Media Listening",
         "Query and comments reply"
       ],
+      "id": "prod-social-scaling-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Social Scaling Package | DIGENZ",
+      "name": "Social Scaling Package",
+      "price": 1563,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 625,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Social Scaling Package | DIGENZ",
+      "sku": "PKG-SOCIAL-SCA",
+      "slug": "social-scaling-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-social-venture-package",
-      "name": "Social Venture Package",
-      "slug": "social-venture-package",
-      "sku": "PKG-SOCIAL-VEN",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 2813,
-      "salePrice": 1125,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Copywriting & Visual designs",
@@ -1918,31 +1920,31 @@
         "Social Media Hearing",
         "Query and comments reply Enquire"
       ],
+      "id": "prod-social-venture-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Social Venture Package | DIGENZ",
+      "name": "Social Venture Package",
+      "price": 2813,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1125,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Social Venture Package | DIGENZ",
+      "sku": "PKG-SOCIAL-VEN",
+      "slug": "social-venture-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-basic-combo-packages",
-      "name": "Basic Combo Packages",
-      "slug": "basic-combo-packages",
-      "sku": "PKG-BASIC-COMB",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 2500,
-      "salePrice": 1000,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "5 Custom Logo Design Concepts",
@@ -1969,31 +1971,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-basic-combo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Basic Combo Packages | DIGENZ",
+      "name": "Basic Combo Packages",
+      "price": 2500,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1000,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Basic Combo Packages | DIGENZ",
+      "sku": "PKG-BASIC-COMB",
+      "slug": "basic-combo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-startup-combo-package",
-      "name": "Startup Combo Package",
-      "slug": "startup-combo-package",
-      "sku": "PKG-STARTUP-CO",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 4688,
-      "salePrice": 1875,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "Popular",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Unlimited Logo Design Concepts",
@@ -2018,31 +2020,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-startup-combo-package",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": true,
-      "badge": "Popular",
-      "seoTitle": "Startup Combo Package | DIGENZ",
+      "name": "Startup Combo Package",
+      "price": 4688,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 1875,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Startup Combo Package | DIGENZ",
+      "sku": "PKG-STARTUP-CO",
+      "slug": "startup-combo-package",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-professional-combo-packages",
-      "name": "Professional Combo Packages",
-      "slug": "professional-combo-packages",
-      "sku": "PKG-PROFESSION",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 9375,
-      "salePrice": 3750,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Unlimited Logo Concepts",
@@ -2077,31 +2079,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-professional-combo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Professional Combo Packages | DIGENZ",
+      "name": "Professional Combo Packages",
+      "price": 9375,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 3750,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Professional Combo Packages | DIGENZ",
+      "sku": "PKG-PROFESSION",
+      "slug": "professional-combo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-corporate-combo-packages",
-      "name": "Corporate Combo Packages",
-      "slug": "corporate-combo-packages",
-      "sku": "PKG-CORPORATE-",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 15625,
-      "salePrice": 6250,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Unlimited Logo Concepts",
@@ -2146,31 +2148,31 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-corporate-combo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Corporate Combo Packages | DIGENZ",
+      "name": "Corporate Combo Packages",
+      "price": 15625,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 6250,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Corporate Combo Packages | DIGENZ",
+      "sku": "PKG-CORPORATE-",
+      "slug": "corporate-combo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     },
     {
-      "id": "prod-elite-combo-packages",
-      "name": "Elite Combo Packages",
-      "slug": "elite-combo-packages",
-      "sku": "PKG-ELITE-COMB",
-      "categoryId": "cat-combo",
-      "subcategoryId": null,
-      "price": 31250,
-      "salePrice": 12500,
-      "stockQuantity": 999,
       "availability": "in_stock",
+      "badge": "",
+      "categoryId": "cat-combo",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "description": "Suitable for potential super-startups and brand revamps for companies.",
       "features": [
         "Complete Custom Design &amp; Development",
@@ -2199,49 +2201,57 @@
         "100% Unique Design Guarantee",
         "100% Money Back Guarantee *"
       ],
+      "id": "prod-elite-combo-packages",
       "images": [
         "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg"
       ],
-      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
-      "videoUrl": "",
-      "variants": [],
       "isFeatured": false,
-      "badge": "",
-      "seoTitle": "Elite Combo Packages | DIGENZ",
+      "name": "Elite Combo Packages",
+      "price": 31250,
+      "primaryImage": "/assets/images/serviceportfolio/webapp/thumbnail/t-1.jpg",
+      "salePrice": 12500,
       "seoDescription": "Suitable for potential super-startups and brand revamps for companies.",
+      "seoTitle": "Elite Combo Packages | DIGENZ",
+      "sku": "PKG-ELITE-COMB",
+      "slug": "elite-combo-packages",
       "status": "published",
-      "createdAt": "2026-01-15T00:00:00.000Z",
-      "updatedAt": "2026-10-29T16:00:00.000Z"
+      "stockQuantity": 999,
+      "subcategoryId": null,
+      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "variants": [],
+      "videoUrl": ""
     }
   ],
   "banners": [
     {
-      "id": "ban-hero-1",
-      "title": "TRANSFORMING VISIONS INTO DIGITAL TRIUMPHS",
-      "subtitle": "Enterprise web development, custom software architectures, and global branding.",
-      "buttonText": "DISCOVER SOLUTIONS",
       "buttonLink": "/packages/",
+      "buttonText": "DISCOVER SOLUTIONS",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "desktopImage": "/assets/images/banners/digenz-home-hero.png",
-      "mobileImage": "/assets/images/banners/digenz-home-hero.png",
       "displayOrder": 1,
+      "id": "ban-hero-1",
       "isActive": true,
-      "scheduleStart": "2026-01-01",
+      "mobileImage": "/assets/images/banners/digenz-home-hero.png",
       "scheduleEnd": "2026-12-31",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "scheduleStart": "2026-01-01",
+      "subtitle": "Enterprise web development, custom software architectures, and global branding.",
+      "title": "TRANSFORMING VISIONS INTO DIGITAL TRIUMPHS",
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     },
     {
-      "id": "ban-promo-75",
-      "title": "LIMITED TIME: 75% OFF ALL DIGITAL SERVICES",
-      "subtitle": "Use coupon code DIGENZ10 at checkout for an additional 10% instant discount.",
-      "buttonText": "GET INSTANT QUOTE",
       "buttonLink": "/get-a-quote/",
+      "buttonText": "GET INSTANT QUOTE",
+      "createdAt": "2026-01-15T00:00:00.000Z",
       "desktopImage": "/assets/images/banners/technology-banner.png",
-      "mobileImage": "/assets/images/popup-inner.png",
       "displayOrder": 2,
+      "id": "ban-promo-75",
       "isActive": true,
-      "scheduleStart": "2026-01-01",
+      "mobileImage": "/assets/images/popup-inner.png",
       "scheduleEnd": "2026-12-31",
-      "createdAt": "2026-01-15T00:00:00.000Z"
+      "scheduleStart": "2026-01-01",
+      "subtitle": "Use coupon code DIGENZ10 at checkout for an additional 10% instant discount.",
+      "title": "LIMITED TIME: 75% OFF ALL DIGITAL SERVICES",
+      "updatedAt": "2026-11-04T19:41:58.684Z"
     }
   ],
   "coupons": [
@@ -2299,44 +2309,44 @@
     "about": {
       "heroHeading": "Innovating Through Digital Mastery",
       "heroSubheading": "We engineer bespoke websites, software architectures, and creative brand identities for global leaders.",
-      "story": "DIGENZ was founded on a simple premise: delivering uncompromising digital excellence with rapid turnarounds and dedicated engineering expertise. We partner with fast-growing startups and established corporations to deliver measurable growth.",
       "mission": "To empower brands worldwide through digital innovation, creative artistry, and cutting-edge web technology.",
+      "story": "DIGENZ was founded on a simple premise: delivering uncompromising digital excellence with rapid turnarounds and dedicated engineering expertise. We partner with fast-growing startups and established corporations to deliver measurable growth.",
       "vision": "Becoming the world’s most trusted full-service digital and freelancing agency."
     },
     "contact": {
-      "email": "contact@digenz.com",
-      "salesEmail": "digenzdigital",
-      "phone": "+1 (213) 221-2849",
-      "alternatePhone": "03190039048",
       "address": "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ",
-      "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM EST | 24/7 Priority Emergency Support"
+      "alternatePhone": "03190039048",
+      "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM EST | 24/7 Priority Emergency Support",
+      "email": "contact@digenz.com",
+      "phone": "+1 (213) 221-2849",
+      "salesEmail": "digenzdigital"
     },
-    "faqs": [
-      {
+    "faqs": {
+      "0": {
         "id": "faq-1",
         "category": "Services",
         "question": "What is included in the DIGENZ web development packages?",
         "answer": "All our web packages include custom responsive frontend design, modern mobile-first styling, lead generation forms, clean semantic code, basic on-page SEO, source code ownership, and 30-90 days of technical support."
       },
-      {
+      "1": {
         "id": "faq-2",
         "category": "Ordering",
         "question": "How fast can DIGENZ deliver a new project?",
         "answer": "Logo packages are delivered within 24 to 48 hours. Standard 5-page websites take 3 to 7 business days, while enterprise web applications and custom ecommerce portals take 2 to 4 weeks depending on specifications."
       },
-      {
+      "2": {
         "id": "faq-3",
         "category": "Copyright",
         "question": "Do I own 100% of the rights to the designs and source code?",
         "answer": "Yes! Upon final approval and project completion, 100% full commercial copyright, source code, and design assets belong entirely to you with no hidden licensing fees."
       },
-      {
+      "3": {
         "id": "faq-4",
         "category": "Refunds",
         "question": "What is the DIGENZ refund policy?",
         "answer": "We offer a 100% satisfaction guarantee. If initial concepts do not align with your design brief before subsequent revision cycles, you are eligible for a prompt refund per our Refund Policy."
       }
-    ],
+    },
     "privacy": {
       "lastUpdated": "January 2026",
       "summary": "DIGENZ respects your personal privacy. We do not sell, rent, or trade your personal or financial information to third parties. All client communications and project files are encrypted and confidential."
@@ -2350,7 +2360,6 @@
       "summary": "Clients may request revisions or a refund prior to approving final project deliverables. Once source files are delivered or deployed to live production servers, project milestones are considered accepted."
     },
     "footer": {
-      "tagline": "DIGENZ is an elite digital creative agency delivering premier web development, corporate branding, mobile applications, and strategic search optimization.",
       "copyright": "Copyright © 2026 DIGENZ. All Rights Reserved.",
       "socialLinks": {
         "facebook": "https://facebook.com/digenz",
@@ -2358,10 +2367,87 @@
         "linkedin": "https://linkedin.com/company/digenz",
         "instagram": "https://instagram.com/digenz.agency",
         "github": "https://github.com/digenz"
-      }
+      },
+      "tagline": "DIGENZ is an elite digital creative agency delivering premier web development, corporate branding, mobile applications, and strategic search optimization."
     }
   },
   "navigation": {
+    "footerColumns": [
+      {
+        "id": "col-services",
+        "title": "Core Services",
+        "links": [
+          {
+            "label": "Website Design",
+            "url": "/custom-website-design/"
+          },
+          {
+            "label": "Web Applications",
+            "url": "/web-application-development/"
+          },
+          {
+            "label": "Ecommerce Stores",
+            "url": "/ecommerce-website-development/"
+          },
+          {
+            "label": "Branding & Monograms",
+            "url": "/branding/"
+          },
+          {
+            "label": "Video Animation",
+            "url": "/video-animation/"
+          },
+          {
+            "label": "SEO Marketing",
+            "url": "/seo/"
+          }
+        ]
+      },
+      {
+        "id": "col-company",
+        "title": "Company",
+        "links": [
+          {
+            "label": "About DIGENZ",
+            "url": "/about/"
+          },
+          {
+            "label": "Packages & Pricing",
+            "url": "/packages/"
+          },
+          {
+            "label": "Client Portfolio",
+            "url": "/portfolio/"
+          },
+          {
+            "label": "Contact Us",
+            "url": "/contact-us/"
+          },
+          {
+            "label": "Get a Quote",
+            "url": "/get-a-quote/"
+          }
+        ]
+      },
+      {
+        "id": "col-legal",
+        "title": "Legal & Policy",
+        "links": [
+          {
+            "label": "Privacy Policy",
+            "url": "/privacy-policy/"
+          },
+          {
+            "label": "Terms & Conditions",
+            "url": "/terms-conditions/"
+          },
+          {
+            "label": "Refund Policy",
+            "url": "/refund.html"
+          }
+        ]
+      }
+    ],
     "headerLinks": [
       {
         "id": "nav-home",
@@ -2442,92 +2528,16 @@
         "order": 7,
         "isVisible": true
       }
-    ],
-    "footerColumns": [
-      {
-        "id": "col-services",
-        "title": "Core Services",
-        "links": [
-          {
-            "label": "Website Design",
-            "url": "/custom-website-design/"
-          },
-          {
-            "label": "Web Applications",
-            "url": "/web-application-development/"
-          },
-          {
-            "label": "Ecommerce Stores",
-            "url": "/ecommerce-website-development/"
-          },
-          {
-            "label": "Branding & Monograms",
-            "url": "/branding/"
-          },
-          {
-            "label": "Video Animation",
-            "url": "/video-animation/"
-          },
-          {
-            "label": "SEO Marketing",
-            "url": "/seo/"
-          }
-        ]
-      },
-      {
-        "id": "col-company",
-        "title": "Company",
-        "links": [
-          {
-            "label": "About DIGENZ",
-            "url": "/about/"
-          },
-          {
-            "label": "Packages & Pricing",
-            "url": "/packages/"
-          },
-          {
-            "label": "Client Portfolio",
-            "url": "/portfolio/"
-          },
-          {
-            "label": "Contact Us",
-            "url": "/contact-us/"
-          },
-          {
-            "label": "Get a Quote",
-            "url": "/get-a-quote/"
-          }
-        ]
-      },
-      {
-        "id": "col-legal",
-        "title": "Legal & Policy",
-        "links": [
-          {
-            "label": "Privacy Policy",
-            "url": "/privacy-policy/"
-          },
-          {
-            "label": "Terms & Conditions",
-            "url": "/terms-conditions/"
-          },
-          {
-            "label": "Refund Policy",
-            "url": "/refund.html"
-          }
-        ]
-      }
     ]
   },
   "seo": {
-    "homeTitle": "DIGENZ — Digital • Creative • Services | Web Development & Branding Agency",
+    "canonicalUrl": "https://www.digenzstore.com/",
     "homeDescription": "DIGENZ is a premier freelancing and digital agency specializing in custom web design, software development, corporate branding, and creative solutions.",
-    "ogTitle": "DIGENZ — Digital • Creative • Services",
+    "homeTitle": "DIGENZ — Digital • Creative • Services | Web Development & Branding Agency",
+    "keywords": "DIGENZ, web development, custom software, digital agency, corporate branding, logo design, ecommerce, SEO",
     "ogDescription": "Top-tier web engineering, corporate identity design, and digital marketing services for forward-thinking brands.",
     "ogImage": "/assets/images/digenz-logo-dark.png",
-    "canonicalUrl": "https://www.digenzstore.com/",
-    "keywords": "DIGENZ, web development, custom software, digital agency, corporate branding, logo design, ecommerce, SEO",
+    "ogTitle": "DIGENZ — Digital • Creative • Services",
     "sitemapEnabled": true
   },
   "settings": {
@@ -2540,17 +2550,53 @@
     "currencyCode": "USD",
     "taxRate": 0,
     "announcementBar": {
-      "isEnabled": false,
-      "text": "",
+      "buttonLink": "",
       "buttonText": "",
-      "buttonLink": ""
+      "isEnabled": false,
+      "text": ""
     },
     "maintenanceMode": false,
-    "supportEmail": "support@digenz.com",
+    "supportEmail": "support@digendigital.com",
     "supportPhone": "03190039048",
     "enablePublicQuotes": true
   },
   "auditLogs": [
+    {
+      "id": "log-1793826943055-741",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-04T21:15:43.055Z"
+    },
+    {
+      "id": "log-1793826941372-6",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_PRODUCT",
+      "module": "Products",
+      "details": "Updated product \"Startup Logo Package\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-04T21:15:41.372Z"
+    },
+    {
+      "id": "log-1793826940590-370",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-04T21:15:40.590Z"
+    },
+    {
+      "id": "log-1793826842705-399",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-04T21:14:02.705Z"
+    },
     {
       "id": "log-1793400909914-516",
       "adminEmail": "admin@digenz.com",
@@ -3570,12 +3616,13 @@
     }
   ],
   "syncState": {
-    "lastUpdated": 1793455094618,
-    "version": 5,
+    "version": 6,
+    "lastUpdated": 1793826942614,
+    "lastModule": "settings",
     "modules": [
-      "init",
-      "products"
-    ],
-    "lastModule": "products"
+      "admins",
+      "products",
+      "settings"
+    ]
   }
 }

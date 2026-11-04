@@ -389,6 +389,18 @@ let cachedMongoClient = null;
 let cachedMongoDb = null;
 let indexesInitialized = false;
 
+function resolveDatabaseName(mongoUri) {
+  if (process.env.MONGODB_DB_NAME) return process.env.MONGODB_DB_NAME;
+  if (mongoUri) {
+    try {
+      const parsed = new URL(mongoUri);
+      const pathDb = parsed.pathname ? parsed.pathname.replace(/^\//, '').split('?')[0] : '';
+      if (pathDb) return pathDb;
+    } catch (e) {}
+  }
+  return 'digendigital';
+}
+
 async function getMongoDatabase() {
   const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
   if (!mongoUri) return null;
@@ -424,7 +436,7 @@ async function getMongoDatabase() {
     });
 
     await client.connect();
-    const dbName = process.env.MONGODB_DB_NAME || 'digenzstore';
+    const dbName = resolveDatabaseName(mongoUri);
     const db = client.db(dbName);
     cachedMongoClient = client;
     cachedMongoDb = db;
@@ -1072,7 +1084,14 @@ class Database {
     // 1. Write local JSON fallback
     this.saveToLocalFile();
     // 2. Await MongoDB Atlas write confirmation
-    const mongoSuccess = await this.syncToMongoDB(moduleName);
+    const isConfigured = Boolean(process.env.MONGODB_URI || process.env.MONGO_URL);
+    if (isConfigured) {
+      const mongoSuccess = await this.syncToMongoDB(moduleName);
+      if (!mongoSuccess) {
+        console.error(`[DB Error] Failed to persist ${moduleName || 'data'} to MongoDB Atlas!`);
+        return false;
+      }
+    }
     return true;
   }
 
@@ -1097,7 +1116,8 @@ class Database {
     if (updatedFields.announcementBar !== undefined) clean.announcementBar = updatedFields.announcementBar;
 
     this.data.settings = { ...this.data.settings, ...clean };
-    await this.save('settings', true);
+    const saved = await this.save('settings', true);
+    if (!saved) return null;
     return this.data.settings;
   }
 
@@ -1154,9 +1174,9 @@ class Database {
 
   getDatabaseInfo() {
     const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URL;
-    const dbName = process.env.MONGODB_DB_NAME || 'digenzstore';
+    const dbName = resolveDatabaseName(mongoUri);
     return {
-      authoritativeSource: mongoUri ? `MongoDB Atlas (${dbName})` : 'Atomic JSON Engine (Local Persistent)',
+      authoritativeSource: cachedMongoDb ? `MongoDB Atlas (${dbName})` : (mongoUri ? `MongoDB Atlas Connecting (${dbName})` : 'Atomic JSON Engine (Local Persistent)'),
       isMongoConfigured: Boolean(mongoUri),
       databaseName: dbName,
       connectionStatus: cachedMongoDb ? 'connected' : (mongoUri ? 'connecting_or_idle' : 'unconfigured'),
