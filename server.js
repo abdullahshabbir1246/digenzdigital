@@ -1,3 +1,158 @@
+
+// =========================================================================
+// AUTHORITATIVE SERVICES INJECTOR (Single Source of Truth: MongoDB Atlas)
+// =========================================================================
+function resolveCategoryUrl(cat) {
+  if (!cat) return '/packages/index.html';
+  if (cat.url && (cat.url.startsWith('/') || cat.url.startsWith('http'))) return cat.url;
+  const slug = (cat.slug || '').replace(/^\/+|\/+$/g, '').toLowerCase();
+  
+  const routeMap = {
+    'logo-design': '/branding/index.html',
+    'branding': '/branding/index.html',
+    'corporate-branding': '/branding/index.html',
+    'custom-website-design': '/custom-website-design/index.html',
+    'web-design': '/custom-website-design/index.html',
+    'wordpress-development': '/wordpress-development/index.html',
+    'ecommerce-website-development': '/ecommerce-website-development/index.html',
+    'ecommerce-solutions': '/ecommerce-website-development/index.html',
+    'web-application-development': '/web-application-development/index.html',
+    'backend-development': '/backend-development/index.html',
+    'mobile-application': '/mobile-application/index.html',
+    'mobile-app-development': '/mobile-application/index.html',
+    'website-maintenace': '/website-maintenace/index.html',
+    'website-maintenance': '/website-maintenace/index.html',
+    'domain-and-hosting': '/domain-and-hosting/index.html',
+    'video-animation': '/video-animation/index.html',
+    'seo': '/seo/index.html',
+    'search-engine-optimization': '/seo/index.html',
+    'smm': '/smm/index.html',
+    'social-media-marketing': '/smm/index.html',
+    'combo-packages': '/packages/index.html'
+  };
+
+  if (routeMap[slug]) return routeMap[slug];
+  if (slug.startsWith('http://') || slug.startsWith('https://')) return slug;
+  return '/' + (slug || 'packages') + '/index.html';
+}
+
+function resolveCategoryIcon(c) {
+  if (c.image && (c.image.includes('.svg') || c.image.includes('.png') || c.image.includes('.webp'))) {
+    return c.image;
+  }
+  const slug = (c.slug || '').toLowerCase();
+  const name = (c.name || '').toLowerCase();
+  if (slug.includes('logo') || name.includes('logo')) return 'assets/images/service-icons/business-branding.svg';
+  if (slug.includes('wordpress') || name.includes('wordpress')) return 'assets/images/service-icons/wordpress.svg';
+  if (slug.includes('ecom') || name.includes('ecom')) return 'assets/images/service-icons/ecommerce.svg';
+  if (slug.includes('custom-web') || name.includes('web design')) return 'assets/images/service-icons/custom-website.svg';
+  if (slug.includes('web-app') || name.includes('web app')) return 'assets/images/service-icons/web-app.svg';
+  if (slug.includes('backend') || name.includes('backend')) return 'assets/images/service-icons/backend.svg';
+  if (slug.includes('mobile') || name.includes('mobile')) return 'assets/images/service-icons/mobile-app.svg';
+  if (slug.includes('maint') || name.includes('maint')) return 'assets/images/service-icons/website-maintenance.svg';
+  if (slug.includes('domain') || slug.includes('host') || name.includes('host')) return 'assets/images/service-icons/domain-hosting.svg';
+  if (slug.includes('brand') || name.includes('brand')) return 'assets/images/service-icons/business-branding.svg';
+  if (slug.includes('anim') || slug.includes('video') || name.includes('video')) return 'assets/images/service-icons/video-animation.svg';
+  if (slug.includes('seo') || name.includes('seo') || name.includes('search engine')) return 'assets/images/service-icons/seo.svg';
+  if (slug.includes('combo') || name.includes('combo')) return 'assets/images/service-icons/custom-website.svg';
+  return 'assets/images/service-icons/custom-website.svg';
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function generateServicesHtml(categories, type) {
+  const activeCats = (categories || [])
+    .filter(c => c && c.status === 'active')
+    .sort((a, b) => (Number(a.displayOrder) || 99) - (Number(b.displayOrder) || 99));
+
+  if (type === 'desktop') {
+    const navCats = activeCats.filter(c => c.showInNav !== false);
+    return navCats.map(c => `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`).join('\n                    ');
+  }
+
+  if (type === 'mobile') {
+    const navCats = activeCats.filter(c => c.showInNav !== false);
+    return navCats.map(c => `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`).join('\n          ');
+  }
+
+  if (type === 'home-icons') {
+    const homeCats = activeCats.filter(c => c.showOnHome !== false);
+    return homeCats.map(c => {
+      const url = resolveCategoryUrl(c);
+      const icon = resolveCategoryIcon(c);
+      const formattedTitle = escapeHtml(c.name).replace(/\s+(development|branding|animation|optimization|solutions|packages)/i, ' <br> $1');
+      return `          <li>
+            <a href="${url}">
+              <figure class="develp">
+                <img src="${icon}" alt="${escapeHtml(c.name)}" class="service-icon-svg" width="48" height="48" loading="lazy">
+              </figure>
+              <div class="textwrap">
+                <h4>${formattedTitle}</h4>
+              </div>
+            </a>
+          </li>`;
+    }).join('\n');
+  }
+
+  if (type === 'footer') {
+    const navCats = activeCats.filter(c => c.showInNav !== false);
+    const half = Math.ceil(navCats.length / 2);
+    const col1 = navCats.slice(0, half);
+    const col2 = navCats.slice(half);
+    return {
+      col1: col1.map(c => `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`).join('\n            '),
+      col2: col2.map(c => `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`).join('\n            ')
+    };
+  }
+}
+
+function injectAuthoritativeServices(htmlStr, categories) {
+  if (!htmlStr || !Array.isArray(categories) || categories.length === 0) return htmlStr;
+
+  // 1. Desktop dropdown: replace contents between <div class="dropdown"> ... <ul> ... </ul> ... </div>
+  const desktopHtml = generateServicesHtml(categories, 'desktop');
+  htmlStr = htmlStr.replace(
+    /(<div class="dropdown">[\s\S]*?<ul>)[\s\S]*?(<\/ul>[\s\S]*?<\/div>)/i,
+    `$1\n                    ${desktopHtml}\n                  $2`
+  );
+
+  // 2. Mobile nav: replace contents of <ul class="firstlevel unstyled">...</ul>
+  const mobileHtml = generateServicesHtml(categories, 'mobile');
+  htmlStr = htmlStr.replace(
+    /(<ul class="firstlevel unstyled">)[\s\S]*?(<\/ul>)/i,
+    `$1\n          ${mobileHtml}\n        $2`
+  );
+
+  // 3. Homepage services grid: replace contents of <ul class="listboxes serviceicons">...</ul>
+  if (htmlStr.includes('serviceicons')) {
+    const homeHtml = generateServicesHtml(categories, 'home-icons');
+    htmlStr = htmlStr.replace(
+      /(<ul class="listboxes serviceicons">)[\s\S]*?(<\/ul>)/i,
+      `$1\n${homeHtml}\n        $2`
+    );
+  }
+
+  // 4. Footer services:
+  const footerData = generateServicesHtml(categories, 'footer');
+  htmlStr = htmlStr.replace(
+    /(<h3 class="xsmtpx-30">SERVICES<\/h3>[\s\S]*?<ul class="linkinglist">)[\s\S]*?(<\/ul>)/i,
+    `$1\n            ${footerData.col1}\n          $2`
+  );
+  htmlStr = htmlStr.replace(
+    /(<h3 class="xshide nobrder">&nbsp;&nbsp;&nbsp;<\/h3>[\s\S]*?<ul class="linkinglist">)[\s\S]*?(<\/ul>)/i,
+    `$1\n            ${footerData.col2}\n          $2`
+  );
+
+  return htmlStr;
+}
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -1461,15 +1616,20 @@ const server = http.createServer(async (req, res) => {
     let contentType = MIME_TYPES[ext] || 'application/octet-stream';
     if (reqPath === '/css') contentType = 'text/css; charset=utf-8';
 
-    const content = fs.readFileSync(filePath);
-    const etag = `"${crypto.createHash('md5').update(content).digest('hex')}"`;
-
+    let content = fs.readFileSync(filePath);
     let cacheControl = 'public, max-age=86400, stale-while-revalidate=604800';
     if (ext === '.html' || ext === '.htm') {
-      cacheControl = 'public, max-age=0, must-revalidate';
+      let htmlStr = content.toString('utf8');
+      if (db.data && Array.isArray(db.data.categories) && db.data.categories.length > 0) {
+        htmlStr = injectAuthoritativeServices(htmlStr, db.data.categories);
+      }
+      content = Buffer.from(htmlStr, 'utf8');
+      cacheControl = 'no-cache, no-store, must-revalidate, max-age=0';
     } else if (['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico', '.woff', '.woff2', '.ttf'].includes(ext)) {
       cacheControl = 'public, max-age=31536000, immutable';
     }
+
+    const etag = `"${crypto.createHash('md5').update(content).digest('hex')}"`;
 
     // ETag 304 validation
     if (req.headers['if-none-match'] === etag) {

@@ -556,20 +556,155 @@
     }
   }
 
+    // Helper: Escape HTML characters safely
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Helper: Resolve proper URL for category
+  function resolveCategoryUrl(cat) {
+    if (!cat) return '/packages/index.html';
+    if (cat.url && (cat.url.startsWith('/') || cat.url.startsWith('http'))) return cat.url;
+    const slug = (cat.slug || '').replace(/^\/+|\/+$/g, '').toLowerCase();
+    const routeMap = {
+      'logo-design': '/branding/index.html',
+      'branding': '/branding/index.html',
+      'corporate-branding': '/branding/index.html',
+      'custom-website-design': '/custom-website-design/index.html',
+      'web-design': '/custom-website-design/index.html',
+      'wordpress-development': '/wordpress-development/index.html',
+      'ecommerce-website-development': '/ecommerce-website-development/index.html',
+      'ecommerce-solutions': '/ecommerce-website-development/index.html',
+      'web-application-development': '/web-application-development/index.html',
+      'backend-development': '/backend-development/index.html',
+      'mobile-application': '/mobile-application/index.html',
+      'mobile-app-development': '/mobile-application/index.html',
+      'website-maintenace': '/website-maintenace/index.html',
+      'website-maintenance': '/website-maintenace/index.html',
+      'domain-and-hosting': '/domain-and-hosting/index.html',
+      'video-animation': '/video-animation/index.html',
+      'seo': '/seo/index.html',
+      'search-engine-optimization': '/seo/index.html',
+      'smm': '/smm/index.html',
+      'social-media-marketing': '/smm/index.html',
+      'combo-packages': '/packages/index.html'
+    };
+    if (routeMap[slug]) return routeMap[slug];
+    if (slug.startsWith('http://') || slug.startsWith('https://')) return slug;
+    return '/' + (slug || 'packages') + '/index.html';
+  }
+
+  // Helper: Resolve service icon for category
+  function resolveCategoryIcon(c) {
+    if (c.image && (c.image.includes('.svg') || c.image.includes('.png') || c.image.includes('.webp'))) {
+      return c.image;
+    }
+    const slug = (c.slug || '').toLowerCase();
+    const name = (c.name || '').toLowerCase();
+    if (slug.includes('logo') || name.includes('logo')) return 'assets/images/service-icons/business-branding.svg';
+    if (slug.includes('wordpress') || name.includes('wordpress')) return 'assets/images/service-icons/wordpress.svg';
+    if (slug.includes('ecom') || name.includes('ecom')) return 'assets/images/service-icons/ecommerce.svg';
+    if (slug.includes('custom-web') || name.includes('web design')) return 'assets/images/service-icons/custom-website.svg';
+    if (slug.includes('web-app') || name.includes('web app')) return 'assets/images/service-icons/web-app.svg';
+    if (slug.includes('backend') || name.includes('backend')) return 'assets/images/service-icons/backend.svg';
+    if (slug.includes('mobile') || name.includes('mobile')) return 'assets/images/service-icons/mobile-app.svg';
+    if (slug.includes('maint') || name.includes('maint')) return 'assets/images/service-icons/website-maintenance.svg';
+    if (slug.includes('domain') || slug.includes('host') || name.includes('host')) return 'assets/images/service-icons/domain-hosting.svg';
+    if (slug.includes('brand') || name.includes('brand')) return 'assets/images/service-icons/business-branding.svg';
+    if (slug.includes('anim') || slug.includes('video') || name.includes('video')) return 'assets/images/service-icons/video-animation.svg';
+    if (slug.includes('seo') || name.includes('seo') || name.includes('search engine')) return 'assets/images/service-icons/seo.svg';
+    if (slug.includes('combo') || name.includes('combo')) return 'assets/images/service-icons/custom-website.svg';
+    return 'assets/images/service-icons/custom-website.svg';
+  }
+
   // =========================================================================
-  // 3B. DYNAMIC CATEGORIES & SERVICES SYNCHRONIZER
+  // 3B. DYNAMIC CATEGORIES & SERVICES SYNCHRONIZER (Atlas Single Source of Truth)
   // =========================================================================
   function syncCategories(categories) {
     if (!Array.isArray(categories) || categories.length === 0) return;
-    const servicesDropdown = document.querySelector('.main-menu .dropdown ul');
+    const activeCats = categories
+      .filter(c => c && c.status === 'active')
+      .sort((a, b) => (Number(a.displayOrder) || 99) - (Number(b.displayOrder) || 99));
+
+    // A. Desktop Navigation Dropdown
+    const servicesDropdown = document.querySelector('.main-menu .dropdown ul, [data-services-container="desktop"]');
     if (servicesDropdown) {
-      const activeCats = categories.filter(c => c.status === 'active' && c.showInNav);
-      if (activeCats.length > 0) {
-        servicesDropdown.innerHTML = activeCats.map(c => 
-          `<li><a href="${c.slug.startsWith('/') ? c.slug : ('/' + c.slug + '/index.html')}">${c.name}</a></li>`
-        ).join('');
+      const navCats = activeCats.filter(c => c.showInNav !== false);
+      const newHtml = navCats.map(c => 
+        `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`
+      ).join('\n                    ');
+      if (servicesDropdown.innerHTML.trim() !== newHtml.trim()) {
+        servicesDropdown.innerHTML = newHtml;
       }
     }
+
+    // B. Mobile Navigation Dropdown
+    const mobileDropdown = document.querySelector('.mobile-nav .firstlevel, [data-services-container="mobile"]');
+    if (mobileDropdown) {
+      const navCats = activeCats.filter(c => c.showInNav !== false);
+      const newMobileHtml = navCats.map(c => 
+        `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`
+      ).join('\n          ');
+      if (mobileDropdown.innerHTML.trim() !== newMobileHtml.trim()) {
+        mobileDropdown.innerHTML = newMobileHtml;
+      }
+    }
+
+    // C. Homepage Services Icons Grid
+    const homeIcons = document.querySelector('ul.listboxes.serviceicons, [data-services-container="home-icons"]');
+    if (homeIcons) {
+      const homeCats = activeCats.filter(c => c.showOnHome !== false);
+      const newIconsHtml = homeCats.map(c => {
+        const url = resolveCategoryUrl(c);
+        const icon = resolveCategoryIcon(c);
+        const formattedTitle = escapeHtml(c.name).replace(/\s+(development|branding|animation|optimization|solutions|packages)/i, ' <br> $1');
+        return `          <li>
+            <a href="${url}">
+              <figure class="develp">
+                <img src="${icon}" alt="${escapeHtml(c.name)}" class="service-icon-svg" width="48" height="48" loading="lazy">
+              </figure>
+              <div class="textwrap">
+                <h4>${formattedTitle}</h4>
+              </div>
+            </a>
+          </li>`;
+      }).join('\n');
+      if (homeIcons.innerHTML.trim() !== newIconsHtml.trim()) {
+        homeIcons.innerHTML = newIconsHtml;
+      }
+    }
+
+    // D. Footer Services Columns
+    const footerHeaders = document.querySelectorAll('h3');
+    let serviceHeader = null;
+    footerHeaders.forEach(h => {
+      if (h.textContent.trim().toUpperCase() === 'SERVICES') serviceHeader = h;
+    });
+    if (serviceHeader) {
+      const col1Parent = serviceHeader.closest('.col-md-2, .offset-md-1');
+      const col1Ul = col1Parent ? col1Parent.querySelector('ul.linkinglist') : null;
+      const col2Parent = col1Parent ? col1Parent.nextElementSibling : null;
+      const col2Ul = col2Parent ? col2Parent.querySelector('ul.linkinglist') : null;
+      const navCats = activeCats.filter(c => c.showInNav !== false);
+      const half = Math.ceil(navCats.length / 2);
+      const col1Cats = navCats.slice(0, half);
+      const col2Cats = navCats.slice(half);
+
+      if (col1Ul) {
+        const newCol1 = col1Cats.map(c => `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`).join('\n            ');
+        if (col1Ul.innerHTML.trim() !== newCol1.trim()) col1Ul.innerHTML = newCol1;
+      }
+      if (col2Ul) {
+        const newCol2 = col2Cats.map(c => `<li><a href="${resolveCategoryUrl(c)}">${escapeHtml(c.name)}</a></li>`).join('\n            ');
+        if (col2Ul.innerHTML.trim() !== newCol2.trim()) col2Ul.innerHTML = newCol2;
+      }
+    }
+  }
   }
 
   // =========================================================================

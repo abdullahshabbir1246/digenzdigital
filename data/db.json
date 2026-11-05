@@ -4,7 +4,7 @@
       "createdAt": "2026-01-01T00:00:00.000Z",
       "email": "admin@digenz.com",
       "id": "adm-001",
-      "lastLogin": "2026-11-04T21:15:40.394Z",
+      "lastLogin": "2026-11-05T20:19:54.868Z",
       "name": "DIGENZ Admin",
       "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
       "role": "superadmin",
@@ -2303,8 +2303,64 @@
       "createdAt": "2026-01-01T00:00:00.000Z"
     }
   ],
-  "customers": [],
-  "orders": [],
+  "customers": [
+    {
+      "id": "cust-1793907557270",
+      "name": "Test Lead",
+      "email": "lead@digenz.com",
+      "phone": "",
+      "company": "",
+      "address": "",
+      "city": "",
+      "country": "Pakistan",
+      "status": "active",
+      "totalOrders": 1,
+      "totalSpent": 0,
+      "createdAt": "2026-11-05T19:39:17.270Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-1793907557270",
+      "orderNumber": "DGZ-LEAD-441474",
+      "customerId": "cust-1793907557270",
+      "customer": {
+        "name": "Test Lead",
+        "email": "lead@digenz.com",
+        "phone": "",
+        "address": "",
+        "city": "",
+        "country": "Pakistan"
+      },
+      "items": [
+        {
+          "productId": "custom-quote",
+          "name": "Branding",
+          "price": 0,
+          "quantity": 1
+        }
+      ],
+      "subtotal": 0,
+      "couponCode": "",
+      "discount": 0,
+      "tax": 0,
+      "total": 0,
+      "status": "pending",
+      "paymentStatus": "unpaid",
+      "paymentMethod": "Custom Quote / Direct Contact",
+      "trackingNumber": "",
+      "courier": "",
+      "internalNotes": [
+        {
+          "note": "Inquiry Message: Test verification lead",
+          "author": "System / Website Form",
+          "date": "2026-11-05T19:39:17.271Z"
+        }
+      ],
+      "createdAt": "2026-11-05T19:39:17.271Z",
+      "updatedAt": "2026-11-05T19:39:17.271Z"
+    }
+  ],
   "content": {
     "about": {
       "heroHeading": "Innovating Through Digital Mastery",
@@ -2561,6 +2617,123 @@
     "enablePublicQuotes": true
   },
   "auditLogs": [
+    {
+      "id": "log-1793909994876-288",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-05T20:19:54.876Z"
+    },
+    {
+      "id": "log-1793909960551-48",
+      "adminEmail": "admin@digenz.com",
+      "action": "DELETE_CATEGORY",
+      "module": "Categories",
+      "details": "Deleted category \"Cloud DevOps & Architecture TEST\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:19:20.551Z"
+    },
+    {
+      "id": "log-1793909960429-770",
+      "adminEmail": "admin@digenz.com",
+      "action": "CREATE_CATEGORY",
+      "module": "Categories",
+      "details": "Created category \"Cloud DevOps & Architecture TEST\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:19:20.429Z"
+    },
+    {
+      "id": "log-1793909960406-869",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:19:20.406Z"
+    },
+    {
+      "id": "log-1793909761381-806",
+      "adminEmail": "admin@digenz.com",
+      "action": "CREATE_CATEGORY",
+      "module": "Categories",
+      "details": "Created category \"Cloud DevOps & Architecture TEST\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:16:01.381Z"
+    },
+    {
+      "id": "log-1793909761355-742",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:16:01.355Z"
+    },
+    {
+      "id": "log-1793909672529-429",
+      "adminEmail": "admin@digenz.com",
+      "action": "CREATE_CATEGORY",
+      "module": "Categories",
+      "details": "Created category \"Cloud DevOps & Architecture TEST\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:14:32.530Z"
+    },
+    {
+      "id": "log-1793909672501-594",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-05T20:14:32.501Z"
+    },
+    {
+      "id": "log-1793909625363-585",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-05T20:13:45.363Z"
+    },
+    {
+      "id": "log-1793909544307-500",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-05T20:12:24.307Z"
+    },
+    {
+      "id": "log-1793909461065-230",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-05T20:11:01.065Z"
+    },
+    {
+      "id": "log-1793907557273-494",
+      "adminEmail": "website-visitor",
+      "action": "LEAD_SUBMISSION",
+      "module": "Orders",
+      "details": "New lead received from Test Lead (lead@digenz.com) for Branding",
+      "ip": "::1",
+      "timestamp": "2026-11-05T19:39:17.273Z"
+    },
+    {
+      "id": "log-1793907557249-546",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-05T19:39:17.250Z"
+    },
     {
       "id": "log-1793826943055-741",
       "adminEmail": "admin@digenz.com",
@@ -3616,13 +3789,15 @@
     }
   ],
   "syncState": {
-    "version": 6,
-    "lastUpdated": 1793826942614,
-    "lastModule": "settings",
+    "version": 19,
+    "lastUpdated": 1793909994869,
+    "lastModule": "admins",
     "modules": [
       "admins",
       "products",
-      "settings"
+      "settings",
+      "orders",
+      "categories"
     ]
   }
 }

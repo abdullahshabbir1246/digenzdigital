@@ -6444,3 +6444,24 @@ ul.slick-dots,
     padding: 0 !important;
     pointer-events: none !important;
 }
+
+
+/* DIGENZ Dynamic Authoritative Services Skeleton & Loading State */
+.digenz-services-skeleton {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+}
+.digenz-services-skeleton-item {
+    height: 18px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06) 25%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.06) 75%);
+    background-size: 200% 100%;
+    animation: digenzShimmer 1.5s infinite;
+    border-radius: 4px;
+    width: 80%;
+}
+@keyframes digenzShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
