@@ -108,7 +108,7 @@ $(document).ready(function() {
 
 
    $(".pckkslider").slick({
-        dots: true,
+        dots: false,
         arrows: true,
         infinite: false,
         speed: 600,
@@ -122,7 +122,7 @@ $(document).ready(function() {
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                     arrows: true
                 }
             },
@@ -131,7 +131,7 @@ $(document).ready(function() {
                 settings: {
                     slidesToShow: 2,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                     arrows: true
                 }
             },
@@ -140,7 +140,7 @@ $(document).ready(function() {
                 settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
-                    dots: true,
+                    dots: false,
                     arrows: true
                 }
             }
@@ -259,14 +259,13 @@ $(".pckgslidersec").slick({
     responsive: [{
         breakpoint: 769,
         settings: {
-            dots: true,
+            dots: false,
             arrows: false,
             autoplay: false,
             slidesToShow: 1,
             slidesToScroll: 1
         }
     }]
-
 });
 
 
