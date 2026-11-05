@@ -2270,7 +2270,7 @@ p.small{font-size:14px;color:var(--third-color);text-align:center;display:block;
 .testi_box:hover,.testi_box{background-color: var(--second-color);border-radius: 5px;-webkit-box-shadow: 0px 11px 15px #16232136;-ms-box-shadow: 0px 11px 15px #16232136;-o-box-shadow: 0px 11px 15px #16232136;box-shadow: 0px 11px 15px #16232136;transition: all 700ms;}
 .testi-heading{text-align:center;}
 .testi_box ul{margin-bottom: 30px;}
-.testi_box ul li{display: inline-block;font-size: 16px; color: #ecc70e; margin: 0px 2px 0 2px; }
+.testi_box ul li{display: inline-block;font-size: 16px; color: #3478F6; margin: 0px 2px 0 2px; }
 .testi_box>p{font-size: 20px;font-weight: 500;line-height: 1.5;padding: 0 0 30px 0;}
 .main-img{font-size: 0;border-bottom: 2px solid #f3f3f3;padding-bottom: 30px;transition: all 700ms;}
 .testi_box:hover .main-img{border-bottom: transparent;transition: all 700ms;}
@@ -4291,7 +4291,7 @@ a.action-chat.clearfix.pull-right.sea {
 .mypopup-wrap .mypopup .right .closebutton:after{content: "";position: absolute;height: 1px;width: 20px;top: 0;left: 0;background: var(--third-color);display: block;bottom: 0;margin: auto;}
 .mypopup-wrap .mypopup .right .mypopup-innerwrap{padding-top: 0px; padding-left: 30px; padding-right: 30px; }
 .mypopup-wrap .mypopup .right .mypopup-innerwrap h3{font-size: 26px;line-height: 1;}
-.mypopup-wrap .mypopup .right .mypopup-innerwrap h3 span{font-size: 38px; display: block; font-weight: 900; color: #edad0d; margin-top: 5px; margin-bottom: 10px; }
+.mypopup-wrap .mypopup .right .mypopup-innerwrap h3 span{font-size: 38px; display: block; font-weight: 900; color: #3478F6; margin-top: 5px; margin-bottom: 10px; }
 .mypopup-innerwrap .form_wrap{padding: 20px 15px; }
 .mypopup-innerwrap .form_wrap .hero_form{}
 .mypopup-innerwrap .form_wrap .hero_form form{}
@@ -5587,19 +5587,19 @@ p.extrainfo,
     text-decoration: none !important;
 }
 
-/* Center / Popular / Highlighted Card (Yellow Bar matching Image 1) */
+/* Center / Popular / Highlighted Card - Unified sleek design without golden color */
 .packwrap.popular .viewdetails,
 .ourpackages .tab-custom .tabs ul li .packwrap.popular .viewdetails,
 .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap.popular .viewdetails {
-    background: #f2af2e !important;
+    background: #383838 !important;
     color: #FFFFFF !important;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
 }
 
 .packwrap.popular .viewdetails:hover,
 .ourpackages .tab-custom .tabs ul li .packwrap.popular .viewdetails:hover,
 .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap.popular .viewdetails:hover {
-    background: #d99a1f !important;
+    background: #3478F6 !important;
     color: #FFFFFF !important;
     text-decoration: none !important;
 }
@@ -5815,7 +5815,7 @@ p.extrainfo,
 }
 
 .testi_box ul.stars li {
-    color: #f2af2e !important;
+    color: #3478F6 !important;
     font-size: 15px !important;
 }
 
