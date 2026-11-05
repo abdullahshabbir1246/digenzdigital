@@ -235,7 +235,7 @@ const Admin = (function() {
       showApp();
     } catch (err) {
       console.error('Login error:', err);
-      errorEl.textContent = err.message || 'Invalid administrator credentials. Use admin / admin123';
+      errorEl.textContent = err.message || 'Invalid administrator username, email, or password.';
       errorEl.classList.remove('hidden');
     } finally {
       btn.disabled = false;

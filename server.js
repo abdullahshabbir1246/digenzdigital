@@ -509,7 +509,7 @@ const server = http.createServer(async (req, res) => {
 
         if (!admin || !isPasswordValid) {
           db.logAudit(email, 'LOGIN_FAILED', 'Auth', 'Failed login attempt with invalid credentials', clientIp);
-          return sendJSON(res, 401, { error: 'Invalid admin credentials. Use admin / admin123' });
+          return sendJSON(res, 401, { error: 'Invalid administrator username, email, or password.' });
         }
 
         admin.lastLogin = new Date().toISOString();
