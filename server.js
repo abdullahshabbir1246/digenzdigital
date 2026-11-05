@@ -4,6 +4,7 @@ const path = require('path');
 const url = require('url');
 const querystring = require('querystring');
 const crypto = require('crypto');
+const zlib = require('zlib');
 const { db, hashPassword, verifyPassword } = require('./db');
 const { syncStaticHTMLPricingAndBanners } = require('./sync-html');
 
@@ -47,19 +48,32 @@ const MIME_TYPES = {
 };
 
 // Helper: send JSON response
-function sendJSON(res, statusCode, data) {
+function sendJSON(res, statusCode, data, req = null) {
   const json = JSON.stringify(data);
-  res.writeHead(statusCode, {
+  const buf = Buffer.from(json, 'utf8');
+  const headers = {
     'Content-Type': 'application/json; charset=utf-8',
-    'Content-Length': Buffer.byteLength(json),
     'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
     'Pragma': 'no-cache',
     'Expires': '0',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS'
-  });
-  res.end(json);
+  };
+
+  const enc = req && req.headers ? (req.headers['accept-encoding'] || '') : '';
+  if (buf.length > 1024 && enc.includes('gzip')) {
+    const gzipped = zlib.gzipSync(buf, { level: 6 });
+    headers['Content-Encoding'] = 'gzip';
+    headers['Content-Length'] = gzipped.length;
+    headers['Vary'] = 'Accept-Encoding';
+    res.writeHead(statusCode, headers);
+    return res.end(gzipped);
+  }
+
+  headers['Content-Length'] = buf.length;
+  res.writeHead(statusCode, headers);
+  res.end(buf);
 }
 
 // Helper: parse request body
@@ -342,6 +356,19 @@ const server = http.createServer(async (req, res) => {
       } catch (err) {
         return sendJSON(res, 500, { error: err.message });
       }
+    }
+
+    // --- 0.1 UNIFIED PUBLIC BUNDLE (Ultra-fast single-roundtrip hydration) ---
+    if (apiPath === 'public/bundle' && method === 'GET') {
+      return sendJSON(res, 200, {
+        success: true,
+        settings: db.data.settings,
+        products: (db.data.products || []).filter(p => p.status === 'published'),
+        categories: (db.data.categories || []).filter(c => c.status !== 'inactive'),
+        banners: (db.data.banners || []).filter(b => b.isActive),
+        content: db.data.content || {},
+        syncState: db.data.syncState || { version: 1 }
+      }, req);
     }
 
     if (apiPath === 'auth/logout' && method === 'POST') {
@@ -1435,11 +1462,48 @@ const server = http.createServer(async (req, res) => {
     if (reqPath === '/css') contentType = 'text/css; charset=utf-8';
 
     const content = fs.readFileSync(filePath);
+    const etag = `"${crypto.createHash('md5').update(content).digest('hex')}"`;
+
+    let cacheControl = 'public, max-age=86400, stale-while-revalidate=604800';
+    if (ext === '.html' || ext === '.htm') {
+      cacheControl = 'public, max-age=0, must-revalidate';
+    } else if (['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico', '.woff', '.woff2', '.ttf'].includes(ext)) {
+      cacheControl = 'public, max-age=31536000, immutable';
+    }
+
+    // ETag 304 validation
+    if (req.headers['if-none-match'] === etag) {
+      res.writeHead(304, {
+        'ETag': etag,
+        'Cache-Control': cacheControl,
+        'Access-Control-Allow-Origin': '*'
+      });
+      return res.end();
+    }
+
+    const acceptEncoding = req.headers['accept-encoding'] || '';
+    const isCompressible = ['.html', '.htm', '.css', '.js', '.json', '.svg', '.xml'].includes(ext);
+
+    if (isCompressible && acceptEncoding.includes('gzip')) {
+      const gzipped = zlib.gzipSync(content, { level: 6 });
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Content-Encoding': 'gzip',
+        'Content-Length': gzipped.length,
+        'ETag': etag,
+        'Vary': 'Accept-Encoding',
+        'Access-Control-Allow-Origin': '*',
+        'Cache-Control': cacheControl
+      });
+      return res.end(gzipped);
+    }
+
     res.writeHead(200, {
       'Content-Type': contentType,
       'Content-Length': content.length,
+      'ETag': etag,
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control': ext === '.html' || ext === '.htm' ? 'no-cache' : 'public, max-age=3600'
+      'Cache-Control': cacheControl
     });
     return res.end(content);
   }

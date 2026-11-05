@@ -709,37 +709,49 @@
     try {
       const mod = String(targetModule || 'all').toLowerCase();
       const syncAll = mod === 'all' || mod === 'general' || mod === 'init';
-      const needSettings = syncAll || mod.includes('setting') || mod.includes('contact');
-      const needProducts = syncAll || mod.includes('product') || mod.includes('setting');
-      const needBanners = syncAll || mod.includes('banner');
-      const needCategories = syncAll || mod.includes('categor');
-      const needContent = syncAll || mod.includes('content');
 
-      const [settings, productsRes, bannersRes, categoriesRes, abRes, ctRes, ftRes] = await Promise.all([
-        needSettings ? fetchJSON('/api/settings') : Promise.resolve(cachedSettings),
-        needProducts ? fetchJSON('/api/products') : Promise.resolve(null),
-        needBanners ? fetchJSON('/api/banners') : Promise.resolve(null),
-        needCategories ? fetchJSON('/api/categories') : Promise.resolve(null),
-        needContent ? fetchJSON('/api/content/about') : Promise.resolve(null),
-        needContent ? fetchJSON('/api/content/contact') : Promise.resolve(null),
-        needContent ? fetchJSON('/api/content/footer') : Promise.resolve(null)
-      ]);
-
-      if (settings) {
-        cachedSettings = settings;
-        syncSettings(settings);
-      }
-      if (productsRes && productsRes.products) {
-        syncProducts(productsRes.products, cachedSettings || settings);
-      }
-      if (bannersRes && bannersRes.banners) {
-        syncBanners(bannersRes.banners);
-      }
-      if (categoriesRes && categoriesRes.categories) {
-        syncCategories(categoriesRes.categories);
-      }
-      if (abRes || ctRes || ftRes) {
-        syncContent({ about: abRes, contact: ctRes, footer: ftRes });
+      if (syncAll) {
+        // 1 single unified request replaces 7 separate HTTP calls!
+        const bundle = await fetchJSON('/api/public/bundle');
+        if (bundle) {
+          if (bundle.settings) {
+            cachedSettings = bundle.settings;
+            syncSettings(bundle.settings);
+          }
+          if (bundle.products) {
+            syncProducts(bundle.products, cachedSettings || bundle.settings);
+          }
+          if (bundle.banners) {
+            syncBanners(bundle.banners);
+          }
+          if (bundle.categories) {
+            syncCategories(bundle.categories);
+          }
+          if (bundle.content) {
+            syncContent(bundle.content);
+          }
+          if (bundle.syncState && bundle.syncState.lastUpdated) {
+            clientLastSync = bundle.syncState.lastUpdated;
+          }
+        }
+      } else {
+        // Targeted single-module fetch
+        if (mod.includes('setting') || mod.includes('contact')) {
+          const s = await fetchJSON('/api/settings');
+          if (s) { cachedSettings = s; syncSettings(s); }
+        }
+        if (mod.includes('product')) {
+          const p = await fetchJSON('/api/products');
+          if (p && p.products) syncProducts(p.products, cachedSettings);
+        }
+        if (mod.includes('banner')) {
+          const b = await fetchJSON('/api/banners');
+          if (b && b.banners) syncBanners(b.banners);
+        }
+        if (mod.includes('categor')) {
+          const c = await fetchJSON('/api/categories');
+          if (c && c.categories) syncCategories(c.categories);
+        }
       }
       clientLastSync = Date.now();
     } catch (e) {
@@ -769,7 +781,7 @@
 
   // Tier 3: Adaptive Sync-State Polling (Stops/reduces when tab is inactive)
   let pollTimeoutId = null;
-  const ACTIVE_POLL_MS = 2500;
+  const ACTIVE_POLL_MS = 5000;
   const INACTIVE_POLL_MS = 45000; // 45s fallback when inactive
 
   async function checkLiveSyncState() {
