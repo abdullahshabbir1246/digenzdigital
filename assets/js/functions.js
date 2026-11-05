@@ -1,4 +1,9 @@
 
+// Global DIGENZ WhatsApp Handler
+window.setButtonURL = function() {
+    window.open('https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information.', '_blank');
+};
+
 // sticky social
 $(document).scroll(function() {
     "use strict";
@@ -16,13 +21,8 @@ $(document).scroll(function() {
     }
     if (y > 0) {
         $('.floating_wrap').addClass('visible');
-        $('.floatbutton').addClass('visible');
-
-
     } else {
         $('.floating_wrap').removeClass('visible');
-        $('.floatbutton').removeClass('visible');
-
     }
 
 });
@@ -31,9 +31,8 @@ $(document).scroll(function() {
 
 var a = $('body').width();
 if(a <= 768){
-  $('.btn-pack, .m-chat, .blink').attr('href','tel:+12132212842');
-//   $('.pkg-box a.button').removeAttr('onClick');
-//console.log('ne'+a);
+  $('.m-chat, .blink').attr('href','https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information.').attr('target','_blank');
+  $('.btn-pack').attr('href','tel:+923190039048');
 }
 
 
@@ -50,11 +49,6 @@ $(".clickbutton").click(function(){
     
 
 $(document).ready(function() {
-    $(".clickbutton").click(function() {
-        $('.floatbutton').toggleClass("active");
-        $('.crossplus').toggleClass("rotate");
-    });
-
     $(".topformswitch").click(function() {
         $('.topformwrap').toggleClass("active");
     });

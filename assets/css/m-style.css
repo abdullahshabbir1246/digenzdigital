@@ -4585,3 +4585,86 @@ ul.slick-dots,
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
+
+
+/* =========================================================================
+   DIGENZ OFFICIAL FLOATING WHATSAPP BUTTON (#25D366)
+   ========================================================================= */
+.digenz-whatsapp-btn {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 999999;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: transform 0.28s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.28s ease, background-color 0.2s ease;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.digenz-whatsapp-btn:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 26px rgba(37, 211, 102, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+    background-color: #20BA5A;
+}
+
+.digenz-whatsapp-btn:active {
+    transform: scale(0.95);
+}
+
+.digenz-whatsapp-btn .digenz-whatsapp-icon {
+    width: 36px;
+    height: 36px;
+    fill: #FFFFFF;
+    display: block;
+    pointer-events: none;
+}
+
+/* Hide legacy chat widgets if any trace remains */
+.floatbutton,
+.buttonclick,
+.crossplus,
+.floating_wrap .btns_wrap .chat_wrap,
+#tawk-bubble-container,
+#tawk-tooltip-container,
+.tawk-min-container {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Mobile Responsiveness for WhatsApp Button */
+@media (max-width: 767px) {
+    .digenz-whatsapp-btn {
+        bottom: 20px;
+        right: 18px;
+        width: 54px;
+        height: 54px;
+    }
+    .digenz-whatsapp-btn .digenz-whatsapp-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media (max-width: 375px) {
+    .digenz-whatsapp-btn {
+        bottom: 16px;
+        right: 14px;
+        width: 50px;
+        height: 50px;
+    }
+    .digenz-whatsapp-btn .digenz-whatsapp-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
