@@ -1091,6 +1091,18 @@ const Admin = (function() {
       document.getElementById('cmsContactSalesEmail').value = contact.salesEmail || '';
       document.getElementById('cmsContactPhone').value = contact.phone || '';
       document.getElementById('cmsContactAltPhone').value = contact.alternatePhone || '';
+      if (document.getElementById('cmsContactWhatsapp')) {
+        document.getElementById('cmsContactWhatsapp').value = contact.whatsapp || contact.whatsappNumber || '';
+      }
+      if (document.getElementById('cmsContactWhatsappGreeting')) {
+        document.getElementById('cmsContactWhatsappGreeting').value = contact.whatsappGreeting || '';
+      }
+      if (document.getElementById('setWhatsappNumber') && !document.getElementById('setWhatsappNumber').value) {
+        document.getElementById('setWhatsappNumber').value = contact.whatsapp || contact.whatsappNumber || '';
+      }
+      if (document.getElementById('setWhatsappGreeting') && !document.getElementById('setWhatsappGreeting').value) {
+        document.getElementById('setWhatsappGreeting').value = contact.whatsappGreeting || '';
+      }
       document.getElementById('cmsContactAddress').value = contact.address || '';
       window._lastContactAddress = contact.address || '';
       if (document.getElementById('setBusinessAddress') && !document.getElementById('setBusinessAddress').value) {
@@ -1197,6 +1209,9 @@ const Admin = (function() {
         salesEmail: document.getElementById('cmsContactSalesEmail').value.trim(),
         phone: document.getElementById('cmsContactPhone').value.trim(),
         alternatePhone: document.getElementById('cmsContactAltPhone').value.trim(),
+        whatsapp: document.getElementById('cmsContactWhatsapp') ? document.getElementById('cmsContactWhatsapp').value.trim() : '',
+        whatsappNumber: document.getElementById('cmsContactWhatsapp') ? document.getElementById('cmsContactWhatsapp').value.trim() : '',
+        whatsappGreeting: document.getElementById('cmsContactWhatsappGreeting') ? document.getElementById('cmsContactWhatsappGreeting').value.trim() : '',
         address: document.getElementById('cmsContactAddress').value.trim(),
         businessHours: document.getElementById('cmsContactHours').value.trim()
       };
@@ -1236,6 +1251,12 @@ const Admin = (function() {
         }
         if (document.getElementById('setSupportPhone')) {
           document.getElementById('setSupportPhone').value = payload.phone || '';
+        }
+        if (document.getElementById('setWhatsappNumber')) {
+          document.getElementById('setWhatsappNumber').value = payload.whatsapp || payload.whatsappNumber || '';
+        }
+        if (document.getElementById('setWhatsappGreeting')) {
+          document.getElementById('setWhatsappGreeting').value = payload.whatsappGreeting || '';
         }
       }
       broadcastLiveUpdate('content', 'update', { section, payload });
@@ -1442,6 +1463,18 @@ const Admin = (function() {
       document.getElementById('setCurrencyCode').value = s.currencyCode || 'USD';
       document.getElementById('setSupportEmail').value = s.supportEmail || '';
       document.getElementById('setSupportPhone').value = s.supportPhone || '';
+      if (document.getElementById('setWhatsappNumber')) {
+        document.getElementById('setWhatsappNumber').value = s.whatsappNumber || s.whatsapp || '';
+      }
+      if (document.getElementById('setWhatsappGreeting')) {
+        document.getElementById('setWhatsappGreeting').value = s.whatsappGreeting || '';
+      }
+      if (document.getElementById('cmsContactWhatsapp') && !document.getElementById('cmsContactWhatsapp').value) {
+        document.getElementById('cmsContactWhatsapp').value = s.whatsappNumber || s.whatsapp || '';
+      }
+      if (document.getElementById('cmsContactWhatsappGreeting') && !document.getElementById('cmsContactWhatsappGreeting').value) {
+        document.getElementById('cmsContactWhatsappGreeting').value = s.whatsappGreeting || '';
+      }
       if (document.getElementById('setBusinessAddress')) {
         document.getElementById('setBusinessAddress').value = s.businessAddress || s.address || (window._lastContactAddress || '');
       }
@@ -1482,6 +1515,9 @@ const Admin = (function() {
       currencyCode: document.getElementById('setCurrencyCode').value.trim(),
       supportEmail: supportEmail,
       supportPhone: document.getElementById('setSupportPhone').value.trim(),
+      whatsappNumber: document.getElementById('setWhatsappNumber') ? document.getElementById('setWhatsappNumber').value.trim() : '',
+      whatsapp: document.getElementById('setWhatsappNumber') ? document.getElementById('setWhatsappNumber').value.trim() : '',
+      whatsappGreeting: document.getElementById('setWhatsappGreeting') ? document.getElementById('setWhatsappGreeting').value.trim() : '',
       businessAddress: document.getElementById('setBusinessAddress') ? document.getElementById('setBusinessAddress').value.trim() : '',
       maintenanceMode: document.getElementById('setMaintenanceMode').checked,
       announcementBar: {
@@ -1504,6 +1540,18 @@ const Admin = (function() {
         document.getElementById('setCurrencyCode').value = s.currencyCode || 'USD';
         document.getElementById('setSupportEmail').value = s.supportEmail || '';
         document.getElementById('setSupportPhone').value = s.supportPhone || '';
+      if (document.getElementById('setWhatsappNumber')) {
+        document.getElementById('setWhatsappNumber').value = s.whatsappNumber || s.whatsapp || '';
+      }
+      if (document.getElementById('setWhatsappGreeting')) {
+        document.getElementById('setWhatsappGreeting').value = s.whatsappGreeting || '';
+      }
+      if (document.getElementById('cmsContactWhatsapp') && !document.getElementById('cmsContactWhatsapp').value) {
+        document.getElementById('cmsContactWhatsapp').value = s.whatsappNumber || s.whatsapp || '';
+      }
+      if (document.getElementById('cmsContactWhatsappGreeting') && !document.getElementById('cmsContactWhatsappGreeting').value) {
+        document.getElementById('cmsContactWhatsappGreeting').value = s.whatsappGreeting || '';
+      }
         if (document.getElementById('setBusinessAddress')) {
           document.getElementById('setBusinessAddress').value = s.businessAddress || s.address || '';
         }

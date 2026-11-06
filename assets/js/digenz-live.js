@@ -536,6 +536,16 @@
       });
     }
 
+    // E. Dynamic WhatsApp Business Number & Greeting Update
+    const rawWA = settings.whatsappNumber || settings.whatsapp;
+    const waGreeting = settings.whatsappGreeting || 'Hi DIGENZ, I am interested in your services. Please share more information.';
+    if (rawWA) {
+      const waDigits = normalizeWhatsApp(rawWA);
+      if (waDigits) {
+        applyWhatsAppUrl(`https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`);
+      }
+    }
+
     // D. Dynamic Currency Symbol & Add-On Update on Pricing Cards
     if (settings.currencySymbol) {
       const currency = settings.currencySymbol.trim();
@@ -711,6 +721,10 @@
       }
     }
   }
+  function __skipClosedBrace() { if (false) { if (false) { if (false) {
+      }
+    }
+  }
   }
 
   // =========================================================================
@@ -738,6 +752,14 @@
           a.href = 'mailto:' + ct.email;
           if (a.textContent.includes('@')) a.textContent = ct.email;
         });
+      }
+      const rawWA = ct.whatsapp || ct.whatsappNumber;
+      const waGreeting = ct.whatsappGreeting || 'Hi DIGENZ, I am interested in your services. Please share more information.';
+      if (rawWA) {
+        const waDigits = normalizeWhatsApp(rawWA);
+        if (waDigits) {
+          applyWhatsAppUrl(`https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`);
+        }
       }
       if (ct.address) {
         document.querySelectorAll('.address, .contact-address, .footer-address').forEach(el => {
@@ -966,10 +988,34 @@
   // =========================================================================
   
   // Global WhatsApp Business Integration & Handler
-  const WA_LINK = 'https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information.';
+  let currentWaLink = 'https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information.';
+
+  function normalizeWhatsApp(phone) {
+    if (!phone || typeof phone !== 'string') return '';
+    let digits = phone.replace(/\D/g, '');
+    if (!digits) return '';
+    if (/^03\d{9}$/.test(digits)) {
+      digits = '92' + digits.substring(1);
+    } else if (/^920\d+/.test(digits)) {
+      digits = digits.replace(/^920+/, '92');
+    } else if (digits.startsWith('0') && digits.length >= 10 && digits.length <= 11) {
+      digits = '92' + digits.replace(/^0+/, '');
+    }
+    return digits;
+  }
+
+  function applyWhatsAppUrl(url) {
+    if (!url) return;
+    currentWaLink = url;
+    const btn = document.getElementById('digenzWhatsappBtn');
+    if (btn) btn.href = url;
+    document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+      a.href = url;
+    });
+  }
 
   window.setButtonURL = function() {
-    window.open(WA_LINK, '_blank');
+    window.open(currentWaLink, '_blank');
   };
 
   function ensureWhatsAppButton() {
@@ -981,7 +1027,7 @@
       const btn = document.createElement('a');
       btn.id = 'digenzWhatsappBtn';
       btn.className = 'digenz-whatsapp-btn';
-      btn.href = WA_LINK;
+      btn.href = currentWaLink;
       btn.target = '_blank';
       btn.rel = 'noopener noreferrer';
       btn.setAttribute('aria-label', 'Chat with DIGENZ on WhatsApp');

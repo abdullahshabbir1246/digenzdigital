@@ -708,6 +708,9 @@ class Database {
             if (rest.phone) settingsObj.supportPhone = rest.phone;
             if (rest.email) settingsObj.supportEmail = rest.email;
             if (rest.address) settingsObj.businessAddress = rest.address;
+            if (rest.whatsapp) settingsObj.whatsapp = rest.whatsapp;
+            if (rest.whatsappNumber) settingsObj.whatsappNumber = rest.whatsappNumber;
+            if (rest.whatsappGreeting) settingsObj.whatsappGreeting = rest.whatsappGreeting;
           }
           else if (_id === 'announcement') settingsObj.announcementBar = rest;
           else Object.assign(settingsObj, rest);
@@ -730,6 +733,12 @@ class Database {
           }
           if (!this.data.settings.businessAddress && contentObj.contact.address) {
             this.data.settings.businessAddress = contentObj.contact.address;
+          }
+          if (!this.data.settings.whatsappNumber && (contentObj.contact.whatsapp || contentObj.contact.whatsappNumber)) {
+            this.data.settings.whatsappNumber = contentObj.contact.whatsapp || contentObj.contact.whatsappNumber;
+          }
+          if (!this.data.settings.whatsappGreeting && contentObj.contact.whatsappGreeting) {
+            this.data.settings.whatsappGreeting = contentObj.contact.whatsappGreeting;
           }
         }
       }
@@ -819,9 +828,11 @@ class Database {
           { upsert: true }
         );
         const contactAddrSeed = s.businessAddress || s.address || (this.data.content && this.data.content.contact && this.data.content.contact.address) || '';
+        const waNumSeed = s.whatsappNumber || s.whatsapp || (this.data.content && this.data.content.contact && (this.data.content.contact.whatsapp || this.data.content.contact.whatsappNumber)) || '923190039048';
+        const waGreetingSeed = s.whatsappGreeting || (this.data.content && this.data.content.contact && this.data.content.contact.whatsappGreeting) || 'Hi DIGENZ, I am interested in your services. Please share more information.';
         await mdb.collection('settings').updateOne(
           { _id: 'contact' },
-          { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', address: contactAddrSeed, updatedAt: now } },
+          { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', address: contactAddrSeed, whatsapp: waNumSeed, whatsappNumber: waNumSeed, whatsappGreeting: waGreetingSeed, updatedAt: now } },
           { upsert: true }
         );
         if (s.announcementBar) {
@@ -1005,9 +1016,11 @@ class Database {
             { upsert: true }
           );
           const contactAddr = s.businessAddress || s.address || (this.data.content && this.data.content.contact && this.data.content.contact.address) || '';
+          const waNum = s.whatsappNumber || s.whatsapp || (this.data.content && this.data.content.contact && (this.data.content.contact.whatsapp || this.data.content.contact.whatsappNumber)) || '923190039048';
+          const waGreeting = s.whatsappGreeting || (this.data.content && this.data.content.contact && this.data.content.contact.whatsappGreeting) || 'Hi DIGENZ, I am interested in your services. Please share more information.';
           await mdb.collection('settings').updateOne(
             { _id: 'contact' },
-            { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', address: contactAddr, updatedAt: now } },
+            { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', address: contactAddr, whatsapp: waNum, whatsappNumber: waNum, whatsappGreeting: waGreeting, updatedAt: now } },
             { upsert: true }
           );
           if (s.announcementBar) {
@@ -1028,6 +1041,8 @@ class Database {
               if (secData.phone) this.data.settings.supportPhone = secData.phone;
               if (secData.address) this.data.settings.businessAddress = secData.address;
               if (secData.email) this.data.settings.supportEmail = secData.email;
+              if (secData.whatsapp || secData.whatsappNumber) this.data.settings.whatsappNumber = secData.whatsapp || secData.whatsappNumber;
+              if (secData.whatsappGreeting) this.data.settings.whatsappGreeting = secData.whatsappGreeting;
             }
             await mdb.collection('content').updateOne(
               { _id: secName },
@@ -1125,6 +1140,9 @@ class Database {
     if (updatedFields.supportPhone !== undefined) clean.supportPhone = String(updatedFields.supportPhone).trim();
     if (updatedFields.businessAddress !== undefined) clean.businessAddress = String(updatedFields.businessAddress).trim();
     if (updatedFields.address !== undefined) clean.businessAddress = String(updatedFields.address).trim();
+    if (updatedFields.whatsappNumber !== undefined) clean.whatsappNumber = String(updatedFields.whatsappNumber).trim();
+    if (updatedFields.whatsapp !== undefined) clean.whatsappNumber = String(updatedFields.whatsapp).trim();
+    if (updatedFields.whatsappGreeting !== undefined) clean.whatsappGreeting = String(updatedFields.whatsappGreeting).trim();
     if (updatedFields.currencySymbol !== undefined) clean.currencySymbol = String(updatedFields.currencySymbol).trim();
     if (updatedFields.currencyCode !== undefined) clean.currencyCode = String(updatedFields.currencyCode).trim().toUpperCase();
     if (updatedFields.logoDark !== undefined) clean.logoDark = updatedFields.logoDark;
@@ -1147,6 +1165,13 @@ class Database {
     }
     if (clean.supportEmail) {
       this.data.content.contact.email = clean.supportEmail;
+    }
+    if (clean.whatsappNumber !== undefined) {
+      this.data.content.contact.whatsapp = clean.whatsappNumber;
+      this.data.content.contact.whatsappNumber = clean.whatsappNumber;
+    }
+    if (clean.whatsappGreeting !== undefined) {
+      this.data.content.contact.whatsappGreeting = clean.whatsappGreeting;
     }
     const saved = await this.save('settings', true);
     if (!saved) return null;

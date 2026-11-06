@@ -168,6 +168,20 @@ function injectAuthoritativeServices(htmlStr, categories) {
   return htmlStr;
 }
 
+function normalizeWhatsAppNumber(phone) {
+  if (!phone || typeof phone !== 'string') return '923190039048';
+  let digits = phone.replace(/\D/g, '');
+  if (!digits) return '923190039048';
+  if (/^03\d{9}$/.test(digits)) {
+    digits = '92' + digits.substring(1);
+  } else if (/^920\d+/.test(digits)) {
+    digits = digits.replace(/^920+/, '92');
+  } else if (digits.startsWith('0') && digits.length >= 10 && digits.length <= 11) {
+    digits = '92' + digits.replace(/^0+/, '');
+  }
+  return digits || '923190039048';
+}
+
 function injectAuthoritativeContact(htmlStr, settings, content) {
   if (!htmlStr) return htmlStr;
   
@@ -178,6 +192,11 @@ function injectAuthoritativeContact(htmlStr, settings, content) {
   
   const addressText = (settings && settings.businessAddress) || (content && content.contact && content.contact.address) || '1J 1/3 Nazimabad no.1 Karachi, Pakistan';
   const emailText = (settings && settings.supportEmail) || (content && content.contact && content.contact.email) || 'support@digendigital.com';
+  
+  const waRaw = (settings && (settings.whatsappNumber || settings.whatsapp)) || (content && content.contact && (content.contact.whatsapp || content.contact.whatsappNumber)) || '923190039048';
+  const waGreeting = (settings && settings.whatsappGreeting) || (content && content.contact && content.contact.whatsappGreeting) || 'Hi DIGENZ, I am interested in your services. Please share more information.';
+  const waDigits = normalizeWhatsAppNumber(waRaw);
+  const waUrl = `https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`;
 
   // 1. Update tel: links href
   htmlStr = htmlStr.replace(/href=["']tel:[^"']*["']/gi, `href="${telHref}"`);
@@ -219,6 +238,18 @@ function injectAuthoritativeContact(htmlStr, settings, content) {
   // 13. Update Contact Page "VISIT US" box address
   htmlStr = htmlStr.replace(/(<h5>VISIT US<\/h5>\s*)<p>[\s\S]*?<\/p>\s*<p>[\s\S]*?<\/p>/gi, `$1<p>${addressText}</p>`);
   htmlStr = htmlStr.replace(/(<h5>VISIT US<\/h5>\s*)<p>[\s\S]*?<\/p>/gi, `$1<p>${addressText}</p>`);
+
+  // 14. Update WhatsApp links, script handlers, and Floating WhatsApp Button
+  htmlStr = htmlStr.replace(/href=["']https:\/\/wa\.me\/[^"']*["']/gi, `href="${waUrl}"`);
+  htmlStr = htmlStr.replace(/(<a[^>]*id=["']digenzWhatsappBtn["'][^>]*href=["'])[^"']*([ "'])/gi, `$1${waUrl}$2`);
+  htmlStr = htmlStr.replace(/window\.open\(['"]https:\/\/wa\.me\/[^'"]*['"]/gi, `window.open('${waUrl}'`);
+  htmlStr = htmlStr.replace(/const WA_LINK = ['"]https:\/\/wa\.me\/[^'"]*['"]/gi, `const WA_LINK = '${waUrl}'`);
+  htmlStr = htmlStr.replace(/let currentWaLink = ['"]https:\/\/wa\.me\/[^'"]*['"]/gi, `let currentWaLink = '${waUrl}'`);
+
+  if (!htmlStr.includes('digenz-whatsapp-btn') && htmlStr.includes('</body>')) {
+    const waButton = `<!-- DIGENZ Official Floating WhatsApp Button -->\n<a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="digenz-whatsapp-btn" id="digenzWhatsappBtn" aria-label="Chat with DIGENZ on WhatsApp" title="Chat with DIGENZ on WhatsApp">\n  <svg class="digenz-whatsapp-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;max-width:32px;max-height:32px;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.502.658 4.938 1.908 7.078L2.05 29.35a.8.8 0 0 0 .99.986l6.468-1.802A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm-1.84 21.657a11.93 11.93 0 0 1-5.748-1.472l-.41-.242-3.873 1.078 1.07-3.774-.267-.428a11.94 11.94 0 0 1-1.732-6.219c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-11.04 11.057zm6.052-8.257c-.332-.166-1.965-.97-2.27-1.08-.304-.112-.525-.166-.746.166-.222.332-.857 1.08-1.05 1.302-.194.221-.387.248-.72.083-.332-.166-1.401-.516-2.668-1.645-.987-.88-1.653-1.968-1.847-2.3-.194-.333-.02-.513.146-.678.15-.148.332-.387.498-.58.166-.194.222-.333.332-.554.111-.221.056-.415-.028-.58-.083-.166-.747-1.8-.102-2.466-.347-.648-.698-.56-.957-.573-.248-.012-.53-.015-.813-.015-.283 0-.742.106-1.13.53-.388.424-1.48 1.446-1.48 3.526s1.515 4.088 1.727 4.373c.211.285 2.98 4.551 7.22 6.383 1.009.436 1.797.696 2.411.891 1.013.322 1.935.277 2.664.168.813-.122 2.502-1.023 2.855-2.01.353-.986.353-1.83.248-2.01-.106-.18-.387-.29-.72-.456z" fill="#FFFFFF"/></svg>\n</a>`;
+    htmlStr = htmlStr.replace('</body>', waButton + '\n</body>');
+  }
 
   return htmlStr;
 }
@@ -993,6 +1024,8 @@ const server = http.createServer(async (req, res) => {
         if (data.phone) db.data.settings.supportPhone = data.phone;
         if (data.address) db.data.settings.businessAddress = data.address;
         if (data.email) db.data.settings.supportEmail = data.email;
+        if (data.whatsapp || data.whatsappNumber) db.data.settings.whatsappNumber = data.whatsapp || data.whatsappNumber;
+        if (data.whatsappGreeting) db.data.settings.whatsappGreeting = data.whatsappGreeting;
         await db.saveSettings(db.data.settings);
       }
       await db.save('content');
@@ -1588,6 +1621,16 @@ const server = http.createServer(async (req, res) => {
         if (data.supportEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.supportEmail)) {
           return sendJSON(res, 400, { error: 'Invalid email address format.' });
         }
+      }
+
+      if (data.whatsappNumber !== undefined) {
+        data.whatsappNumber = String(data.whatsappNumber).trim();
+      }
+      if (data.whatsapp !== undefined) {
+        data.whatsappNumber = String(data.whatsapp).trim();
+      }
+      if (data.whatsappGreeting !== undefined) {
+        data.whatsappGreeting = String(data.whatsappGreeting).trim();
       }
 
       if (data.supportPhone !== undefined) {
