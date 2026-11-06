@@ -167,6 +167,61 @@ function injectAuthoritativeServices(htmlStr, categories) {
   return htmlStr;
 }
 
+function injectAuthoritativeContact(htmlStr, settings, content) {
+  if (!htmlStr) return htmlStr;
+  
+  const phoneText = (settings && settings.supportPhone) || (content && content.contact && content.contact.phone) || '03190039048';
+  const rawDigits = phoneText.replace(/\D/g, '');
+  const cleanPhone = rawDigits.startsWith('92') ? rawDigits : (rawDigits.startsWith('03') ? ('92' + rawDigits.substring(1)) : (rawDigits.startsWith('0') ? ('92' + rawDigits.substring(1)) : rawDigits));
+  const telHref = 'tel:+' + cleanPhone;
+  
+  const addressText = (settings && settings.businessAddress) || (content && content.contact && content.contact.address) || '1J 1/3 Nazimabad no.1 Karachi, Pakistan';
+  const emailText = (settings && settings.supportEmail) || (content && content.contact && content.contact.email) || 'support@digendigital.com';
+
+  // 1. Update tel: links href
+  htmlStr = htmlStr.replace(/href=["']tel:[^"']*["']/gi, `href="${telHref}"`);
+
+  // 2. Update mailto: links href
+  htmlStr = htmlStr.replace(/href=["']mailto:[^"']*["']/gi, `href="mailto:${emailText}"`);
+
+  // 3. Update top-bar phone link
+  htmlStr = htmlStr.replace(/(<a[^>]*href=["']tel:[^"']*["'][^>]*><i class=["']fa fa-phone["'][^>]*><\/i>)\s*[^<]*(<\/a>)/gi, `$1 ${phoneText}$2`);
+
+  // 4. Update callus consultation phone link
+  htmlStr = htmlStr.replace(/(<a[^>]*class=["'][^"']*callus[^"']*["'][^>]*>[\s\S]*?<i class=["']fa fa-phone["']><\/i>)\s*[^<]*(<\/a>)/gi, `$1 ${phoneText}$2`);
+
+  // 5. Update action-no card phone link
+  htmlStr = htmlStr.replace(/(<div class=["']col-md-6 col-6["']><a[^>]*class=["'][^"']*action-no[^"']*["'][^>]*>\s*<span><small>[^<]*<\/small>)\s*[^<]*(<\/span><\/a><\/div>)/gi, `$1 ${phoneText}$2`);
+
+  // 6. Update btn-black-custom phone text
+  htmlStr = htmlStr.replace(/(<a[^>]*class=["'][^"']*btn-black-custom[^"']*["'][^>]*>)\s*[\d\s()+-]{7,25}\s*(<\/a>)/gi, `$1${phoneText}$2`);
+
+  // 7. Update footer phone text
+  htmlStr = htmlStr.replace(/(<div class=["']col-md-5 footerleft["']>[\s\S]*?<a\s+href=["']tel:[^"']*["']>)\s*[^<]*(<\/a>)/gi, `$1${phoneText}$2`);
+
+  // 8. Update footer email text
+  htmlStr = htmlStr.replace(/(<div class=["']col-md-5 footerleft["']>[\s\S]*?<a\s+href=["']mailto:[^"']*["']>)\s*[^<]*(<\/a>)/gi, `$1${emailText}$2`);
+
+  // 9. Update floating call wrap phone text
+  htmlStr = htmlStr.replace(/(class=["']call_wrap["'][^>]*>[\s\S]*?<span[^>]*class=["']icoo["'][^>]*>[\s\S]*?<\/span>\s*<span>)[^<]*(<\/span>)/gi, `$1${phoneText}$2`);
+
+  // 10. Update contact page "CALL US" phone text
+  htmlStr = htmlStr.replace(/(<h5>CALL US<\/h5>\s*<a[^>]*href=["']tel:[^"']*["'][^>]*>)\s*[^<]*(<\/a>)/gi, `$1${phoneText}$2`);
+
+  // 11. Update "or Call Now <b>...</b>" text
+  htmlStr = htmlStr.replace(/(or Call Now\s*<b>)\s*[^<]*(<\/b>)/gi, `$1${phoneText}$2`);
+
+  // 12. Update Footer Address across all pages (<p class="address-1"> or <p class="address">)
+  htmlStr = htmlStr.replace(/(<p class=["']address-1["']>)[\s\S]*?(<\/p>)/gi, `$1 ${addressText}$2`);
+  htmlStr = htmlStr.replace(/(<p class=["']address["']>)[\s\S]*?(<\/p>)/gi, `$1 ${addressText}$2`);
+
+  // 13. Update Contact Page "VISIT US" box address
+  htmlStr = htmlStr.replace(/(<h5>VISIT US<\/h5>\s*)<p>[\s\S]*?<\/p>\s*<p>[\s\S]*?<\/p>/gi, `$1<p>${addressText}</p>`);
+  htmlStr = htmlStr.replace(/(<h5>VISIT US<\/h5>\s*)<p>[\s\S]*?<\/p>/gi, `$1<p>${addressText}</p>`);
+
+  return htmlStr;
+}
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -932,6 +987,13 @@ const server = http.createServer(async (req, res) => {
       }
 
       db.data.content[section] = data;
+      if (section === 'contact') {
+        if (!db.data.settings) db.data.settings = {};
+        if (data.phone) db.data.settings.supportPhone = data.phone;
+        if (data.address) db.data.settings.businessAddress = data.address;
+        if (data.email) db.data.settings.supportEmail = data.email;
+        await db.saveSettings(db.data.settings);
+      }
       await db.save('content');
       db.logAudit(session.email, 'UPDATE_CONTENT', 'Content CMS', `Updated section "${section}"`, clientIp);
       return sendJSON(res, 200, { success: true, content: db.data.content[section] });
@@ -1634,8 +1696,11 @@ const server = http.createServer(async (req, res) => {
     let cacheControl = 'public, max-age=86400, stale-while-revalidate=604800';
     if (ext === '.html' || ext === '.htm') {
       let htmlStr = content.toString('utf8');
-      if (db.data && Array.isArray(db.data.categories) && db.data.categories.length > 0) {
-        htmlStr = injectAuthoritativeServices(htmlStr, db.data.categories);
+      if (db.data) {
+        if (Array.isArray(db.data.categories) && db.data.categories.length > 0) {
+          htmlStr = injectAuthoritativeServices(htmlStr, db.data.categories);
+        }
+        htmlStr = injectAuthoritativeContact(htmlStr, db.data.settings, db.data.content);
       }
       content = Buffer.from(htmlStr, 'utf8');
       cacheControl = 'no-cache, no-store, must-revalidate, max-age=0';

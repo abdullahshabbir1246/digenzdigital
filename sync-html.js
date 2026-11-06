@@ -186,9 +186,28 @@ function syncStaticHTMLContactSettings(settings) {
         });
 
         // Pattern J: Direct regex replacement for known legacy numbers
-        const previousPhoneRegex = /\+?92\s*306\s*1284045|\+?923061284045|0306[\s-]?1284045|\+1\s*\(555\)\s*019-2834|\+1\s*\(213\)\s*221-2842/g;
+        const previousPhoneRegex = /\+?92\s*319\s*0039048|\+?923190039048|03190039048|\+?92\s*306\s*1284045|\+?923061284045|0306[\s-]?1284045|\+1\s*\(555\)\s*019-2834|\+1\s*\(213\)\s*221-2842/g;
         if (previousPhoneRegex.test(content)) {
           content = content.replace(previousPhoneRegex, newPhone);
+          changed = true;
+        }
+      }
+
+
+      // 3B. Update visible Address across all HTML templates
+      const newAddress = (settings.businessAddress || settings.address || '').trim();
+      if (newAddress) {
+        if (content.includes('class="address-1"')) {
+          content = content.replace(/(<p class="address-1">)[\s\S]*?(<\/p>)/gi, `$1 ${newAddress}$2`);
+          changed = true;
+        }
+        if (content.includes('class="address"')) {
+          content = content.replace(/(<p class="address">)[\s\S]*?(<\/p>)/gi, `$1 ${newAddress}$2`);
+          changed = true;
+        }
+        if (content.includes('VISIT US')) {
+          content = content.replace(/(<h5>VISIT US<\/h5>\s*)<p>[\s\S]*?<\/p>\s*<p>[\s\S]*?<\/p>/gi, `$1<p>${newAddress}</p>`);
+          content = content.replace(/(<h5>VISIT US<\/h5>\s*)<p>[\s\S]*?<\/p>/gi, `$1<p>${newAddress}</p>`);
           changed = true;
         }
       }

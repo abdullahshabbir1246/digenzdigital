@@ -707,6 +707,7 @@ class Database {
           else if (_id === 'contact') {
             if (rest.phone) settingsObj.supportPhone = rest.phone;
             if (rest.email) settingsObj.supportEmail = rest.email;
+            if (rest.address) settingsObj.businessAddress = rest.address;
           }
           else if (_id === 'announcement') settingsObj.announcementBar = rest;
           else Object.assign(settingsObj, rest);
@@ -722,6 +723,15 @@ class Database {
           contentObj[_id] = rest;
         });
         this.data.content = { ...this.data.content, ...contentObj };
+        if (contentObj.contact) {
+          if (!this.data.settings) this.data.settings = {};
+          if (!this.data.settings.supportPhone && contentObj.contact.phone) {
+            this.data.settings.supportPhone = contentObj.contact.phone;
+          }
+          if (!this.data.settings.businessAddress && contentObj.contact.address) {
+            this.data.settings.businessAddress = contentObj.contact.address;
+          }
+        }
       }
 
       if (navDoc) {
@@ -808,9 +818,10 @@ class Database {
           { $set: { _id: 'branding', logoDark: s.logoDark, logoLight: s.logoLight, favicon: s.favicon, updatedAt: now } },
           { upsert: true }
         );
+        const contactAddrSeed = s.businessAddress || s.address || (this.data.content && this.data.content.contact && this.data.content.contact.address) || '';
         await mdb.collection('settings').updateOne(
           { _id: 'contact' },
-          { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', updatedAt: now } },
+          { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', address: contactAddrSeed, updatedAt: now } },
           { upsert: true }
         );
         if (s.announcementBar) {
@@ -993,9 +1004,10 @@ class Database {
             { $set: { _id: 'branding', logoDark: s.logoDark, logoLight: s.logoLight, favicon: s.favicon, updatedAt: now } },
             { upsert: true }
           );
+          const contactAddr = s.businessAddress || s.address || (this.data.content && this.data.content.contact && this.data.content.contact.address) || '';
           await mdb.collection('settings').updateOne(
             { _id: 'contact' },
-            { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', updatedAt: now } },
+            { $set: { _id: 'contact', phone: s.supportPhone || '03190039048', email: s.supportEmail || 'support@digenz.com', address: contactAddr, updatedAt: now } },
             { upsert: true }
           );
           if (s.announcementBar) {
@@ -1011,6 +1023,12 @@ class Database {
       if (!moduleName || moduleName === 'content') {
         if (this.data.content) {
           for (const [secName, secData] of Object.entries(this.data.content)) {
+            if (secName === 'contact') {
+              if (!this.data.settings) this.data.settings = {};
+              if (secData.phone) this.data.settings.supportPhone = secData.phone;
+              if (secData.address) this.data.settings.businessAddress = secData.address;
+              if (secData.email) this.data.settings.supportEmail = secData.email;
+            }
             await mdb.collection('content').updateOne(
               { _id: secName },
               { $set: { _id: secName, ...secData, updatedAt: now } },
@@ -1105,6 +1123,8 @@ class Database {
     if (updatedFields.siteTagline !== undefined) clean.siteTagline = String(updatedFields.siteTagline).trim();
     if (updatedFields.supportEmail !== undefined) clean.supportEmail = String(updatedFields.supportEmail).trim();
     if (updatedFields.supportPhone !== undefined) clean.supportPhone = String(updatedFields.supportPhone).trim();
+    if (updatedFields.businessAddress !== undefined) clean.businessAddress = String(updatedFields.businessAddress).trim();
+    if (updatedFields.address !== undefined) clean.businessAddress = String(updatedFields.address).trim();
     if (updatedFields.currencySymbol !== undefined) clean.currencySymbol = String(updatedFields.currencySymbol).trim();
     if (updatedFields.currencyCode !== undefined) clean.currencyCode = String(updatedFields.currencyCode).trim().toUpperCase();
     if (updatedFields.logoDark !== undefined) clean.logoDark = updatedFields.logoDark;
@@ -1116,6 +1136,18 @@ class Database {
     if (updatedFields.announcementBar !== undefined) clean.announcementBar = updatedFields.announcementBar;
 
     this.data.settings = { ...this.data.settings, ...clean };
+    if (!this.data.content) this.data.content = {};
+    if (!this.data.content.contact) this.data.content.contact = {};
+    if (clean.supportPhone) {
+      this.data.content.contact.phone = clean.supportPhone;
+      this.data.content.contact.alternatePhone = clean.supportPhone;
+    }
+    if (clean.businessAddress !== undefined) {
+      this.data.content.contact.address = clean.businessAddress;
+    }
+    if (clean.supportEmail) {
+      this.data.content.contact.email = clean.supportEmail;
+    }
     const saved = await this.save('settings', true);
     if (!saved) return null;
     return this.data.settings;

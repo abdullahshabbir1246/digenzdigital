@@ -4,7 +4,7 @@
       "createdAt": "2026-01-01T00:00:00.000Z",
       "email": "admin@digenz.com",
       "id": "adm-001",
-      "lastLogin": "2026-11-05T20:52:15.664Z",
+      "lastLogin": "2026-11-06T15:33:35.316Z",
       "name": "DIGENZ Admin",
       "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
       "role": "superadmin",
@@ -2370,12 +2370,10 @@
       "vision": "Becoming the world’s most trusted full-service digital and freelancing agency."
     },
     "contact": {
-      "address": "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ",
+      "phone": "03190039048",
       "alternatePhone": "03190039048",
-      "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM EST | 24/7 Priority Emergency Support",
-      "email": "contact@digenz.com",
-      "phone": "+1 (213) 221-2849",
-      "salesEmail": "digenzdigital"
+      "address": "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ",
+      "email": "contact@digendigital.com"
     },
     "faqs": {
       "0": {
@@ -2612,11 +2610,120 @@
       "text": ""
     },
     "maintenanceMode": false,
-    "supportEmail": "support@digendigital.com",
+    "supportEmail": "contact@digendigital.com",
     "supportPhone": "03190039048",
-    "enablePublicQuotes": true
+    "enablePublicQuotes": true,
+    "businessAddress": "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ"
   },
   "auditLogs": [
+    {
+      "id": "log-1793979215321-247",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-06T15:33:35.321Z"
+    },
+    {
+      "id": "log-1793979149979-337",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:32:29.979Z"
+    },
+    {
+      "id": "log-1793979149679-896",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_CONTENT",
+      "module": "Content CMS",
+      "details": "Updated section \"contact\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:32:29.679Z"
+    },
+    {
+      "id": "log-1793979149625-615",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:32:29.625Z"
+    },
+    {
+      "id": "log-1793979149319-4",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:32:29.319Z"
+    },
+    {
+      "id": "log-1793978765106-507",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_CONTENT",
+      "module": "Content CMS",
+      "details": "Updated section \"contact\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:26:05.106Z"
+    },
+    {
+      "id": "log-1793978765054-404",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:26:05.054Z"
+    },
+    {
+      "id": "log-1793978764733-581",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:26:04.733Z"
+    },
+    {
+      "id": "log-1793978439370-74",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_CONTENT",
+      "module": "Content CMS",
+      "details": "Updated section \"contact\"",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:20:39.370Z"
+    },
+    {
+      "id": "log-1793978439302-288",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:20:39.302Z"
+    },
+    {
+      "id": "log-1793978438954-946",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-06T15:20:38.954Z"
+    },
+    {
+      "id": "log-1793977899060-936",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-06T15:11:39.060Z"
+    },
     {
       "id": "log-1793911935668-389",
       "adminEmail": "admin@digenz.com",
@@ -3825,15 +3932,16 @@
     }
   ],
   "syncState": {
-    "version": 22,
-    "lastUpdated": 1793911935665,
+    "version": 39,
+    "lastUpdated": 1793979215317,
     "lastModule": "admins",
     "modules": [
       "admins",
       "products",
       "settings",
       "orders",
-      "categories"
+      "categories",
+      "content"
     ]
   }
 }

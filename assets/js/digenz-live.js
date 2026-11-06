@@ -495,6 +495,12 @@
         }
       } catch (e) {}
 
+      // 5B. Synchronize Address if in settings
+      const addressToSync = settings.businessAddress || settings.address;
+      if (addressToSync) {
+        syncAddressDOM(addressToSync);
+      }
+
       // 6. Update Slick carousel cloned slides
       function updateSlickClones() {
         document.querySelectorAll('.slick-cloned a[href^="tel:"]').forEach(a => {

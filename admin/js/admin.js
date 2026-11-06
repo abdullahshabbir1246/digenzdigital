@@ -1092,6 +1092,10 @@ const Admin = (function() {
       document.getElementById('cmsContactPhone').value = contact.phone || '';
       document.getElementById('cmsContactAltPhone').value = contact.alternatePhone || '';
       document.getElementById('cmsContactAddress').value = contact.address || '';
+      window._lastContactAddress = contact.address || '';
+      if (document.getElementById('setBusinessAddress') && !document.getElementById('setBusinessAddress').value) {
+        document.getElementById('setBusinessAddress').value = contact.address || '';
+      }
       document.getElementById('cmsContactHours').value = contact.businessHours || '';
 
       // FAQs
@@ -1226,6 +1230,14 @@ const Admin = (function() {
 
     try {
       await api(`/content/${section}`, { method: 'PUT', body: JSON.stringify(payload) });
+      if (section === 'contact') {
+        if (document.getElementById('setBusinessAddress')) {
+          document.getElementById('setBusinessAddress').value = payload.address || '';
+        }
+        if (document.getElementById('setSupportPhone')) {
+          document.getElementById('setSupportPhone').value = payload.phone || '';
+        }
+      }
       broadcastLiveUpdate('content', 'update', { section, payload });
       showToast(`CMS section "${section}" saved successfully.`, 'success');
     } catch (err) {
@@ -1430,6 +1442,9 @@ const Admin = (function() {
       document.getElementById('setCurrencyCode').value = s.currencyCode || 'USD';
       document.getElementById('setSupportEmail').value = s.supportEmail || '';
       document.getElementById('setSupportPhone').value = s.supportPhone || '';
+      if (document.getElementById('setBusinessAddress')) {
+        document.getElementById('setBusinessAddress').value = s.businessAddress || s.address || (window._lastContactAddress || '');
+      }
       document.getElementById('setMaintenanceMode').checked = Boolean(s.maintenanceMode);
 
       if (s.announcementBar) {
@@ -1467,6 +1482,7 @@ const Admin = (function() {
       currencyCode: document.getElementById('setCurrencyCode').value.trim(),
       supportEmail: supportEmail,
       supportPhone: document.getElementById('setSupportPhone').value.trim(),
+      businessAddress: document.getElementById('setBusinessAddress') ? document.getElementById('setBusinessAddress').value.trim() : '',
       maintenanceMode: document.getElementById('setMaintenanceMode').checked,
       announcementBar: {
         isEnabled: document.getElementById('setAnnounceEnabled').checked,
@@ -1488,6 +1504,15 @@ const Admin = (function() {
         document.getElementById('setCurrencyCode').value = s.currencyCode || 'USD';
         document.getElementById('setSupportEmail').value = s.supportEmail || '';
         document.getElementById('setSupportPhone').value = s.supportPhone || '';
+        if (document.getElementById('setBusinessAddress')) {
+          document.getElementById('setBusinessAddress').value = s.businessAddress || s.address || '';
+        }
+        if (document.getElementById('cmsContactAddress')) {
+          document.getElementById('cmsContactAddress').value = s.businessAddress || s.address || '';
+        }
+        if (document.getElementById('cmsContactPhone')) {
+          document.getElementById('cmsContactPhone').value = s.supportPhone || '';
+        }
         document.getElementById('setMaintenanceMode').checked = Boolean(s.maintenanceMode);
 
         if (s.announcementBar) {
