@@ -1484,3 +1484,19 @@ body.admin-body {
     font-size: 18px;
   }
 }
+
+/* Hide any floating chat or WhatsApp buttons in Admin Panel */
+.digenz-whatsapp-btn,
+#digenzWhatsappBtn,
+.digenz-whatsapp-icon,
+.floating_wrap,
+.floatbutton {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+}

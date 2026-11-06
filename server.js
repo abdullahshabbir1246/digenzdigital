@@ -114,6 +114,7 @@ function generateServicesHtml(categories, type) {
 }
 
 function injectAuthoritativeServices(htmlStr, categories) {
+  if (htmlStr && (htmlStr.includes('admin/js/admin.js') || htmlStr.includes('admin.css') || htmlStr.includes('Control Center'))) return htmlStr;
   if (!htmlStr || !Array.isArray(categories) || categories.length === 0) return htmlStr;
 
   // 1. Desktop dropdown: replace contents between <div class="dropdown"> ... <ul> ... </ul> ... </div>
@@ -160,7 +161,7 @@ function injectAuthoritativeServices(htmlStr, categories) {
   htmlStr = htmlStr.replace(/<div class=["']floatbutton["']>[\s\S]*?<div class=["']buttonclick["']>[\s\S]*?<\/div>\s*<\/div>\s*<\/a>/gi, '');
 
   if (!htmlStr.includes('digenz-whatsapp-btn') && htmlStr.includes('</body>')) {
-    const waButton = `<!-- DIGENZ Official Floating WhatsApp Button -->\n<a href="https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information." target="_blank" rel="noopener noreferrer" class="digenz-whatsapp-btn" id="digenzWhatsappBtn" aria-label="Chat with DIGENZ on WhatsApp" title="Chat with DIGENZ on WhatsApp">\n  <svg class="digenz-whatsapp-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.502.658 4.938 1.908 7.078L2.05 29.35a.8.8 0 0 0 .99.986l6.468-1.802A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm-1.84 21.657a11.93 11.93 0 0 1-5.748-1.472l-.41-.242-3.873 1.078 1.07-3.774-.267-.428a11.94 11.94 0 0 1-1.732-6.219c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-11.04 11.057zm6.052-8.257c-.332-.166-1.965-.97-2.27-1.08-.304-.112-.525-.166-.746.166-.222.332-.857 1.08-1.05 1.302-.194.221-.387.248-.72.083-.332-.166-1.401-.516-2.668-1.645-.987-.88-1.653-1.968-1.847-2.3-.194-.333-.02-.513.146-.678.15-.148.332-.387.498-.58.166-.194.222-.333.332-.554.111-.221.056-.415-.028-.58-.083-.166-.747-1.8-.102-2.466-.347-.648-.698-.56-.957-.573-.248-.012-.53-.015-.813-.015-.283 0-.742.106-1.13.53-.388.424-1.48 1.446-1.48 3.526s1.515 4.088 1.727 4.373c.211.285 2.98 4.551 7.22 6.383 1.009.436 1.797.696 2.411.891 1.013.322 1.935.277 2.664.168.813-.122 2.502-1.023 2.855-2.01.353-.986.353-1.83.248-2.01-.106-.18-.387-.29-.72-.456z" fill="#FFFFFF"/></svg>\n</a>`;
+    const waButton = `<!-- DIGENZ Official Floating WhatsApp Button -->\n<a href="https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information." target="_blank" rel="noopener noreferrer" class="digenz-whatsapp-btn" id="digenzWhatsappBtn" aria-label="Chat with DIGENZ on WhatsApp" title="Chat with DIGENZ on WhatsApp">\n  <svg class="digenz-whatsapp-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;max-width:32px;max-height:32px;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.502.658 4.938 1.908 7.078L2.05 29.35a.8.8 0 0 0 .99.986l6.468-1.802A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm-1.84 21.657a11.93 11.93 0 0 1-5.748-1.472l-.41-.242-3.873 1.078 1.07-3.774-.267-.428a11.94 11.94 0 0 1-1.732-6.219c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-11.04 11.057zm6.052-8.257c-.332-.166-1.965-.97-2.27-1.08-.304-.112-.525-.166-.746.166-.222.332-.857 1.08-1.05 1.302-.194.221-.387.248-.72.083-.332-.166-1.401-.516-2.668-1.645-.987-.88-1.653-1.968-1.847-2.3-.194-.333-.02-.513.146-.678.15-.148.332-.387.498-.58.166-.194.222-.333.332-.554.111-.221.056-.415-.028-.58-.083-.166-.747-1.8-.102-2.466-.347-.648-.698-.56-.957-.573-.248-.012-.53-.015-.813-.015-.283 0-.742.106-1.13.53-.388.424-1.48 1.446-1.48 3.526s1.515 4.088 1.727 4.373c.211.285 2.98 4.551 7.22 6.383 1.009.436 1.797.696 2.411.891 1.013.322 1.935.277 2.664.168.813-.122 2.502-1.023 2.855-2.01.353-.986.353-1.83.248-2.01-.106-.18-.387-.29-.72-.456z" fill="#FFFFFF"/></svg>\n</a>`;
     htmlStr = htmlStr.replace('</body>', waButton + '\n</body>');
   }
 
@@ -1696,7 +1697,8 @@ const server = http.createServer(async (req, res) => {
     let cacheControl = 'public, max-age=86400, stale-while-revalidate=604800';
     if (ext === '.html' || ext === '.htm') {
       let htmlStr = content.toString('utf8');
-      if (db.data) {
+      const isAdminPage = reqPath.startsWith('/admin') || filePath.toLowerCase().includes(path.sep + 'admin');
+      if (db.data && !isAdminPage) {
         if (Array.isArray(db.data.categories) && db.data.categories.length > 0) {
           htmlStr = injectAuthoritativeServices(htmlStr, db.data.categories);
         }
