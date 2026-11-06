@@ -11,25 +11,22 @@ function fetchUrl(url) {
 }
 
 async function run() {
-  console.log('Testing live website: https://www.digendigital.com');
-  const home = await fetchUrl('https://www.digendigital.com/?t=' + Date.now());
-  console.log('Homepage status:', home.status);
-  
-  const telMatches = [...new Set(home.data.match(/tel:[^"'\s>]+/g) || [])];
-  console.log('Tel links found on Homepage:', telMatches);
-
-  const addressMatches = [...new Set(home.data.match(/<p class="address-1?">[\s\S]*?<\/p>/g) || [])];
-  console.log('Address markup on Homepage:', addressMatches);
-
-  console.log('\nTesting Contact page: https://www.digendigital.com/contact-us/index.html');
+  console.log('Testing live Contact page: https://www.digendigital.com/contact-us/index.html');
   const contact = await fetchUrl('https://www.digendigital.com/contact-us/index.html?t=' + Date.now());
-  console.log('Contact Us status:', contact.status);
+  console.log('HTTP Status:', contact.status);
   
-  const contactTel = [...new Set(contact.data.match(/tel:[^"'\s>]+/g) || [])];
-  console.log('Tel links found on Contact page:', contactTel);
-
-  const visitUsMatch = contact.data.match(/<h5>VISIT US<\/h5>[\s\S]*?<\/div>/);
-  console.log('VISIT US section on Contact page:', visitUsMatch ? visitUsMatch[0] : 'Not found');
+  console.log('JotForm IFrame exists:', contact.data.includes('JotFormIFrame'));
+  console.log('First Name field exists:', contact.data.includes('name="name"'));
+  console.log('Last Name field exists:', contact.data.includes('name="lastName"'));
+  console.log('Email field exists:', contact.data.includes('name="email"'));
+  console.log('Phone field exists:', contact.data.includes('name="phone"'));
+  console.log('Project Description exists:', contact.data.includes('name="projectdescr"'));
+  console.log('Submit button exists:', contact.data.includes("Let's Grow Your Business"));
+  
+  const formMatch = contact.data.match(/<form class="cmxform footerForm"[\s\S]*?<\/form>/i);
+  if (formMatch) {
+    console.log('\n--- LIVE NATIVE FORM MARKUP ---\n' + formMatch[0]);
+  }
 }
 
 run().catch(console.error);
