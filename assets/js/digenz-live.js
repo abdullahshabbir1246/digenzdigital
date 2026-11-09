@@ -1018,13 +1018,31 @@
     window.open(currentWaLink, '_blank');
   };
 
-  function ensureWhatsAppButton() {
-    // 1. Remove legacy chat widgets
-    document.querySelectorAll('.floatbutton, #tawk-bubble-container, #tawk-tooltip-container, .tawk-min-container, [id*="tawk"]').forEach(el => el.remove());
+  function purgeLegacyChat() {
+    const selList = [
+      '.floatbutton', '.buttonclick', '.crossplus', '.floating_wrap', '.floatingform-sec',
+      '.overlayfloatingform', '.callusnow', '#tawk-bubble-container', '#tawk-tooltip-container',
+      '.tawk-min-container', '[id*="tawk"]', '[class*="tawk"]', 'iframe[src*="tawk"]',
+      'iframe[title*="chat" i]', '#chat-widget-container', '[id*="chat-widget"]', '[class*="chat-widget"]'
+    ];
+    selList.forEach(sel => {
+      try {
+        document.querySelectorAll(sel).forEach(el => {
+          if (el.id !== 'digenzWhatsappBtn' && !el.classList.contains('digenz-whatsapp-btn') && !el.classList.contains('digenz-whatsapp-icon')) {
+            el.remove();
+          }
+        });
+      } catch (e) {}
+    });
+  }
 
-    // 2. Ensure WhatsApp button exists
-    if (!document.getElementById('digenzWhatsappBtn')) {
-      const btn = document.createElement('a');
+  function ensureWhatsAppButton() {
+    purgeLegacyChat();
+
+    // Ensure WhatsApp button exists with strict inline sizing safeguards
+    let btn = document.getElementById('digenzWhatsappBtn');
+    if (!btn) {
+      btn = document.createElement('a');
       btn.id = 'digenzWhatsappBtn';
       btn.className = 'digenz-whatsapp-btn';
       btn.href = currentWaLink;
@@ -1032,10 +1050,29 @@
       btn.rel = 'noopener noreferrer';
       btn.setAttribute('aria-label', 'Chat with DIGENZ on WhatsApp');
       btn.title = 'Chat with DIGENZ on WhatsApp';
-      btn.innerHTML = '<svg class="digenz-whatsapp-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.502.658 4.938 1.908 7.078L2.05 29.35a.8.8 0 0 0 .99.986l6.468-1.802A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm-1.84 21.657a11.93 11.93 0 0 1-5.748-1.472l-.41-.242-3.873 1.078 1.07-3.774-.267-.428a11.94 11.94 0 0 1-1.732-6.219c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-11.04 11.057zm6.052-8.257c-.332-.166-1.965-.97-2.27-1.08-.304-.112-.525-.166-.746.166-.222.332-.857 1.08-1.05 1.302-.194.221-.387.248-.72.083-.332-.166-1.401-.516-2.668-1.645-.987-.88-1.653-1.968-1.847-2.3-.194-.333-.02-.513.146-.678.15-.148.332-.387.498-.58.166-.194.222-.333.332-.554.111-.221.056-.415-.028-.58-.083-.166-.747-1.8-.102-2.466-.347-.648-.698-.56-.957-.573-.248-.012-.53-.015-.813-.015-.283 0-.742.106-1.13.53-.388.424-1.48 1.446-1.48 3.526s1.515 4.088 1.727 4.373c.211.285 2.98 4.551 7.22 6.383 1.009.436 1.797.696 2.411.891 1.013.322 1.935.277 2.664.168.813-.122 2.502-1.023 2.855-2.01.353-.986.353-1.83.248-2.01-.106-.18-.387-.29-.72-.456z" fill="#FFFFFF"/></svg>';
+      btn.style.cssText = 'position:fixed;bottom:20px;right:20px;width:56px;height:56px;max-width:56px;max-height:56px;border-radius:50%;background-color:#25D366;display:flex;align-items:center;justify-content:center;z-index:999999;box-shadow:0 4px 20px rgba(37,211,102,0.45);cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;';
+      btn.innerHTML = '<svg class="digenz-whatsapp-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" style="width:32px;height:32px;max-width:32px;max-height:32px;display:block;fill:#FFFFFF;pointer-events:none;" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C8.268 2 2 8.268 2 16c0 2.502.658 4.938 1.908 7.078L2.05 29.35a.8.8 0 0 0 .99.986l6.468-1.802A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm-1.84 21.657a11.93 11.93 0 0 1-5.748-1.472l-.41-.242-3.873 1.078 1.07-3.774-.267-.428a11.94 11.94 0 0 1-1.732-6.219c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-11.04 11.057zm6.052-8.257c-.332-.166-1.965-.97-2.27-1.08-.304-.112-.525-.166-.746.166-.222.332-.857 1.08-1.05 1.302-.194.221-.387.248-.72.083-.332-.166-1.401-.516-2.668-1.645-.987-.88-1.653-1.968-1.847-2.3-.194-.333-.02-.513.146-.678.15-.148.332-.387.498-.58.166-.194.222-.333.332-.554.111-.221.056-.415-.028-.58-.083-.166-.747-1.8-.102-2.466-.347-.648-.698-.56-.957-.573-.248-.012-.53-.015-.813-.015-.283 0-.742.106-1.13.53-.388.424-1.48 1.446-1.48 3.526s1.515 4.088 1.727 4.373c.211.285 2.98 4.551 7.22 6.383 1.009.436 1.797.696 2.411.891 1.013.322 1.935.277 2.664.168.813-.122 2.502-1.023 2.855-2.01.353-.986.353-1.83.248-2.01-.106-.18-.387-.29-.72-.456z" fill="#FFFFFF"/></svg>';
       document.body.appendChild(btn);
+    } else {
+      btn.href = currentWaLink;
+      btn.style.width = '56px';
+      btn.style.height = '56px';
+      btn.style.maxWidth = '56px';
+      btn.style.maxHeight = '56px';
     }
   }
+
+  // Active continuous suppression of any legacy chat widget injection
+  try {
+    const chatObserver = new MutationObserver(() => purgeLegacyChat());
+    chatObserver.observe(document.documentElement, { childList: true, subtree: true });
+    let purgeTick = 0;
+    const purgeTimer = setInterval(() => {
+      purgeLegacyChat();
+      purgeTick++;
+      if (purgeTick > 25) clearInterval(purgeTimer);
+    }, 400);
+  } catch (e) {}
 
   async function init() {
     ensureWhatsAppButton();

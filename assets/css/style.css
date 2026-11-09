@@ -4706,14 +4706,36 @@ span.tick,
 
 /* --- GET AN INSTANT QUOTE FORM (HIGH CONTRAST & VISIBILITY) --- */
 .bot-form,
-.footerForm,
-#contactForm,
-form.cmxform.footerForm {
+.contact-form-card,
+.contactForm-wrap {
     background: #F5F7FA !important;
     border-radius: 16px !important;
     padding: 35px 30px !important;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
     border: 1px solid rgba(38, 52, 73, 0.3) !important;
+    box-sizing: border-box !important;
+}
+
+.bot-form form,
+.bot-form .footerForm,
+.bot-form #contactForm {
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+form.cmxform.footerForm:not(.bot-form form),
+#contactForm:not(.bot-form form) {
+    background: #F5F7FA !important;
+    border-radius: 16px !important;
+    padding: 35px 30px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid rgba(38, 52, 73, 0.3) !important;
+    box-sizing: border-box !important;
 }
 
 .bot-form h4,
@@ -4847,7 +4869,8 @@ form.cmxform.footerForm {
 .submit.bg-hover-red,
 .submit {
     width: 100% !important;
-    height: 52px !important;
+    min-height: 52px !important;
+    height: auto !important;
     background: #3478F6 !important;
     color: #FFFFFF !important;
     border: 1px solid #3478F6 !important;
@@ -4859,6 +4882,12 @@ form.cmxform.footerForm {
     transition: all 0.25s ease !important;
     box-shadow: 0 4px 15px rgba(52, 120, 246, 0.35) !important;
     margin-top: 10px !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    padding: 12px 14px !important;
+    line-height: 1.25 !important;
+    display: block !important;
 }
 
 .bot-form input[type="submit"]:hover,
@@ -5106,25 +5135,72 @@ footer.footer-main::after,
     background: none !important;
 }
 
-/* Visually conceal duplicate text overlay as it is rendered directly within the graphic */
-.home-banner-content {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    user-select: none !important;
+/* Visually conceal duplicate text overlay on desktop as it is rendered directly within the graphic */
+@media only screen and (min-width: 992px) {
+    .home-banner-content {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        user-select: none !important;
+    }
 }
 
+/* Homepage Hero Banner - Mobile & Tablet Responsive (Image 6 Fix) */
 @media only screen and (max-width: 991px) {
     .home-banner {
-        min-height: 380px !important;
-        background-position: center center !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 95px 20px 50px !important;
+        background: linear-gradient(180deg, rgba(16, 24, 39, 0.88) 0%, rgba(16, 24, 39, 0.95) 100%), url(../images/banners/digenz-home-hero.png) no-repeat right 25% / cover !important;
+        position: relative !important;
+        display: block !important;
+        overflow: hidden !important;
+        width: 100% !important;
+    }
+
+    .home-banner-content {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        user-select: auto !important;
+        position: relative !important;
+        z-index: 5 !important;
+        text-align: left !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 600px !important;
+    }
+
+    .home-banner-content h1 {
+        font-family: var(--heading-font-family, 'Montserrat', sans-serif) !important;
+        font-size: clamp(24px, 6.5vw, 36px) !important;
+        line-height: 1.2 !important;
+        font-weight: 800 !important;
+        color: #FFFFFF !important;
+        margin-bottom: 14px !important;
+        width: 100% !important;
+        text-transform: capitalize !important;
+        letter-spacing: -0.3px !important;
+    }
+
+    .home-banner-content h1:after {
+        display: none !important;
+    }
+
+    .home-banner-content p {
+        font-size: clamp(14px, 3.8vw, 16px) !important;
+        line-height: 1.55 !important;
+        color: #CBD5E1 !important;
+        margin-bottom: 24px !important;
+        width: 100% !important;
+    }
+
+    .home-banner .mybanform {
+        display: none !important;
     }
 }
 
 @media only screen and (max-width: 575px) {
     .home-banner {
-        min-height: 240px !important;
-        background-size: cover !important;
-        background-position: center center !important;
+        padding: 85px 16px 40px !important;
     }
 }
 
@@ -5963,42 +6039,34 @@ img, video, iframe {
 @media only screen and (max-width: 768px) {
     /* Header & Mobile Menu Button */
     .header-main {
-        position: relative !important;
-        z-index: 999 !important;
+        position: sticky !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important;
+        background: #101827 !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.45) !important;
     }
 
     .top-bar {
-        background: #0b111e !important;
-        padding: 6px 0 !important;
-        font-size: 12px !important;
-    }
-
-    .top-bar .cntct ul {
-        display: flex !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        flex-wrap: wrap !important;
-    }
-
-    .top-bar .cntct ul li a {
-        font-size: 12px !important;
-    }
-
-    .top-bar .cntct ul li.cstm-btn a {
-        padding: 4px 12px !important;
-        font-size: 11px !important;
+        display: none !important;
     }
 
     .nav-area-full {
         background: #101827 !important;
         border-bottom: 1px solid #1e293b !important;
-        padding: 12px 16px !important;
+        padding: 10px 16px !important;
+        min-height: 58px !important;
+        display: flex !important;
+        align-items: center !important;
     }
 
     .nav-area-full .row {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
+        width: 100% !important;
+        margin: 0 !important;
     }
 
     .logo-area {
@@ -6008,27 +6076,66 @@ img, video, iframe {
     }
 
     .logo-area .logo img {
-        max-height: 38px !important;
+        max-height: 36px !important;
         width: auto !important;
     }
 
-    /* Mobile Hamburger Button */
+    /* Mobile Hamburger Button: Cleanly positioned inside sticky header */
     .mobile-nav-btn {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         position: fixed !important;
-        top: 48px !important;
-        right: 16px !important;
-        width: 44px !important;
-        height: 44px !important;
+        top: 8px !important;
+        right: 14px !important;
+        width: 42px !important;
+        height: 42px !important;
         background: #1e293b !important;
         border: 1px solid #3478F6 !important;
         border-radius: 8px !important;
-        z-index: 10000 !important;
+        z-index: 10001 !important;
         cursor: pointer !important;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
         padding: 0 !important;
+    }
+
+    /* Instant Quote Form Mobile Fix (Image 7 Fix) */
+    .bot-form {
+        padding: 24px 16px !important;
+        border-radius: 12px !important;
+        margin: 20px auto 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    .bot-form .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .bot-form .row > [class*="col-"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .bot-form .from-control {
+        margin-bottom: 14px !important;
+        width: 100% !important;
+    }
+    .bot-form .from-control input,
+    .bot-form .from-control textarea {
+        width: 100% !important;
+        font-size: 15px !important;
+        box-sizing: border-box !important;
+    }
+    .bot-form input[type="submit"],
+    .bot-form .submit,
+    .footerForm .submit,
+    #contactForm .submit {
+        font-size: clamp(14px, 4vw, 16px) !important;
+        min-height: 50px !important;
+        padding: 12px 14px !important;
+        white-space: normal !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .mobile-nav-btn span,
@@ -6133,13 +6240,7 @@ img, video, iframe {
         background: rgba(52, 120, 246, 0.08) !important;
     }
 
-    /* Homepage Hero Banner */
-    .home-banner {
-        min-height: 280px !important;
-        background-size: cover !important;
-        background-position: center center !important;
-        padding: 40px 16px !important;
-    }
+    /* Homepage Hero Banner - handled in master responsive rules */
 
     /* Pricing Section — Mobile Swipeable Carousel & Clean View */
     .ourpackages {
@@ -6379,10 +6480,6 @@ img, video, iframe {
 
 /* 4. Small Mobile Screens (max-width: 480px) */
 @media only screen and (max-width: 480px) {
-    .home-banner {
-        min-height: 220px !important;
-        padding: 30px 12px !important;
-    }
 
     .portfolio-grid,
     .port-boxes {
@@ -6508,18 +6605,39 @@ ul.slick-dots,
     pointer-events: none;
 }
 
-/* Hide legacy chat widgets if any trace remains */
+/* Completely suppress legacy chat widgets, popups, and badges across entire site */
 .floatbutton,
 .buttonclick,
 .crossplus,
+.floating_wrap,
+.floating_wrap .btns_wrap,
 .floating_wrap .btns_wrap .chat_wrap,
+.floating_wrap .btns_wrap .call_wrap,
+.floatingform-sec,
+.overlayfloatingform,
+.callusnow,
 #tawk-bubble-container,
 #tawk-tooltip-container,
-.tawk-min-container {
+.tawk-min-container,
+[id*="tawk"],
+[class*="tawk"],
+iframe[src*="tawk"],
+iframe[title*="chat" i],
+#chat-widget-container,
+[id*="chat-widget"],
+[class*="chat-widget"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    position: absolute !important;
+    left: -99999px !important;
+    top: -99999px !important;
+    z-index: -9999 !important;
 }
 
 /* Mobile Responsiveness for WhatsApp Button */

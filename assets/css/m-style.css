@@ -4628,18 +4628,39 @@ ul.slick-dots,
     pointer-events: none;
 }
 
-/* Hide legacy chat widgets if any trace remains */
+/* Completely suppress legacy chat widgets, popups, and badges across entire site */
 .floatbutton,
 .buttonclick,
 .crossplus,
+.floating_wrap,
+.floating_wrap .btns_wrap,
 .floating_wrap .btns_wrap .chat_wrap,
+.floating_wrap .btns_wrap .call_wrap,
+.floatingform-sec,
+.overlayfloatingform,
+.callusnow,
 #tawk-bubble-container,
 #tawk-tooltip-container,
-.tawk-min-container {
+.tawk-min-container,
+[id*="tawk"],
+[class*="tawk"],
+iframe[src*="tawk"],
+iframe[title*="chat" i],
+#chat-widget-container,
+[id*="chat-widget"],
+[class*="chat-widget"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    position: absolute !important;
+    left: -99999px !important;
+    top: -99999px !important;
+    z-index: -9999 !important;
 }
 
 /* Mobile Responsiveness for WhatsApp Button */
