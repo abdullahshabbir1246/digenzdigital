@@ -11,7 +11,13 @@ function fetchUrl(url) {
 }
 
 async function run() {
-  console.log('Testing live Contact page: https://www.digendigital.com/contact-us/index.html');
+  console.log('Testing live Homepage: https://www.digendigital.com/index.html');
+  const home = await fetchUrl('https://www.digendigital.com/index.html?t=' + Date.now());
+  console.log('Homepage Status:', home.status);
+  console.log('Homepage Textarea exists:', home.data.includes('<textarea id="projectdescr"'));
+  console.log('Homepage Submit button exists:', home.data.includes("Let's Grow Your Business"));
+  const waMatches = home.data.match(/wa\.me[^\s"']+/g);
+  console.log('Homepage wa.me links found on live:', waMatches);
   const contact = await fetchUrl('https://www.digendigital.com/contact-us/index.html?t=' + Date.now());
   console.log('HTTP Status:', contact.status);
   
