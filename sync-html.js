@@ -142,7 +142,7 @@ function syncStaticHTMLPricingAndBanners(products, banners, settings) {
             ? `<h6><span class="old">${currPrefix}${formattedOld}</span> ${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`
             : `<h6>${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`;
 
-          const updated = content.replace(/<h6>(?:<span class="old">[\s\S]*?<\/span>)?[\s\S]*?<\/h6>/i, detailPriceHtml);
+          const updated = content.replace(/<h6>[\s\S]*?<\/h6>/i, () => detailPriceHtml);
           if (updated !== content) {
             fs.writeFileSync(pageFile, updated, 'utf8');
           }

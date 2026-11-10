@@ -294,7 +294,7 @@ function injectAuthoritativePricing(htmlStr, products, settings, filePath) {
         ? `<h6><span class="old">${currPrefix}${formattedOld}</span> ${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`
         : `<h6>${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`;
 
-      htmlStr = htmlStr.replace(/<h6>(?:<span class="old">[\s\S]*?<\/span>)?([\s\S]*?)<\/h6>/i, detailPriceHtml);
+      htmlStr = htmlStr.replace(/<h6>[\s\S]*?<\/h6>/i, () => detailPriceHtml);
 
       if (Array.isArray(targetProduct.features) && targetProduct.features.length > 0 && htmlStr.includes('class="subscription-list"')) {
         const featuresHtml = targetProduct.features.map(f => `<li><h6>${f}</h6><span class="tick"></span></li>`).join('');
