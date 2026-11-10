@@ -325,10 +325,10 @@ function injectAuthoritativePricing(htmlStr, products, settings, filePath) {
           ? `<h4><span>Starting at </span> ${currPrefix}${formattedPrice} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currPrefix}${formattedOld}</small></h4>`
           : `<h4><span>Starting at </span> ${currPrefix}${formattedPrice}</h4>`;
 
-        cardBody = cardBody.replace(/<h4>[\s\S]*?<\/h4>/i, priceHtml);
+        cardBody = cardBody.replace(/<h4>[\s\S]*?<\/h4>/i, () => priceHtml);
 
         if (prod.description) {
-          cardBody = cardBody.replace(/<h[25]>[\s\S]*?<\/h[25]>/i, `<h5>${prod.description}</h5>`);
+          cardBody = cardBody.replace(/<h[25]>[\s\S]*?<\/h[25]>/i, () => `<h5>${prod.description}</h5>`);
         }
 
         // Update data-pkg-price on CTA buttons

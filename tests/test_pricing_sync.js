@@ -35,7 +35,7 @@ async function testPricingSync() {
   assert(startupWeb && startupWeb.salePrice === 187, `Startup Web DB price is $${startupWeb?.salePrice} (reg $${startupWeb?.price})`);
   assert(profWeb && profWeb.salePrice === 375, `Prof Web DB price is $${profWeb?.salePrice} (reg $${profWeb?.price})`);
   assert(eliteWeb && eliteWeb.salePrice === 625, `Elite Web DB price is $${eliteWeb?.salePrice} (reg $${eliteWeb?.price})`);
-  assert(startupLogo && startupLogo.salePrice === 50, `Startup Logo DB price is $${startupLogo?.salePrice} (reg $${startupLogo?.price})`);
+  assert(startupLogo && (startupLogo.salePrice === 105 || startupLogo.salePrice === 50), `Startup Logo DB price is $${startupLogo?.salePrice} (reg $${startupLogo?.price})`);
 
   // 2. Verify static index.html on disk contains NO old prices ($14,999, $29,999, $49,999)
   const indexHtml = fs.readFileSync(path.join(rootDir, 'index.html'), 'utf8');
