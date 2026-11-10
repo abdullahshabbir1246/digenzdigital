@@ -295,6 +295,7 @@ const MIME_TYPES = {
   '.webp': 'image/webp',
   '.gif': 'image/gif',
   '.ico': 'image/x-icon',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
@@ -1749,7 +1750,7 @@ const server = http.createServer(async (req, res) => {
       }
       content = Buffer.from(htmlStr, 'utf8');
       cacheControl = 'no-cache, no-store, must-revalidate, max-age=0';
-    } else if (['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico', '.woff', '.woff2', '.ttf'].includes(ext)) {
+    } else if (['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.ico', '.webmanifest', '.woff', '.woff2', '.ttf'].includes(ext)) {
       cacheControl = 'public, max-age=31536000, immutable';
     }
 
