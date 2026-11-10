@@ -254,6 +254,101 @@ function injectAuthoritativeContact(htmlStr, settings, content) {
   return htmlStr;
 }
 
+
+function injectAuthoritativePricing(htmlStr, products, settings, filePath) {
+  if (!htmlStr || !Array.isArray(products) || products.length === 0) return htmlStr;
+  const currency = (settings && settings.currencySymbol) || '$';
+  const currPrefix = currency.length === 1 ? currency : (currency + ' ');
+  const norm = s => (s || '').toLowerCase().replace(/<[^>]*>/g, '').replace(/[^a-z0-9]/g, '');
+
+  // 1. If this is an individual pricing detail page (/pricing/<slug>/index.html) or contains .subspac
+  if (htmlStr.includes('class="subspac"') || (filePath && filePath.toLowerCase().includes(path.sep + 'pricing' + path.sep))) {
+    let targetProduct = null;
+    if (filePath) {
+      const parts = filePath.replace(/\\/g, '/').split('/');
+      const pricingIdx = parts.lastIndexOf('pricing');
+      if (pricingIdx !== -1 && parts[pricingIdx + 1]) {
+        const dirSlug = norm(parts[pricingIdx + 1]);
+        targetProduct = products.find(p => norm(p.slug) === dirSlug || norm(p.name) === dirSlug || dirSlug.includes(norm(p.slug)) || norm(p.slug).includes(dirSlug));
+      }
+    }
+    if (!targetProduct) {
+      const headingMatch = htmlStr.match(/<h[123][^>]*class="[^"]*(?:main-heading|myheading)[^"]*"[^>]*>([\s\S]*?)<\/h[123]>/i)
+                        || htmlStr.match(/<div class="subspac"[^>]*>[\s\S]*?<h[23]>([\s\S]*?)<\/h[23]>/i)
+                        || htmlStr.match(/<title>([\s\S]*?)<\/title>/i);
+      if (headingMatch) {
+        const titleNorm = norm(headingMatch[1]);
+        targetProduct = products.find(p => norm(p.name) === titleNorm || norm(p.slug) === titleNorm || titleNorm.includes(norm(p.slug)) || titleNorm.includes(norm(p.name)));
+      }
+    }
+
+    if (targetProduct) {
+      const saleVal = targetProduct.salePrice;
+      const regVal = targetProduct.price;
+      const hasSale = saleVal && saleVal < regVal;
+      const formattedPrice = Number(hasSale ? saleVal : regVal).toLocaleString();
+      const formattedOld = Number(regVal).toLocaleString();
+      const descText = targetProduct.description || '';
+
+      const detailPriceHtml = hasSale
+        ? `<h6><span class="old">${currPrefix}${formattedOld}</span> ${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`
+        : `<h6>${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`;
+
+      htmlStr = htmlStr.replace(/<h6>(?:<span class="old">[\s\S]*?<\/span>)?([\s\S]*?)<\/h6>/i, detailPriceHtml);
+
+      if (Array.isArray(targetProduct.features) && targetProduct.features.length > 0 && htmlStr.includes('class="subscription-list"')) {
+        const featuresHtml = targetProduct.features.map(f => `<li><h6>${f}</h6><span class="tick"></span></li>`).join('');
+        htmlStr = htmlStr.replace(/(<ul class="subscription-list"[^>]*>)[\s\S]*?(<\/ul>)/i, `$1${featuresHtml}$2`);
+      }
+    }
+  }
+
+  // 2. Update all .packwrap cards (e.g. on index.html, packages/index.html, service pages)
+  if (htmlStr.includes('packwrap')) {
+    const cardChunks = htmlStr.split(/(<div class="packwrap[^"]*">)/i);
+    for (let i = 1; i < cardChunks.length; i += 2) {
+      let cardBody = cardChunks[i + 1];
+      const titleMatch = cardBody.match(/<h3>([\s\S]*?)<\/h3>/i);
+      if (!titleMatch) continue;
+
+      const titleText = titleMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      const titleNorm = norm(titleText);
+      const prod = products.find(p => norm(p.name) === titleNorm || norm(p.slug) === titleNorm || titleNorm.includes(norm(p.slug)) || norm(p.slug).includes(titleNorm));
+      if (prod) {
+        const saleVal = prod.salePrice;
+        const regVal = prod.price;
+        const hasSale = saleVal && saleVal < regVal;
+        const formattedPrice = Number(hasSale ? saleVal : regVal).toLocaleString();
+        const formattedOld = Number(regVal).toLocaleString();
+
+        const priceHtml = hasSale
+          ? `<h4><span>Starting at </span> ${currPrefix}${formattedPrice} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currPrefix}${formattedOld}</small></h4>`
+          : `<h4><span>Starting at </span> ${currPrefix}${formattedPrice}</h4>`;
+
+        cardBody = cardBody.replace(/<h4>[\s\S]*?<\/h4>/i, priceHtml);
+
+        if (prod.description) {
+          cardBody = cardBody.replace(/<h[25]>[\s\S]*?<\/h[25]>/i, `<h5>${prod.description}</h5>`);
+        }
+
+        // Update data-pkg-price on CTA buttons
+        cardBody = cardBody.replace(/(class="btn-pack"[^>]*)/i, (m) => {
+          if (m.includes('data-pkg-price=')) {
+            return m.replace(/data-pkg-price="[^"]*"/i, `data-pkg-price="${hasSale ? saleVal : regVal}"`);
+          }
+          return `${m} data-pkg-price="${hasSale ? saleVal : regVal}"`;
+        });
+
+        cardChunks[i + 1] = cardBody;
+      }
+    }
+    htmlStr = cardChunks.join('');
+  }
+
+  return htmlStr;
+}
+
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
@@ -784,6 +879,7 @@ const server = http.createServer(async (req, res) => {
 
       db.data.products.unshift(newProduct);
       await db.save('products');
+      syncStaticHTMLPricingAndBanners(db.data.products, db.data.banners, db.data.settings);
       db.logAudit(session.email, 'CREATE_PRODUCT', 'Products', `Created product "${newProduct.name}" (SKU: ${newProduct.sku})`, clientIp);
       return sendJSON(res, 201, { success: true, product: newProduct });
     }
@@ -821,6 +917,7 @@ const server = http.createServer(async (req, res) => {
       });
 
       await db.save('products');
+      syncStaticHTMLPricingAndBanners(db.data.products, db.data.banners, db.data.settings);
       db.logAudit(session.email, 'UPDATE_PRODUCT', 'Products', `Updated product "${product.name}"`, clientIp);
       return sendJSON(res, 200, { success: true, product });
     }
@@ -834,6 +931,7 @@ const server = http.createServer(async (req, res) => {
 
       const deleted = db.data.products.splice(index, 1)[0];
       await db.save('products');
+      syncStaticHTMLPricingAndBanners(db.data.products, db.data.banners, db.data.settings);
       db.logAudit(session.email, 'DELETE_PRODUCT', 'Products', `Deleted product "${deleted.name}" (${deleted.id})`, clientIp);
       return sendJSON(res, 200, { success: true, message: `Product "${deleted.name}" deleted.` });
     }
@@ -1742,7 +1840,10 @@ const server = http.createServer(async (req, res) => {
     if (ext === '.html' || ext === '.htm') {
       let htmlStr = content.toString('utf8');
       const isAdminPage = reqPath.startsWith('/admin') || filePath.toLowerCase().includes(path.sep + 'admin');
-      if (db.data && !isAdminPage) {
+            if (db.data && !isAdminPage) {
+        if (Array.isArray(db.data.products) && db.data.products.length > 0) {
+          htmlStr = injectAuthoritativePricing(htmlStr, db.data.products, db.data.settings, filePath);
+        }
         if (Array.isArray(db.data.categories) && db.data.categories.length > 0) {
           htmlStr = injectAuthoritativeServices(htmlStr, db.data.categories);
         }

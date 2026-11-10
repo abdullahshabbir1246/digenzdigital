@@ -380,7 +380,7 @@
       "status": "published",
       "stockQuantity": 999,
       "subcategoryId": null,
-      "updatedAt": "2026-10-29T16:00:00.000Z",
+      "updatedAt": "2026-11-10T22:31:12.969Z",
       "variants": [],
       "videoUrl": ""
     },
@@ -2617,6 +2617,24 @@
   },
   "auditLogs": [
     {
+      "id": "log-1794349873068-872",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_PRODUCT",
+      "module": "Products",
+      "details": "Updated product \"Startup Website Package\"",
+      "ip": "127.0.0.1",
+      "timestamp": "2026-11-10T22:31:13.068Z"
+    },
+    {
+      "id": "log-1794349872932-599",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_PRODUCT",
+      "module": "Products",
+      "details": "Updated product \"Startup Website Package\"",
+      "ip": "127.0.0.1",
+      "timestamp": "2026-11-10T22:31:12.932Z"
+    },
+    {
       "id": "log-1793979215321-247",
       "adminEmail": "admin@digenz.com",
       "action": "LOGIN_SUCCESS",
@@ -3932,9 +3950,9 @@
     }
   ],
   "syncState": {
-    "version": 39,
-    "lastUpdated": 1793979215317,
-    "lastModule": "admins",
+    "version": 41,
+    "lastUpdated": 1794349872969,
+    "lastModule": "products",
     "modules": [
       "admins",
       "products",

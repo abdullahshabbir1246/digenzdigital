@@ -23,14 +23,26 @@ function getAllHtmlFiles(dir) {
 
 function syncStaticHTMLPricingAndBanners(products, banners, settings) {
   try {
+    if (!Array.isArray(products) || products.length === 0) return;
     const currency = (settings && settings.currencySymbol) || '$';
-    const files = [
+    const currPrefix = currency.length === 1 ? currency : (currency + ' ');
+    const norm = s => (s || '').toLowerCase().replace(/<[^>]*>/g, '').replace(/[^a-z0-9]/g, '');
+
+    // 1. Files containing .packwrap cards (homepage, packages catalog, category service pages)
+    const cardFiles = [
       path.join(BASE_DIR, 'index.html'),
       path.join(BASE_DIR, 'index.htm'),
-      path.join(BASE_DIR, 'packages', 'index.html')
+      path.join(BASE_DIR, 'packages', 'index.html'),
+      path.join(BASE_DIR, 'branding', 'index.html'),
+      path.join(BASE_DIR, 'custom-website-design', 'index.html'),
+      path.join(BASE_DIR, 'ecommerce-website-development', 'index.html'),
+      path.join(BASE_DIR, 'seo', 'index.html'),
+      path.join(BASE_DIR, 'video-animation', 'index.html'),
+      path.join(BASE_DIR, 'web-application-development', 'index.html'),
+      path.join(BASE_DIR, 'wordpress-development', 'index.html')
     ];
 
-    for (const filePath of files) {
+    for (const filePath of cardFiles) {
       if (!fs.existsSync(filePath)) continue;
       let content = fs.readFileSync(filePath, 'utf8');
 
@@ -43,19 +55,33 @@ function syncStaticHTMLPricingAndBanners(products, banners, settings) {
         if (!titleMatch) continue;
 
         const titleText = titleMatch[1].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-        const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        const cardTitleNorm = norm(titleText);
 
-        const prod = products.find(p => norm(p.name) === norm(titleText) || norm(p.slug) === norm(titleText));
+        const prod = products.find(p => norm(p.name) === cardTitleNorm || norm(p.slug) === cardTitleNorm || cardTitleNorm.includes(norm(p.slug)) || norm(p.slug).includes(cardTitleNorm));
         if (prod) {
-          const priceHtml = prod.salePrice && prod.salePrice < prod.price
-            ? `<h4><span>Starting at </span> ${currency}${prod.salePrice} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currency}${prod.price}</small></h4>`
-            : `<h4><span>Starting at </span> ${currency}${prod.price}</h4>`;
+          const saleVal = prod.salePrice;
+          const regVal = prod.price;
+          const hasSale = saleVal && saleVal < regVal;
+          const formattedPrice = Number(hasSale ? saleVal : regVal).toLocaleString();
+          const formattedOld = Number(regVal).toLocaleString();
+
+          const priceHtml = hasSale
+            ? `<h4><span>Starting at </span> ${currPrefix}${formattedPrice} <small style="text-decoration: line-through; opacity: 0.6; font-size: 0.68em; margin-left: 6px; font-weight: normal; color: #8892b0;">${currPrefix}${formattedOld}</small></h4>`
+            : `<h4><span>Starting at </span> ${currPrefix}${formattedPrice}</h4>`;
 
           cardBody = cardBody.replace(/<h4>[\s\S]*?<\/h4>/i, () => priceHtml);
 
           if (prod.description) {
             cardBody = cardBody.replace(/<h[25]>[\s\S]*?<\/h[25]>/i, () => `<h5>${prod.description}</h5>`);
           }
+
+          // Update data-pkg-price on CTA buttons
+          cardBody = cardBody.replace(/(class="btn-pack"[^>]*)/i, (m) => {
+            if (m.includes('data-pkg-price=')) {
+              return m.replace(/data-pkg-price="[^"]*"/i, `data-pkg-price="${hasSale ? saleVal : regVal}"`);
+            }
+            return `${m} data-pkg-price="${hasSale ? saleVal : regVal}"`;
+          });
 
           cardChunks[i + 1] = cardBody;
           changed = true;
@@ -76,7 +102,52 @@ function syncStaticHTMLPricingAndBanners(products, banners, settings) {
         }
       }
 
-      fs.writeFileSync(filePath, content, 'utf8');
+      if (changed) {
+        fs.writeFileSync(filePath, content, 'utf8');
+      }
+    }
+
+    // 2. Individual Package Detail Pages (pricing/*/index.html)
+    const pricingBase = path.join(BASE_DIR, 'pricing');
+    if (fs.existsSync(pricingBase)) {
+      const dirs = fs.readdirSync(pricingBase);
+      for (const d of dirs) {
+        const fullDir = path.join(pricingBase, d);
+        if (!fs.statSync(fullDir).isDirectory()) continue;
+        const pageFile = path.join(fullDir, 'index.html');
+        if (!fs.existsSync(pageFile)) continue;
+
+        let content = fs.readFileSync(pageFile, 'utf8');
+        const normDir = norm(d);
+
+        let prod = products.find(p => norm(p.slug) === normDir || norm(p.name) === normDir || normDir.includes(norm(p.slug)) || norm(p.slug).includes(normDir));
+        if (!prod) {
+          const headingMatch = content.match(/<h[123][^>]*class="[^"]*(?:main-heading|myheading)[^"]*"[^>]*>([\s\S]*?)<\/h[123]>/i)
+                            || content.match(/<div class="subspac"[^>]*>[\s\S]*?<h[23]>([\s\S]*?)<\/h[23]>/i);
+          if (headingMatch) {
+            const tn = norm(headingMatch[1]);
+            prod = products.find(p => norm(p.name) === tn || norm(p.slug) === tn || tn.includes(norm(p.slug)) || tn.includes(norm(p.name)));
+          }
+        }
+
+        if (prod) {
+          const saleVal = prod.salePrice;
+          const regVal = prod.price;
+          const hasSale = saleVal && saleVal < regVal;
+          const formattedPrice = Number(hasSale ? saleVal : regVal).toLocaleString();
+          const formattedOld = Number(regVal).toLocaleString();
+          const descText = prod.description || '';
+
+          const detailPriceHtml = hasSale
+            ? `<h6><span class="old">${currPrefix}${formattedOld}</span> ${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`
+            : `<h6>${currPrefix}${formattedPrice} <span><b class="monthss"></b>${descText}</span></h6>`;
+
+          const updated = content.replace(/<h6>(?:<span class="old">[\s\S]*?<\/span>)?[\s\S]*?<\/h6>/i, detailPriceHtml);
+          if (updated !== content) {
+            fs.writeFileSync(pageFile, updated, 'utf8');
+          }
+        }
+      }
     }
   } catch (err) {
     console.error('[SSR Sync] Failed to sync static HTML files:', err.message);
