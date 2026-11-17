@@ -6037,6 +6037,17 @@ img, video, iframe {
 
 /* 3. Standard Mobile & Tablets (max-width: 991px) */
 @media only screen and (max-width: 991px) {
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        width: 0px !important;
+        height: 0px !important;
+        display: none !important;
+    }
+    html, body {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
     /* Master Fixed Sticky Mobile Header */
     .header-main {
         position: fixed !important;

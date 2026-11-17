@@ -1087,6 +1087,16 @@
     style.id = 'digenzMobileHeaderStyle';
     style.textContent = `
       @media only screen and (max-width: 991px) {
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+          width: 0px !important;
+          height: 0px !important;
+          display: none !important;
+        }
+        html, body {
+          scrollbar-width: none !important;
+          -ms-overflow-style: none !important;
+        }
         .header-main {
           position: fixed !important;
           top: 0 !important;
