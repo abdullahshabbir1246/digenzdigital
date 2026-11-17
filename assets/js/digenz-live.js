@@ -1081,7 +1081,186 @@
     }, 400);
   } catch (e) {}
 
+  function ensureMobileHeader() {
+    if (document.getElementById('digenzMobileHeaderStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'digenzMobileHeaderStyle';
+    style.textContent = `
+      @media only screen and (max-width: 991px) {
+        .header-main {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          height: 60px !important;
+          min-height: 60px !important;
+          max-height: 60px !important;
+          z-index: 99999 !important;
+          background: #101827 !important;
+          box-shadow: 0 2px 14px rgba(0, 0, 0, 0.5) !important;
+          border-bottom: 1px solid #1e293b !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          transform: none !important;
+        }
+        .top-bar {
+          display: none !important;
+        }
+        .nav-area-full {
+          background: transparent !important;
+          border-bottom: none !important;
+          box-shadow: none !important;
+          padding: 0 16px !important;
+          padding-left: max(16px, env(safe-area-inset-left)) !important;
+          padding-right: max(16px, env(safe-area-inset-right)) !important;
+          height: 60px !important;
+          min-height: 60px !important;
+          max-height: 60px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          margin: 0 !important;
+          width: 100% !important;
+        }
+        .nav-area-full .row {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          width: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        .logo-area {
+          width: auto !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          flex: 0 0 auto !important;
+          display: flex !important;
+          align-items: center !important;
+          height: 60px !important;
+        }
+        .logo-area .logo img {
+          max-height: 36px !important;
+          height: 36px !important;
+          width: auto !important;
+          display: block !important;
+        }
+        .mobile-nav-btn {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          position: fixed !important;
+          top: 10px !important;
+          top: max(10px, env(safe-area-inset-top)) !important;
+          right: 16px !important;
+          right: max(16px, env(safe-area-inset-right)) !important;
+          width: 40px !important;
+          height: 40px !important;
+          background: #1e293b !important;
+          border: 1px solid #3478F6 !important;
+          border-radius: 8px !important;
+          z-index: 100001 !important;
+          cursor: pointer !important;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+          transition: background 0.25s ease, border-color 0.25s ease !important;
+        }
+        .mobile-nav-btn.active {
+          position: fixed !important;
+          top: 10px !important;
+          top: max(10px, env(safe-area-inset-top)) !important;
+          right: 16px !important;
+          right: max(16px, env(safe-area-inset-right)) !important;
+          background: #1e293b !important;
+          border-color: #3478F6 !important;
+          z-index: 100005 !important;
+        }
+        .mobile-nav-btn span,
+        .mobile-nav-btn span:before,
+        .mobile-nav-btn span:after {
+          background-color: #3478F6 !important;
+          width: 22px !important;
+          height: 2.5px !important;
+          display: block !important;
+          border-radius: 2px !important;
+          transition: transform 0.25s ease, top 0.25s ease, background-color 0.25s ease !important;
+        }
+        .mobile-nav-btn span {
+          position: relative !important;
+          top: 0 !important;
+          margin: 0 auto !important;
+        }
+        .mobile-nav-btn span:before {
+          content: '' !important;
+          position: absolute !important;
+          top: -7px !important;
+          left: 0 !important;
+        }
+        .mobile-nav-btn span:after {
+          content: '' !important;
+          position: absolute !important;
+          top: 7px !important;
+          left: 0 !important;
+        }
+        .mobile-nav-btn.active span {
+          background-color: transparent !important;
+        }
+        .mobile-nav-btn.active span:before {
+          top: 0 !important;
+          transform: rotate(45deg) !important;
+        }
+        .mobile-nav-btn.active span:after {
+          top: 0 !important;
+          transform: rotate(-45deg) !important;
+        }
+        .mobile-nav {
+          position: fixed !important;
+          top: 0 !important;
+          right: -100% !important;
+          width: 300px !important;
+          max-width: 85vw !important;
+          height: 100vh !important;
+          background: #101827 !important;
+          border-left: 1px solid #263449 !important;
+          z-index: 100000 !important;
+          overflow-y: auto !important;
+          -webkit-overflow-scrolling: touch !important;
+          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.85) !important;
+          transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          padding: 70px 0 40px !important;
+        }
+        .mobile-nav.active {
+          right: 0 !important;
+        }
+        .app-container.active {
+          left: 0 !important;
+          transform: none !important;
+        }
+      }
+      @media only screen and (max-width: 360px) {
+        .logo-area .logo img {
+          max-height: 30px !important;
+          height: 30px !important;
+        }
+        .mobile-nav-btn {
+          width: 36px !important;
+          height: 36px !important;
+          top: 12px !important;
+          right: 12px !important;
+        }
+      }
+    `;
+    if (document.head) document.head.appendChild(style);
+    else document.addEventListener('DOMContentLoaded', () => document.head.appendChild(style));
+  }
+
+  ensureMobileHeader();
+
   async function init() {
+    ensureMobileHeader();
     ensureWhatsAppButton();
     window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
