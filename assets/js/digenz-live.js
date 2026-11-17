@@ -433,15 +433,22 @@
         }
       });
 
-      // 3. Non-anchor phone text elements (.call_wrap span:not(.icoo), .btn-black-custom, etc.)
+      // 3. Action buttons (.btn-black-custom, a.chatcta) - update phone buttons only, NEVER touch chat buttons
       document.querySelectorAll('.btn-black-custom').forEach(el => {
-        if (el.tagName === 'A') el.setAttribute('href', telHref);
-        el.textContent = phoneText;
+        const text = (el.textContent || '').trim();
+        const href = el.getAttribute('href') || '';
+        // Only update if it is an actual phone element, NEVER "Chat With Us" or chat buttons
+        if (href.startsWith('tel:') || (/[\d\s()+-]{7,}/.test(text) && !/chat/i.test(text))) {
+          if (el.tagName === 'A') el.setAttribute('href', telHref);
+          el.textContent = phoneText;
+        }
       });
 
       document.querySelectorAll('a.chatcta').forEach(a => {
-        a.setAttribute('href', telHref);
-        if (/[\d()+-]{7,}/.test(a.textContent)) {
+        const text = (a.textContent || '').trim();
+        const href = a.getAttribute('href') || '';
+        if (href.startsWith('tel:') || (/[\d\s()+-]{7,}/.test(text) && !/chat/i.test(text))) {
+          a.setAttribute('href', telHref);
           a.textContent = phoneText;
         }
       });

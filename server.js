@@ -214,7 +214,7 @@ function injectAuthoritativeContact(htmlStr, settings, content) {
   htmlStr = htmlStr.replace(/(<div class=["']col-md-6 col-6["']><a[^>]*class=["'][^"']*action-no[^"']*["'][^>]*>\s*<span><small>[^<]*<\/small>)\s*[^<]*(<\/span><\/a><\/div>)/gi, `$1 ${phoneText}$2`);
 
   // 6. Update btn-black-custom phone text
-  htmlStr = htmlStr.replace(/(<a[^>]*class=["'][^"']*btn-black-custom[^"']*["'][^>]*>)\s*[\d\s()+-]{7,25}\s*(<\/a>)/gi, `$1${phoneText}$2`);
+  htmlStr = htmlStr.replace(/(<a[^>]*class=["'][^"']*btn-black-custom[^"']*["'][^>]*>)\s*[\d\s()+-]{7,25}\s*(<\/a>)/gi, (match, p1, p2) => `${p1}${phoneText}${p2}`);
 
   // 7. Update footer phone text
   htmlStr = htmlStr.replace(/(<div class=["']col-md-5 footerleft["']>[\s\S]*?<a\s+href=["']tel:[^"']*["']>)\s*[^<]*(<\/a>)/gi, `$1${phoneText}$2`);
