@@ -12,10 +12,16 @@ assert(!css.includes('top: 42px !important;'), 'Conflicting top: 42px override m
 assert(css.includes('.mobile-nav-btn.active span'), 'Active X transform must exist');
 assert(css.includes('height: 60px !important;'), 'Header height must be set to 60px');
 assert(css.includes('top: 10px !important;'), 'Button top must be set to 10px');
+assert(css.includes('.logo-area .logo .whitelogo'), 'whitelogo rule must exist in style.css');
+assert(css.includes('.logo-area .logo .blacklogo'), 'blacklogo rule must exist in style.css');
+assert(css.includes('transform: translateX(105%) !important;'), 'Off-screen drawer transform must exist in style.css');
 
 // Verify digenz-live.js rules
 assert(js.includes('ensureMobileHeader'), 'ensureMobileHeader must exist in digenz-live.js');
 assert(js.includes('digenzMobileHeaderStyle'), 'digenzMobileHeaderStyle must exist');
+assert(js.includes('.logo-area .logo .whitelogo'), 'whitelogo rule must exist in digenz-live.js');
+assert(js.includes('.logo-area .logo .blacklogo'), 'blacklogo rule must exist in digenz-live.js');
+assert(js.includes('transform: translateX(105%) !important;'), 'Off-screen drawer transform must exist in digenz-live.js');
 
 // Test vertical centering across breakpoints
 const testBreakpoints = [320, 360, 375, 390, 414, 430, 768, 991];

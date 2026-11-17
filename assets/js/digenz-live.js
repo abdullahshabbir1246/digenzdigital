@@ -1093,6 +1093,8 @@
           left: 0 !important;
           right: 0 !important;
           width: 100% !important;
+          width: 100vw !important;
+          max-width: 100vw !important;
           height: 60px !important;
           min-height: 60px !important;
           max-height: 60px !important;
@@ -1140,7 +1142,10 @@
           align-items: center !important;
           height: 60px !important;
         }
-        .logo-area .logo img {
+        .logo-area .logo .whitelogo {
+          display: none !important;
+        }
+        .logo-area .logo .blacklogo {
           max-height: 36px !important;
           height: 36px !important;
           width: auto !important;
@@ -1219,7 +1224,11 @@
         .mobile-nav {
           position: fixed !important;
           top: 0 !important;
-          right: -100% !important;
+          right: 0 !important;
+          transform: translateX(105%) !important;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
           width: 300px !important;
           max-width: 85vw !important;
           height: 100vh !important;
@@ -1229,11 +1238,12 @@
           overflow-y: auto !important;
           -webkit-overflow-scrolling: touch !important;
           box-shadow: -10px 0 30px rgba(0, 0, 0, 0.85) !important;
-          transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
           padding: 70px 0 40px !important;
         }
         .mobile-nav.active {
-          right: 0 !important;
+          transform: translateX(0) !important;
+          visibility: visible !important;
+          pointer-events: auto !important;
         }
         .app-container.active {
           left: 0 !important;
@@ -1241,9 +1251,14 @@
         }
       }
       @media only screen and (max-width: 360px) {
-        .logo-area .logo img {
+        .logo-area .logo .whitelogo {
+          display: none !important;
+        }
+        .logo-area .logo .blacklogo {
           max-height: 30px !important;
           height: 30px !important;
+          width: auto !important;
+          display: block !important;
         }
         .mobile-nav-btn {
           width: 36px !important;
