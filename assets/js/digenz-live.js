@@ -1289,13 +1289,12 @@
     style.textContent = `
       .pckkslider .slick-track {
         display: flex !important;
-        align-items: flex-start !important;
+        align-items: stretch !important;
         margin-left: auto !important;
         margin-right: auto !important;
       }
       .pckkslider .slick-slide {
         height: auto !important;
-        min-height: auto !important;
         display: flex !important;
         flex-direction: column !important;
         padding: 0 12px !important;
@@ -1305,16 +1304,14 @@
       .pckkslider .slick-slide > div {
         display: flex !important;
         flex-direction: column !important;
-        height: auto !important;
-        min-height: auto !important;
+        height: 100% !important;
         width: 100% !important;
       }
       .pckkslider .slick-slide > div > li,
       .ourpackages .tab-custom .tabs ul.pckkslider > li {
         display: flex !important;
         flex-direction: column !important;
-        height: auto !important;
-        min-height: auto !important;
+        height: 100% !important;
         width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
@@ -1324,44 +1321,153 @@
       .packwrap,
       .ourpackages .tab-custom .tabs ul li .packwrap,
       .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
-        height: auto !important;
-        min-height: auto !important;
+        height: 100% !important;
+        min-height: 520px !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important;
+        align-items: stretch !important;
         justify-content: flex-start !important;
         background: #4A4A4A !important;
         background-color: #4A4A4A !important;
         border-radius: 12px !important;
+        padding: 30px 22px 24px !important;
         box-sizing: border-box !important;
         position: relative !important;
         text-align: center !important;
         overflow: hidden !important;
       }
+      .packwrap h3,
+      .ourpackages .tab-custom .tabs ul li .packwrap h3 {
+        order: 1 !important;
+        font-size: 20px !important;
+        line-height: 1.25 !important;
+        font-weight: 700 !important;
+        color: #FFFFFF !important;
+        text-align: center !important;
+        margin: 0 0 10px 0 !important;
+        padding: 0 !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        font-family: var(--heading-font-family) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 54px !important;
+        max-height: 54px !important;
+        flex: 0 0 54px !important;
+        overflow: hidden !important;
+      }
+      .packwrap h4,
+      .ourpackages .tab-custom .tabs ul li .packwrap h4 {
+        order: 2 !important;
+        font-size: 34px !important;
+        line-height: 1.15 !important;
+        font-weight: 800 !important;
+        color: #FFFFFF !important;
+        text-align: center !important;
+        margin: 0 0 10px 0 !important;
+        padding: 0 !important;
+        font-family: var(--heading-font-family) !important;
+        letter-spacing: -0.5px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 72px !important;
+        flex: 0 0 72px !important;
+      }
+      .packwrap h5,
+      .packwrap h2,
+      .ourpackages .tab-custom .tabs ul li .packwrap h5 {
+        order: 3 !important;
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+        color: #d1d5db !important;
+        text-align: center !important;
+        font-weight: 400 !important;
+        margin: 0 0 14px 0 !important;
+        padding: 0 4px !important;
+        min-height: 44px !important;
+        max-height: 44px !important;
+        flex: 0 0 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+        font-family: var(--secondary-font-family) !important;
+        overflow: hidden !important;
+      }
       .packwrap .packfeatures,
       .packfeatures,
       .packwrap .list-scroll {
-        height: auto !important;
-        min-height: auto !important;
-        max-height: none !important;
-        flex: 0 0 auto !important;
-        overflow-y: visible !important;
-        overflow-x: visible !important;
-        margin-bottom: 0 !important;
+        order: 4 !important;
+        width: 100% !important;
+        height: 220px !important;
+        max-height: 220px !important;
+        min-height: 220px !important;
+        flex: 1 1 220px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior: contain !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding: 0 8px 12px 0 !important;
+        margin: 0 0 12px 0 !important;
         list-style: none !important;
+        box-sizing: border-box !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: #3478F6 #1e293b !important;
+        text-align: left !important;
+      }
+      .packwrap .packfeatures::-webkit-scrollbar,
+      .packfeatures::-webkit-scrollbar {
+        width: 5px !important;
+      }
+      .packwrap .packfeatures::-webkit-scrollbar-track,
+      .packfeatures::-webkit-scrollbar-track {
+        background: #1e293b !important;
+        border-radius: 4px !important;
+      }
+      .packwrap .packfeatures::-webkit-scrollbar-thumb,
+      .packfeatures::-webkit-scrollbar-thumb {
+        background: #3478F6 !important;
+        border-radius: 4px !important;
+      }
+      .packwrap .packfeatures::-webkit-scrollbar-thumb:hover,
+      .packfeatures::-webkit-scrollbar-thumb:hover {
+        background: #5b96f8 !important;
       }
       .packwrap .extrainfo,
       p.extrainfo,
       .ourpackages .tab-custom .tabs ul li p.extrainfo {
         order: 5 !important;
-        display: block !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         width: 100% !important;
-        margin-top: 14px !important;
-        margin-bottom: 0 !important;
+        color: #a6b0ba !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
         padding: 0 !important;
+        margin-top: auto !important;
+        margin-bottom: 0 !important;
+        min-height: 22px !important;
+        max-height: 22px !important;
+        flex: 0 0 22px !important;
         text-align: center !important;
         font-size: 12px !important;
-        color: #a6b0ba !important;
+        font-weight: 400 !important;
+        line-height: 1.3 !important;
+        box-sizing: border-box !important;
+        white-space: normal !important;
+        font-family: var(--secondary-font-family) !important;
+        overflow: hidden !important;
       }
       .packwrap .viewdetails,
       .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails,
@@ -1370,12 +1476,30 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        margin-top: 16px !important;
         width: calc(100% + 44px) !important;
-        margin-left: -22px !important;
-        margin-right: -22px !important;
-        margin-bottom: -24px !important;
+        margin: 14px -22px -24px -22px !important;
+        padding: 13px 20px !important;
+        min-height: 46px !important;
+        max-height: 46px !important;
+        flex: 0 0 46px !important;
+        background: #383838 !important;
+        color: #FFFFFF !important;
+        font-family: var(--primary-font-family), 'Bai Jamjuree', sans-serif !important;
+        font-size: 13.5px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.6px !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
         border-radius: 0 0 12px 12px !important;
+        box-sizing: border-box !important;
+        transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease !important;
+        cursor: pointer !important;
+        z-index: 2 !important;
+        line-height: 1.2 !important;
+      }
+      .packwrap:not(:has(.extrainfo)) .viewdetails,
+      .ourpackages .tab-custom .tabs ul li .packwrap:not(:has(.extrainfo)) .viewdetails {
+        margin-top: auto !important;
       }
       @media only screen and (max-width: 991px) {
         .pckkslider .slick-slide {
@@ -1385,50 +1509,99 @@
         .ourpackages .tab-custom .tabs ul li .packwrap,
         .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
           padding: 26px 18px 22px !important;
-          height: auto !important;
-          min-height: auto !important;
+          height: 100% !important;
+          min-height: 500px !important;
           max-width: 380px !important;
           margin: 0 auto !important;
           display: flex !important;
           flex-direction: column !important;
-          align-items: center !important;
+          align-items: stretch !important;
           justify-content: flex-start !important;
+        }
+        .packwrap h3,
+        .ourpackages .tab-custom .tabs ul li .packwrap h3 {
+          font-size: 20px !important;
+          min-height: 50px !important;
+          max-height: 50px !important;
+          flex: 0 0 50px !important;
+          margin-bottom: 8px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .packwrap h4,
+        .ourpackages .tab-custom .tabs ul li .packwrap h4 {
+          font-size: 30px !important;
+          min-height: 68px !important;
+          flex: 0 0 68px !important;
+          margin-bottom: 8px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .packwrap h5,
+        .packwrap h2,
+        .ourpackages .tab-custom .tabs ul li .packwrap h5 {
+          font-size: 12.5px !important;
+          min-height: 40px !important;
+          max-height: 40px !important;
+          flex: 0 0 40px !important;
+          margin-bottom: 12px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
         }
         .packwrap .packfeatures,
         .packfeatures,
         .packwrap .list-scroll {
-          height: auto !important;
-          min-height: auto !important;
-          max-height: none !important;
-          flex: 0 0 auto !important;
-          overflow-y: visible !important;
-          overflow-x: visible !important;
-          padding: 0 !important;
-          margin-bottom: 0 !important;
+          order: 4 !important;
+          width: 100% !important;
+          height: 200px !important;
+          min-height: 200px !important;
+          max-height: 200px !important;
+          flex: 1 1 200px !important;
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+          -webkit-overflow-scrolling: touch !important;
+          overscroll-behavior: contain !important;
+          padding: 0 6px 10px 0 !important;
+          margin-bottom: 10px !important;
           gap: 10px !important;
+          scrollbar-width: thin !important;
+          scrollbar-color: #3478F6 #1e293b !important;
         }
         .packwrap .extrainfo,
         p.extrainfo,
         .ourpackages .tab-custom .tabs ul li p.extrainfo {
           order: 5 !important;
-          margin-top: 14px !important;
+          margin-top: auto !important;
           margin-bottom: 0 !important;
+          min-height: 20px !important;
+          max-height: 20px !important;
+          flex: 0 0 20px !important;
           padding: 0 !important;
         }
         .packwrap .viewdetails,
         .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails,
         .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails {
           order: 6 !important;
-          margin-top: 14px !important;
+          margin-top: 12px !important;
           margin-left: -18px !important;
           margin-right: -18px !important;
           margin-bottom: -22px !important;
           width: calc(100% + 36px) !important;
           min-height: 44px !important;
+          max-height: 44px !important;
+          flex: 0 0 44px !important;
           font-size: 13.5px !important;
           display: flex !important;
           align-items: center !important;
           justify-content: center !important;
+        }
+        .packwrap:not(:has(.extrainfo)) .viewdetails,
+        .ourpackages .tab-custom .tabs ul li .packwrap:not(:has(.extrainfo)) .viewdetails {
+          margin-top: auto !important;
         }
         .inerservice .subs-pac,
         .subs-pac {
@@ -1451,13 +1624,13 @@
         .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
           max-width: 100% !important;
           padding: 22px 14px 18px !important;
-          height: auto !important;
-          min-height: auto !important;
+          height: 100% !important;
+          min-height: 480px !important;
         }
         .packwrap .viewdetails,
         .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails,
         .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails {
-          margin-top: 14px !important;
+          margin-top: 12px !important;
           margin-left: -14px !important;
           margin-right: -14px !important;
           margin-bottom: -18px !important;
