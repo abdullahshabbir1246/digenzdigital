@@ -1282,10 +1282,199 @@
     else document.addEventListener('DOMContentLoaded', () => document.head.appendChild(style));
   }
 
+  function ensureServiceCards() {
+    if (document.getElementById('digenzServiceCardStyle')) return;
+    const style = document.createElement('style');
+    style.id = 'digenzServiceCardStyle';
+    style.textContent = `
+      .pckkslider .slick-track {
+        display: flex !important;
+        align-items: flex-start !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      .pckkslider .slick-slide {
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 12px !important;
+        box-sizing: border-box !important;
+        float: none !important;
+      }
+      .pckkslider .slick-slide > div {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: auto !important;
+        width: 100% !important;
+      }
+      .pckkslider .slick-slide > div > li,
+      .ourpackages .tab-custom .tabs ul.pckkslider > li {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+        min-height: auto !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        list-style: none !important;
+      }
+      .packwrap,
+      .ourpackages .tab-custom .tabs ul li .packwrap,
+      .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        background: #4A4A4A !important;
+        background-color: #4A4A4A !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        text-align: center !important;
+        overflow: hidden !important;
+      }
+      .packwrap .packfeatures,
+      .packfeatures,
+      .packwrap .list-scroll {
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+        flex: 0 0 auto !important;
+        overflow-y: visible !important;
+        overflow-x: visible !important;
+        margin-bottom: 0 !important;
+        list-style: none !important;
+      }
+      .packwrap .extrainfo,
+      p.extrainfo,
+      .ourpackages .tab-custom .tabs ul li p.extrainfo {
+        order: 5 !important;
+        display: block !important;
+        width: 100% !important;
+        margin-top: 14px !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+        text-align: center !important;
+        font-size: 12px !important;
+        color: #a6b0ba !important;
+      }
+      .packwrap .viewdetails,
+      .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails,
+      .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails {
+        order: 6 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-top: 16px !important;
+        width: calc(100% + 44px) !important;
+        margin-left: -22px !important;
+        margin-right: -22px !important;
+        margin-bottom: -24px !important;
+        border-radius: 0 0 12px 12px !important;
+      }
+      @media only screen and (max-width: 991px) {
+        .pckkslider .slick-slide {
+          padding: 0 8px !important;
+        }
+        .packwrap,
+        .ourpackages .tab-custom .tabs ul li .packwrap,
+        .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
+          padding: 26px 18px 22px !important;
+          height: auto !important;
+          min-height: auto !important;
+          max-width: 380px !important;
+          margin: 0 auto !important;
+          display: flex !important;
+          flex-direction: column !important;
+          align-items: center !important;
+          justify-content: flex-start !important;
+        }
+        .packwrap .packfeatures,
+        .packfeatures,
+        .packwrap .list-scroll {
+          height: auto !important;
+          min-height: auto !important;
+          max-height: none !important;
+          flex: 0 0 auto !important;
+          overflow-y: visible !important;
+          overflow-x: visible !important;
+          padding: 0 !important;
+          margin-bottom: 0 !important;
+          gap: 10px !important;
+        }
+        .packwrap .extrainfo,
+        p.extrainfo,
+        .ourpackages .tab-custom .tabs ul li p.extrainfo {
+          order: 5 !important;
+          margin-top: 14px !important;
+          margin-bottom: 0 !important;
+          padding: 0 !important;
+        }
+        .packwrap .viewdetails,
+        .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails,
+        .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails {
+          order: 6 !important;
+          margin-top: 14px !important;
+          margin-left: -18px !important;
+          margin-right: -18px !important;
+          margin-bottom: -22px !important;
+          width: calc(100% + 36px) !important;
+          min-height: 44px !important;
+          font-size: 13.5px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .inerservice .subs-pac,
+        .subs-pac {
+          height: auto !important;
+          min-height: auto !important;
+          padding: 24px 18px !important;
+        }
+        .inerservice .table-packages {
+          height: auto !important;
+          min-height: auto !important;
+        }
+        .inerservice .table-packages .body .subscription-list {
+          height: auto !important;
+          max-height: none !important;
+        }
+      }
+      @media only screen and (max-width: 480px) {
+        .packwrap,
+        .ourpackages .tab-custom .tabs ul li .packwrap,
+        .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap {
+          max-width: 100% !important;
+          padding: 22px 14px 18px !important;
+          height: auto !important;
+          min-height: auto !important;
+        }
+        .packwrap .viewdetails,
+        .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails,
+        .cstmwebdesgn .ourpackages .tab-custom .tabs ul li .packwrap .viewdetails {
+          margin-top: 14px !important;
+          margin-left: -14px !important;
+          margin-right: -14px !important;
+          margin-bottom: -18px !important;
+          width: calc(100% + 28px) !important;
+        }
+      }
+    `;
+    if (document.head) document.head.appendChild(style);
+    else document.addEventListener('DOMContentLoaded', () => document.head.appendChild(style));
+  }
+
   ensureMobileHeader();
+  ensureServiceCards();
 
   async function init() {
     ensureMobileHeader();
+    ensureServiceCards();
     ensureWhatsAppButton();
     window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
