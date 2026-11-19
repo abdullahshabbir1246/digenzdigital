@@ -1,7 +1,7 @@
 /**
- * DIGENZ Homepage Hero Interactive Animations (v4.6)
+ * DIGENZ Homepage Hero Interactive Animations (v4.7)
  * Subtle 3D tilt, floating tech icons, and depth parallax.
- * Foolproof coordinate-based hover detection + 60fps GPU transforms.
+ * Dual-trigger: Direct DOM hotspot hover + continuous coordinate detection + 60fps GPU transforms.
  */
 (function() {
   'use strict';
@@ -17,7 +17,6 @@
     if (!scene) {
       scene = document.createElement('div');
       scene.className = 'hero-interactive-scene';
-      scene.setAttribute('aria-hidden', 'true');
       scene.innerHTML =
         '<div class="hero-scene-inner">' +
           '<div class="hero-hotspot hotspot-phone" title="DIGENZ Mobile App Engineering"></div>' +
@@ -48,6 +47,9 @@
         }
       }
     }
+
+    var phoneSpot = scene.querySelector('.hotspot-phone');
+    var laptopSpot = scene.querySelector('.hotspot-laptop');
 
     // Parallax mouse tracking & coordinate-based hover detection
     var targetX = 0;
@@ -84,11 +86,15 @@
       targetY = Math.max(-0.5, Math.min(0.5, relY - 0.5));
       isMoving = true;
 
-      // Robust coordinate-based hover detection
+      // Robust coordinate + element hit hover detection
       // Smartphone visual bounds: x: 50% - 65%, y: 32% - 95%
-      var isOverPhone = (relX >= 0.50 && relX <= 0.65 && relY >= 0.32 && relY <= 0.95);
+      var isOverPhone = (phoneSpot && (e.target === phoneSpot || phoneSpot.contains(e.target))) ||
+                        (relX >= 0.50 && relX <= 0.65 && relY >= 0.32 && relY <= 0.95);
       // Laptop visual bounds: x: 65% - 98%, y: 28% - 95%
-      var isOverLaptop = (!isOverPhone && relX >= 0.65 && relX <= 0.98 && relY >= 0.28 && relY <= 0.95);
+      var isOverLaptop = (!isOverPhone) && (
+                        (laptopSpot && (e.target === laptopSpot || laptopSpot.contains(e.target))) ||
+                        (relX >= 0.65 && relX <= 0.98 && relY >= 0.28 && relY <= 0.95)
+      );
 
       if (isOverPhone) {
         scene.classList.add('is-hover-phone');
@@ -118,9 +124,6 @@
     });
 
     // Also support direct hotspot pointer events
-    var phoneSpot = scene.querySelector('.hotspot-phone');
-    var laptopSpot = scene.querySelector('.hotspot-laptop');
-
     if (phoneSpot) {
       phoneSpot.addEventListener('mouseenter', function() { scene.classList.add('is-hover-phone'); });
       phoneSpot.addEventListener('mouseleave', function() { scene.classList.remove('is-hover-phone'); });

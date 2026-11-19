@@ -5147,6 +5147,9 @@ footer.footer-main::after,
         pointer-events: none !important;
         user-select: none !important;
     }
+    .home-banner .container {
+        pointer-events: none !important;
+    }
 }
 
 /* --- HERO INTERACTIVE ANIMATION SCENE --- */
@@ -5157,7 +5160,7 @@ footer.footer-main::after,
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 4;
+    z-index: 10;
     overflow: hidden;
     perspective: 1200px;
     --parallax-x: 0;
@@ -5178,7 +5181,8 @@ footer.footer-main::after,
     position: absolute;
     pointer-events: auto;
     cursor: pointer;
-    z-index: 20;
+    z-index: 25;
+    background: rgba(0, 0, 0, 0.001);
     border-radius: 12px;
 }
 
@@ -5223,7 +5227,9 @@ footer.footer-main::after,
     z-index: 15;
 }
 
-.is-hover-phone .glow-phone {
+.is-hover-phone .glow-phone,
+.hotspot-phone:hover ~ .glow-phone,
+.hero-hotspot.hotspot-phone:hover ~ .hero-device-glow.glow-phone {
     opacity: 1 !important;
     transform: translate3d(calc(var(--parallax-x, 0) * 10px), calc(var(--parallax-y, 0) * 8px - 4px), 25px) 
                rotateY(5deg) rotateX(-3deg) scale(1.02) !important;
@@ -5244,7 +5250,9 @@ footer.footer-main::after,
     z-index: 14;
 }
 
-.is-hover-laptop .glow-laptop {
+.is-hover-laptop .glow-laptop,
+.hotspot-laptop:hover ~ .glow-laptop,
+.hero-hotspot.hotspot-laptop:hover ~ .hero-device-glow.glow-laptop {
     opacity: 1 !important;
     transform: translate3d(calc(var(--parallax-x, 0) * 6px), calc(var(--parallax-y, 0) * 5px - 3px), 20px) 
                rotateY(-3.5deg) rotateX(2.5deg) scale(1.015) !important;
