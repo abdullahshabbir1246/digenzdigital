@@ -474,7 +474,7 @@ padding: 0; cursor: pointer; }
 
 
 /*xfactor section*/
-.x-factor-section{min-height: 460px;background: var(--second-color) url(../images/multiplier-1.jpg?v=4.3);background-repeat: no-repeat;background-position: 850px 58px;background-size: 38%;padding: 90px 0px;}
+.x-factor-section{min-height: 480px;background: var(--second-color) url(../images/multiplier-1.jpg?v=4.4);background-repeat: no-repeat;background-position: right 6% center;background-size: 460px auto;padding: 90px 0px;}
 .x-factor-section h2{font-size: 44px;color:var(--third-color);line-height: 1.1em;margin-bottom: 30px;padding:0px;}
 .x-factor-section h6{color:var(--third-color);line-height: 1.25em;font-size: 12px;letter-spacing: 1.1;font-family: AvenirRoman,sans-serif;}
 .x-factor-section p{font-size: 18px;text-align: left;padding-bottom: 40px;}
@@ -3857,7 +3857,7 @@ a.action-chat.clearfix.pull-right.sea {
   .msliderwrap .wowoslider .item figure img{width: 570px;}
   .msliderwrap {width: 100vh;position: absolute;left: -260px;top: 135px;}
   .pckkslider .slick-next{        display: none !important;}
-  .x-factor-section{    background-position: 520px 160px !important;}
+  .x-factor-section{    background-position: right 3% center !important; background-size: 420px auto !important; min-height: 460px; }
   .innserservice-commonfolds.experience {
     background-position: top left 5px !important;
     background-size: 37%!important;
@@ -3884,7 +3884,7 @@ a.action-chat.clearfix.pull-right.sea {
         width: 150px !important;
     }
     
-    .x-factor-section{    background-position: 420px 160px !important;}
+    .x-factor-section{    background-position: center bottom 30px !important; background-size: min(340px, 90%) auto !important; padding-bottom: 300px !important; }
     .testi_box{    padding: 30px 0px 0 0px;}
     .mobile-nav-btn{    top: 104px; z-index: 999;}
     .mobile-nav-btn span{    width: 52px; background-color: var(--first-color);}
@@ -4131,7 +4131,7 @@ a.action-chat.clearfix.pull-right.sea {
 .home-banner { background-position: center left; }
 .testimonials-slider-main .slick-prev { left:0px; }
 .testimonials-slider-main .slick-next { right:0px; }
-.x-factor-section{    background-position: 590px 108px;}
+.x-factor-section{    background-position: right 2% center !important; background-size: 380px auto !important; }
 .pckkslider .slick-next{    display: none;}
 .ourpackages .tab-custom .tabbing-links li{    padding: 18px 21px;}
 .home-banner{    height: 57vh;}
