@@ -5183,23 +5183,22 @@ footer.footer-main::after,
     cursor: pointer;
     z-index: 25;
     background: rgba(0, 0, 0, 0.001);
-    border-radius: 12px;
 }
 
 .hero-hotspot.hotspot-phone {
-    left: 51.5%;
-    top: 34%;
-    width: 14%;
-    height: 62%;
-    border-radius: 28px;
+    left: 42.5%;
+    top: 38%;
+    width: 13.5%;
+    height: 44%;
+    border-radius: 26px;
 }
 
 .hero-hotspot.hotspot-laptop {
-    left: 65%;
-    top: 31%;
-    width: 32%;
-    height: 64%;
-    border-radius: 14px;
+    left: 55%;
+    top: 22%;
+    width: 33%;
+    height: 63%;
+    border-radius: 18px;
 }
 
 /* 3D Depth Auras / Glowing Highlights for Devices */
@@ -5207,7 +5206,6 @@ footer.footer-main::after,
     position: absolute;
     pointer-events: none;
     opacity: 0;
-    border-radius: 28px;
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
                 opacity 0.4s ease, 
                 box-shadow 0.4s ease;
@@ -5215,13 +5213,13 @@ footer.footer-main::after,
 }
 
 .hero-device-glow.glow-phone {
-    left: 52%;
-    top: 35%;
-    width: 13%;
-    height: 59%;
-    border-radius: 28px;
-    border: 1.5px solid rgba(128, 181, 255, 0.4);
-    background: linear-gradient(135deg, rgba(52, 120, 246, 0.18) 0%, rgba(16, 24, 39, 0.05) 100%);
+    left: 42.8%;
+    top: 38.5%;
+    width: 13.0%;
+    height: 43.5%;
+    border-radius: 26px;
+    border: 1.5px solid rgba(128, 181, 255, 0.5);
+    background: linear-gradient(135deg, rgba(52, 120, 246, 0.16) 0%, rgba(16, 24, 39, 0.04) 100%);
     box-shadow: 0 10px 30px rgba(52, 120, 246, 0.3), inset 0 0 15px rgba(128, 181, 255, 0.25);
     transform: translate3d(calc(var(--parallax-x, 0) * 10px), calc(var(--parallax-y, 0) * 8px), 0);
     z-index: 15;
@@ -5238,13 +5236,13 @@ footer.footer-main::after,
 }
 
 .hero-device-glow.glow-laptop {
-    left: 65.5%;
-    top: 32%;
-    width: 31%;
-    height: 61%;
-    border-radius: 14px;
-    border: 1.5px solid rgba(52, 120, 246, 0.35);
-    background: linear-gradient(135deg, rgba(52, 120, 246, 0.15) 0%, rgba(16, 24, 39, 0.05) 100%);
+    left: 54.5%;
+    top: 22.5%;
+    width: 33.5%;
+    height: 62.5%;
+    border-radius: 18px;
+    border: 1.5px solid rgba(52, 120, 246, 0.4);
+    background: linear-gradient(135deg, rgba(52, 120, 246, 0.12) 0%, rgba(16, 24, 39, 0.04) 100%);
     box-shadow: 0 12px 35px rgba(52, 120, 246, 0.25);
     transform: translate3d(calc(var(--parallax-x, 0) * 6px), calc(var(--parallax-y, 0) * 5px), 0);
     z-index: 14;
@@ -5286,8 +5284,8 @@ footer.footer-main::after,
 
 /* 1. Coding Icon (< />) */
 .hero-tech-floater.floater-code {
-    left: 54.5%;
-    top: 20%;
+    left: 51.5%;
+    top: 17%;
     width: 44px;
     height: 44px;
     animation: heroFloatCode 4.2s ease-in-out infinite;
@@ -5313,8 +5311,8 @@ footer.footer-main::after,
 
 /* 2. Analytics Icon (Bars & Growth) */
 .hero-tech-floater.floater-analytics {
-    left: 74.5%;
-    top: 7%;
+    left: 75%;
+    top: 8%;
     width: 48px;
     height: 48px;
     animation: heroFloatAnalytics 5.4s ease-in-out infinite;
@@ -5349,8 +5347,8 @@ footer.footer-main::after,
 
 /* 3. Globe Icon */
 .hero-tech-floater.floater-globe {
-    left: 89%;
-    top: 5%;
+    left: 87.5%;
+    top: 8%;
     width: 48px;
     height: 48px;
     animation: heroFloatGlobe 6.5s ease-in-out infinite;

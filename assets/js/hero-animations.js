@@ -87,13 +87,13 @@
       isMoving = true;
 
       // Robust coordinate + element hit hover detection
-      // Smartphone visual bounds: x: 50% - 65%, y: 32% - 95%
+      // Smartphone visual bounds: x: 42% - 56%, y: 38% - 83%
       var isOverPhone = (phoneSpot && (e.target === phoneSpot || phoneSpot.contains(e.target))) ||
-                        (relX >= 0.50 && relX <= 0.65 && relY >= 0.32 && relY <= 0.95);
-      // Laptop visual bounds: x: 65% - 98%, y: 28% - 95%
+                        (relX >= 0.42 && relX <= 0.56 && relY >= 0.38 && relY <= 0.83);
+      // Laptop visual bounds: x: 55% - 88%, y: 22% - 86%
       var isOverLaptop = (!isOverPhone) && (
                         (laptopSpot && (e.target === laptopSpot || laptopSpot.contains(e.target))) ||
-                        (relX >= 0.65 && relX <= 0.98 && relY >= 0.28 && relY <= 0.95)
+                        (relX >= 0.55 && relX <= 0.88 && relY >= 0.22 && relY <= 0.86)
       );
 
       if (isOverPhone) {
