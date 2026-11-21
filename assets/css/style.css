@@ -5184,7 +5184,7 @@ footer.footer-main::after,
 }
 
 .home-banner:hover .hero-cursor-spotlight {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 /* Visually conceal duplicate text overlay on desktop as it is rendered directly within the graphic */
@@ -5194,16 +5194,8 @@ footer.footer-main::after,
         pointer-events: none !important;
         user-select: none !important;
     }
-}
-
-/* Accessibility: prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-    .hero-bg-art {
-        transform: none !important;
-        transition: none !important;
-    }
-    .hero-cursor-spotlight {
-        display: none !important;
+    .home-banner .container {
+        pointer-events: none !important;
     }
 }
 

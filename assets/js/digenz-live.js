@@ -1648,10 +1648,10 @@
   function initHeroBannerAnimation() {
     var banner = document.querySelector('.home-banner');
     if (!banner) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     var bgArt = banner.querySelector('.hero-bg-art');
     if (!bgArt) return;
+    var spotlight = banner.querySelector('.hero-cursor-spotlight');
 
     var targetTiltX = 0;
     var targetTiltY = 0;
@@ -1674,6 +1674,13 @@
       curMouseX += (mouseX - curMouseX) * 0.12;
       curMouseY += (mouseY - curMouseY) * 0.12;
 
+      // Direct inline transform on background art for instant 60fps responsiveness
+      bgArt.style.transform = 'perspective(1200px) rotateX(' + currentTiltX.toFixed(3) + 'deg) rotateY(' + currentTiltY.toFixed(3) + 'deg) scale(' + currentScale.toFixed(4) + ')';
+      
+      if (spotlight) {
+        spotlight.style.background = 'radial-gradient(550px circle at ' + curMouseX.toFixed(2) + '% ' + curMouseY.toFixed(2) + '%, rgba(52, 120, 246, 0.22), transparent 75%)';
+      }
+
       banner.style.setProperty('--hero-tilt-x', currentTiltX.toFixed(3) + 'deg');
       banner.style.setProperty('--hero-tilt-y', currentTiltY.toFixed(3) + 'deg');
       banner.style.setProperty('--hero-scale', currentScale.toFixed(4));
@@ -1694,7 +1701,8 @@
     banner.addEventListener('mouseenter', function() {
       if (window.innerWidth < 992) return;
       isHovered = true;
-      targetScale = 1.02;
+      targetScale = 1.025;
+      if (spotlight) spotlight.style.opacity = '1';
       if (!rafId) rafId = requestAnimationFrame(render);
     });
 
@@ -1709,14 +1717,15 @@
       relX = Math.max(0, Math.min(1, relX));
       relY = Math.max(0, Math.min(1, relY));
 
-      // 3D tilt angles: gentle, elegant tilt (max ~2.5 deg)
-      targetTiltY = (relX - 0.5) * 5.0;
-      targetTiltX = -(relY - 0.5) * 3.5;
-      targetScale = 1.02;
+      // 3D tilt angles: noticeable, sleek perspective tilt
+      targetTiltY = (relX - 0.5) * 8.0;
+      targetTiltX = -(relY - 0.5) * 5.5;
+      targetScale = 1.025;
 
       mouseX = relX * 100;
       mouseY = relY * 100;
 
+      if (spotlight) spotlight.style.opacity = '1';
       if (!rafId) rafId = requestAnimationFrame(render);
     }, { passive: true });
 
@@ -1725,6 +1734,7 @@
       targetTiltX = 0;
       targetTiltY = 0;
       targetScale = 1;
+      if (spotlight) spotlight.style.opacity = '0';
       if (!rafId) rafId = requestAnimationFrame(render);
     });
   }
