@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIGENZ Animated Header Logo Reveal</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #101827; /* DIGENZ Midnight Navy */
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .header-mock {
+      background: #101827;
+      padding: 0 24px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-area-mock {
+      display: flex;
+      align-items: center;
+      height: 70px;
+    }
+    .logo-mock {
+      display: flex;
+      align-items: center;
+      height: 42px;
+    }
+
+    /* -------------------------------------------------------------
+       DIGENZ ANIMATED HEADER LOGO REVEAL COMPONENT
+       ------------------------------------------------------------- */
+    .digenz-logo-anim-wrap {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      height: 42px;
+      max-height: 42px;
+      line-height: 0;
+    }
+
+    .digenz-logo-anim-svg {
+      height: 42px;
+      max-height: 42px;
+      width: auto;
+      aspect-ratio: 350 / 92;
+      display: block;
+      overflow: visible;
+      will-change: transform, filter;
+      animation: logoEntranceGlow 1.8s ease-out forwards;
+    }
+
+    /* Phase 1: Converging Light Streaks & Monogram Assembly */
+    .d-streak {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px #3478F6) drop-shadow(0 0 10px #80B5FF);
+      opacity: 0;
+    }
+
+    .streak-pillar {
+      stroke: #80B5FF;
+      stroke-width: 2.2;
+      stroke-dasharray: 120;
+      stroke-dashoffset: 120;
+      animation: drawStreak 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+    }
+
+    .streak-loop {
+      stroke: #3478F6;
+      stroke-width: 2.2;
+      stroke-dasharray: 160;
+      stroke-dashoffset: 160;
+      animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    }
+
+    .streak-arc-top {
+      stroke: #80B5FF;
+      stroke-width: 1.8;
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+
+    .streak-arc-bottom {
+      stroke: #3478F6;
+      stroke-width: 1.8;
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+
+    .streak-arrow {
+      stroke: #FFFFFF;
+      stroke-width: 1.8;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawStreak 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+    }
+
+    /* Facet Fills & Kinetic Assembly */
+    .d-facet {
+      opacity: 0;
+      transform-origin: 45px 46px;
+      animation: assembleFacet 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+
+    .d-arrow {
+      opacity: 0;
+      transform: translateX(-14px);
+      animation: snapArrow 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+    }
+
+    .d-node {
+      opacity: 0;
+      transform-origin: center;
+      animation: flashNode 0.5s ease-out 0.75s forwards;
+    }
+
+    /* Phase 2: Electric Blue Energy Sweep across Wordmark */
+    .d-energy-beam {
+      opacity: 0;
+      transform: translateX(-60px);
+      animation: sweepBeam 0.9s ease-out 0.7s forwards;
+    }
+
+    /* Phase 3: Letter by Letter Reveal */
+    .wm-letter {
+      opacity: 0;
+      transform: translateX(-6px);
+      animation: letterReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .wm-d { animation-delay: 0.80s; }
+    .wm-i { animation-delay: 0.87s; }
+    .wm-g { animation-delay: 0.94s; }
+    .wm-e { animation-delay: 1.01s; }
+    .wm-n { animation-delay: 1.08s; }
+    .wm-z { animation-delay: 1.15s; }
+
+    .wm-tagline {
+      opacity: 0;
+      letter-spacing: 6px;
+      animation: taglineReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    }
+
+    /* Keyframe Definitions */
+    @keyframes drawStreak {
+      0% {
+        stroke-dashoffset: 160;
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+      }
+    }
+
+    @keyframes assembleFacet {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.03);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes snapArrow {
+      0% {
+        opacity: 0;
+        transform: translateX(-14px) scale(0.8);
+      }
+      70% {
+        opacity: 1;
+        transform: translateX(1.5px) scale(1.06);
+      }
+      100% {
+        opacity: 0.95;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    @keyframes flashNode {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(2.2);
+        filter: drop-shadow(0 0 6px #FFFFFF);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: none;
+      }
+    }
+
+    @keyframes sweepBeam {
+      0% {
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+      30% {
+        opacity: 0.85;
+      }
+      80% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(330px);
+      }
+    }
+
+    @keyframes letterReveal {
+      0% {
+        opacity: 0;
+        transform: translateX(-6px);
+        filter: drop-shadow(0 0 10px #3478F6);
+      }
+      60% {
+        opacity: 1;
+        filter: drop-shadow(0 0 6px #80B5FF);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: none;
+      }
+    }
+
+    @keyframes taglineReveal {
+      0% {
+        opacity: 0;
+        letter-spacing: 6px;
+      }
+      100% {
+        opacity: 0.95;
+        letter-spacing: 3.8px;
+      }
+    }
+
+    @keyframes logoEntranceGlow {
+      0% {
+        filter: drop-shadow(0 0 4px rgba(52, 120, 246, 0.2));
+      }
+      50% {
+        filter: drop-shadow(0 0 12px rgba(52, 120, 246, 0.65)) drop-shadow(0 0 4px rgba(128, 181, 255, 0.8));
+      }
+      100% {
+        filter: drop-shadow(0 0 0px transparent);
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .d-streak, .d-energy-beam {
+        display: none !important;
+      }
+      .d-facet, .d-arrow, .d-node, .wm-letter, .wm-tagline, .digenz-logo-anim-svg {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
+
+    /* Demo Controls */
+    .controls {
+      margin-top: 40px;
+      padding: 24px;
+      background: #1e293b;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: center;
+    }
+    button {
+      background: #3478F6;
+      border: none;
+      color: white;
+      padding: 10px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-mock">
+    <div class="logo-area-mock">
+      <div class="logo-mock">
+        <div class="digenz-logo-anim-wrap" id="logoWrap">
+          <svg class="digenz-logo-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 92">
+            <defs>
+              <linearGradient id="ani_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#80B5FF" />
+                <stop offset="30%" stop-color="#3478F6" />
+                <stop offset="70%" stop-color="#1e5dd6" />
+                <stop offset="100%" stop-color="#103c8c" />
+              </linearGradient>
+              <linearGradient id="ani_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3478F6" />
+                <stop offset="50%" stop-color="#80B5FF" />
+                <stop offset="100%" stop-color="#FFFFFF" />
+              </linearGradient>
+              <linearGradient id="ani_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1e5dd6" />
+                <stop offset="100%" stop-color="#0f2b66" />
+              </linearGradient>
+              <linearGradient id="ani_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3478F6" stop-opacity="0" />
+                <stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" />
+                <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                <stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" />
+                <stop offset="100%" stop-color="#3478F6" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+
+            <!-- Dynamic Converging Light Trails & Geometric Outlines -->
+            <g id="d_animatedStreaks" transform="translate(6, 1)">
+              <!-- Left Pillar Light Trail -->
+              <path class="d-streak streak-pillar" d="M 18,27 L 26,19 L 32,19 L 32,73 L 26,73 L 18,65 Z" />
+              <!-- Curved Flight Trail into Top Chamfer -->
+              <path class="d-streak streak-arc-top" d="M 80,8 C 65,12 50,16 38,19 L 56,19" />
+              <!-- Outer 'D' Loop Light Trail -->
+              <path class="d-streak streak-loop" d="M 38,19 L 56,19 L 72,35 L 72,57 L 56,73 L 38,73 L 38,65 L 48,65 L 60,57 L 60,35 L 48,27 L 38,27 Z" />
+              <!-- Curved Flight Trail into Lower Chamfer -->
+              <path class="d-streak streak-arc-bottom" d="M 84,80 C 74,78 62,75 56,73 L 38,73" />
+              <!-- Forward Arrow Light Trail -->
+              <path class="d-streak streak-arrow" d="M 41,36 L 51,46 L 41,56 L 46,56 L 56,46 L 46,36 Z" />
+            </g>
+
+            <!-- Assembled Geometric 'D' Monogram Facets -->
+            <g id="d_techD" transform="translate(6, 1)">
+              <polygon class="d-facet" points="18,27 26,19 32,19 32,44 18,44" fill="url(#ani_blueLight)" />
+              <polygon class="d-facet" points="18,48 32,48 32,73 26,73 18,65" fill="url(#ani_blueDark)" />
+              <polygon class="d-facet" points="28,43 36,43 36,49 28,49" fill="url(#ani_blueGrad)" />
+              <polygon class="d-facet" points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#ani_blueLight)" />
+              <polygon class="d-facet" points="72,35 72,57 60,57 60,35" fill="url(#ani_blueGrad)" />
+              <polygon class="d-facet" points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#ani_blueDark)" />
+              <polygon class="d-arrow" points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#ani_blueLight)" />
+              <circle class="d-node" cx="26" cy="19" r="2.2" fill="#FFFFFF" />
+              <circle class="d-node" cx="56" cy="19" r="2.2" fill="#FFFFFF" />
+            </g>
+
+            <!-- Electric Blue Energy Shimmer Beam -->
+            <rect class="d-energy-beam" x="60" y="16" width="35" height="62" fill="url(#ani_energyGrad)" transform="skewX(-20)" />
+
+            <!-- Vector Typography D-I-G-E-N-Z -->
+            <g id="d_wordmark">
+              <g fill="#FFFFFF">
+                <path class="wm-letter wm-d" d="M 92,23 L 110,23 C 121,23 127.5,29.5 127.5,41 C 127.5,52.5 121,59 110,59 L 92,59 Z M 98,28.5 L 98,53.5 L 109.5,53.5 C 116.5,53.5 121,49 121,41 C 121,33 116.5,28.5 109.5,28.5 Z" />
+                <path class="wm-letter wm-i" d="M 137,23 L 143,23 L 143,59 L 137,59 Z" />
+                <path class="wm-letter wm-g" d="M 189,32 L 183.8,35.5 C 181,31.2 176.5,29 171.5,29 C 161.8,29 155.5,35.5 155.5,41 C 155.5,46.5 161.8,53 172,53 C 179.2,53 183.5,49.2 183.5,44.2 L 172,44.2 L 172,39.5 L 189.5,39.5 L 189.5,48.5 C 185.8,54.8 179.2,58.5 171.5,58.5 C 158.5,58.5 149.5,51 149.5,41 C 149.5,31 158.8,23.5 171.5,23.5 C 179.5,23.5 185.5,27 189,32 Z" />
+                <path class="wm-letter wm-e" d="M 202,23 L 228.5,23 L 228.5,28.5 L 208,28.5 L 208,37.8 L 225.5,37.8 L 225.5,43.2 L 208,43.2 L 208,53.5 L 229,53.5 L 229,59 L 202,59 Z" />
+                <path class="wm-letter wm-n" d="M 240,23 L 246,23 L 268.5,51.5 L 268.5,23 L 274.5,23 L 274.5,59 L 268.5,59 L 246,30.5 L 246,59 L 240,59 Z" />
+                <path class="wm-letter wm-z" d="M 286,23 L 319.5,23 L 319.5,28.5 L 295.5,53.5 L 320,53.5 L 320,59 L 285.5,59 L 285.5,53.5 L 310,28.5 L 286,28.5 Z" />
+              </g>
+              <text class="wm-tagline" x="93" y="74" font-family="'Century Gothic', 'Montserrat', -apple-system, sans-serif" font-size="6.8" font-weight="600" letter-spacing="3.8" fill="#80B5FF">DIGITAL • CREATIVE • SERVICES</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div style="color: #94a3b8; font-size: 14px;">Home | Services | Packages | Contact Us</div>
+  </header>
+
+  <div class="controls">
+    <h3>Header Logo Reveal Animation</h3>
+    <p style="color: #94a3b8; font-size: 14px;">Click the button below to replay the 1.8s in-header reveal animation.</p>
+    <button onclick="replayAnimation()">Replay Logo Animation</button>
+  </div>
+
+  <script>
+    function replayAnimation() {
+      const wrap = document.getElementById('logoWrap');
+      const clone = wrap.cloneNode(true);
+      wrap.parentNode.replaceChild(clone, wrap);
+    }
+  </script>
+</body>
+</html>

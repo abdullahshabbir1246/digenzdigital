@@ -7120,3 +7120,289 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
         transform: none !important;
     }
 }
+
+/* ==========================================================================
+   DIGENZ ANIMATED HEADER LOGO REVEAL (IN-HEADER ONLY, NO FULL-SCREEN INTRO)
+   ========================================================================== */
+.digenz-animating-logo .whitelogo,
+.digenz-animating-logo .blacklogo,
+.digenz-animating-logo > img {
+    display: none !important;
+}
+
+.digenz-logo-anim-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    position: relative !important;
+    height: 42px !important;
+    max-height: 42px !important;
+    width: auto !important;
+    line-height: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.digenz-logo-anim-svg {
+    height: 42px !important;
+    max-height: 42px !important;
+    width: auto !important;
+    aspect-ratio: 350 / 92 !important;
+    display: block !important;
+    overflow: visible !important;
+    will-change: transform, filter !important;
+    animation: logoEntranceGlow 1.8s ease-out forwards;
+}
+
+/* Mobile responsive sizing: match 36px header logo */
+@media only screen and (max-width: 991px) {
+    .digenz-logo-anim-wrap {
+        height: 36px !important;
+        max-height: 36px !important;
+    }
+    .digenz-logo-anim-svg {
+        height: 36px !important;
+        max-height: 36px !important;
+    }
+}
+
+/* Phase 1: Dynamic Converging Light Trails */
+.d-streak {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px #3478F6) drop-shadow(0 0 10px #80B5FF);
+    opacity: 0;
+}
+
+.streak-pillar {
+    stroke: #80B5FF;
+    stroke-width: 2.2;
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: drawStreak 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+
+.streak-loop {
+    stroke: #3478F6;
+    stroke-width: 2.2;
+    stroke-dasharray: 160;
+    stroke-dashoffset: 160;
+    animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+.streak-arc-top {
+    stroke: #80B5FF;
+    stroke-width: 1.8;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.streak-arc-bottom {
+    stroke: #3478F6;
+    stroke-width: 1.8;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.streak-arrow {
+    stroke: #FFFFFF;
+    stroke-width: 1.8;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: drawStreak 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+/* Phase 2: Facet Fills & Kinetic Assembly */
+.d-facet {
+    opacity: 0;
+    transform-origin: 45px 46px;
+    animation: assembleFacet 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.d-arrow {
+    opacity: 0;
+    transform: translateX(-14px);
+    animation: snapArrow 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+}
+
+.d-node {
+    opacity: 0;
+    transform-origin: center;
+    animation: flashNode 0.5s ease-out 0.75s forwards;
+}
+
+/* Phase 3: Electric Blue Energy Sweep across Wordmark */
+.d-energy-beam {
+    opacity: 0;
+    transform: translateX(-60px);
+    animation: sweepBeam 0.9s ease-out 0.7s forwards;
+}
+
+/* Phase 4: Letter by Letter Reveal */
+.wm-letter {
+    opacity: 0;
+    transform: translateX(-6px);
+    animation: letterReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.wm-d { animation-delay: 0.80s; }
+.wm-i { animation-delay: 0.87s; }
+.wm-g { animation-delay: 0.94s; }
+.wm-e { animation-delay: 1.01s; }
+.wm-n { animation-delay: 1.08s; }
+.wm-z { animation-delay: 1.15s; }
+
+.wm-tagline {
+    opacity: 0;
+    letter-spacing: 6px;
+    animation: taglineReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+/* Keyframe Definitions */
+@keyframes drawStreak {
+    0% {
+        stroke-dashoffset: 160;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes assembleFacet {
+    0% {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.03);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes snapArrow {
+    0% {
+        opacity: 0;
+        transform: translateX(-14px) scale(0.8);
+    }
+    70% {
+        opacity: 1;
+        transform: translateX(1.5px) scale(1.06);
+    }
+    100% {
+        opacity: 0.95;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes flashNode {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(2.2);
+        filter: drop-shadow(0 0 6px #FFFFFF);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: none;
+    }
+}
+
+@keyframes sweepBeam {
+    0% {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    30% {
+        opacity: 0.85;
+    }
+    80% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(330px);
+    }
+}
+
+@keyframes letterReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-6px);
+        filter: drop-shadow(0 0 10px #3478F6);
+    }
+    60% {
+        opacity: 1;
+        filter: drop-shadow(0 0 6px #80B5FF);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: none;
+    }
+}
+
+@keyframes taglineReveal {
+    0% {
+        opacity: 0;
+        letter-spacing: 6px;
+    }
+    100% {
+        opacity: 0.95;
+        letter-spacing: 3.8px;
+    }
+}
+
+@keyframes logoEntranceGlow {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(52, 120, 246, 0.2));
+    }
+    50% {
+        filter: drop-shadow(0 0 12px rgba(52, 120, 246, 0.65)) drop-shadow(0 0 4px rgba(128, 181, 255, 0.8));
+    }
+    100% {
+        filter: drop-shadow(0 0 0px transparent);
+    }
+}
+
+/* Post-Reveal Settled State */
+.digenz-logo-anim-wrap.digenz-logo-revealed .d-streak,
+.digenz-logo-anim-wrap.digenz-logo-revealed .d-energy-beam {
+    display: none !important;
+}
+
+.logo a:hover .digenz-logo-anim-svg,
+.logo-main:hover .digenz-logo-anim-svg {
+    transform: scale(1.04) !important;
+    filter: drop-shadow(0 0 10px rgba(52, 120, 246, 0.45)) !important;
+    transition: transform 0.3s ease, filter 0.3s ease !important;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .d-streak, .d-energy-beam {
+        display: none !important;
+    }
+    .d-facet, .d-arrow, .d-node, .wm-letter, .wm-tagline, .digenz-logo-anim-svg {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}

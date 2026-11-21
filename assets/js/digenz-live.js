@@ -1155,11 +1155,26 @@
         .logo-area .logo .whitelogo {
           display: none !important;
         }
+        .logo-area .logo a.digenz-animating-logo .blacklogo,
+        .logo-area .logo a.digenz-animating-logo .whitelogo {
+          display: none !important;
+        }
         .logo-area .logo .blacklogo {
           max-height: 36px !important;
           height: 36px !important;
           width: auto !important;
           display: block !important;
+        }
+        .logo-area .logo .digenz-logo-anim-wrap {
+          height: 36px !important;
+          max-height: 36px !important;
+          display: inline-flex !important;
+          align-items: center !important;
+        }
+        .logo-area .logo .digenz-logo-anim-svg {
+          height: 36px !important;
+          max-height: 36px !important;
+          width: auto !important;
         }
         .mobile-nav-btn {
           display: flex !important;
@@ -1824,8 +1839,95 @@
     });
   }
 
+  // =========================================================================
+  // ANIMATED HEADER LOGO REVEAL (IN-HEADER ONLY, NO FULL-SCREEN INTRO)
+  // =========================================================================
+  function initHeaderLogoAnimation() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    var logoContainers = document.querySelectorAll('.logo-area .logo a, .mobile-nav .logo-main, .logo a');
+    if (!logoContainers || logoContainers.length === 0) return;
+
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    logoContainers.forEach(function(container) {
+      if (container.dataset.logoAnimInitialized) return;
+      container.dataset.logoAnimInitialized = 'true';
+
+      if (prefersReduced) return; // Leave normal static logo intact
+
+      var svgMarkup = '<div class="digenz-logo-anim-wrap">' +
+        '<svg class="digenz-logo-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 92">' +
+          '<defs>' +
+            '<linearGradient id="ani_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">' +
+              '<stop offset="0%" stop-color="#80B5FF" />' +
+              '<stop offset="30%" stop-color="#3478F6" />' +
+              '<stop offset="70%" stop-color="#1e5dd6" />' +
+              '<stop offset="100%" stop-color="#103c8c" />' +
+            '</linearGradient>' +
+            '<linearGradient id="ani_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">' +
+              '<stop offset="0%" stop-color="#3478F6" />' +
+              '<stop offset="50%" stop-color="#80B5FF" />' +
+              '<stop offset="100%" stop-color="#FFFFFF" />' +
+            '</linearGradient>' +
+            '<linearGradient id="ani_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">' +
+              '<stop offset="0%" stop-color="#1e5dd6" />' +
+              '<stop offset="100%" stop-color="#0f2b66" />' +
+            '</linearGradient>' +
+            '<linearGradient id="ani_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%">' +
+              '<stop offset="0%" stop-color="#3478F6" stop-opacity="0" />' +
+              '<stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" />' +
+              '<stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" />' +
+              '<stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" />' +
+              '<stop offset="100%" stop-color="#3478F6" stop-opacity="0" />' +
+            '</linearGradient>' +
+          '</defs>' +
+          '<g id="d_animatedStreaks" transform="translate(6, 1)">' +
+            '<path class="d-streak streak-pillar" d="M 18,27 L 26,19 L 32,19 L 32,73 L 26,73 L 18,65 Z" />' +
+            '<path class="d-streak streak-arc-top" d="M 80,8 C 65,12 50,16 38,19 L 56,19" />' +
+            '<path class="d-streak streak-loop" d="M 38,19 L 56,19 L 72,35 L 72,57 L 56,73 L 38,73 L 38,65 L 48,65 L 60,57 L 60,35 L 48,27 L 38,27 Z" />' +
+            '<path class="d-streak streak-arc-bottom" d="M 84,80 C 74,78 62,75 56,73 L 38,73" />' +
+            '<path class="d-streak streak-arrow" d="M 41,36 L 51,46 L 41,56 L 46,56 L 56,46 L 46,36 Z" />' +
+          '</g>' +
+          '<g id="d_techD" transform="translate(6, 1)">' +
+            '<polygon class="d-facet" points="18,27 26,19 32,19 32,44 18,44" fill="url(#ani_blueLight)" />' +
+            '<polygon class="d-facet" points="18,48 32,48 32,73 26,73 18,65" fill="url(#ani_blueDark)" />' +
+            '<polygon class="d-facet" points="28,43 36,43 36,49 28,49" fill="url(#ani_blueGrad)" />' +
+            '<polygon class="d-facet" points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#ani_blueLight)" />' +
+            '<polygon class="d-facet" points="72,35 72,57 60,57 60,35" fill="url(#ani_blueGrad)" />' +
+            '<polygon class="d-facet" points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#ani_blueDark)" />' +
+            '<polygon class="d-arrow" points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#ani_blueLight)" />' +
+            '<circle class="d-node" cx="26" cy="19" r="2.2" fill="#FFFFFF" />' +
+            '<circle class="d-node" cx="56" cy="19" r="2.2" fill="#FFFFFF" />' +
+          '</g>' +
+          '<rect class="d-energy-beam" x="60" y="16" width="35" height="62" fill="url(#ani_energyGrad)" transform="skewX(-20)" />' +
+          '<g id="d_wordmark">' +
+            '<g fill="#FFFFFF">' +
+              '<path class="wm-letter wm-d" d="M 92,23 L 110,23 C 121,23 127.5,29.5 127.5,41 C 127.5,52.5 121,59 110,59 L 92,59 Z M 98,28.5 L 98,53.5 L 109.5,53.5 C 116.5,53.5 121,49 121,41 C 121,33 116.5,28.5 109.5,28.5 Z" />' +
+              '<path class="wm-letter wm-i" d="M 137,23 L 143,23 L 143,59 L 137,59 Z" />' +
+              '<path class="wm-letter wm-g" d="M 189,32 L 183.8,35.5 C 181,31.2 176.5,29 171.5,29 C 161.8,29 155.5,35.5 155.5,41 C 155.5,46.5 161.8,53 172,53 C 179.2,53 183.5,49.2 183.5,44.2 L 172,44.2 L 172,39.5 L 189.5,39.5 L 189.5,48.5 C 185.8,54.8 179.2,58.5 171.5,58.5 C 158.5,58.5 149.5,51 149.5,41 C 149.5,31 158.8,23.5 171.5,23.5 C 179.5,23.5 185.5,27 189,32 Z" />' +
+              '<path class="wm-letter wm-e" d="M 202,23 L 228.5,23 L 228.5,28.5 L 208,28.5 L 208,37.8 L 225.5,37.8 L 225.5,43.2 L 208,43.2 L 208,53.5 L 229,53.5 L 229,59 L 202,59 Z" />' +
+              '<path class="wm-letter wm-n" d="M 240,23 L 246,23 L 268.5,51.5 L 268.5,23 L 274.5,23 L 274.5,59 L 268.5,59 L 246,30.5 L 246,59 L 240,59 Z" />' +
+              '<path class="wm-letter wm-z" d="M 286,23 L 319.5,23 L 319.5,28.5 L 295.5,53.5 L 320,53.5 L 320,59 L 285.5,59 L 285.5,53.5 L 310,28.5 L 286,28.5 Z" />' +
+            '</g>' +
+            '<text class="wm-tagline" x="93" y="74" font-family="\'Century Gothic\', \'Montserrat\', -apple-system, sans-serif" font-size="6.8" font-weight="600" letter-spacing="3.8" fill="#80B5FF">DIGITAL • CREATIVE • SERVICES</text>' +
+          '</g>' +
+        '</svg>' +
+      '</div>';
+
+      container.classList.add('digenz-animating-logo');
+      container.insertAdjacentHTML('afterbegin', svgMarkup);
+
+      setTimeout(function() {
+        var wrap = container.querySelector('.digenz-logo-anim-wrap');
+        if (wrap) wrap.classList.add('digenz-logo-revealed');
+      }, 1800);
+    });
+  }
+
   ensureMobileHeader();
   ensureServiceCards();
+  initHeaderLogoAnimation();
 
   async function init() {
     ensureMobileHeader();
@@ -1833,6 +1935,7 @@
     ensureWhatsAppButton();
     initHeroBannerAnimation();
     initInteractiveImageAnimations();
+    initHeaderLogoAnimation();
     window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
     if (oldBar) oldBar.remove();
