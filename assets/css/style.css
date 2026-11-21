@@ -283,8 +283,8 @@ padding: 0; cursor: pointer; }
 .boxesinfo .wrp .listboxes li{padding: 0 15px;}
 .boxesinfo .wrp .listboxes li figure{
     margin-bottom: 0;
-    width: 60px;
-    height: 60px;
+    width: 76px;
+    height: 76px;
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -294,18 +294,20 @@ padding: 0; cursor: pointer; }
 }
 .boxesinfo .wrp .listboxes li figure img,
 .boxesinfo .wrp .listboxes li figure .service-icon-svg {
-    width: 48px !important;
-    height: 48px !important;
-    max-width: 48px !important;
-    max-height: 48px !important;
+    width: 68px !important;
+    height: 68px !important;
+    max-width: 68px !important;
+    max-height: 68px !important;
     display: block !important;
     margin: 0 auto !important;
     object-fit: contain;
-    transition: transform 0.25s ease, filter 0.25s ease;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease;
+    filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32));
 }
 .boxesinfo .wrp .listboxes li:hover figure img,
 .boxesinfo .wrp .listboxes li:hover figure .service-icon-svg {
-    transform: translateY(-4px) scale(1.08);
+    transform: translateY(-7px) scale(1.12) !important;
+    filter: drop-shadow(0 12px 24px rgba(52, 120, 246, 0.65)) brightness(1.08) !important;
 }
 .boxesinfo .wrp .listboxes li a {
     text-decoration: none;
