@@ -954,7 +954,7 @@ const server = http.createServer(async (req, res) => {
         slug,
         parentId: data.parentId || null,
         description: data.description || '',
-        image: data.image || '/assets/images/bannericons/branding.png',
+        image: data.image || '/assets/images/services-3d/logo-design.png',
         bannerImage: data.bannerImage || '/assets/images/banners/branding.png',
         displayOrder: parseInt(data.displayOrder, 10) || (db.data.categories.length + 1),
         showOnHome: Boolean(data.showOnHome),

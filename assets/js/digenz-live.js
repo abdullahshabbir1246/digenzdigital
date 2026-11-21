@@ -624,24 +624,23 @@
 
   // Helper: Resolve service icon for category
   function resolveCategoryIcon(c) {
-    if (c.image && (c.image.includes('.svg') || c.image.includes('.png') || c.image.includes('.webp'))) {
-      return c.image;
-    }
-    const slug = (c.slug || '').toLowerCase();
+    const slug = (c.slug || c.id || '').toLowerCase();
     const name = (c.name || '').toLowerCase();
+
+    // 1. Direct mapping for the 8 core services (highest priority 3D icons)
     if (slug.includes('logo') || name.includes('logo')) return '/assets/images/services-3d/logo-design.png';
-    if (slug.includes('wordpress') || name.includes('wordpress')) return '/assets/images/services-3d/web-design.png';
+    if (slug.includes('custom-web') || slug.includes('webdesign') || name.includes('web design') || slug.includes('wordpress')) return '/assets/images/services-3d/web-design.png';
     if (slug.includes('ecom') || name.includes('ecom')) return '/assets/images/services-3d/ecommerce.png';
-    if (slug.includes('custom-web') || name.includes('web design')) return '/assets/images/services-3d/web-design.png';
-    if (slug.includes('web-app') || name.includes('web app')) return '/assets/images/services-3d/web-design.png';
-    if (slug.includes('backend') || name.includes('backend')) return '/assets/images/services-3d/combo-packages.png';
-    if (slug.includes('mobile') || name.includes('mobile')) return '/assets/images/services-3d/mobile-app.png';
-    if (slug.includes('maint') || name.includes('maint')) return '/assets/images/services-3d/web-design.png';
-    if (slug.includes('domain') || slug.includes('host') || name.includes('host')) return '/assets/images/services-3d/web-design.png';
     if (slug.includes('brand') || name.includes('brand')) return '/assets/images/services-3d/corporate-branding.png';
     if (slug.includes('anim') || slug.includes('video') || name.includes('video')) return '/assets/images/services-3d/video-animation.png';
     if (slug.includes('seo') || name.includes('seo') || name.includes('search engine')) return '/assets/images/services-3d/seo.png';
-    if (slug.includes('combo') || name.includes('combo')) return '/assets/images/services-3d/combo-packages.png';
+    if (slug.includes('mobile') || name.includes('mobile') || name.includes('app')) return '/assets/images/services-3d/mobile-app.png';
+    if (slug.includes('combo') || slug.includes('package') || name.includes('combo') || name.includes('stack') || slug.includes('backend')) return '/assets/images/services-3d/combo-packages.png';
+
+    // 2. Custom category image if valid and not legacy bannericon / generic
+    if (c.image && !c.image.includes('bannericons') && !c.image.includes('digenz-icon.svg') && (c.image.includes('.svg') || c.image.includes('.png') || c.image.includes('.webp'))) {
+      return c.image;
+    }
     return '/assets/images/services-3d/web-design.png';
   }
 
@@ -682,11 +681,37 @@
     const homeIcons = document.querySelector('ul.listboxes.serviceicons, [data-services-container="home-icons"]');
     if (homeIcons) {
       const homeCats = activeCats.filter(c => c.showOnHome !== false);
-      const newIconsHtml = homeCats.map(c => {
-        const url = resolveCategoryUrl(c);
-        const icon = resolveCategoryIcon(c);
-        const formattedTitle = escapeHtml(c.name).replace(/\s+(development|branding|animation|optimization|solutions|packages)/i, ' <br> $1');
-        return `          <li>
+      const isSlick = typeof jQuery !== 'undefined' && jQuery(homeIcons).hasClass('slick-initialized');
+
+      if (isSlick) {
+        // Update all slides (including cloned ones) in-place without tearing down Slick
+        const allSlides = homeIcons.querySelectorAll('.slick-slide');
+        allSlides.forEach(slide => {
+          const titleEl = slide.querySelector('h4');
+          const title = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
+          const imgEl = slide.querySelector('img');
+          if (imgEl && title) {
+            const match = homeCats.find(c => {
+              const cn = (c.name || '').toLowerCase();
+              return title.includes(cn) || cn.includes(title.replace(/\s+/g, ' '));
+            });
+            if (match) {
+              const newSrc = resolveCategoryIcon(match);
+              if (imgEl.getAttribute('src') !== newSrc) {
+                imgEl.setAttribute('src', newSrc);
+              }
+              imgEl.classList.add('service-3d-icon');
+              imgEl.setAttribute('width', '68');
+              imgEl.setAttribute('height', '68');
+            }
+          }
+        });
+      } else {
+        const newIconsHtml = homeCats.map(c => {
+          const url = resolveCategoryUrl(c);
+          const icon = resolveCategoryIcon(c);
+          const formattedTitle = escapeHtml(c.name).replace(/\s+(development|branding|animation|optimization|solutions|packages)/i, ' <br> $1');
+          return `          <li>
             <a href="${url}">
               <figure class="develp">
                 <img src="${icon}" alt="${escapeHtml(c.name)}" class="service-icon-svg service-3d-icon" width="68" height="68" loading="lazy">
@@ -696,9 +721,10 @@
               </div>
             </a>
           </li>`;
-      }).join('\n');
-      if (homeIcons.innerHTML.trim() !== newIconsHtml.trim()) {
-        homeIcons.innerHTML = newIconsHtml;
+        }).join('\n');
+        if (homeIcons.innerHTML.trim() !== newIconsHtml.trim()) {
+          homeIcons.innerHTML = newIconsHtml;
+        }
       }
     }
 
