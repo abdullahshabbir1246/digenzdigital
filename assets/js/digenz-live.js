@@ -1739,6 +1739,91 @@
     });
   }
 
+  // =========================================================================
+  // INTERACTIVE CURSOR 3D TILT & HOVER ANIMATION FOR SHOWCASE IMAGES & CARDS
+  // =========================================================================
+  function initInteractiveImageAnimations() {
+    if (typeof window === 'undefined') return;
+
+    var selector = [
+      'img[src*="trust.png"]',
+      'img[src*="VerifiedAgencyv1.svg"]',
+      'img[src*="time-and-material"]',
+      'img[src*="fixed-price"]',
+      'img[src*="dedicated-team"]',
+      '.portfoliogridlist li',
+      '.wbport li',
+      '.build-to-win .to-win-box',
+      '.helpsec .imgplace'
+    ].join(', ');
+
+    var elements = document.querySelectorAll(selector);
+    elements.forEach(function(el) {
+      if (el.dataset.tiltInitialized) return;
+      el.dataset.tiltInitialized = 'true';
+
+      var targetTiltX = 0;
+      var targetTiltY = 0;
+      var currentTiltX = 0;
+      var currentTiltY = 0;
+      var targetScale = 1;
+      var currentScale = 1;
+      var rafId = null;
+      var isHovered = false;
+
+      function render() {
+        currentTiltX += (targetTiltX - currentTiltX) * 0.12;
+        currentTiltY += (targetTiltY - currentTiltY) * 0.12;
+        currentScale += (targetScale - currentScale) * 0.12;
+
+        el.style.transform = 'perspective(800px) rotateX(' + currentTiltX.toFixed(2) + 'deg) rotateY(' + currentTiltY.toFixed(2) + 'deg) scale(' + currentScale.toFixed(3) + ')';
+
+        var diff = Math.abs(targetTiltX - currentTiltX) +
+                   Math.abs(targetTiltY - currentTiltY) +
+                   Math.abs(targetScale - currentScale);
+
+        if (isHovered || diff > 0.01) {
+          rafId = requestAnimationFrame(render);
+        } else {
+          el.style.transform = '';
+          rafId = null;
+        }
+      }
+
+      el.addEventListener('mouseenter', function() {
+        if (window.innerWidth < 992) return;
+        isHovered = true;
+        targetScale = 1.03;
+        if (!rafId) rafId = requestAnimationFrame(render);
+      });
+
+      el.addEventListener('mousemove', function(e) {
+        if (window.innerWidth < 992) return;
+        isHovered = true;
+        var rect = el.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width;
+        var relY = (e.clientY - rect.top) / rect.height;
+
+        relX = Math.max(0, Math.min(1, relX));
+        relY = Math.max(0, Math.min(1, relY));
+
+        targetTiltY = (relX - 0.5) * 10;
+        targetTiltX = -(relY - 0.5) * 8;
+        targetScale = 1.03;
+
+        if (!rafId) rafId = requestAnimationFrame(render);
+      }, { passive: true });
+
+      el.addEventListener('mouseleave', function() {
+        isHovered = false;
+        targetTiltX = 0;
+        targetTiltY = 0;
+        targetScale = 1;
+        if (!rafId) rafId = requestAnimationFrame(render);
+      });
+    });
+  }
+
   ensureMobileHeader();
   ensureServiceCards();
 
@@ -1747,6 +1832,7 @@
     ensureServiceCards();
     ensureWhatsAppButton();
     initHeroBannerAnimation();
+    initInteractiveImageAnimations();
     window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
     if (oldBar) oldBar.remove();

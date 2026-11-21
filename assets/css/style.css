@@ -6954,3 +6954,169 @@ iframe[title*="chat" i],
         height: 28px;
     }
 }
+
+/* ==========================================================================
+   GLOBAL IMAGE HOVER & INTERACTION ANIMATIONS
+   ========================================================================== */
+
+/* Universal Image Transitions */
+img:not(.hero-bg-art):not(.digenz-whatsapp-icon) {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+/* Base interactive hover for all standalone content images */
+img:not(.hero-bg-art):not(.digenz-whatsapp-icon):not(.whitelogo):not(.blacklogo):hover {
+    transform: translateY(-4px) scale(1.025);
+    filter: brightness(1.03);
+}
+
+/* 1. Portfolio items & gallery images */
+.portfolio_arch .fixdwrap .portfoliogridlist li a figure,
+.portfoliopg .wbport li a figure,
+.wbport li figure,
+.build-to-win .to-win-box a figure,
+.to-win-box a figure,
+.serviceportfolio figure {
+    overflow: hidden !important;
+    border-radius: 8px !important;
+}
+
+.portfolio_arch .fixdwrap .portfoliogridlist li a figure img,
+.portfoliopg .wbport li a figure img,
+.wbport li figure img,
+.build-to-win .to-win-box a figure img,
+.to-win-box a figure img,
+.serviceportfolio img {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease !important;
+    will-change: transform;
+}
+
+.portfolio_arch .fixdwrap .portfoliogridlist li:hover a figure img,
+.portfoliopg .wbport li:hover a figure img,
+.wbport li:hover figure img,
+.build-to-win .to-win-box:hover a figure img,
+.to-win-box:hover a figure img,
+.serviceportfolio:hover img {
+    transform: scale(1.08) !important;
+    filter: brightness(1.06) contrast(1.03) !important;
+}
+
+/* 2. Service & feature icons */
+.boxesinfo .wrp .listboxes li figure img,
+.boxesinfo .wrp .listboxes li figure .service-icon-svg,
+.service-icon-svg,
+.ways .ways-box figure img,
+.siloed figure img,
+.mtech ul li figure img {
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease !important;
+    will-change: transform;
+}
+
+.boxesinfo .wrp .listboxes li:hover figure img,
+.boxesinfo .wrp .listboxes li:hover figure .service-icon-svg,
+.service-icon-svg:hover,
+.ways .ways-box:hover figure img,
+.siloed:hover figure img,
+.mtech ul li:hover figure img {
+    transform: translateY(-7px) scale(1.12) !important;
+    filter: drop-shadow(0 10px 18px rgba(52, 120, 246, 0.45)) !important;
+}
+
+/* 3. Trust seals, verification badges & awards */
+img[src*="trust.png"],
+img[src*="VerifiedAgencyv1.svg"],
+img[src*="awards"],
+img[src*="clutch"],
+img[src*="google-partner"],
+img[src*="top-digital"],
+img[src*="tdf-logo"] {
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease !important;
+    will-change: transform;
+}
+
+img[src*="trust.png"]:hover,
+img[src*="VerifiedAgencyv1.svg"]:hover,
+img[src*="awards"]:hover,
+img[src*="clutch"]:hover,
+img[src*="google-partner"]:hover,
+img[src*="top-digital"]:hover,
+img[src*="tdf-logo"]:hover {
+    transform: translateY(-6px) scale(1.04) !important;
+    filter: drop-shadow(0 12px 24px rgba(52, 120, 246, 0.3)) !important;
+}
+
+/* 4. Engagement models and feature graphics */
+.helpsec .imgplace figure img,
+.helpsec figure img,
+img[src*="time-and-material"],
+img[src*="fixed-price"],
+img[src*="dedicated-team"] {
+    cursor: pointer;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease, box-shadow 0.45s ease !important;
+    will-change: transform;
+}
+
+.helpsec .imgplace:hover figure img,
+.helpsec figure:hover img,
+img[src*="time-and-material"]:hover,
+img[src*="fixed-price"]:hover,
+img[src*="dedicated-team"]:hover {
+    transform: translateY(-6px) scale(1.03) !important;
+    filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.35)) brightness(1.03) !important;
+}
+
+/* 5. Client & partner logos */
+.partners img,
+img[src*="partners"],
+img[src*="clients"],
+.companies-inf .logosimg img {
+    transition: transform 0.35s ease, filter 0.35s ease, opacity 0.35s ease !important;
+    will-change: transform;
+}
+
+.partners img:hover,
+img[src*="partners"]:hover,
+img[src*="clients"]:hover,
+.companies-inf .logosimg img:hover {
+    transform: translateY(-4px) scale(1.08) !important;
+    filter: brightness(1.15) drop-shadow(0 6px 14px rgba(52, 120, 246, 0.3)) !important;
+}
+
+/* 6. Testimonial client photos & avatars */
+.singletestimonials figure img,
+.testi_box figure img,
+.testi-img img {
+    transition: transform 0.35s ease, filter 0.35s ease !important;
+    will-change: transform;
+}
+
+.singletestimonials:hover figure img,
+.testi_box:hover figure img,
+.testi-img:hover img {
+    transform: scale(1.08) !important;
+    filter: drop-shadow(0 6px 14px rgba(52, 120, 246, 0.35)) !important;
+}
+
+/* 7. General clickable or content figures */
+a:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
+figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
+.review-column img:hover {
+    transform: translateY(-4px) scale(1.03);
+    filter: brightness(1.04);
+}
+
+/* 8. Logo subtle interaction */
+.logo a:hover img,
+.logo-main:hover img {
+    transform: scale(1.04) !important;
+    filter: drop-shadow(0 0 10px rgba(52, 120, 246, 0.35)) !important;
+}
+
+/* Prevent unwanted transforms on mobile viewports */
+@media (max-width: 767px) {
+    img:not(.hero-bg-art):not(.digenz-whatsapp-icon):hover {
+        transform: none !important;
+    }
+}
