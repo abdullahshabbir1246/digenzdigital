@@ -1642,6 +1642,93 @@
     else document.addEventListener('DOMContentLoaded', () => document.head.appendChild(style));
   }
 
+  // =========================================================================
+  // HERO BANNER CURSOR INTERACTIVE ANIMATION
+  // =========================================================================
+  function initHeroBannerAnimation() {
+    var banner = document.querySelector('.home-banner');
+    if (!banner) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var bgArt = banner.querySelector('.hero-bg-art');
+    if (!bgArt) return;
+
+    var targetTiltX = 0;
+    var targetTiltY = 0;
+    var currentTiltX = 0;
+    var currentTiltY = 0;
+    var targetScale = 1;
+    var currentScale = 1;
+    var mouseX = 50;
+    var mouseY = 50;
+    var curMouseX = 50;
+    var curMouseY = 50;
+    var rafId = null;
+    var isHovered = false;
+
+    function render() {
+      // Smooth lerp (0.09) for fluid, premium motion
+      currentTiltX += (targetTiltX - currentTiltX) * 0.09;
+      currentTiltY += (targetTiltY - currentTiltY) * 0.09;
+      currentScale += (targetScale - currentScale) * 0.09;
+      curMouseX += (mouseX - curMouseX) * 0.12;
+      curMouseY += (mouseY - curMouseY) * 0.12;
+
+      banner.style.setProperty('--hero-tilt-x', currentTiltX.toFixed(3) + 'deg');
+      banner.style.setProperty('--hero-tilt-y', currentTiltY.toFixed(3) + 'deg');
+      banner.style.setProperty('--hero-scale', currentScale.toFixed(4));
+      banner.style.setProperty('--mouse-x', curMouseX.toFixed(2) + '%');
+      banner.style.setProperty('--mouse-y', curMouseY.toFixed(2) + '%');
+
+      var diff = Math.abs(targetTiltX - currentTiltX) +
+                 Math.abs(targetTiltY - currentTiltY) +
+                 Math.abs(targetScale - currentScale);
+
+      if (isHovered || diff > 0.005) {
+        rafId = requestAnimationFrame(render);
+      } else {
+        rafId = null;
+      }
+    }
+
+    banner.addEventListener('mouseenter', function() {
+      if (window.innerWidth < 992) return;
+      isHovered = true;
+      targetScale = 1.02;
+      if (!rafId) rafId = requestAnimationFrame(render);
+    });
+
+    banner.addEventListener('mousemove', function(e) {
+      if (window.innerWidth < 992) return;
+      isHovered = true;
+      var rect = banner.getBoundingClientRect();
+      var relX = (e.clientX - rect.left) / rect.width;
+      var relY = (e.clientY - rect.top) / rect.height;
+
+      // Clamp between 0 and 1
+      relX = Math.max(0, Math.min(1, relX));
+      relY = Math.max(0, Math.min(1, relY));
+
+      // 3D tilt angles: gentle, elegant tilt (max ~2.5 deg)
+      targetTiltY = (relX - 0.5) * 5.0;
+      targetTiltX = -(relY - 0.5) * 3.5;
+      targetScale = 1.02;
+
+      mouseX = relX * 100;
+      mouseY = relY * 100;
+
+      if (!rafId) rafId = requestAnimationFrame(render);
+    }, { passive: true });
+
+    banner.addEventListener('mouseleave', function() {
+      isHovered = false;
+      targetTiltX = 0;
+      targetTiltY = 0;
+      targetScale = 1;
+      if (!rafId) rafId = requestAnimationFrame(render);
+    });
+  }
+
   ensureMobileHeader();
   ensureServiceCards();
 
@@ -1649,6 +1736,7 @@
     ensureMobileHeader();
     ensureServiceCards();
     ensureWhatsAppButton();
+    initHeroBannerAnimation();
     window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
     if (oldBar) oldBar.remove();

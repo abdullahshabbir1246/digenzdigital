@@ -5113,21 +5113,18 @@ footer.footer-main::after,
 }
 
 
-/* --- HOMEPAGE HERO BANNER (DIGENZ HIGH RESOLUTION ARTWORK) --- */
+/* --- HOMEPAGE HERO BANNER (DIGENZ HIGH RESOLUTION ARTWORK & INTERACTION) --- */
 .home-banner {
     width: 100% !important;
     height: 540px !important;
     min-height: 520px !important;
     max-height: 580px !important;
     background-color: #031831 !important;
-    background-image: url(../images/banners/digenz-home-hero.png) !important;
-    background-size: cover !important;
-    background-position: left center !important;
-    background-repeat: no-repeat !important;
     position: relative !important;
     display: flex !important;
     align-items: center !important;
     overflow: hidden !important;
+    perspective: 1200px !important;
 }
 
 .home-banner::before,
@@ -5139,12 +5136,74 @@ footer.footer-main::after,
     background: none !important;
 }
 
+/* Background Artwork Interactive Layer */
+.hero-interactive-layer {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+    perspective: 1200px;
+}
+
+.hero-bg-art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/banners/digenz-home-hero.png);
+    background-size: cover;
+    background-position: left center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    will-change: transform;
+    transform: perspective(1200px) 
+               rotateX(var(--hero-tilt-x, 0deg)) 
+               rotateY(var(--hero-tilt-y, 0deg)) 
+               scale(var(--hero-scale, 1));
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Soft Cursor-Tracking Tech Glow */
+.hero-cursor-spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    background: radial-gradient(550px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(52, 120, 246, 0.18), transparent 75%);
+    mix-blend-mode: screen;
+}
+
+.home-banner:hover .hero-cursor-spotlight {
+    opacity: 1;
+}
+
 /* Visually conceal duplicate text overlay on desktop as it is rendered directly within the graphic */
 @media only screen and (min-width: 992px) {
     .home-banner-content {
         opacity: 0 !important;
         pointer-events: none !important;
         user-select: none !important;
+    }
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg-art {
+        transform: none !important;
+        transition: none !important;
+    }
+    .hero-cursor-spotlight {
+        display: none !important;
     }
 }
 
@@ -5159,6 +5218,11 @@ footer.footer-main::after,
         display: block !important;
         overflow: hidden !important;
         width: 100% !important;
+    }
+    .hero-interactive-layer,
+    .hero-bg-art,
+    .hero-cursor-spotlight {
+        display: none !important;
     }
 
     .home-banner-content {
