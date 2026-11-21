@@ -7199,16 +7199,16 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
 .streak-pillar {
     stroke: #80B5FF;
     stroke-width: 2.2;
-    stroke-dasharray: 160;
-    stroke-dashoffset: 160;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
     animation: drawStreak 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
 }
 
 .streak-loop {
     stroke: #3478F6;
     stroke-width: 2.2;
-    stroke-dasharray: 220;
-    stroke-dashoffset: 220;
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
     animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 }
 
