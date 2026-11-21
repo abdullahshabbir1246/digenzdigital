@@ -6106,7 +6106,7 @@ img, video, iframe {
         padding: 10px 0 !important;
     }
     .logo-area .logo img {
-        max-height: 42px !important;
+        max-height: 52px !important;
         width: auto !important;
     }
 
@@ -6227,8 +6227,8 @@ img, video, iframe {
     }
 
     .logo-area .logo .blacklogo {
-        max-height: 36px !important;
-        height: 36px !important;
+        max-height: 42px !important;
+        height: 42px !important;
         width: auto !important;
         display: block !important;
     }
@@ -7130,20 +7130,26 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     display: none !important;
 }
 
+.logo-area .logo img,
+.logo img {
+    max-height: 52px !important;
+    width: auto !important;
+}
+
 .digenz-logo-anim-wrap {
     display: inline-flex !important;
     align-items: center !important;
     position: relative !important;
-    height: 42px !important;
-    max-height: 42px !important;
+    height: 52px !important;
+    max-height: 52px !important;
     width: auto !important;
     line-height: 0 !important;
     flex-shrink: 0 !important;
 }
 
 .digenz-logo-anim-svg {
-    height: 42px !important;
-    max-height: 42px !important;
+    height: 52px !important;
+    max-height: 52px !important;
     width: auto !important;
     aspect-ratio: 350 / 92 !important;
     display: block !important;
@@ -7152,15 +7158,32 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     animation: logoEntranceGlow 1.8s ease-out forwards;
 }
 
-/* Mobile responsive sizing: match 36px header logo */
+/* Mobile responsive sizing: enlarged cleanly for mobile viewports */
 @media only screen and (max-width: 991px) {
+    .logo-area .logo .blacklogo,
+    .mobile-nav .logo-main img {
+        height: 42px !important;
+        max-height: 42px !important;
+        width: auto !important;
+    }
     .digenz-logo-anim-wrap {
-        height: 36px !important;
-        max-height: 36px !important;
+        height: 42px !important;
+        max-height: 42px !important;
     }
     .digenz-logo-anim-svg {
-        height: 36px !important;
-        max-height: 36px !important;
+        height: 42px !important;
+        max-height: 42px !important;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .logo-area .logo .blacklogo,
+    .mobile-nav .logo-main img,
+    .digenz-logo-anim-wrap,
+    .digenz-logo-anim-svg {
+        height: 38px !important;
+        max-height: 38px !important;
+        width: auto !important;
     }
 }
 

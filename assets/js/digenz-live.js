@@ -1160,20 +1160,20 @@
           display: none !important;
         }
         .logo-area .logo .blacklogo {
-          max-height: 36px !important;
-          height: 36px !important;
+          max-height: 42px !important;
+          height: 42px !important;
           width: auto !important;
           display: block !important;
         }
         .logo-area .logo .digenz-logo-anim-wrap {
-          height: 36px !important;
-          max-height: 36px !important;
+          height: 42px !important;
+          max-height: 42px !important;
           display: inline-flex !important;
           align-items: center !important;
         }
         .logo-area .logo .digenz-logo-anim-svg {
-          height: 36px !important;
-          max-height: 36px !important;
+          height: 42px !important;
+          max-height: 42px !important;
           width: auto !important;
         }
         .mobile-nav-btn {
