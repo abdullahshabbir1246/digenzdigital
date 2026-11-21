@@ -25,7 +25,7 @@
   </defs>
 
   <!-- Modern Geometric 'D' Monogram for Digital & Creative Services -->
-  <g id="d_techD" transform="translate(6, 1)">
+  <g id="d_techD" transform="translate(45.4, 46) scale(1.28) translate(-45, -46)">
     <!-- Left Tech Pillar (Foundation, Backend Architecture, Structure) -->
     <!-- Top Chamfered Pillar Segment -->
     <polygon points="18,27 26,19 32,19 32,44 18,44" 

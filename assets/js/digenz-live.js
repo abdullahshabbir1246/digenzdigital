@@ -1878,14 +1878,14 @@
               '<stop offset="100%" stop-color="#3478F6" stop-opacity="0" />' +
             '</linearGradient>' +
           '</defs>' +
-          '<g id="d_animatedStreaks" transform="translate(6, 1)">' +
+          '<g id="d_animatedStreaks" transform="translate(45.4, 46) scale(1.28) translate(-45, -46)">' +
             '<path class="d-streak streak-pillar" d="M 18,27 L 26,19 L 32,19 L 32,73 L 26,73 L 18,65 Z" />' +
             '<path class="d-streak streak-arc-top" d="M 80,8 C 65,12 50,16 38,19 L 56,19" />' +
             '<path class="d-streak streak-loop" d="M 38,19 L 56,19 L 72,35 L 72,57 L 56,73 L 38,73 L 38,65 L 48,65 L 60,57 L 60,35 L 48,27 L 38,27 Z" />' +
             '<path class="d-streak streak-arc-bottom" d="M 84,80 C 74,78 62,75 56,73 L 38,73" />' +
             '<path class="d-streak streak-arrow" d="M 41,36 L 51,46 L 41,56 L 46,56 L 56,46 L 46,36 Z" />' +
           '</g>' +
-          '<g id="d_techD" transform="translate(6, 1)">' +
+          '<g id="d_techD" transform="translate(45.4, 46) scale(1.28) translate(-45, -46)">' +
             '<polygon class="d-facet" points="18,27 26,19 32,19 32,44 18,44" fill="url(#ani_blueLight)" />' +
             '<polygon class="d-facet" points="18,48 32,48 32,73 26,73 18,65" fill="url(#ani_blueDark)" />' +
             '<polygon class="d-facet" points="28,43 36,43 36,49 28,49" fill="url(#ani_blueGrad)" />' +
