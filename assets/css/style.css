@@ -7393,16 +7393,3 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     filter: drop-shadow(0 0 10px rgba(52, 120, 246, 0.45)) !important;
     transition: transform 0.3s ease, filter 0.3s ease !important;
 }
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .d-streak, .d-energy-beam {
-        display: none !important;
-    }
-    .d-facet, .d-arrow, .d-node, .wm-letter, .wm-tagline, .digenz-logo-anim-svg {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-        filter: none !important;
-    }
-}

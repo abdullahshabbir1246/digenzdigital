@@ -1848,13 +1848,9 @@
     var logoContainers = document.querySelectorAll('.logo-area .logo a, .mobile-nav .logo-main, .logo a');
     if (!logoContainers || logoContainers.length === 0) return;
 
-    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     logoContainers.forEach(function(container) {
       if (container.dataset.logoAnimInitialized) return;
       container.dataset.logoAnimInitialized = 'true';
-
-      if (prefersReduced) return; // Leave normal static logo intact
 
       var svgMarkup = '<div class="digenz-logo-anim-wrap">' +
         '<svg class="digenz-logo-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 92">' +
