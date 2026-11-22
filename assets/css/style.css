@@ -7432,7 +7432,8 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     overflow: visible !important;
 }
 
-/* Logo Design Service SVG Formation Component (Exact Same Technique as Header Logo) */
+/* Service SVG Formation Component (Exact Same Technique as Header Logo) */
+.service-anim-svg,
 .logo-service-anim-svg {
     position: absolute !important;
     top: 4px !important;
@@ -7468,18 +7469,27 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     stroke-dashoffset: 100;
     animation: drawStreak 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
 }
-.l-streak-nib {
+.l-streak-nib,
+.l-streak-primary {
     stroke: #3478F6;
     stroke-width: 3.2;
     stroke-dasharray: 260;
     stroke-dashoffset: 260;
     animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 }
-.l-streak-slit {
+.l-streak-secondary {
+    stroke: #80B5FF;
+    stroke-width: 2.6;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation: drawStreak 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.10s forwards;
+}
+.l-streak-slit,
+.l-streak-accent {
     stroke: #FFFFFF;
     stroke-width: 2.5;
-    stroke-dasharray: 50;
-    stroke-dashoffset: 50;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
     animation: drawStreak 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
 }
 .l-streak-base {
@@ -7493,7 +7503,7 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
 /* Phase 2: Facets (Exact same as .d-facet) */
 .l-facet {
     opacity: 0;
-    transform-origin: 76px 82px;
+    transform-origin: center;
     animation: assembleFacet 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
 }
 
@@ -7513,7 +7523,10 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
 }
 
 /* Phase 5: Underlying 3D Icon crossfades in smoothly at 0.75s */
-.boxesinfo-anim-active .logo-service-figure .service-3d-icon {
+.boxesinfo-anim-active .service-figure-animating .service-3d-icon,
+.boxesinfo-anim-active .logo-service-figure .service-3d-icon,
+.service-figure-animating .service-3d-icon,
+.service-item-animating .service-3d-icon {
     animation: revealUnderlay 0.65s ease-out 0.75s both;
 }
 
@@ -7529,12 +7542,18 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
 }
 
 /* Settled state: Clean resting state, SVG smoothly removed, 3D icon stable */
-.boxesinfo-anim-revealed .logo-service-anim-svg {
+.service-item-revealed .service-anim-svg,
+.service-item-revealed .logo-service-anim-svg,
+.service-figure-revealed .service-anim-svg,
+.service-figure-revealed .logo-service-anim-svg,
+.service-svg-settled {
     opacity: 0 !important;
     transition: opacity 0.3s ease !important;
     pointer-events: none !important;
 }
-.boxesinfo-anim-revealed .service-3d-icon {
+.boxesinfo-anim-revealed .service-3d-icon,
+.service-item-revealed .service-3d-icon,
+.service-figure-revealed .service-3d-icon {
     opacity: 1 !important;
     transform: none !important;
     filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;

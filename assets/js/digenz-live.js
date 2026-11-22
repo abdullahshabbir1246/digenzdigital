@@ -1968,101 +1968,418 @@
     var sections = document.querySelectorAll('.boxesinfo');
     if (!sections || sections.length === 0) return;
 
-    var logoNibSvg = '<svg class="logo-service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
-      '<defs>' +
-        '<linearGradient id="nib_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">' +
-          '<stop offset="0%" stop-color="#80B5FF" />' +
-          '<stop offset="30%" stop-color="#3478F6" />' +
-          '<stop offset="70%" stop-color="#1e5dd6" />' +
-          '<stop offset="100%" stop-color="#103c8c" />' +
-        '</linearGradient>' +
-        '<linearGradient id="nib_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">' +
-          '<stop offset="0%" stop-color="#3478F6" />' +
-          '<stop offset="45%" stop-color="#80B5FF" />' +
-          '<stop offset="100%" stop-color="#FFFFFF" />' +
-        '</linearGradient>' +
-        '<linearGradient id="nib_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">' +
-          '<stop offset="0%" stop-color="#1e5dd6" />' +
-          '<stop offset="100%" stop-color="#0f2b66" />' +
-        '</linearGradient>' +
-        '<linearGradient id="nib_whiteFacet" x1="0%" y1="0%" x2="100%" y2="100%">' +
-          '<stop offset="0%" stop-color="#FFFFFF" />' +
-          '<stop offset="60%" stop-color="#D4E4FC" />' +
-          '<stop offset="100%" stop-color="#80B5FF" />' +
-        '</linearGradient>' +
-        '<linearGradient id="nib_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%">' +
-          '<stop offset="0%" stop-color="#3478F6" stop-opacity="0" />' +
-          '<stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" />' +
-          '<stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" />' +
-          '<stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" />' +
-          '<stop offset="100%" stop-color="#3478F6" stop-opacity="0" />' +
-        '</linearGradient>' +
-      '</defs>' +
-      '<g id="nib_streaks">' +
-        '<path class="l-streak l-streak-arc" d="M 31,72 C 31,34 50,24 76,24 C 102,24 121,34 121,72" />' +
-        '<path class="l-streak l-streak-handle" d="M 31,72 L 35,34 M 121,72 L 117,34" />' +
-        '<path class="l-streak l-streak-nib" d="M 76,112 L 51,82 L 61,58 L 91,58 L 101,82 Z" />' +
-        '<path class="l-streak l-streak-slit" d="M 76,82 L 76,112" />' +
-        '<path class="l-streak l-streak-base" d="M 59,118 L 93,118 L 93,126 L 59,126 Z" />' +
-      '</g>' +
-      '<g id="nib_facets">' +
-        '<polygon class="l-facet" points="76,112 51,82 61,58 76,58 76,82" fill="url(#nib_whiteFacet)" />' +
-        '<polygon class="l-facet" points="76,112 76,82 76,58 91,58 101,82" fill="url(#nib_blueDark)" />' +
-        '<polygon class="l-facet" points="59,54 93,54 93,58 59,58" fill="url(#nib_blueGrad)" />' +
-        '<rect class="l-facet" x="59" y="118" width="34" height="8" rx="2" fill="url(#nib_blueLight)" />' +
-        '<circle class="l-facet" cx="76" cy="82" r="4.2" fill="#101827" />' +
-      '</g>' +
-      '<g id="nib_nodes">' +
-        '<circle class="l-node" cx="31" cy="72" r="4" />' +
-        '<circle class="l-node" cx="35" cy="34" r="3.5" />' +
-        '<circle class="l-node" cx="76" cy="24" r="4.5" />' +
-        '<circle class="l-node" cx="117" cy="34" r="3.5" />' +
-        '<circle class="l-node" cx="121" cy="72" r="4" />' +
-        '<circle class="l-node" cx="76" cy="82" r="3" />' +
-      '</g>' +
-      '<rect class="l-energy-beam" x="30" y="20" width="35" height="110" fill="url(#nib_energyGrad)" transform="skewX(-20)" />' +
-    '</svg>';
+    var templates = {
+      logo: '<svg class="logo-service-anim-svg service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="nib_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="nib_blueLight" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="nib_blueDark" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="nib_whiteFacet" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="nib_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-arc" d="M 31,72 C 31,34 50,24 76,24 C 102,24 121,34 121,72" />' +
+          '<path class="l-streak l-streak-handle" d="M 31,72 L 35,34 M 121,72 L 117,34" />' +
+          '<path class="l-streak l-streak-nib l-streak-primary" d="M 76,112 L 51,82 L 61,58 L 91,58 L 101,82 Z" />' +
+          '<path class="l-streak l-streak-slit" d="M 76,82 L 76,112" />' +
+          '<path class="l-streak l-streak-base" d="M 59,118 L 93,118 L 93,126 L 59,126 Z" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<polygon class="l-facet" points="76,112 51,82 61,58 76,58 76,82" fill="url(#nib_whiteFacet)" />' +
+          '<polygon class="l-facet" points="76,112 76,82 76,58 91,58 101,82" fill="url(#nib_blueDark)" />' +
+          '<polygon class="l-facet" points="59,54 93,54 93,58 59,58" fill="url(#nib_blueGrad)" />' +
+          '<rect class="l-facet" x="59" y="118" width="34" height="8" rx="2" fill="url(#nib_blueLight)" />' +
+          '<circle class="l-facet" cx="76" cy="82" r="4.2" fill="#101827" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="31" cy="72" r="4" />' +
+          '<circle class="l-node" cx="35" cy="34" r="3.5" />' +
+          '<circle class="l-node" cx="76" cy="24" r="4.5" />' +
+          '<circle class="l-node" cx="117" cy="34" r="3.5" />' +
+          '<circle class="l-node" cx="121" cy="72" r="4" />' +
+          '<circle class="l-node" cx="76" cy="82" r="3" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="30" y="20" width="35" height="110" fill="url(#nib_energyGrad)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      web: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_2" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-primary" d="M 28,32 L 124,32 C 128,32 130,34 130,38 L 130,122 C 130,126 128,128 124,128 L 28,128 C 24,128 22,126 22,122 L 22,38 C 22,34 24,32 28,32 Z" />' +
+          '<path class="l-streak l-streak-secondary" d="M 22,48 L 130,48" />' +
+          '<path class="l-streak l-streak-accent" d="M 54,72 L 42,85 L 54,98" />' +
+          '<path class="l-streak l-streak-accent" d="M 76,68 L 64,102" />' +
+          '<path class="l-streak l-streak-accent" d="M 86,72 L 98,85 L 86,98" />' +
+          '<path class="l-streak l-streak-primary" d="M 118,90 L 122,90 L 123,94 L 127,95 L 130,92 L 133,95 L 130,98 L 131,102 L 135,103 L 135,107 L 131,108 L 130,112 L 133,115 L 130,118 L 127,115 L 123,116 L 122,120 L 118,120 L 117,116 L 113,115 L 110,118 L 107,115 L 110,112 L 109,108 L 105,107 L 105,103 L 109,102 L 110,98 L 107,95 L 110,92 L 113,95 L 117,94 Z" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<path class="l-facet" d="M 22,38 C 22,34 24,32 28,32 L 124,32 C 128,32 130,34 130,38 L 130,48 L 22,48 Z" fill="url(#ani_blueGrad_2)" />' +
+          '<polygon class="l-facet" points="54,72 42,85 54,98" fill="none" stroke="url(#ani_whiteFacet_2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />' +
+          '<polygon class="l-facet" points="86,72 98,85 86,98" fill="none" stroke="url(#ani_whiteFacet_2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />' +
+          '<line class="l-facet" x1="76" y1="68" x2="64" y2="102" stroke="url(#ani_whiteFacet_2)" stroke-width="4" stroke-linecap="round" />' +
+          '<circle class="l-facet" cx="120" cy="105" r="14" fill="url(#ani_blueLight_2)" />' +
+          '<circle class="l-facet" cx="120" cy="105" r="5" fill="#101827" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="34" cy="40" r="3.5" />' +
+          '<circle class="l-node" cx="46" cy="40" r="3.5" />' +
+          '<circle class="l-node" cx="58" cy="40" r="3.5" />' +
+          '<circle class="l-node" cx="42" cy="85" r="3.5" />' +
+          '<circle class="l-node" cx="70" cy="85" r="3" />' +
+          '<circle class="l-node" cx="98" cy="85" r="3.5" />' +
+          '<circle class="l-node" cx="120" cy="105" r="3.5" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="20" y="25" width="35" height="110" fill="url(#ani_energyGrad_2)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      ecom: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-secondary" d="M 15,62 L 35,62 M 10,76 L 38,76 M 18,90 L 32,90" />' +
+          '<path class="l-streak l-streak-primary" d="M 32,32 L 48,54 L 128,54 L 116,94 L 58,94 L 48,54" />' +
+          '<path class="l-streak l-streak-accent" d="M 52,66 L 124,66 M 55,78 L 120,78 M 76,54 L 74,94 M 98,54 L 94,94" />' +
+          '<path class="l-streak l-streak-base" d="M 62,94 L 68,110 M 110,94 L 108,110" />' +
+          '<circle class="l-streak l-streak-primary" cx="68" cy="114" r="8" />' +
+          '<circle class="l-streak l-streak-primary" cx="108" cy="114" r="8" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<polygon class="l-facet" points="48,54 128,54 116,94 58,94" fill="url(#ani_blueDark_3)" opacity="0.85" />' +
+          '<rect class="l-facet" x="28" y="28" width="12" height="8" rx="2" fill="url(#ani_whiteFacet_3)" />' +
+          '<circle class="l-facet" cx="68" cy="114" r="7" fill="url(#ani_blueLight_3)" />' +
+          '<circle class="l-facet" cx="108" cy="114" r="7" fill="url(#ani_blueLight_3)" />' +
+          '<circle class="l-facet" cx="68" cy="114" r="3" fill="#101827" />' +
+          '<circle class="l-facet" cx="108" cy="114" r="3" fill="#101827" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="35" cy="62" r="2.5" />' +
+          '<circle class="l-node" cx="38" cy="76" r="2.5" />' +
+          '<circle class="l-node" cx="32" cy="90" r="2.5" />' +
+          '<circle class="l-node" cx="32" cy="32" r="3.5" />' +
+          '<circle class="l-node" cx="48" cy="54" r="3.5" />' +
+          '<circle class="l-node" cx="128" cy="54" r="4" />' +
+          '<circle class="l-node" cx="116" cy="94" r="3.5" />' +
+          '<circle class="l-node" cx="58" cy="94" r="3.5" />' +
+          '<circle class="l-node" cx="68" cy="114" r="3" />' +
+          '<circle class="l-node" cx="108" cy="114" r="3" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="25" y="25" width="35" height="105" fill="url(#ani_energyGrad_3)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      brand: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_4" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-primary" d="M 36,24 L 94,24 L 102,34 L 102,118 C 102,122 100,124 96,124 L 36,124 C 32,124 30,122 30,118 L 30,30 C 30,26 32,24 36,24 Z" />' +
+          '<path class="l-streak l-streak-accent" d="M 94,24 L 94,34 L 102,34" />' +
+          '<path class="l-streak l-streak-secondary" d="M 46,44 L 46,96 M 46,44 L 68,44 C 78,44 80,50 80,57 C 80,64 76,68 68,68 L 46,68 M 46,68 L 72,68 C 82,68 84,74 84,82 C 84,96 78,96 68,96 L 46,96" />' +
+          '<path class="l-streak l-streak-primary" d="M 134,36 L 140,42 L 106,78 L 100,72 Z" />' +
+          '<path class="l-streak l-streak-slit" d="M 100,72 L 106,78 L 92,94 Z" />' +
+          '<path class="l-streak l-streak-base" d="M 98,108 L 134,108 L 134,124 L 98,124 Z" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<polygon class="l-facet" points="30,30 94,24 102,34 102,118 30,118" fill="url(#ani_whiteFacet_4)" opacity="0.9" />' +
+          '<path class="l-facet" d="M 46,44 L 46,96 M 46,44 L 68,44 C 78,44 80,50 80,57 C 80,64 76,68 68,68 L 46,68 M 46,68 L 72,68 C 82,68 84,74 84,82 C 84,96 78,96 68,96 L 46,96" stroke="url(#ani_blueDark_4)" stroke-width="6" fill="none" stroke-linecap="round" />' +
+          '<polygon class="l-facet" points="134,36 140,42 106,78 100,72" fill="url(#ani_blueLight_4)" />' +
+          '<polygon class="l-facet" points="100,72 106,78 92,94" fill="url(#ani_blueGrad_4)" />' +
+          '<rect class="l-facet" x="98" y="108" width="36" height="16" rx="2" fill="url(#ani_whiteFacet_4)" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="36" cy="24" r="3.5" />' +
+          '<circle class="l-node" cx="102" cy="34" r="3.5" />' +
+          '<circle class="l-node" cx="96" cy="124" r="3.5" />' +
+          '<circle class="l-node" cx="36" cy="124" r="3.5" />' +
+          '<circle class="l-node" cx="80" cy="57" r="3" />' +
+          '<circle class="l-node" cx="84" cy="82" r="3" />' +
+          '<circle class="l-node" cx="92" cy="94" r="3.5" />' +
+          '<circle class="l-node" cx="137" cy="39" r="3" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="25" y="20" width="35" height="115" fill="url(#ani_energyGrad_4)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      anim: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_5" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_5" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-primary" d="M 26,52 L 124,52 C 128,52 130,54 130,58 L 130,124 C 130,128 128,130 124,130 L 26,130 C 22,130 20,128 20,124 L 20,58 C 20,54 22,52 26,52 Z" />' +
+          '<path class="l-streak l-streak-primary" d="M 22,50 L 120,24 C 124,23 127,25 128,29 L 128,38 L 22,50 Z" />' +
+          '<path class="l-streak l-streak-accent" d="M 42,45 L 50,42 M 62,39 L 70,36 M 82,34 L 90,31 M 102,28 L 110,25" />' +
+          '<path class="l-streak l-streak-secondary" d="M 20,64 L 130,64" />' +
+          '<path class="l-streak l-streak-accent" d="M 68,82 L 96,98 L 68,114 Z" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<polygon class="l-facet" points="20,58 130,58 130,124 20,124" fill="url(#ani_blueDark_5)" />' +
+          '<polygon class="l-facet" points="22,50 120,24 128,29 128,38 22,50" fill="url(#ani_blueGrad_5)" />' +
+          '<polygon class="l-facet" points="68,82 96,98 68,114" fill="url(#ani_blueLight_5)" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="22" cy="50" r="4.5" />' +
+          '<circle class="l-node" cx="124" cy="26" r="3.5" />' +
+          '<circle class="l-node" cx="130" cy="58" r="3" />' +
+          '<circle class="l-node" cx="124" cy="130" r="3" />' +
+          '<circle class="l-node" cx="20" cy="124" r="3" />' +
+          '<circle class="l-node" cx="68" cy="82" r="3.5" />' +
+          '<circle class="l-node" cx="96" cy="98" r="4.5" />' +
+          '<circle class="l-node" cx="68" cy="114" r="3.5" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="20" y="20" width="35" height="115" fill="url(#ani_energyGrad_5)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      seo: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_6" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_6" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-primary" d="M 72,28 C 94,28 112,46 112,68 C 112,90 94,108 72,108 C 50,108 32,90 32,68 C 32,46 50,28 72,28 Z" />' +
+          '<path class="l-streak l-streak-secondary" d="M 72,36 C 90,36 104,50 104,68 C 104,86 90,100 72,100 C 54,100 40,86 40,68 C 40,50 54,36 72,36 Z" />' +
+          '<path class="l-streak l-streak-primary" d="M 100,96 L 126,122 C 128,124 130,124 132,122 L 136,118 C 138,116 138,114 136,112 L 110,86 Z" />' +
+          '<path class="l-streak l-streak-secondary" d="M 56,92 L 56,84 M 68,92 L 68,76 M 80,92 L 80,66 M 92,92 L 92,54" />' +
+          '<path class="l-streak l-streak-accent" d="M 50,84 Q 72,66 98,42" />' +
+          '<path class="l-streak l-streak-accent" d="M 88,40 L 102,40 L 102,54" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<circle class="l-facet" cx="72" cy="68" r="32" fill="url(#ani_blueDark_6)" opacity="0.85" />' +
+          '<rect class="l-facet" x="52" y="84" width="8" height="8" rx="1" fill="url(#ani_blueLight_6)" />' +
+          '<rect class="l-facet" x="64" y="76" width="8" height="16" rx="1" fill="url(#ani_blueLight_6)" />' +
+          '<rect class="l-facet" x="76" y="66" width="8" height="26" rx="1" fill="url(#ani_blueLight_6)" />' +
+          '<rect class="l-facet" x="88" y="54" width="8" height="38" rx="1" fill="url(#ani_blueLight_6)" />' +
+          '<polygon class="l-facet" points="100,96 126,122 136,118 110,86" fill="url(#ani_whiteFacet_6)" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="72" cy="28" r="3.5" />' +
+          '<circle class="l-node" cx="112" cy="68" r="3.5" />' +
+          '<circle class="l-node" cx="72" cy="108" r="3.5" />' +
+          '<circle class="l-node" cx="32" cy="68" r="3.5" />' +
+          '<circle class="l-node" cx="134" cy="120" r="4" />' +
+          '<circle class="l-node" cx="102" cy="40" r="4.5" />' +
+          '<circle class="l-node" cx="56" cy="84" r="2.5" />' +
+          '<circle class="l-node" cx="68" cy="76" r="2.5" />' +
+          '<circle class="l-node" cx="80" cy="66" r="2.5" />' +
+          '<circle class="l-node" cx="92" cy="54" r="2.5" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="25" y="25" width="35" height="105" fill="url(#ani_energyGrad_6)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      mobile: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_7" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_7" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-primary" d="M 46,20 L 98,20 C 104,20 108,24 108,30 L 108,120 C 108,126 104,130 98,130 L 46,130 C 40,130 36,126 36,120 L 36,30 C 36,24 40,20 46,20 Z" />' +
+          '<path class="l-streak l-streak-secondary" d="M 42,32 L 102,32 L 102,118 L 42,118 Z" />' +
+          '<path class="l-streak l-streak-accent" d="M 60,62 L 50,72 L 60,82" />' +
+          '<path class="l-streak l-streak-accent" d="M 76,58 L 66,86" />' +
+          '<path class="l-streak l-streak-accent" d="M 82,62 L 92,72 L 82,82" />' +
+          '<path class="l-streak l-streak-primary" d="M 114,88 L 117,88 L 118,92 L 122,93 L 125,90 L 128,93 L 125,96 L 126,100 L 130,101 L 130,105 L 126,106 L 125,110 L 128,113 L 125,116 L 122,113 L 118,114 L 117,118 L 114,118 L 113,114 L 109,113 L 106,116 L 103,113 L 106,110 L 105,106 L 101,105 L 101,101 L 105,100 L 106,96 L 103,93 L 106,90 L 109,93 L 113,92 Z" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<rect class="l-facet" x="42" y="32" width="60" height="86" rx="2" fill="url(#ani_blueDark_7)" />' +
+          '<polygon class="l-facet" points="60,62 50,72 60,82" fill="none" stroke="url(#ani_whiteFacet_7)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />' +
+          '<polygon class="l-facet" points="82,62 92,72 82,82" fill="none" stroke="url(#ani_whiteFacet_7)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />' +
+          '<line class="l-facet" x1="76" y1="58" x2="66" y2="86" stroke="url(#ani_whiteFacet_7)" stroke-width="4" stroke-linecap="round" />' +
+          '<circle class="l-facet" cx="114" cy="102" r="14" fill="url(#ani_blueLight_7)" />' +
+          '<circle class="l-facet" cx="114" cy="102" r="5" fill="#101827" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="46" cy="20" r="3" />' +
+          '<circle class="l-node" cx="98" cy="20" r="3" />' +
+          '<circle class="l-node" cx="98" cy="130" r="3" />' +
+          '<circle class="l-node" cx="46" cy="130" r="3" />' +
+          '<circle class="l-node" cx="50" cy="72" r="3.5" />' +
+          '<circle class="l-node" cx="71" cy="72" r="3" />' +
+          '<circle class="l-node" cx="92" cy="72" r="3.5" />' +
+          '<circle class="l-node" cx="114" cy="102" r="3.5" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="25" y="15" width="35" height="120" fill="url(#ani_energyGrad_7)" transform="skewX(-20)" />' +
+      '</svg>',
+
+      combo: '<svg class="service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+        '<defs>' +
+          '<linearGradient id="ani_blueGrad_8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#80B5FF" /><stop offset="30%" stop-color="#3478F6" /><stop offset="70%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#103c8c" /></linearGradient>' +
+          '<linearGradient id="ani_blueLight_8" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" /><stop offset="45%" stop-color="#80B5FF" /><stop offset="100%" stop-color="#FFFFFF" /></linearGradient>' +
+          '<linearGradient id="ani_blueDark_8" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1e5dd6" /><stop offset="100%" stop-color="#0f2b66" /></linearGradient>' +
+          '<linearGradient id="ani_whiteFacet_8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FFFFFF" /><stop offset="60%" stop-color="#D4E4FC" /><stop offset="100%" stop-color="#80B5FF" /></linearGradient>' +
+          '<linearGradient id="ani_energyGrad_8" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" /><stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient>' +
+        '</defs>' +
+        '<g class="s-streaks">' +
+          '<path class="l-streak l-streak-primary" d="M 78,34 L 124,56 L 78,78 L 32,56 Z" />' +
+          '<path class="l-streak l-streak-secondary" d="M 32,74 L 78,96 L 124,74 L 124,80 L 78,102 L 32,80 Z" />' +
+          '<path class="l-streak l-streak-primary" d="M 32,98 L 78,120 L 124,98 L 124,104 L 78,126 L 32,104 Z" />' +
+          '<path class="l-streak l-streak-accent" d="M 66,54 L 58,58 L 66,62 M 78,50 L 76,66 M 88,54 L 96,58 L 88,62" />' +
+          '<path class="l-streak l-streak-arc" d="M 18,114 C 18,80 32,45 68,36 C 104,27 132,42 136,75" />' +
+        '</g>' +
+        '<g class="s-facets">' +
+          '<polygon class="l-facet" points="78,34 124,56 78,78 32,56" fill="url(#ani_blueLight_8)" />' +
+          '<polygon class="l-facet" points="32,56 78,78 124,56 124,62 78,84 32,62" fill="url(#ani_blueDark_8)" />' +
+          '<polygon class="l-facet" points="32,74 78,96 124,74 124,80 78,102 32,80" fill="url(#ani_whiteFacet_8)" />' +
+          '<polygon class="l-facet" points="32,98 78,120 124,98 L 124,104 L 78,126 L 32,104 Z" fill="url(#ani_blueGrad_8)" />' +
+        '</g>' +
+        '<g class="s-nodes">' +
+          '<circle class="l-node" cx="78" cy="34" r="4" />' +
+          '<circle class="l-node" cx="124" cy="56" r="3.5" />' +
+          '<circle class="l-node" cx="78" cy="78" r="4" />' +
+          '<circle class="l-node" cx="32" cy="56" r="3.5" />' +
+          '<circle class="l-node" cx="78" cy="96" r="3.5" />' +
+          '<circle class="l-node" cx="78" cy="120" r="3.5" />' +
+          '<circle class="l-node" cx="68" cy="36" r="3" />' +
+          '<circle class="l-node" cx="18" cy="114" r="3" />' +
+        '</g>' +
+        '<rect class="l-energy-beam" x="20" y="25" width="35" height="110" fill="url(#ani_energyGrad_8)" transform="skewX(-20)" />' +
+      '</svg>'
+    };
+
+    function getServiceType(el) {
+      var img = el.querySelector('img.service-3d-icon, img');
+      var src = img ? (img.getAttribute('src') || '') : '';
+      var alt = img ? (img.getAttribute('alt') || '') : '';
+      var text = (el.textContent || '') + ' ' + src + ' ' + alt;
+      text = text.toLowerCase();
+
+      if (text.includes('logo-design') || text.includes('logo design') || (text.includes('logo') && !text.includes('web'))) {
+        return 'logo';
+      }
+      if (text.includes('web-design') || text.includes('web design') || (text.includes('development') && !text.includes('mobile'))) {
+        return 'web';
+      }
+      if (text.includes('ecommerce') || text.includes('e-commerce') || text.includes('shop')) {
+        return 'ecom';
+      }
+      if (text.includes('corporate') || text.includes('branding')) {
+        return 'brand';
+      }
+      if (text.includes('video') || text.includes('animation')) {
+        return 'anim';
+      }
+      if (text.includes('seo') || text.includes('search engine') || text.includes('optimization')) {
+        return 'seo';
+      }
+      if (text.includes('mobile') || text.includes('app')) {
+        return 'mobile';
+      }
+      if (text.includes('combo') || text.includes('package') || text.includes('full-stack') || text.includes('stack')) {
+        return 'combo';
+      }
+      return null;
+    }
 
     sections.forEach(function(section) {
       if (section.dataset.iconsAnimInitialized) return;
       section.dataset.iconsAnimInitialized = 'true';
 
-      function playReveal() {
-        // Inject verified SVG formation layer at the exact instant the reveal plays
-        var slides = section.querySelectorAll('.listboxes li, .slick-slide');
-        slides.forEach(function(slide) {
-          var text = (slide.textContent || '').toLowerCase();
-          if (text.includes('logo')) {
-            var fig = slide.querySelector('figure');
-            if (fig && !fig.querySelector('.logo-service-anim-svg')) {
-              fig.classList.add('logo-service-figure');
-              fig.insertAdjacentHTML('beforeend', logoNibSvg);
-            }
-          }
-        });
+      var items = section.querySelectorAll('.listboxes > li, .slick-slide');
+      var staggerIndex = 0;
+      var staggerResetTimer = null;
 
-        section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active', 'boxesinfo-anim-revealed');
-        void section.offsetWidth; // Force reflow
-        section.classList.add('boxesinfo-anim-active');
+      function revealItem(item) {
+        if (!item || item.dataset.serviceRevealed || item.dataset.serviceAnimating) return;
+        item.dataset.serviceAnimating = 'true';
+
+        var type = getServiceType(item);
+        if (!type || !templates[type]) return;
+
+        var fig = item.querySelector('figure') || item;
+        if (fig.querySelector('.service-anim-svg, .logo-service-anim-svg')) return;
+
+        // Visual formation classes
+        fig.classList.add('service-figure-animating');
+        item.classList.add('service-item-animating');
+        if (type === 'logo') {
+          fig.classList.add('logo-service-figure');
+        }
+
+        fig.insertAdjacentHTML('beforeend', templates[type]);
 
         setTimeout(function() {
-          section.classList.remove('boxesinfo-anim-active');
-          section.classList.add('boxesinfo-anim-revealed');
+          fig.classList.remove('service-figure-animating');
+          item.classList.remove('service-item-animating');
+          fig.classList.add('service-figure-revealed');
+          item.classList.add('service-item-revealed');
+          item.dataset.serviceRevealed = 'true';
+          delete item.dataset.serviceAnimating;
+
+          setTimeout(function() {
+            var svg = fig.querySelector('.service-anim-svg, .logo-service-anim-svg');
+            if (svg) svg.remove();
+          }, 400);
         }, 1800);
       }
 
+      function scheduleReveal(item) {
+        if (!item || item.dataset.serviceRevealed || item.dataset.serviceAnimating) return;
+
+        var delay = staggerIndex * 110;
+        staggerIndex++;
+        clearTimeout(staggerResetTimer);
+        staggerResetTimer = setTimeout(function() {
+          staggerIndex = 0;
+        }, 400);
+
+        setTimeout(function() {
+          revealItem(item);
+        }, delay);
+      }
+
+      // 1. Independent IntersectionObserver for each item / slide
       if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function(entries) {
+        var itemObserver = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-              playReveal();
-              observer.unobserve(entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
+              scheduleReveal(entry.target);
+              itemObserver.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.15 });
-        observer.observe(section);
+        }, {
+          threshold: [0.15, 0.4],
+          rootMargin: '0px 0px -30px 0px'
+        });
+
+        items.forEach(function(it) {
+          itemObserver.observe(it);
+        });
       } else {
-        playReveal();
+        items.forEach(function(it) {
+          scheduleReveal(it);
+        });
+      }
+
+      // 2. Slick Carousel support (for mobile/tablet carousel transitions)
+      if (typeof jQuery !== 'undefined') {
+        var $slider = jQuery(section).find('.serviceicons');
+        $slider.on('afterChange', function(event, slick, currentSlide) {
+          var activeSlides = section.querySelectorAll('.slick-active');
+          activeSlides.forEach(function(slide) {
+            scheduleReveal(slide);
+          });
+        });
       }
     });
   }
