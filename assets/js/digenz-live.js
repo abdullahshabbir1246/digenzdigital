@@ -1960,6 +1960,7 @@
 
   // =========================================================================
   // ANIMATED 3D SERVICE ICONS REVEAL (MATCHING HEADER LOGO REVEAL STYLE)
+  // Step 1: Testing & Perfecting Logo Design First (Strict User Directive)
   // =========================================================================
   function initServiceIconsAnimation() {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
@@ -1967,49 +1968,89 @@
     var sections = document.querySelectorAll('.boxesinfo');
     if (!sections || sections.length === 0) return;
 
-    var serviceSvgTemplates = {
-      logo: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_logo" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 18,36 C 24,18 48,15 82,36" /><path class="s-streak s-stroke-secondary" d="M 50,82 L 34,48 L 40,38 L 60,38 L 66,48 Z" /><path class="s-streak s-stroke-accent" d="M 50,82 L 50,56" /><circle class="s-node" cx="20" cy="36" r="3" /><circle class="s-node" cx="50" cy="18" r="3" /><circle class="s-node" cx="80" cy="36" r="3" /><circle class="s-node" cx="50" cy="54" r="2.5" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_logo)" transform="skewX(-20)" /></svg>',
-      web: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_web" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 20,24 L 80,24 C 84,24 86,26 86,30 L 86,72 C 86,76 84,78 80,78 L 20,78 C 16,78 14,76 14,72 L 14,30 C 14,26 16,24 20,24 Z" /><path class="s-streak s-stroke-secondary" d="M 14,35 L 86,35" /><path class="s-streak s-stroke-accent" d="M 40,46 L 33,53 L 40,60" /><path class="s-streak s-stroke-accent" d="M 52,44 L 46,62" /><path class="s-streak s-stroke-accent" d="M 58,46 L 65,53 L 58,60" /><circle class="s-node" cx="21" cy="30" r="2" /><circle class="s-node" cx="27" cy="30" r="2" /><circle class="s-node" cx="33" cy="30" r="2" /><path class="s-streak s-stroke-primary" d="M 72,64 C 76,64 80,68 80,72 C 80,76 76,80 72,80 C 68,80 64,76 64,72 Z" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_web)" transform="skewX(-20)" /></svg>',
-      ecom: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_ecom" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-secondary" d="M 14,34 L 28,34" /><path class="s-streak s-stroke-secondary" d="M 10,46 L 30,46" /><path class="s-streak s-stroke-secondary" d="M 16,58 L 26,58" /><path class="s-streak s-stroke-primary" d="M 32,26 L 38,26 L 46,62 L 76,62 L 85,34 L 38,34" /><path class="s-streak s-stroke-accent" d="M 44,44 L 81,44" /><path class="s-streak s-stroke-accent" d="M 46,52 L 77,52" /><circle class="s-node" cx="48" cy="74" r="5" /><circle class="s-node" cx="74" cy="74" r="5" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_ecom)" transform="skewX(-20)" /></svg>',
-      brand: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_brand" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 28,18 L 62,18 L 74,30 L 74,78 C 74,82 72,84 68,84 L 28,84 C 24,84 22,82 22,78 L 22,24 C 22,20 24,18 28,18 Z" /><path class="s-streak s-stroke-accent" d="M 62,18 L 62,30 L 74,30" /><path class="s-streak s-stroke-secondary" d="M 34,34 L 34,66 M 34,34 L 46,34 C 52,34 55,37 55,42 C 55,47 51,50 46,50 L 34,50 M 34,50 L 48,50 C 54,50 58,54 58,59 C 58,66 52,66 46,66 L 34,66" /><path class="s-streak s-stroke-primary" d="M 68,42 L 84,26 L 89,31 L 73,47 Z" /><path class="s-streak s-stroke-accent" d="M 68,42 L 64,52 L 73,47 Z" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_brand)" transform="skewX(-20)" /></svg>',
-      anim: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_anim" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 20,44 L 80,44 C 84,44 86,46 86,50 L 86,78 C 86,82 84,84 80,84 L 20,84 C 16,84 14,82 14,78 L 14,50 C 14,46 16,44 20,44 Z" /><path class="s-streak s-stroke-secondary" d="M 16,42 L 78,22 C 82,21 85,23 86,27 L 86,35 L 16,42 Z" /><path class="s-streak s-stroke-accent" d="M 30,37 L 38,34 M 46,32 L 54,29 M 62,27 L 70,24" /><path class="s-streak s-stroke-accent" d="M 44,52 L 64,64 L 44,76 Z" /><circle class="s-node" cx="50" cy="64" r="3" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_anim)" transform="skewX(-20)" /></svg>',
-      seo: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_seo" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 48,18 C 62,18 74,30 74,44 C 74,58 62,70 48,70 C 34,70 22,58 22,44 C 22,30 34,18 48,18 Z" /><path class="s-streak s-stroke-secondary" d="M 66,62 L 86,82 C 88,84 88,87 86,89 C 84,91 81,91 79,89 L 59,69" /><path class="s-streak s-stroke-accent" d="M 30,54 Q 44,48 60,30" /><path class="s-streak s-stroke-accent" d="M 52,28 L 62,28 L 62,38" /><path class="s-streak s-stroke-primary" d="M 34,58 L 34,52 M 42,58 L 42,46 M 50,58 L 50,40 M 58,58 L 58,34" /><circle class="s-node" cx="62" cy="28" r="2.5" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_seo)" transform="skewX(-20)" /></svg>',
-      mobile: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_mobile" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 32,16 L 68,16 C 73,16 76,19 76,24 L 76,84 C 76,89 73,92 68,92 L 32,92 C 27,92 24,89 24,84 L 24,24 C 24,19 27,16 32,16 Z" /><path class="s-streak s-stroke-secondary" d="M 28,26 L 72,26 L 72,82 L 28,82 Z" /><path class="s-streak s-stroke-accent" d="M 42,48 L 36,54 L 42,60" /><path class="s-streak s-stroke-accent" d="M 52,46 L 48,62" /><path class="s-streak s-stroke-accent" d="M 58,48 L 64,54 L 58,60" /><path class="s-streak s-stroke-primary" d="M 72,64 C 76,64 80,68 80,72 C 80,76 76,80 72,80 C 68,80 64,76 64,72 Z" /><circle class="s-node" cx="50" cy="21" r="1.5" /><circle class="s-node" cx="50" cy="87" r="2" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_mobile)" transform="skewX(-20)" /></svg>',
-      combo: '<svg class="service-streak-svg" viewBox="0 0 100 100"><defs><linearGradient id="sg_energy_combo" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3478F6" stop-opacity="0" /><stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" /><stop offset="100%" stop-color="#3478F6" stop-opacity="0" /></linearGradient></defs><path class="s-streak s-stroke-primary" d="M 50,20 L 80,34 L 50,48 L 20,34 Z" /><path class="s-streak s-stroke-secondary" d="M 20,44 L 50,58 L 80,44 L 80,50 L 50,64 L 20,50 Z" /><path class="s-streak s-stroke-primary" d="M 20,60 L 50,74 L 80,60 L 80,66 L 50,80 L 20,66 Z" /><path class="s-streak s-stroke-accent" d="M 43,32 L 37,35 L 43,38" /><path class="s-streak s-stroke-accent" d="M 51,30 L 49,40" /><path class="s-streak s-stroke-accent" d="M 57,32 L 63,35 L 57,38" /><circle class="s-node" cx="50" cy="20" r="2.5" /><circle class="s-node" cx="80" cy="34" r="2.5" /><circle class="s-node" cx="20" cy="34" r="2.5" /><rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy_combo)" transform="skewX(-20)" /></svg>'
-    };
+    var logoNibSvg = '<svg class="logo-service-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 152">' +
+      '<defs>' +
+        '<linearGradient id="nib_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">' +
+          '<stop offset="0%" stop-color="#80B5FF" />' +
+          '<stop offset="30%" stop-color="#3478F6" />' +
+          '<stop offset="70%" stop-color="#1e5dd6" />' +
+          '<stop offset="100%" stop-color="#103c8c" />' +
+        '</linearGradient>' +
+        '<linearGradient id="nib_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">' +
+          '<stop offset="0%" stop-color="#3478F6" />' +
+          '<stop offset="45%" stop-color="#80B5FF" />' +
+          '<stop offset="100%" stop-color="#FFFFFF" />' +
+        '</linearGradient>' +
+        '<linearGradient id="nib_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">' +
+          '<stop offset="0%" stop-color="#1e5dd6" />' +
+          '<stop offset="100%" stop-color="#0f2b66" />' +
+        '</linearGradient>' +
+        '<linearGradient id="nib_whiteFacet" x1="0%" y1="0%" x2="100%" y2="100%">' +
+          '<stop offset="0%" stop-color="#FFFFFF" />' +
+          '<stop offset="60%" stop-color="#D4E4FC" />' +
+          '<stop offset="100%" stop-color="#80B5FF" />' +
+        '</linearGradient>' +
+        '<linearGradient id="nib_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%">' +
+          '<stop offset="0%" stop-color="#3478F6" stop-opacity="0" />' +
+          '<stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" />' +
+          '<stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" />' +
+          '<stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" />' +
+          '<stop offset="100%" stop-color="#3478F6" stop-opacity="0" />' +
+        '</linearGradient>' +
+      '</defs>' +
+      '<g id="nib_streaks">' +
+        '<path class="l-streak l-streak-arc" d="M 31,72 C 31,34 50,24 76,24 C 102,24 121,34 121,72" />' +
+        '<path class="l-streak l-streak-handle" d="M 31,72 L 35,34 M 121,72 L 117,34" />' +
+        '<path class="l-streak l-streak-nib" d="M 76,112 L 51,82 L 61,58 L 91,58 L 101,82 Z" />' +
+        '<path class="l-streak l-streak-slit" d="M 76,82 L 76,112" />' +
+        '<path class="l-streak l-streak-base" d="M 59,118 L 93,118 L 93,126 L 59,126 Z" />' +
+      '</g>' +
+      '<g id="nib_facets">' +
+        '<polygon class="l-facet" points="76,112 51,82 61,58 76,58 76,82" fill="url(#nib_whiteFacet)" />' +
+        '<polygon class="l-facet" points="76,112 76,82 76,58 91,58 101,82" fill="url(#nib_blueDark)" />' +
+        '<polygon class="l-facet" points="59,54 93,54 93,58 59,58" fill="url(#nib_blueGrad)" />' +
+        '<rect class="l-facet" x="59" y="118" width="34" height="8" rx="2" fill="url(#nib_blueLight)" />' +
+        '<circle class="l-facet" cx="76" cy="82" r="4.2" fill="#101827" />' +
+      '</g>' +
+      '<g id="nib_nodes">' +
+        '<circle class="l-node" cx="31" cy="72" r="4" />' +
+        '<circle class="l-node" cx="35" cy="34" r="3.5" />' +
+        '<circle class="l-node" cx="76" cy="24" r="4.5" />' +
+        '<circle class="l-node" cx="117" cy="34" r="3.5" />' +
+        '<circle class="l-node" cx="121" cy="72" r="4" />' +
+        '<circle class="l-node" cx="76" cy="82" r="3" />' +
+      '</g>' +
+      '<rect class="l-energy-beam" x="30" y="20" width="35" height="110" fill="url(#nib_energyGrad)" transform="skewX(-20)" />' +
+    '</svg>';
 
     sections.forEach(function(section) {
       if (section.dataset.iconsAnimInitialized) return;
       section.dataset.iconsAnimInitialized = 'true';
 
-      // Inject the SVG stroke overlays onto each service figure
-      var slides = section.querySelectorAll('.listboxes li, .slick-slide:not(.slick-cloned)');
+      // Inject verified SVG formation layer specifically for Logo Design (Test One First)
+      var slides = section.querySelectorAll('.listboxes li, .slick-slide');
       slides.forEach(function(slide) {
-        var fig = slide.querySelector('figure');
-        if (!fig || fig.querySelector('.service-streak-svg')) return;
         var text = (slide.textContent || '').toLowerCase();
-        var key = 'web';
-        if (text.includes('logo')) key = 'logo';
-        else if (text.includes('ecom')) key = 'ecom';
-        else if (text.includes('brand')) key = 'brand';
-        else if (text.includes('anim') || text.includes('video')) key = 'anim';
-        else if (text.includes('seo') || text.includes('search')) key = 'seo';
-        else if (text.includes('mobile') || text.includes('app')) key = 'mobile';
-        else if (text.includes('combo') || text.includes('package')) key = 'combo';
-
-        fig.insertAdjacentHTML('beforeend', serviceSvgTemplates[key]);
+        if (text.includes('logo')) {
+          var fig = slide.querySelector('figure');
+          if (fig && !fig.querySelector('.logo-service-anim-svg')) {
+            fig.classList.add('logo-service-figure');
+            fig.insertAdjacentHTML('beforeend', logoNibSvg);
+          }
+        }
       });
 
       function playReveal() {
         section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active', 'boxesinfo-anim-revealed');
         section.classList.add('boxesinfo-anim-ready');
         void section.offsetWidth; // Force reflow
+        section.classList.remove('boxesinfo-anim-ready');
         section.classList.add('boxesinfo-anim-active');
 
         setTimeout(function() {
-          section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active');
+          section.classList.remove('boxesinfo-anim-active');
           section.classList.add('boxesinfo-anim-revealed');
-        }, 1900);
+        }, 1800);
       }
 
       if ('IntersectionObserver' in window) {
