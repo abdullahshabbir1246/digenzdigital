@@ -2027,24 +2027,22 @@
       if (section.dataset.iconsAnimInitialized) return;
       section.dataset.iconsAnimInitialized = 'true';
 
-      // Inject verified SVG formation layer specifically for Logo Design (Test One First)
-      var slides = section.querySelectorAll('.listboxes li, .slick-slide');
-      slides.forEach(function(slide) {
-        var text = (slide.textContent || '').toLowerCase();
-        if (text.includes('logo')) {
-          var fig = slide.querySelector('figure');
-          if (fig && !fig.querySelector('.logo-service-anim-svg')) {
-            fig.classList.add('logo-service-figure');
-            fig.insertAdjacentHTML('beforeend', logoNibSvg);
-          }
-        }
-      });
-
       function playReveal() {
+        // Inject verified SVG formation layer at the exact instant the reveal plays
+        var slides = section.querySelectorAll('.listboxes li, .slick-slide');
+        slides.forEach(function(slide) {
+          var text = (slide.textContent || '').toLowerCase();
+          if (text.includes('logo')) {
+            var fig = slide.querySelector('figure');
+            if (fig && !fig.querySelector('.logo-service-anim-svg')) {
+              fig.classList.add('logo-service-figure');
+              fig.insertAdjacentHTML('beforeend', logoNibSvg);
+            }
+          }
+        });
+
         section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active', 'boxesinfo-anim-revealed');
-        section.classList.add('boxesinfo-anim-ready');
         void section.offsetWidth; // Force reflow
-        section.classList.remove('boxesinfo-anim-ready');
         section.classList.add('boxesinfo-anim-active');
 
         setTimeout(function() {

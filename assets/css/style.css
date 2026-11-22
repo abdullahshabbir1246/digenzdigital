@@ -7443,104 +7443,78 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     z-index: 10 !important;
     overflow: visible !important;
     display: block !important;
+    animation: logoEntranceGlow 1.8s ease-out forwards;
 }
 
-/* Phase 1: Dynamic Light Trails */
+/* Phase 1: Dynamic Light Trails (Exact same as .d-streak) */
 .l-streak {
-    fill: none !important;
-    stroke-linecap: round !important;
-    stroke-linejoin: round !important;
-    filter: drop-shadow(0 0 5px #3478F6) drop-shadow(0 0 10px #80B5FF) !important;
-    opacity: 0 !important;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px #3478F6) drop-shadow(0 0 10px #80B5FF);
+    opacity: 0;
 }
 .l-streak-arc {
-    stroke: #80B5FF !important;
-    stroke-width: 3.5 !important;
-    stroke-dasharray: 180 !important;
-    stroke-dashoffset: 180 !important;
+    stroke: #80B5FF;
+    stroke-width: 3.5;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
+    animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
 }
 .l-streak-handle {
-    stroke: #80B5FF !important;
-    stroke-width: 2.2 !important;
-    stroke-dasharray: 100 !important;
-    stroke-dashoffset: 100 !important;
+    stroke: #80B5FF;
+    stroke-width: 2.2;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawStreak 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
 }
 .l-streak-nib {
-    stroke: #3478F6 !important;
-    stroke-width: 3.2 !important;
-    stroke-dasharray: 260 !important;
-    stroke-dashoffset: 260 !important;
+    stroke: #3478F6;
+    stroke-width: 3.2;
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 }
 .l-streak-slit {
-    stroke: #FFFFFF !important;
-    stroke-width: 2.5 !important;
-    stroke-dasharray: 50 !important;
-    stroke-dashoffset: 50 !important;
+    stroke: #FFFFFF;
+    stroke-width: 2.5;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: drawStreak 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
 }
 .l-streak-base {
-    stroke: #3478F6 !important;
-    stroke-width: 2.8 !important;
-    stroke-dasharray: 100 !important;
-    stroke-dashoffset: 100 !important;
+    stroke: #3478F6;
+    stroke-width: 2.8;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
 }
 
-/* Phase 2: Facets (Transforms and Assembly) */
+/* Phase 2: Facets (Exact same as .d-facet) */
 .l-facet {
-    opacity: 0 !important;
-    transform-origin: 76px 82px !important;
+    opacity: 0;
+    transform-origin: 76px 82px;
+    animation: assembleFacet 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
 }
 
-/* Phase 3: Nodes */
+/* Phase 3: Nodes (Exact same as .d-node) */
 .l-node {
-    opacity: 0 !important;
-    transform-origin: center !important;
-    fill: #FFFFFF !important;
+    opacity: 0;
+    transform-origin: center;
+    fill: #FFFFFF;
+    animation: flashNode 0.50s ease-out 0.70s forwards;
 }
 
-/* Phase 4: Energy Sweep Beam */
+/* Phase 4: Energy Sweep Beam (Exact same as .d-energy-beam) */
 .l-energy-beam {
-    opacity: 0 !important;
-    transform: translateX(-50px) !important;
-}
-
-/* Preparation State */
-.boxesinfo-anim-ready .logo-service-figure .service-3d-icon {
-    opacity: 0 !important;
-}
-
-/* Active Animation Trigger */
-.boxesinfo-anim-active .logo-service-anim-svg {
-    animation: logoEntranceGlow 1.8s ease-out forwards !important;
-}
-.boxesinfo-anim-active .l-streak-arc {
-    animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards !important;
-}
-.boxesinfo-anim-active .l-streak-handle {
-    animation: drawStreak 0.70s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards !important;
-}
-.boxesinfo-anim-active .l-streak-nib {
-    animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards !important;
-}
-.boxesinfo-anim-active .l-streak-slit {
-    animation: drawStreak 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards !important;
-}
-.boxesinfo-anim-active .l-streak-base {
-    animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards !important;
-}
-.boxesinfo-anim-active .l-facet {
-    animation: assembleFacet 0.60s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards !important;
-}
-.boxesinfo-anim-active .l-node {
-    animation: flashNode 0.50s ease-out 0.70s forwards !important;
-}
-.boxesinfo-anim-active .l-energy-beam {
-    animation: sweepBeamNib 0.85s ease-out 0.65s forwards !important;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: sweepBeamNib 0.85s ease-out 0.65s forwards;
 }
 
 /* Phase 5: Underlying 3D Icon crossfades in smoothly at 0.75s */
 .boxesinfo-anim-active .logo-service-figure .service-3d-icon {
-    opacity: 0 !important;
-    animation: revealUnderlay 0.65s ease-out 0.75s both !important;
+    animation: revealUnderlay 0.65s ease-out 0.75s both;
 }
 
 @keyframes sweepBeamNib {
