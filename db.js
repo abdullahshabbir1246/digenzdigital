@@ -649,10 +649,41 @@ class Database {
       }
 
       if (categoriesDocs.length > 0) {
+        const icon3dMap = {
+          'cat-logo': '/assets/images/services-3d/logo-design.png',
+          'cat-webdesign': '/assets/images/services-3d/web-design.png',
+          'cat-ecommerce': '/assets/images/services-3d/ecommerce.png',
+          'cat-branding': '/assets/images/services-3d/corporate-branding.png',
+          'cat-animation': '/assets/images/services-3d/video-animation.png',
+          'cat-seo': '/assets/images/services-3d/seo.png',
+          'cat-mobile': '/assets/images/services-3d/mobile-app.png',
+          'cat-combo': '/assets/images/services-3d/combo-packages.png'
+        };
+        let categoriesNeedSync = false;
         this.data.categories = categoriesDocs.map(doc => {
           const { _id, ...rest } = doc;
-          return { ...rest, id: rest.id || _id };
+          const cat = { ...rest, id: rest.id || _id };
+          const slug = (cat.slug || cat.id || '').toLowerCase();
+          const name = (cat.name || '').toLowerCase();
+          let expected3d = null;
+          if (slug.includes('logo') || name.includes('logo')) expected3d = '/assets/images/services-3d/logo-design.png';
+          else if (slug.includes('custom-web') || slug.includes('webdesign') || name.includes('web design') || slug.includes('wordpress')) expected3d = '/assets/images/services-3d/web-design.png';
+          else if (slug.includes('ecom') || name.includes('ecom')) expected3d = '/assets/images/services-3d/ecommerce.png';
+          else if (slug.includes('brand') || name.includes('brand')) expected3d = '/assets/images/services-3d/corporate-branding.png';
+          else if (slug.includes('anim') || slug.includes('video') || name.includes('video')) expected3d = '/assets/images/services-3d/video-animation.png';
+          else if (slug.includes('seo') || name.includes('seo') || name.includes('search engine')) expected3d = '/assets/images/services-3d/seo.png';
+          else if (slug.includes('mobile') || name.includes('mobile') || name.includes('app')) expected3d = '/assets/images/services-3d/mobile-app.png';
+          else if (slug.includes('combo') || slug.includes('package') || name.includes('combo') || name.includes('stack') || slug.includes('backend')) expected3d = '/assets/images/services-3d/combo-packages.png';
+          
+          if (expected3d && cat.image !== expected3d) {
+            cat.image = expected3d;
+            categoriesNeedSync = true;
+          }
+          return cat;
         });
+        if (categoriesNeedSync) {
+          this.syncToMongoDB('categories').catch(e => console.warn('[DB] Auto-sync 3D icons to Mongo failed:', e.message));
+        }
       }
 
       if (bannersDocs.length > 0) {

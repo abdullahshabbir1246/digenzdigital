@@ -683,30 +683,41 @@
       const homeCats = activeCats.filter(c => c.showOnHome !== false);
       const isSlick = typeof jQuery !== 'undefined' && jQuery(homeIcons).hasClass('slick-initialized');
 
-      if (isSlick) {
-        // Update all slides (including cloned ones) in-place without tearing down Slick
-        const allSlides = homeIcons.querySelectorAll('.slick-slide');
-        allSlides.forEach(slide => {
-          const titleEl = slide.querySelector('h4');
-          const title = titleEl ? titleEl.textContent.trim().toLowerCase() : '';
-          const imgEl = slide.querySelector('img');
-          if (imgEl && title) {
-            const match = homeCats.find(c => {
-              const cn = (c.name || '').toLowerCase();
-              return title.includes(cn) || cn.includes(title.replace(/\s+/g, ' '));
-            });
-            if (match) {
-              const newSrc = resolveCategoryIcon(match);
-              if (imgEl.getAttribute('src') !== newSrc) {
-                imgEl.setAttribute('src', newSrc);
+      const iconRules = [
+        { regex: /logo/i, icon: '/assets/images/services-3d/logo-design.png' },
+        { regex: /(web design|website design|custom-web|wordpress)/i, icon: '/assets/images/services-3d/web-design.png' },
+        { regex: /ecom/i, icon: '/assets/images/services-3d/ecommerce.png' },
+        { regex: /brand/i, icon: '/assets/images/services-3d/corporate-branding.png' },
+        { regex: /(video|anim)/i, icon: '/assets/images/services-3d/video-animation.png' },
+        { regex: /(seo|search engine)/i, icon: '/assets/images/services-3d/seo.png' },
+        { regex: /(mobile|app)/i, icon: '/assets/images/services-3d/mobile-app.png' },
+        { regex: /(combo|package|stack)/i, icon: '/assets/images/services-3d/combo-packages.png' }
+      ];
+
+      function updateSlideImages() {
+        const slides = homeIcons.querySelectorAll('li, .slick-slide');
+        slides.forEach(slide => {
+          const text = (slide.textContent || '').replace(/\s+/g, ' ').trim().toLowerCase();
+          const img = slide.querySelector('img');
+          if (img && text) {
+            for (const rule of iconRules) {
+              if (rule.regex.test(text)) {
+                if (img.getAttribute('src') !== rule.icon) {
+                  img.setAttribute('src', rule.icon);
+                }
+                img.classList.add('service-3d-icon');
+                img.setAttribute('width', '68');
+                img.setAttribute('height', '68');
+                break;
               }
-              imgEl.classList.add('service-3d-icon');
-              imgEl.setAttribute('width', '68');
-              imgEl.setAttribute('height', '68');
             }
           }
         });
-      } else {
+      }
+
+      updateSlideImages();
+
+      if (!isSlick) {
         const newIconsHtml = homeCats.map(c => {
           const url = resolveCategoryUrl(c);
           const icon = resolveCategoryIcon(c);

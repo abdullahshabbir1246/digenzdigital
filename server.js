@@ -37,25 +37,20 @@ function resolveCategoryUrl(cat) {
 }
 
 function resolveCategoryIcon(c) {
-  if (c.image && (c.image.includes('.svg') || c.image.includes('.png') || c.image.includes('.webp'))) {
+  const slug = (c.slug || c.id || '').toLowerCase();
+  const name = (c.name || '').toLowerCase();
+  if (slug.includes('logo') || name.includes('logo')) return '/assets/images/services-3d/logo-design.png';
+  if (slug.includes('custom-web') || slug.includes('webdesign') || name.includes('web design') || slug.includes('wordpress')) return '/assets/images/services-3d/web-design.png';
+  if (slug.includes('ecom') || name.includes('ecom')) return '/assets/images/services-3d/ecommerce.png';
+  if (slug.includes('brand') || name.includes('brand')) return '/assets/images/services-3d/corporate-branding.png';
+  if (slug.includes('anim') || slug.includes('video') || name.includes('video')) return '/assets/images/services-3d/video-animation.png';
+  if (slug.includes('seo') || name.includes('seo') || name.includes('search engine')) return '/assets/images/services-3d/seo.png';
+  if (slug.includes('mobile') || name.includes('mobile') || name.includes('app')) return '/assets/images/services-3d/mobile-app.png';
+  if (slug.includes('combo') || slug.includes('package') || name.includes('combo') || name.includes('stack') || slug.includes('backend')) return '/assets/images/services-3d/combo-packages.png';
+  if (c.image && !c.image.includes('bannericons') && !c.image.includes('service-icons') && !c.image.includes('digenz-icon.svg') && (c.image.includes('.svg') || c.image.includes('.png') || c.image.includes('.webp'))) {
     return c.image;
   }
-  const slug = (c.slug || '').toLowerCase();
-  const name = (c.name || '').toLowerCase();
-  if (slug.includes('logo') || name.includes('logo')) return 'assets/images/service-icons/business-branding.svg';
-  if (slug.includes('wordpress') || name.includes('wordpress')) return 'assets/images/service-icons/wordpress.svg';
-  if (slug.includes('ecom') || name.includes('ecom')) return 'assets/images/service-icons/ecommerce.svg';
-  if (slug.includes('custom-web') || name.includes('web design')) return 'assets/images/service-icons/custom-website.svg';
-  if (slug.includes('web-app') || name.includes('web app')) return 'assets/images/service-icons/web-app.svg';
-  if (slug.includes('backend') || name.includes('backend')) return 'assets/images/service-icons/backend.svg';
-  if (slug.includes('mobile') || name.includes('mobile')) return 'assets/images/service-icons/mobile-app.svg';
-  if (slug.includes('maint') || name.includes('maint')) return 'assets/images/service-icons/website-maintenance.svg';
-  if (slug.includes('domain') || slug.includes('host') || name.includes('host')) return 'assets/images/service-icons/domain-hosting.svg';
-  if (slug.includes('brand') || name.includes('brand')) return 'assets/images/service-icons/business-branding.svg';
-  if (slug.includes('anim') || slug.includes('video') || name.includes('video')) return 'assets/images/service-icons/video-animation.svg';
-  if (slug.includes('seo') || name.includes('seo') || name.includes('search engine')) return 'assets/images/service-icons/seo.svg';
-  if (slug.includes('combo') || name.includes('combo')) return 'assets/images/service-icons/custom-website.svg';
-  return 'assets/images/service-icons/custom-website.svg';
+  return '/assets/images/services-3d/web-design.png';
 }
 
 function escapeHtml(str) {
@@ -91,7 +86,7 @@ function generateServicesHtml(categories, type) {
       return `          <li>
             <a href="${url}">
               <figure class="develp">
-                <img src="${icon}" alt="${escapeHtml(c.name)}" class="service-icon-svg" width="48" height="48" loading="lazy">
+                <img src="${icon}" alt="${escapeHtml(c.name)}" class="service-icon-svg service-3d-icon" width="68" height="68" loading="lazy">
               </figure>
               <div class="textwrap">
                 <h4>${formattedTitle}</h4>
