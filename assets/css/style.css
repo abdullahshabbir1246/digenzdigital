@@ -7440,7 +7440,7 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     width: 68px !important;
     height: 68px !important;
     pointer-events: none !important;
-    z-index: 3 !important;
+    z-index: 10 !important;
     overflow: visible !important;
     display: block !important;
 }
@@ -7539,7 +7539,8 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
 
 /* Phase 5: Underlying 3D Icon crossfades in smoothly at 0.75s */
 .boxesinfo-anim-active .logo-service-figure .service-3d-icon {
-    animation: revealUnderlay 0.65s ease-out 0.75s forwards !important;
+    opacity: 0 !important;
+    animation: revealUnderlay 0.65s ease-out 0.75s both !important;
 }
 
 @keyframes sweepBeamNib {
@@ -7564,18 +7565,4 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     transform: none !important;
     filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
     animation: none !important;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    .boxesinfo-anim-ready .service-3d-icon,
-    .boxesinfo-anim-active .service-3d-icon {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
-    }
-    .boxesinfo-anim-active .logo-service-anim-svg {
-        display: none !important;
-    }
 }
