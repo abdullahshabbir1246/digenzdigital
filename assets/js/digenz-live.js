@@ -1729,6 +1729,11 @@
       // Direct inline transform on background art for instant 60fps responsiveness
       bgArt.style.transform = 'perspective(1200px) rotateX(' + currentTiltX.toFixed(3) + 'deg) rotateY(' + currentTiltY.toFixed(3) + 'deg) scale(' + currentScale.toFixed(4) + ')';
       
+      var devicesStage = banner.querySelector('.hero-devices-stage');
+      if (devicesStage) {
+        devicesStage.style.transform = 'perspective(1000px) rotateX(' + (-currentTiltX * 0.6).toFixed(3) + 'deg) rotateY(' + (-currentTiltY * 0.6).toFixed(3) + 'deg)';
+      }
+      
       if (spotlight) {
         spotlight.style.background = 'radial-gradient(550px circle at ' + curMouseX.toFixed(2) + '% ' + curMouseY.toFixed(2) + '%, rgba(52, 120, 246, 0.22), transparent 75%)';
       }

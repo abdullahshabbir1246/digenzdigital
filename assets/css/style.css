@@ -5192,80 +5192,264 @@ footer.footer-main::after,
     opacity: 1 !important;
 }
 
-/* Visually conceal duplicate text overlay on desktop as it is rendered directly within the graphic */
-@media only screen and (min-width: 992px) {
-    .home-banner-content {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        user-select: none !important;
-    }
-    .home-banner .container {
-        pointer-events: none !important;
-    }
+/* Homepage Hero Banner - Separated Laptop & Mobile Mockups Layout */
+.home-banner {
+    width: 100%;
+    min-height: 85vh;
+    position: relative;
+    background-color: #101827;
+    background-image: url(../images/banners/digenz-home-hero.webp), url(../images/banners/digenz-home-hero.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
-/* Homepage Hero Banner - Mobile & Tablet Responsive (Image 6 Fix) */
+.home-banner .container {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
+}
+
+.home-banner-content {
+    position: relative;
+    z-index: 10;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    user-select: auto !important;
+    max-width: 580px;
+}
+
+.hero-brand-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #3478F6;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.hero-brand-tag .hero-tag-bar {
+    display: inline-block;
+    width: 34px;
+    height: 2px;
+    background: #3478F6;
+    border-radius: 2px;
+}
+
+.home-banner-content h1 {
+    font-family: var(--heading-font-family, 'Montserrat', sans-serif) !important;
+    font-size: clamp(32px, 3.8vw, 54px) !important;
+    font-weight: 800 !important;
+    line-height: 1.12 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    text-transform: uppercase !important;
+    letter-spacing: -0.5px !important;
+}
+
+.home-banner-content h1:after {
+    display: none !important;
+}
+
+.home-banner-content h1 .text-electric-blue {
+    color: #3478F6 !important;
+}
+
+.home-banner-content p {
+    font-size: clamp(15px, 1.25vw, 17px) !important;
+    line-height: 1.6 !important;
+    color: #CBD5E1 !important;
+    margin-bottom: 30px !important;
+    width: 100% !important;
+    max-width: 500px;
+}
+
+.hero-action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.btn-hero-chat {
+    background: linear-gradient(135deg, #3478F6 0%, #1a56c4 100%);
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    box-shadow: 0 4px 18px rgba(52, 120, 246, 0.45);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-hero-chat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(52, 120, 246, 0.65);
+    color: #FFFFFF !important;
+}
+
+.btn-hero-phone {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(52, 120, 246, 0.35);
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-hero-phone:hover {
+    background: rgba(52, 120, 246, 0.15);
+    border-color: #3478F6;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+}
+
+.btn-hero-phone i {
+    color: #3478F6;
+}
+
+/* Hero Devices Stage (Separate Laptop & Mobile Positioned to Match Reference) */
+.hero-devices-stage {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    transform-style: preserve-3d;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-device-wrap.laptop-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    z-index: 2;
+}
+
+.hero-device-wrap.laptop-wrap img.hero-laptop-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 35px rgba(52, 120, 246, 0.2));
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.hero-device-wrap.mobile-wrap {
+    position: absolute;
+    left: 20px;
+    bottom: -10px;
+    width: 27%;
+    max-width: 185px;
+    min-width: 130px;
+    z-index: 4;
+}
+
+.hero-device-wrap.mobile-wrap img.hero-mobile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 25px rgba(52, 120, 246, 0.3));
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.hero-devices-stage:hover .hero-device-wrap.laptop-wrap img.hero-laptop-img {
+    transform: translateY(-4px) scale(1.01);
+    filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 45px rgba(52, 120, 246, 0.3));
+}
+
+.hero-devices-stage:hover .hero-device-wrap.mobile-wrap img.hero-mobile-img {
+    transform: translateY(-6px) scale(1.03);
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(52, 120, 246, 0.45));
+}
+
+/* Tablet & Mobile Responsiveness */
 @media only screen and (max-width: 991px) {
     .home-banner {
         min-height: auto !important;
         height: auto !important;
-        padding: 95px 20px 50px !important;
-        background: linear-gradient(180deg, rgba(16, 24, 39, 0.97) 0%, rgba(16, 24, 39, 0.98) 100%), url(../images/banners/digenz-home-hero.png) no-repeat right 25% / cover !important;
-        position: relative !important;
+        padding: 95px 20px 60px !important;
         display: block !important;
-        overflow: hidden !important;
-        width: 100% !important;
     }
     .hero-interactive-layer,
     .hero-bg-art,
     .hero-cursor-spotlight {
         display: none !important;
     }
-
     .home-banner-content {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        user-select: auto !important;
-        position: relative !important;
-        z-index: 5 !important;
+        max-width: 100% !important;
         text-align: left !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        max-width: 600px !important;
+        margin-bottom: 35px !important;
     }
-
     .home-banner-content h1 {
-        font-family: var(--heading-font-family, 'Montserrat', sans-serif) !important;
-        font-size: clamp(24px, 6.5vw, 36px) !important;
-        line-height: 1.2 !important;
-        font-weight: 800 !important;
-        color: #FFFFFF !important;
+        font-size: clamp(26px, 6.8vw, 38px) !important;
         margin-bottom: 14px !important;
-        width: 100% !important;
-        text-transform: capitalize !important;
-        letter-spacing: -0.3px !important;
     }
-
-    .home-banner-content h1:after {
-        display: none !important;
-    }
-
     .home-banner-content p {
         font-size: clamp(14px, 3.8vw, 16px) !important;
-        line-height: 1.55 !important;
-        color: #CBD5E1 !important;
-        margin-bottom: 24px !important;
-        width: 100% !important;
+        margin-bottom: 22px !important;
     }
-
-    .home-banner .mybanform {
-        display: none !important;
+    .hero-devices-stage {
+        min-height: 290px !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+        justify-content: center !important;
+    }
+    .hero-device-wrap.laptop-wrap {
+        width: 82% !important;
+        margin-left: auto !important;
+    }
+    .hero-device-wrap.mobile-wrap {
+        left: 0 !important;
+        bottom: -5px !important;
+        width: 32% !important;
+        max-width: 145px !important;
+        min-width: 110px !important;
     }
 }
 
 @media only screen and (max-width: 575px) {
     .home-banner {
-        padding: 85px 16px 40px !important;
+        padding: 85px 16px 45px !important;
+    }
+    .hero-action-buttons {
+        gap: 10px !important;
+    }
+    .btn-hero-chat,
+    .btn-hero-phone {
+        padding: 10px 18px !important;
+        font-size: 13px !important;
+    }
+    .hero-devices-stage {
+        min-height: 215px !important;
+        max-width: 345px !important;
+    }
+    .hero-device-wrap.laptop-wrap {
+        width: 80% !important;
+    }
+    .hero-device-wrap.mobile-wrap {
+        left: 0 !important;
+        bottom: -5px !important;
+        width: 34% !important;
+        max-width: 115px !important;
+        min-width: 90px !important;
     }
 }
 
