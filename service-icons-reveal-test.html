@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIGENZ 3D Service Icons Animated Reveal Preview</title>
+  <title>DIGENZ — Logo Reveal vs 3D Service Icons Reveal Comparison</title>
   <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree:400,600,700|Libre+Franklin:400,600,700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      padding: 40px 20px;
+      padding: 30px 20px;
       background: #101827; /* DIGENZ Midnight Navy */
       font-family: 'Bai Jamjuree', sans-serif;
       color: #fff;
@@ -17,19 +17,19 @@
     }
     .header-bar {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 30px;
     }
     .header-bar h1 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 1px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #fff;
     }
     .header-bar p {
       color: #80B5FF;
-      font-size: 14px;
-      margin-bottom: 20px;
+      font-size: 13px;
+      margin-bottom: 16px;
     }
     .btn-replay {
       background: linear-gradient(135deg, #3478F6 0%, #1a56c4 100%);
@@ -48,12 +48,175 @@
       box-shadow: 0 6px 20px rgba(52, 120, 246, 0.6);
     }
 
-    /* Container replicating .boxesinfo */
+    /* Reference Header Logo Section */
+    .reference-section {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(52, 120, 246, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 1240px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+    .reference-section h3 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #80B5FF;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    /* -------------------------------------------------------------
+       1. DIGENZ HEADER LOGO REVEAL COMPONENT (Exact Original CSS)
+       ------------------------------------------------------------- */
+    .digenz-logo-anim-wrap {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      height: 52px;
+      max-height: 52px;
+      width: auto;
+      line-height: 0;
+    }
+    .digenz-logo-anim-svg {
+      height: 52px;
+      max-height: 52px;
+      width: auto;
+      aspect-ratio: 350 / 92;
+      display: block;
+      overflow: visible;
+      will-change: transform, filter;
+      animation: logoEntranceGlow 1.8s ease-out forwards;
+    }
+    .d-streak {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px #3478F6) drop-shadow(0 0 10px #80B5FF);
+      opacity: 0;
+    }
+    .streak-pillar {
+      stroke: #80B5FF;
+      stroke-width: 2.2;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: drawStreak 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+    }
+    .streak-loop {
+      stroke: #3478F6;
+      stroke-width: 2.2;
+      stroke-dasharray: 260;
+      stroke-dashoffset: 260;
+      animation: drawStreak 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+    }
+    .streak-arc-top {
+      stroke: #80B5FF;
+      stroke-width: 1.8;
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+    .streak-arc-bottom {
+      stroke: #3478F6;
+      stroke-width: 1.8;
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+    }
+    .streak-arrow {
+      stroke: #FFFFFF;
+      stroke-width: 1.8;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawStreak 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+    }
+    .d-facet {
+      opacity: 0;
+      transform-origin: 45px 46px;
+      animation: assembleFacet 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+    }
+    .d-arrow {
+      opacity: 0;
+      transform: translateX(-14px);
+      animation: snapArrow 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+    }
+    .d-node {
+      opacity: 0;
+      transform-origin: center;
+      animation: flashNode 0.5s ease-out 0.75s forwards;
+    }
+    .d-energy-beam {
+      opacity: 0;
+      transform: translateX(-60px);
+      animation: sweepBeam 0.9s ease-out 0.7s forwards;
+    }
+    .wm-letter {
+      opacity: 0;
+      transform: translateX(-6px);
+      animation: letterReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .wm-d { animation-delay: 0.80s; }
+    .wm-i { animation-delay: 0.87s; }
+    .wm-g { animation-delay: 0.94s; }
+    .wm-e { animation-delay: 1.01s; }
+    .wm-n { animation-delay: 1.08s; }
+    .wm-z { animation-delay: 1.15s; }
+    .wm-tagline {
+      opacity: 0;
+      letter-spacing: 6px;
+      animation: taglineReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    }
+
+    @keyframes drawStreak {
+      0% { stroke-dashoffset: 220; opacity: 0; }
+      20% { opacity: 1; }
+      80% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+    @keyframes assembleFacet {
+      0% { opacity: 0; transform: scale(0.85); }
+      70% { opacity: 1; transform: scale(1.03); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes snapArrow {
+      0% { opacity: 0; transform: translateX(-14px) scale(0.8); }
+      70% { opacity: 1; transform: translateX(1.5px) scale(1.06); }
+      100% { opacity: 0.95; transform: translateX(0) scale(1); }
+    }
+    @keyframes flashNode {
+      0% { opacity: 0; transform: scale(0); }
+      50% { opacity: 1; transform: scale(2.2); filter: drop-shadow(0 0 6px #FFFFFF); }
+      100% { opacity: 1; transform: scale(1); filter: none; }
+    }
+    @keyframes sweepBeam {
+      0% { opacity: 0; transform: translateX(-60px); }
+      30% { opacity: 0.85; }
+      80% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateX(330px); }
+    }
+    @keyframes letterReveal {
+      0% { opacity: 0; transform: translateX(-6px); filter: drop-shadow(0 0 10px #3478F6); }
+      60% { opacity: 1; filter: drop-shadow(0 0 6px #80B5FF); }
+      100% { opacity: 1; transform: translateX(0); filter: none; }
+    }
+    @keyframes taglineReveal {
+      0% { opacity: 0; letter-spacing: 6px; }
+      100% { opacity: 0.95; letter-spacing: 3.8px; }
+    }
+    @keyframes logoEntranceGlow {
+      0% { filter: drop-shadow(0 0 4px rgba(52, 120, 246, 0.2)); }
+      50% { filter: drop-shadow(0 0 12px rgba(52, 120, 246, 0.65)) drop-shadow(0 0 4px rgba(128, 181, 255, 0.8)); }
+      100% { filter: drop-shadow(0 0 0px transparent); }
+    }
+
+    /* -------------------------------------------------------------
+       2. 3D SERVICE ICONS REVEAL (EXACT SAME TECHNIQUE)
+       ------------------------------------------------------------- */
     .boxesinfo {
       max-width: 1240px;
       margin: 0 auto;
-      padding: 40px 0;
-      overflow: visible;
+      padding: 20px 0;
     }
     .listboxes {
       list-style: none;
@@ -62,20 +225,16 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 24px;
+      gap: 20px;
     }
     .listboxes li {
-      flex: 0 0 130px;
+      flex: 0 0 132px;
       text-align: center;
     }
     .listboxes li a {
       text-decoration: none;
       display: block;
       color: #fff;
-      transition: color 0.25s ease;
-    }
-    .listboxes li a:hover h4 {
-      color: #3478F6 !important;
     }
     .listboxes li figure {
       margin: 0 auto 12px;
@@ -85,10 +244,11 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      overflow: hidden;
-      border-radius: 18px;
+      overflow: visible;
     }
-    .listboxes li figure img {
+
+    /* Underlying 3D Icon Image */
+    .service-3d-icon {
       width: 68px;
       height: 68px;
       max-width: 68px;
@@ -98,8 +258,10 @@
       margin: 0 auto;
       filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32));
       transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease;
+      position: relative;
+      z-index: 1;
     }
-    .listboxes li:hover figure img {
+    .listboxes li:hover .service-3d-icon {
       transform: translateY(-7px) scale(1.12) !important;
       filter: drop-shadow(0 12px 24px rgba(52, 120, 246, 0.65)) brightness(1.08) !important;
     }
@@ -109,122 +271,152 @@
       line-height: 1.35;
       margin: 0;
       color: #fff;
-      transition: color 0.25s ease;
     }
 
-    /* ==========================================================================
-       DIGENZ 3D SERVICE ICONS ANIMATED REVEAL (MATCHING HEADER LOGO STYLE)
-       ========================================================================== */
+    /* Stroke Drawing SVG Layer */
+    .service-streak-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 76px;
+      height: 76px;
+      pointer-events: none;
+      z-index: 3;
+      overflow: visible;
+    }
 
-    /* Initial state before reveal triggers */
+    /* Stroke Drawing Path Styles (Same as .d-streak) */
+    .s-streak {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 4px #3478F6) drop-shadow(0 0 8px #80B5FF);
+      opacity: 0;
+    }
+    .s-stroke-primary {
+      stroke: #80B5FF;
+      stroke-width: 2.2;
+      stroke-dasharray: 220;
+      stroke-dashoffset: 220;
+    }
+    .s-stroke-secondary {
+      stroke: #3478F6;
+      stroke-width: 2.2;
+      stroke-dasharray: 240;
+      stroke-dashoffset: 240;
+    }
+    .s-stroke-accent {
+      stroke: #FFFFFF;
+      stroke-width: 2.0;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+    }
+    .s-node {
+      opacity: 0;
+      transform-origin: center;
+      fill: #FFFFFF;
+    }
+
+    /* Energy Sweep Beam inside SVG */
+    .s-energy-beam {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+
+    /* --- ANIMATION EXECUTION --- */
     .boxesinfo-anim-ready .service-3d-icon {
       opacity: 0;
-      transform: scale(0.82) translateY(6px);
-      filter: drop-shadow(0 0 16px #3478F6) brightness(1.4);
-      will-change: transform, opacity, filter;
+      transform: scale(0.85);
+      filter: drop-shadow(0 0 16px rgba(52, 120, 246, 0.8)) brightness(1.3);
     }
 
-    /* Active Animation on .boxesinfo */
     .boxesinfo-anim-active .service-3d-icon {
-      animation: serviceIconAssemble 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: serviceIconAssemble 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .boxesinfo-anim-active .s-stroke-primary {
+      animation: drawStreak 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .boxesinfo-anim-active .s-stroke-secondary {
+      animation: drawStreak 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.08s forwards;
+    }
+    .boxesinfo-anim-active .s-stroke-accent {
+      animation: drawStreak 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.16s forwards;
+    }
+    .boxesinfo-anim-active .s-node {
+      animation: flashNode 0.5s ease-out 0.45s forwards;
+    }
+    .boxesinfo-anim-active .s-energy-beam {
+      animation: sweepBeamSmall 0.75s ease-out 0.35s forwards;
     }
 
-    /* Staggered Delay for all 8 items */
+    /* Staggered Delays across the 8 icons */
     .boxesinfo-anim-active .listboxes li:nth-child(1) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="0"] .service-3d-icon { animation-delay: 0.08s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(2) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="1"] .service-3d-icon { animation-delay: 0.18s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(3) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="2"] .service-3d-icon { animation-delay: 0.28s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(4) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="3"] .service-3d-icon { animation-delay: 0.38s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(5) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="4"] .service-3d-icon { animation-delay: 0.48s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(6) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="5"] .service-3d-icon { animation-delay: 0.58s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(7) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="6"] .service-3d-icon { animation-delay: 0.68s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(8) .service-3d-icon,
-    .boxesinfo-anim-active .slick-slide[data-slick-index="7"] .service-3d-icon { animation-delay: 0.78s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(1) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(1) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(1) .s-energy-beam { animation-delay: 0.05s; }
 
-    /* Keyframe: Kinetic Assemble & Electric Blue Glow Flare */
+    .boxesinfo-anim-active .listboxes li:nth-child(2) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(2) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(2) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(2) .s-energy-beam { animation-delay: 0.16s; }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(3) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(3) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(3) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(3) .s-energy-beam { animation-delay: 0.27s; }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(4) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(4) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(4) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(4) .s-energy-beam { animation-delay: 0.38s; }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(5) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(5) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(5) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(5) .s-energy-beam { animation-delay: 0.49s; }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(6) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(6) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(6) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(6) .s-energy-beam { animation-delay: 0.60s; }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(7) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(7) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(7) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(7) .s-energy-beam { animation-delay: 0.71s; }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(8) .service-3d-icon,
+    .boxesinfo-anim-active .listboxes li:nth-child(8) .s-streak,
+    .boxesinfo-anim-active .listboxes li:nth-child(8) .s-node,
+    .boxesinfo-anim-active .listboxes li:nth-child(8) .s-energy-beam { animation-delay: 0.82s; }
+
     @keyframes serviceIconAssemble {
       0% {
         opacity: 0;
-        transform: scale(0.82) translateY(6px);
-        filter: drop-shadow(0 0 20px #3478F6) drop-shadow(0 0 8px #80B5FF) brightness(1.5);
-      }
-      40% {
-        opacity: 0.85;
-        filter: drop-shadow(0 0 24px #3478F6) drop-shadow(0 0 12px #80B5FF) brightness(1.6);
+        transform: scale(0.85);
+        filter: drop-shadow(0 0 16px rgba(52, 120, 246, 0.8)) brightness(1.3);
       }
       70% {
         opacity: 1;
-        transform: scale(1.06) translateY(-2px);
-        filter: drop-shadow(0 0 16px #3478F6) drop-shadow(0 0 6px #FFFFFF) brightness(1.2);
-      }
-      88% {
-        transform: scale(0.98) translateY(0);
-        filter: drop-shadow(0 6px 16px rgba(52, 120, 246, 0.45)) brightness(1.05);
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 10px #80B5FF) brightness(1.15);
       }
       100% {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: scale(1);
         filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32));
       }
     }
 
-    /* Electric Light Beam Sweep across each icon figure */
-    .boxesinfo-anim-active .listboxes li figure::after {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: -60%;
-      width: 45%;
-      height: 140%;
-      background: linear-gradient(
-        90deg,
-        rgba(52, 120, 246, 0) 0%,
-        rgba(128, 181, 255, 0.4) 30%,
-        rgba(255, 255, 255, 0.95) 50%,
-        rgba(128, 181, 255, 0.4) 70%,
-        rgba(52, 120, 246, 0) 100%
-      );
-      transform: skewX(-25deg);
-      pointer-events: none;
-      opacity: 0;
-      z-index: 2;
-      animation: serviceSweepBeam 0.7s ease-out forwards;
+    @keyframes sweepBeamSmall {
+      0% { opacity: 0; transform: translateX(-40px); }
+      30% { opacity: 0.85; }
+      80% { opacity: 0.6; }
+      100% { opacity: 0; transform: translateX(110px); }
     }
 
-    .boxesinfo-anim-active .listboxes li:nth-child(1) figure::after { animation-delay: 0.12s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(2) figure::after { animation-delay: 0.22s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(3) figure::after { animation-delay: 0.32s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(4) figure::after { animation-delay: 0.42s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(5) figure::after { animation-delay: 0.52s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(6) figure::after { animation-delay: 0.62s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(7) figure::after { animation-delay: 0.72s; }
-    .boxesinfo-anim-active .listboxes li:nth-child(8) figure::after { animation-delay: 0.82s; }
-
-    @keyframes serviceSweepBeam {
-      0% {
-        left: -60%;
-        opacity: 0;
-      }
-      30% {
-        opacity: 0.95;
-      }
-      70% {
-        opacity: 0.75;
-      }
-      100% {
-        left: 140%;
-        opacity: 0;
-      }
-    }
-
-    /* Settled state: Clean resting state */
-    .boxesinfo-anim-revealed .listboxes li figure::after {
+    /* Settled State: Remove strokes, restore full interactivity */
+    .boxesinfo-anim-revealed .service-streak-svg {
       display: none !important;
     }
     .boxesinfo-anim-revealed .service-3d-icon {
@@ -233,124 +425,280 @@
       filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
       animation: none !important;
     }
-
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      .boxesinfo-anim-ready .service-3d-icon,
-      .boxesinfo-anim-active .service-3d-icon {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
-        filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
-      }
-      .boxesinfo-anim-active .listboxes li figure::after {
-        display: none !important;
-      }
-    }
   </style>
 </head>
 <body>
 
   <div class="header-bar">
-    <h1>DIGENZ — 3D Service Icons Animated Reveal</h1>
-    <p>Reusing Header Logo Reveal Technique: Assemble Facets + Kinetic Bounce + Electric Blue Glow Flare + Energy Beam Sweep</p>
-    <button class="btn-replay" onclick="triggerReveal()">Replay Animated Reveal</button>
+    <h1>DIGENZ — Side-by-Side Stroke Reveal Animation</h1>
+    <p>Header Logo Reveal (Top) vs All 8 3D Service Icons (Bottom) Using Identical Multi-Phase Stroke-Drawing & Assembly</p>
+    <button class="btn-replay" onclick="triggerReplay()">Replay Both Animations</button>
   </div>
 
-  <section class="boxesinfo" id="boxesinfoSection">
-    <div class="wrp">
-      <ul class="listboxes">
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/logo-design.png" alt="Logo Design" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Logo Design</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/web-design.png" alt="Web Design & Development" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Web Design &<br>Development</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/ecommerce.png" alt="Ecommerce Solutions" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Ecommerce<br>Solutions</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/corporate-branding.png" alt="Corporate Branding" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Corporate<br>Branding</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/video-animation.png" alt="Video Animation" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Video<br>Animation</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/seo.png" alt="Search Engine Optimization" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Search Engine<br>Optimization</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/mobile-app.png" alt="Mobile App Development" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Mobile App<br>Development</h4>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <figure class="develp">
-              <img src="/assets/images/services-3d/combo-packages.png" alt="Combo & Full-Stack Packages" class="service-icon-svg service-3d-icon" width="68" height="68">
-            </figure>
-            <h4>Combo & Full-Stack<br>Packages</h4>
-          </a>
-        </li>
-      </ul>
+  <!-- Reference DIGENZ Header Logo Reveal -->
+  <div class="reference-section">
+    <h3>Original Header Logo Reveal</h3>
+    <div class="digenz-logo-anim-wrap" id="logoWrap">
+      <svg class="digenz-logo-anim-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 92">
+        <defs>
+          <linearGradient id="ani_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#80B5FF" />
+            <stop offset="30%" stop-color="#3478F6" />
+            <stop offset="70%" stop-color="#1e5dd6" />
+            <stop offset="100%" stop-color="#103c8c" />
+          </linearGradient>
+          <linearGradient id="ani_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3478F6" />
+            <stop offset="50%" stop-color="#80B5FF" />
+            <stop offset="100%" stop-color="#FFFFFF" />
+          </linearGradient>
+          <linearGradient id="ani_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#1e5dd6" />
+            <stop offset="100%" stop-color="#0f2b66" />
+          </linearGradient>
+          <linearGradient id="ani_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#3478F6" stop-opacity="0" />
+            <stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" />
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" />
+            <stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#3478F6" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <g id="d_animatedStreaks" transform="translate(42, 46) scale(1.50) translate(-45, -46)">
+          <path class="d-streak streak-pillar" d="M 18,27 L 26,19 L 32,19 L 32,73 L 26,73 L 18,65 Z" />
+          <path class="d-streak streak-arc-top" d="M 80,8 C 65,12 50,16 38,19 L 56,19" />
+          <path class="d-streak streak-loop" d="M 38,19 L 56,19 L 72,35 L 72,57 L 56,73 L 38,73 L 38,65 L 48,65 L 60,57 L 60,35 L 48,27 L 38,27 Z" />
+          <path class="d-streak streak-arc-bottom" d="M 84,80 C 74,78 62,75 56,73 L 38,73" />
+          <path class="d-streak streak-arrow" d="M 41,36 L 51,46 L 41,56 L 46,56 L 56,46 L 46,36 Z" />
+        </g>
+        <g id="d_techD" transform="translate(42, 46) scale(1.50) translate(-45, -46)">
+          <polygon class="d-facet" points="18,27 26,19 32,19 32,44 18,44" fill="url(#ani_blueLight)" />
+          <polygon class="d-facet" points="18,48 32,48 32,73 26,73 18,65" fill="url(#ani_blueDark)" />
+          <polygon class="d-facet" points="28,43 36,43 36,49 28,49" fill="url(#ani_blueGrad)" />
+          <polygon class="d-facet" points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#ani_blueLight)" />
+          <polygon class="d-facet" points="72,35 72,57 60,57 60,35" fill="url(#ani_blueGrad)" />
+          <polygon class="d-facet" points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#ani_blueDark)" />
+          <polygon class="d-arrow" points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#ani_blueLight)" />
+          <circle class="d-node" cx="26" cy="19" r="2.2" fill="#FFFFFF" />
+          <circle class="d-node" cx="56" cy="19" r="2.2" fill="#FFFFFF" />
+        </g>
+        <rect class="d-energy-beam" x="60" y="16" width="35" height="62" fill="url(#ani_energyGrad)" transform="skewX(-20)" />
+        <g id="d_wordmark">
+          <g fill="#FFFFFF">
+            <path class="wm-letter wm-d" d="M 92,23 L 110,23 C 121,23 127.5,29.5 127.5,41 C 127.5,52.5 121,59 110,59 L 92,59 Z M 98,28.5 L 98,53.5 L 109.5,53.5 C 116.5,53.5 121,49 121,41 C 121,33 116.5,28.5 109.5,28.5 Z" />
+            <path class="wm-letter wm-i" d="M 137,23 L 143,23 L 143,59 L 137,59 Z" />
+            <path class="wm-letter wm-g" d="M 189,32 L 183.8,35.5 C 181,31.2 176.5,29 171.5,29 C 161.8,29 155.5,35.5 155.5,41 C 155.5,46.5 161.8,53 172,53 C 179.2,53 183.5,49.2 183.5,44.2 L 172,44.2 L 172,39.5 L 189.5,39.5 L 189.5,48.5 C 185.8,54.8 179.2,58.5 171.5,58.5 C 158.5,58.5 149.5,51 149.5,41 C 149.5,31 158.8,23.5 171.5,23.5 C 179.5,23.5 185.5,27 189,32 Z" />
+            <path class="wm-letter wm-e" d="M 202,23 L 228.5,23 L 228.5,28.5 L 208,28.5 L 208,37.8 L 225.5,37.8 L 225.5,43.2 L 208,43.2 L 208,53.5 L 229,53.5 L 229,59 L 202,59 Z" />
+            <path class="wm-letter wm-n" d="M 240,23 L 246,23 L 268.5,51.5 L 268.5,23 L 274.5,23 L 274.5,59 L 268.5,59 L 246,30.5 L 246,59 L 240,59 Z" />
+            <path class="wm-letter wm-z" d="M 286,23 L 319.5,23 L 319.5,28.5 L 295.5,53.5 L 320,53.5 L 320,59 L 285.5,59 L 285.5,53.5 L 310,28.5 L 286,28.5 Z" />
+          </g>
+          <text class="wm-tagline" x="93" y="74" font-family="'Century Gothic', 'Montserrat', -apple-system, sans-serif" font-size="6.8" font-weight="600" letter-spacing="3.8" fill="#80B5FF">DIGITAL • CREATIVE • SERVICES</text>
+        </g>
+      </svg>
     </div>
+  </div>
+
+  <!-- 3D Service Icons with Matching Stroke-Drawing & Assembly Reveal -->
+  <section class="boxesinfo" id="boxesinfoSection">
+    <ul class="listboxes">
+      
+      <!-- 1. Logo Design -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/logo-design.png" alt="Logo Design" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="sg_energy" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#3478F6" stop-opacity="0" />
+                  <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#3478F6" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <path class="s-streak s-stroke-primary" d="M 18,36 C 24,18 48,15 82,36" />
+              <path class="s-streak s-stroke-secondary" d="M 50,82 L 34,48 L 40,38 L 60,38 L 66,48 Z" />
+              <path class="s-streak s-stroke-accent" d="M 50,82 L 50,56" />
+              <circle class="s-node" cx="20" cy="36" r="3" />
+              <circle class="s-node" cx="50" cy="18" r="3" />
+              <circle class="s-node" cx="80" cy="36" r="3" />
+              <circle class="s-node" cx="50" cy="54" r="2.5" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Logo Design</h4>
+        </a>
+      </li>
+
+      <!-- 2. Web Design & Development -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/web-design.png" alt="Web Design & Development" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-primary" d="M 20,24 L 80,24 C 84,24 86,26 86,30 L 86,72 C 86,76 84,78 80,78 L 20,78 C 16,78 14,76 14,72 L 14,30 C 14,26 16,24 20,24 Z" />
+              <path class="s-streak s-stroke-secondary" d="M 14,35 L 86,35" />
+              <path class="s-streak s-stroke-accent" d="M 40,46 L 33,53 L 40,60" />
+              <path class="s-streak s-stroke-accent" d="M 52,44 L 46,62" />
+              <path class="s-streak s-stroke-accent" d="M 58,46 L 65,53 L 58,60" />
+              <circle class="s-node" cx="21" cy="30" r="2" />
+              <circle class="s-node" cx="27" cy="30" r="2" />
+              <circle class="s-node" cx="33" cy="30" r="2" />
+              <path class="s-streak s-stroke-primary" d="M 72,64 C 76,64 80,68 80,72 C 80,76 76,80 72,80 C 68,80 64,76 64,72 Z" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Web Design &<br>Development</h4>
+        </a>
+      </li>
+
+      <!-- 3. Ecommerce Solutions -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/ecommerce.png" alt="Ecommerce Solutions" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-secondary" d="M 14,34 L 28,34" />
+              <path class="s-streak s-stroke-secondary" d="M 10,46 L 30,46" />
+              <path class="s-streak s-stroke-secondary" d="M 16,58 L 26,58" />
+              <path class="s-streak s-stroke-primary" d="M 32,26 L 38,26 L 46,62 L 76,62 L 85,34 L 38,34" />
+              <path class="s-streak s-stroke-accent" d="M 44,44 L 81,44" />
+              <path class="s-streak s-stroke-accent" d="M 46,52 L 77,52" />
+              <circle class="s-node" cx="48" cy="74" r="5" />
+              <circle class="s-node" cx="74" cy="74" r="5" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Ecommerce<br>Solutions</h4>
+        </a>
+      </li>
+
+      <!-- 4. Corporate Branding -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/corporate-branding.png" alt="Corporate Branding" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-primary" d="M 28,18 L 62,18 L 74,30 L 74,78 C 74,82 72,84 68,84 L 28,84 C 24,84 22,82 22,78 L 22,24 C 22,20 24,18 28,18 Z" />
+              <path class="s-streak s-stroke-accent" d="M 62,18 L 62,30 L 74,30" />
+              <path class="s-streak s-stroke-secondary" d="M 34,34 L 34,66 M 34,34 L 46,34 C 52,34 55,37 55,42 C 55,47 51,50 46,50 L 34,50 M 34,50 L 48,50 C 54,50 58,54 58,59 C 58,66 52,66 46,66 L 34,66" />
+              <path class="s-streak s-stroke-primary" d="M 68,42 L 84,26 L 89,31 L 73,47 Z" />
+              <path class="s-streak s-stroke-accent" d="M 68,42 L 64,52 L 73,47 Z" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Corporate<br>Branding</h4>
+        </a>
+      </li>
+
+      <!-- 5. Video Animation -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/video-animation.png" alt="Video Animation" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-primary" d="M 20,44 L 80,44 C 84,44 86,46 86,50 L 86,78 C 86,82 84,84 80,84 L 20,84 C 16,84 14,82 14,78 L 14,50 C 14,46 16,44 20,44 Z" />
+              <path class="s-streak s-stroke-secondary" d="M 16,42 L 78,22 C 82,21 85,23 86,27 L 86,35 L 16,42 Z" />
+              <path class="s-streak s-stroke-accent" d="M 30,37 L 38,34 M 46,32 L 54,29 M 62,27 L 70,24" />
+              <path class="s-streak s-stroke-accent" d="M 44,52 L 64,64 L 44,76 Z" />
+              <circle class="s-node" cx="50" cy="64" r="3" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Video<br>Animation</h4>
+        </a>
+      </li>
+
+      <!-- 6. Search Engine Optimization -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/seo.png" alt="Search Engine Optimization" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-primary" d="M 48,18 C 62,18 74,30 74,44 C 74,58 62,70 48,70 C 34,70 22,58 22,44 C 22,30 34,18 48,18 Z" />
+              <path class="s-streak s-stroke-secondary" d="M 66,62 L 86,82 C 88,84 88,87 86,89 C 84,91 81,91 79,89 L 59,69" />
+              <path class="s-streak s-stroke-accent" d="M 30,54 Q 44,48 60,30" />
+              <path class="s-streak s-stroke-accent" d="M 52,28 L 62,28 L 62,38" />
+              <path class="s-streak s-stroke-primary" d="M 34,58 L 34,52 M 42,58 L 42,46 M 50,58 L 50,40 M 58,58 L 58,34" />
+              <circle class="s-node" cx="62" cy="28" r="2.5" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Search Engine<br>Optimization</h4>
+        </a>
+      </li>
+
+      <!-- 7. Mobile App Development -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/mobile-app.png" alt="Mobile App Development" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-primary" d="M 32,16 L 68,16 C 73,16 76,19 76,24 L 76,84 C 76,89 73,92 68,92 L 32,92 C 27,92 24,89 24,84 L 24,24 C 24,19 27,16 32,16 Z" />
+              <path class="s-streak s-stroke-secondary" d="M 28,26 L 72,26 L 72,82 L 28,82 Z" />
+              <path class="s-streak s-stroke-accent" d="M 42,48 L 36,54 L 42,60" />
+              <path class="s-streak s-stroke-accent" d="M 52,46 L 48,62" />
+              <path class="s-streak s-stroke-accent" d="M 58,48 L 64,54 L 58,60" />
+              <path class="s-streak s-stroke-primary" d="M 72,64 C 76,64 80,68 80,72 C 80,76 76,80 72,80 C 68,80 64,76 64,72 Z" />
+              <circle class="s-node" cx="50" cy="21" r="1.5" />
+              <circle class="s-node" cx="50" cy="87" r="2" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Mobile App<br>Development</h4>
+        </a>
+      </li>
+
+      <!-- 8. Combo & Full-Stack Packages -->
+      <li>
+        <a href="#">
+          <figure>
+            <img src="/assets/images/services-3d/combo-packages.png" alt="Combo & Full-Stack Packages" class="service-3d-icon" width="68" height="68">
+            <svg class="service-streak-svg" viewBox="0 0 100 100">
+              <path class="s-streak s-stroke-primary" d="M 50,20 L 80,34 L 50,48 L 20,34 Z" />
+              <path class="s-streak s-stroke-secondary" d="M 20,44 L 50,58 L 80,44 L 80,50 L 50,64 L 20,50 Z" />
+              <path class="s-streak s-stroke-primary" d="M 20,60 L 50,74 L 80,60 L 80,66 L 50,80 L 20,66 Z" />
+              <path class="s-streak s-stroke-accent" d="M 43,32 L 37,35 L 43,38" />
+              <path class="s-streak s-stroke-accent" d="M 51,30 L 49,40" />
+              <path class="s-streak s-stroke-accent" d="M 57,32 L 63,35 L 57,38" />
+              <circle class="s-node" cx="50" cy="20" r="2.5" />
+              <circle class="s-node" cx="80" cy="34" r="2.5" />
+              <circle class="s-node" cx="20" cy="34" r="2.5" />
+              <rect class="s-energy-beam" x="20" y="15" width="22" height="70" fill="url(#sg_energy)" transform="skewX(-20)" />
+            </svg>
+          </figure>
+          <h4>Combo & Full-Stack<br>Packages</h4>
+        </a>
+      </li>
+    </ul>
   </section>
 
   <script>
     var section = document.getElementById('boxesinfoSection');
+    var logoWrap = document.getElementById('logoWrap');
 
-    function triggerReveal() {
+    function triggerReplay() {
+      // Reset Logo
+      var logoSvg = logoWrap.querySelector('.digenz-logo-anim-svg');
+      if (logoSvg) {
+        var cloneLogo = logoSvg.cloneNode(true);
+        logoWrap.innerHTML = '';
+        logoWrap.appendChild(cloneLogo);
+      }
+
+      // Reset Services Section
       section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active', 'boxesinfo-anim-revealed');
       section.classList.add('boxesinfo-anim-ready');
-      
-      // Force reflow
-      void section.offsetWidth;
-
-      // Start reveal animation
+      void section.offsetWidth; // Force reflow
       section.classList.add('boxesinfo-anim-active');
 
-      // Settle after animation completes
       setTimeout(function() {
         section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active');
         section.classList.add('boxesinfo-anim-revealed');
-      }, 1800);
+      }, 1900);
     }
 
-    // Auto-trigger on page load
     window.addEventListener('DOMContentLoaded', function() {
-      triggerReveal();
+      triggerReplay();
     });
   </script>
 </body>
