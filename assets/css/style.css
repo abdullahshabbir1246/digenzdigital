@@ -291,6 +291,9 @@ padding: 0; cursor: pointer; }
     margin: 0 auto;
     background: none !important;
     background-image: none !important;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
 }
 .boxesinfo .wrp .listboxes li figure img,
 .boxesinfo .wrp .listboxes li figure .service-icon-svg {
@@ -7417,4 +7420,148 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     transform: scale(1.04) !important;
     filter: drop-shadow(0 0 10px rgba(52, 120, 246, 0.45)) !important;
     transition: transform 0.3s ease, filter 0.3s ease !important;
+}
+
+/* ==========================================================================
+   DIGENZ ANIMATED 3D SERVICE ICONS REVEAL (MATCHING HEADER LOGO REVEAL STYLE)
+   ========================================================================== */
+
+/* Initial state before reveal triggers */
+.boxesinfo-anim-ready .service-3d-icon {
+    opacity: 0 !important;
+    transform: scale(0.82) translateY(6px) !important;
+    filter: drop-shadow(0 0 18px #3478F6) drop-shadow(0 0 8px #80B5FF) brightness(1.5) !important;
+    will-change: transform, opacity, filter;
+}
+
+/* Active Staggered Reveal Animation */
+.boxesinfo-anim-active .service-3d-icon {
+    animation: serviceIconAssemble 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered Delays for all 8 items (works on standard list and Slick carousel) */
+.boxesinfo-anim-active .listboxes li:nth-child(1) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="0"] .service-3d-icon { animation-delay: 0.08s; }
+.boxesinfo-anim-active .listboxes li:nth-child(2) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="1"] .service-3d-icon { animation-delay: 0.18s; }
+.boxesinfo-anim-active .listboxes li:nth-child(3) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="2"] .service-3d-icon { animation-delay: 0.28s; }
+.boxesinfo-anim-active .listboxes li:nth-child(4) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="3"] .service-3d-icon { animation-delay: 0.38s; }
+.boxesinfo-anim-active .listboxes li:nth-child(5) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="4"] .service-3d-icon { animation-delay: 0.48s; }
+.boxesinfo-anim-active .listboxes li:nth-child(6) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="5"] .service-3d-icon { animation-delay: 0.58s; }
+.boxesinfo-anim-active .listboxes li:nth-child(7) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="6"] .service-3d-icon { animation-delay: 0.68s; }
+.boxesinfo-anim-active .listboxes li:nth-child(8) .service-3d-icon,
+.boxesinfo-anim-active .slick-slide[data-slick-index="7"] .service-3d-icon { animation-delay: 0.78s; }
+
+/* Keyframe: Kinetic Assemble, Snap & Electric Blue Glow Flare */
+@keyframes serviceIconAssemble {
+    0% {
+        opacity: 0;
+        transform: scale(0.82) translateY(6px);
+        filter: drop-shadow(0 0 20px #3478F6) drop-shadow(0 0 8px #80B5FF) brightness(1.5);
+    }
+    40% {
+        opacity: 0.85;
+        filter: drop-shadow(0 0 26px #3478F6) drop-shadow(0 0 14px #80B5FF) brightness(1.6);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.06) translateY(-2px);
+        filter: drop-shadow(0 0 16px #3478F6) drop-shadow(0 0 6px #FFFFFF) brightness(1.2);
+    }
+    88% {
+        transform: scale(0.98) translateY(0);
+        filter: drop-shadow(0 6px 16px rgba(52, 120, 246, 0.45)) brightness(1.05);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32));
+    }
+}
+
+/* Electric Light Beam Sweep across each icon figure */
+.boxesinfo-anim-active .wrp .listboxes li figure.develp::after {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -60%;
+    width: 45%;
+    height: 140%;
+    background: linear-gradient(
+        90deg,
+        rgba(52, 120, 246, 0) 0%,
+        rgba(128, 181, 255, 0.4) 30%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(128, 181, 255, 0.4) 70%,
+        rgba(52, 120, 246, 0) 100%
+    );
+    transform: skewX(-25deg);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2;
+    animation: serviceSweepBeam 0.7s ease-out forwards;
+}
+
+.boxesinfo-anim-active .listboxes li:nth-child(1) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="0"] figure.develp::after { animation-delay: 0.12s; }
+.boxesinfo-anim-active .listboxes li:nth-child(2) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="1"] figure.develp::after { animation-delay: 0.22s; }
+.boxesinfo-anim-active .listboxes li:nth-child(3) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="2"] figure.develp::after { animation-delay: 0.32s; }
+.boxesinfo-anim-active .listboxes li:nth-child(4) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="3"] figure.develp::after { animation-delay: 0.42s; }
+.boxesinfo-anim-active .listboxes li:nth-child(5) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="4"] figure.develp::after { animation-delay: 0.52s; }
+.boxesinfo-anim-active .listboxes li:nth-child(6) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="5"] figure.develp::after { animation-delay: 0.62s; }
+.boxesinfo-anim-active .listboxes li:nth-child(7) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="6"] figure.develp::after { animation-delay: 0.72s; }
+.boxesinfo-anim-active .listboxes li:nth-child(8) figure.develp::after,
+.boxesinfo-anim-active .slick-slide[data-slick-index="7"] figure.develp::after { animation-delay: 0.82s; }
+
+@keyframes serviceSweepBeam {
+    0% {
+        left: -60%;
+        opacity: 0;
+    }
+    30% {
+        opacity: 0.95;
+    }
+    70% {
+        opacity: 0.75;
+    }
+    100% {
+        left: 140%;
+        opacity: 0;
+    }
+}
+
+/* Post-Reveal Settled State: Clean, Stable, Fully Interactive */
+.boxesinfo-anim-revealed .wrp .listboxes li figure.develp::after {
+    display: none !important;
+}
+.boxesinfo-anim-revealed .service-3d-icon {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
+    animation: none !important;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .boxesinfo-anim-ready .service-3d-icon,
+    .boxesinfo-anim-active .service-3d-icon {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
+    }
+    .boxesinfo-anim-active .wrp .listboxes li figure.develp::after {
+        display: none !important;
+    }
 }

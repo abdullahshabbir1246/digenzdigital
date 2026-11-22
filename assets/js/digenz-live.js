@@ -1958,9 +1958,51 @@
     });
   }
 
+  // =========================================================================
+  // ANIMATED 3D SERVICE ICONS REVEAL (MATCHING HEADER LOGO REVEAL STYLE)
+  // =========================================================================
+  function initServiceIconsAnimation() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
+    var sections = document.querySelectorAll('.boxesinfo');
+    if (!sections || sections.length === 0) return;
+
+    sections.forEach(function(section) {
+      if (section.dataset.iconsAnimInitialized) return;
+      section.dataset.iconsAnimInitialized = 'true';
+
+      function playReveal() {
+        section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active', 'boxesinfo-anim-revealed');
+        section.classList.add('boxesinfo-anim-ready');
+        void section.offsetWidth; // Force reflow
+        section.classList.add('boxesinfo-anim-active');
+
+        setTimeout(function() {
+          section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active');
+          section.classList.add('boxesinfo-anim-revealed');
+        }, 1900);
+      }
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              playReveal();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        observer.observe(section);
+      } else {
+        playReveal();
+      }
+    });
+  }
+
   ensureMobileHeader();
   ensureServiceCards();
   initHeaderLogoAnimation();
+  initServiceIconsAnimation();
 
   async function init() {
     ensureMobileHeader();
@@ -1969,6 +2011,7 @@
     initHeroBannerAnimation();
     initInteractiveImageAnimations();
     initHeaderLogoAnimation();
+    initServiceIconsAnimation();
     window.initDigenzLive = init;
     const oldBar = document.getElementById('digenzAnnouncementBar');
     if (oldBar) oldBar.remove();

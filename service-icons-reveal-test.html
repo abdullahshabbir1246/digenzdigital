@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIGENZ 3D Service Icons Animated Reveal Preview</title>
+  <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree:400,600,700|Libre+Franklin:400,600,700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #101827; /* DIGENZ Midnight Navy */
+      font-family: 'Bai Jamjuree', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .header-bar {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .header-bar h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .header-bar p {
+      color: #80B5FF;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .btn-replay {
+      background: linear-gradient(135deg, #3478F6 0%, #1a56c4 100%);
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(52, 120, 246, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-replay:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(52, 120, 246, 0.6);
+    }
+
+    /* Container replicating .boxesinfo */
+    .boxesinfo {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 40px 0;
+      overflow: visible;
+    }
+    .listboxes {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+    .listboxes li {
+      flex: 0 0 130px;
+      text-align: center;
+    }
+    .listboxes li a {
+      text-decoration: none;
+      display: block;
+      color: #fff;
+      transition: color 0.25s ease;
+    }
+    .listboxes li a:hover h4 {
+      color: #3478F6 !important;
+    }
+    .listboxes li figure {
+      margin: 0 auto 12px;
+      width: 76px;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+    }
+    .listboxes li figure img {
+      width: 68px;
+      height: 68px;
+      max-width: 68px;
+      max-height: 68px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32));
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease;
+    }
+    .listboxes li:hover figure img {
+      transform: translateY(-7px) scale(1.12) !important;
+      filter: drop-shadow(0 12px 24px rgba(52, 120, 246, 0.65)) brightness(1.08) !important;
+    }
+    .listboxes li h4 {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin: 0;
+      color: #fff;
+      transition: color 0.25s ease;
+    }
+
+    /* ==========================================================================
+       DIGENZ 3D SERVICE ICONS ANIMATED REVEAL (MATCHING HEADER LOGO STYLE)
+       ========================================================================== */
+
+    /* Initial state before reveal triggers */
+    .boxesinfo-anim-ready .service-3d-icon {
+      opacity: 0;
+      transform: scale(0.82) translateY(6px);
+      filter: drop-shadow(0 0 16px #3478F6) brightness(1.4);
+      will-change: transform, opacity, filter;
+    }
+
+    /* Active Animation on .boxesinfo */
+    .boxesinfo-anim-active .service-3d-icon {
+      animation: serviceIconAssemble 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Staggered Delay for all 8 items */
+    .boxesinfo-anim-active .listboxes li:nth-child(1) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="0"] .service-3d-icon { animation-delay: 0.08s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(2) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="1"] .service-3d-icon { animation-delay: 0.18s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(3) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="2"] .service-3d-icon { animation-delay: 0.28s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(4) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="3"] .service-3d-icon { animation-delay: 0.38s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(5) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="4"] .service-3d-icon { animation-delay: 0.48s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(6) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="5"] .service-3d-icon { animation-delay: 0.58s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(7) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="6"] .service-3d-icon { animation-delay: 0.68s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(8) .service-3d-icon,
+    .boxesinfo-anim-active .slick-slide[data-slick-index="7"] .service-3d-icon { animation-delay: 0.78s; }
+
+    /* Keyframe: Kinetic Assemble & Electric Blue Glow Flare */
+    @keyframes serviceIconAssemble {
+      0% {
+        opacity: 0;
+        transform: scale(0.82) translateY(6px);
+        filter: drop-shadow(0 0 20px #3478F6) drop-shadow(0 0 8px #80B5FF) brightness(1.5);
+      }
+      40% {
+        opacity: 0.85;
+        filter: drop-shadow(0 0 24px #3478F6) drop-shadow(0 0 12px #80B5FF) brightness(1.6);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.06) translateY(-2px);
+        filter: drop-shadow(0 0 16px #3478F6) drop-shadow(0 0 6px #FFFFFF) brightness(1.2);
+      }
+      88% {
+        transform: scale(0.98) translateY(0);
+        filter: drop-shadow(0 6px 16px rgba(52, 120, 246, 0.45)) brightness(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32));
+      }
+    }
+
+    /* Electric Light Beam Sweep across each icon figure */
+    .boxesinfo-anim-active .listboxes li figure::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -60%;
+      width: 45%;
+      height: 140%;
+      background: linear-gradient(
+        90deg,
+        rgba(52, 120, 246, 0) 0%,
+        rgba(128, 181, 255, 0.4) 30%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(128, 181, 255, 0.4) 70%,
+        rgba(52, 120, 246, 0) 100%
+      );
+      transform: skewX(-25deg);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 2;
+      animation: serviceSweepBeam 0.7s ease-out forwards;
+    }
+
+    .boxesinfo-anim-active .listboxes li:nth-child(1) figure::after { animation-delay: 0.12s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(2) figure::after { animation-delay: 0.22s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(3) figure::after { animation-delay: 0.32s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(4) figure::after { animation-delay: 0.42s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(5) figure::after { animation-delay: 0.52s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(6) figure::after { animation-delay: 0.62s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(7) figure::after { animation-delay: 0.72s; }
+    .boxesinfo-anim-active .listboxes li:nth-child(8) figure::after { animation-delay: 0.82s; }
+
+    @keyframes serviceSweepBeam {
+      0% {
+        left: -60%;
+        opacity: 0;
+      }
+      30% {
+        opacity: 0.95;
+      }
+      70% {
+        opacity: 0.75;
+      }
+      100% {
+        left: 140%;
+        opacity: 0;
+      }
+    }
+
+    /* Settled state: Clean resting state */
+    .boxesinfo-anim-revealed .listboxes li figure::after {
+      display: none !important;
+    }
+    .boxesinfo-anim-revealed .service-3d-icon {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
+      animation: none !important;
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .boxesinfo-anim-ready .service-3d-icon,
+      .boxesinfo-anim-active .service-3d-icon {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
+      }
+      .boxesinfo-anim-active .listboxes li figure::after {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-bar">
+    <h1>DIGENZ — 3D Service Icons Animated Reveal</h1>
+    <p>Reusing Header Logo Reveal Technique: Assemble Facets + Kinetic Bounce + Electric Blue Glow Flare + Energy Beam Sweep</p>
+    <button class="btn-replay" onclick="triggerReveal()">Replay Animated Reveal</button>
+  </div>
+
+  <section class="boxesinfo" id="boxesinfoSection">
+    <div class="wrp">
+      <ul class="listboxes">
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/logo-design.png" alt="Logo Design" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Logo Design</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/web-design.png" alt="Web Design & Development" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Web Design &<br>Development</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/ecommerce.png" alt="Ecommerce Solutions" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Ecommerce<br>Solutions</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/corporate-branding.png" alt="Corporate Branding" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Corporate<br>Branding</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/video-animation.png" alt="Video Animation" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Video<br>Animation</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/seo.png" alt="Search Engine Optimization" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Search Engine<br>Optimization</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/mobile-app.png" alt="Mobile App Development" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Mobile App<br>Development</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <figure class="develp">
+              <img src="/assets/images/services-3d/combo-packages.png" alt="Combo & Full-Stack Packages" class="service-icon-svg service-3d-icon" width="68" height="68">
+            </figure>
+            <h4>Combo & Full-Stack<br>Packages</h4>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    var section = document.getElementById('boxesinfoSection');
+
+    function triggerReveal() {
+      section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active', 'boxesinfo-anim-revealed');
+      section.classList.add('boxesinfo-anim-ready');
+      
+      // Force reflow
+      void section.offsetWidth;
+
+      // Start reveal animation
+      section.classList.add('boxesinfo-anim-active');
+
+      // Settle after animation completes
+      setTimeout(function() {
+        section.classList.remove('boxesinfo-anim-ready', 'boxesinfo-anim-active');
+        section.classList.add('boxesinfo-anim-revealed');
+      }, 1800);
+    }
+
+    // Auto-trigger on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      triggerReveal();
+    });
+  </script>
+</body>
+</html>
