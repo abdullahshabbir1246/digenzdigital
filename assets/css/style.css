@@ -479,7 +479,7 @@ padding: 0; cursor: pointer; }
 
 
 /*xfactor section*/
-.x-factor-section{min-height: 480px;background: var(--second-color) url(../images/multiplier-1.png?v=7.6);background-repeat: no-repeat;background-position: right 6% center;background-size: 500px auto;padding: 90px 0px;}
+.x-factor-section{min-height: 480px;background: var(--second-color) url(../images/multiplier-1.png?v=7.7);background-repeat: no-repeat;background-position: right 6% center;background-size: 500px auto;padding: 90px 0px;}
 .x-factor-section h2{font-size: 44px;color:var(--third-color);line-height: 1.1em;margin-bottom: 30px;padding:0px;}
 .x-factor-section h6{color:var(--third-color);line-height: 1.25em;font-size: 12px;letter-spacing: 1.1;font-family: AvenirRoman,sans-serif;}
 .x-factor-section p{font-size: 18px;text-align: left;padding-bottom: 40px;}
@@ -4139,7 +4139,7 @@ a.action-chat.clearfix.pull-right.sea {
 @media only screen and (max-width: 1200px) {
 .home-slider .slick-dots { width:auto; text-align:center; }
 }
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
 .home-banner { background-position: center left; }
 .testimonials-slider-main .slick-prev { left:0px; }
 .testimonials-slider-main .slick-next { right:0px; }
@@ -7565,4 +7565,15 @@ figure:hover > img:not(.whitelogo):not(.blacklogo):not(.hero-bg-art),
     transform: none !important;
     filter: drop-shadow(0 4px 14px rgba(52, 120, 246, 0.32)) !important;
     animation: none !important;
+}
+
+/* Mobile X-Factor Section: Clean positioning and spacing to prevent overlap */
+@media only screen and (max-width: 767px) {
+    .x-factor-section {
+        background-position: center bottom 30px !important;
+        background-size: min(340px, 90%) auto !important;
+        padding-top: 50px !important;
+        padding-bottom: 285px !important;
+        min-height: auto !important;
+    }
 }
