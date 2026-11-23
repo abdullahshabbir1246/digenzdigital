@@ -2458,7 +2458,14 @@ and(-webkit-min-device-pixel-ratio:0)
 
 
 .webtech{
-    padding: 60px 0;
+    position: relative;
+    padding: 70px 0;
+    background-color: #0b1120;
+    background-image: linear-gradient(135deg, rgba(10, 16, 30, 0.82) 0%, rgba(14, 23, 42, 0.76) 50%, rgba(10, 16, 30, 0.86) 100%), url(../images/blue-abstract-texture.jpg?v=7.4);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow: hidden;
 }
 .webtech .tabs-custom-nav{
     margin-bottom: 0;

@@ -4,7 +4,7 @@
       "createdAt": "2026-01-01T00:00:00.000Z",
       "email": "admin@digenz.com",
       "id": "adm-001",
-      "lastLogin": "2026-11-23T18:39:05.021Z",
+      "lastLogin": "2026-11-23T19:14:47.595Z",
       "name": "DIGENZ Admin",
       "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
       "role": "superadmin",
@@ -2617,6 +2617,15 @@
   },
   "auditLogs": [
     {
+      "id": "log-1795461287603-688",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-23T19:14:47.603Z"
+    },
+    {
       "id": "log-1795459145033-276",
       "adminEmail": "admin@digenz.com",
       "action": "LOGIN_SUCCESS",
@@ -4085,8 +4094,8 @@
     }
   ],
   "syncState": {
-    "version": 56,
-    "lastUpdated": 1795459145024,
+    "version": 57,
+    "lastUpdated": 1795461287598,
     "lastModule": "admins",
     "modules": [
       "admins",
