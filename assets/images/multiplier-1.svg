@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 682" width="1024" height="682">
   <defs>
-    <!-- Base Rounded Clip Path -->
+    <!-- Base Rounded Card Clip Path -->
     <clipPath id="cardClip">
       <rect x="0" y="0" width="1024" height="682" rx="24" ry="24" />
     </clipPath>
@@ -43,10 +44,11 @@
     </radialGradient>
   </defs>
 
-  <style>
+  <style type="text/css">
+  <![CDATA[
     /* ==========================================================
        CONTINUOUS LOOPING DIGENZ LOGO REVEAL (5.5s Cycle)
-       0.0s - 0.7s: Blue light streaks draw & assemble
+       0.0s - 0.7s: Blue light streaks draw and assemble
        0.5s - 1.1s: Faceted 'D' segments snap into place
        0.7s - 1.2s: D-I-G-E-N-Z text reveals letter-by-letter
        1.1s - 1.5s: Tagline fades in with tracking
@@ -158,6 +160,7 @@
       25%, 75% { opacity: 0.75; }
       90%, 100% { opacity: 0.25; }
     }
+  ]]>
   </style>
 
   <g clip-path="url(#cardClip)">
@@ -166,7 +169,7 @@
 
     <!-- 2. Inside the Laptop Display (strictly bounded by screenDisplayClip polygon) -->
     <g clip-path="url(#screenDisplayClip)">
-      <!-- Seamless Screen Display Background & Ambient Blue Lighting -->
+      <!-- Seamless Screen Display Background and Ambient Blue Lighting -->
       <polygon points="575,370 864,392 818,675 554,636" fill="url(#screenWallpaperGrad)" />
       
       <!-- Subtle curved wave wallpaper accents matching the photo -->
