@@ -12,6 +12,23 @@
 
   const CACHE_BUST = Date.now();
 
+  // Eager background settings fetch to hydrate WhatsApp and Address immediately
+  fetchJSON('/api/settings').then(s => {
+    if (s) {
+      const rawWA = s.whatsappNumber || s.whatsapp;
+      const waGreeting = s.whatsappGreeting || 'Hi DIGENZ, I am interested in your services. Please share more information.';
+      if (rawWA) {
+        const waDigits = normalizeWhatsApp(rawWA);
+        if (waDigits) {
+          applyWhatsAppUrl(`https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`);
+        }
+      }
+      if (s.businessAddress || s.address) {
+        syncAddressDOM(s.businessAddress || s.address);
+      }
+    }
+  }).catch(() => {});
+
   async function fetchJSON(url) {
     try {
       const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}v=${Date.now()}`, {
@@ -503,10 +520,7 @@
       } catch (e) {}
 
       // 5B. Synchronize Address if in settings
-      const addressToSync = settings.businessAddress || settings.address;
-      if (addressToSync) {
-        syncAddressDOM(addressToSync);
-      }
+      try { const addressToSync = settings.businessAddress || settings.address; if (addressToSync) { syncAddressDOM(addressToSync); } } catch (e) { console.warn("[Sync] Address sync:", e.message); }
 
       // 6. Update Slick carousel cloned slides
       function updateSlickClones() {
@@ -544,14 +558,7 @@
     }
 
     // E. Dynamic WhatsApp Business Number & Greeting Update
-    const rawWA = settings.whatsappNumber || settings.whatsapp;
-    const waGreeting = settings.whatsappGreeting || 'Hi DIGENZ, I am interested in your services. Please share more information.';
-    if (rawWA) {
-      const waDigits = normalizeWhatsApp(rawWA);
-      if (waDigits) {
-        applyWhatsAppUrl(`https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`);
-      }
-    }
+    try { const rawWA = settings.whatsappNumber || settings.whatsapp; const waGreeting = settings.whatsappGreeting || "Hi DIGENZ, I am interested in your services. Please share more information."; if (rawWA) { const waDigits = normalizeWhatsApp(rawWA); if (waDigits) { applyWhatsAppUrl(`https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`); } } } catch (e) { console.warn("[Sync] WhatsApp sync:", e.message); }
 
     // D. Dynamic Currency Symbol & Add-On Update on Pricing Cards
     if (settings.currencySymbol) {
@@ -1032,17 +1039,39 @@
   // =========================================================================
   
   // Global WhatsApp Business Integration & Handler
-  let currentWaLink = 'https://wa.me/923190039048?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information.';
+  let currentWaLink = 'https://wa.me/12089057548?text=Hi%20DIGENZ%2C%20I%20am%20interested%20in%20your%20services.%20Please%20share%20more%20information.';
+
+  // Dynamic Business Address Hydration
+  function syncAddressDOM(address) {
+    if (!address || typeof address !== 'string') return;
+    const cleanAddr = address.trim();
+    if (!cleanAddr) return;
+    try {
+      document.querySelectorAll('.address, .address-1, .footer-address, .contact-address, .business-address').forEach(el => {
+        el.textContent = cleanAddr;
+      });
+      document.querySelectorAll('h5, h6, h4').forEach(h => {
+        if (h.textContent.includes('VISIT US')) {
+          const nextP = h.nextElementSibling;
+          if (nextP && nextP.tagName === 'P') {
+            nextP.textContent = cleanAddr;
+          }
+        }
+      });
+    } catch (e) {}
+  }
 
   function normalizeWhatsApp(phone) {
-    if (!phone || typeof phone !== 'string') return '';
-    let digits = phone.replace(/\D/g, '');
+    if (!phone) return '';
+    let raw = String(phone).trim();
+    if (raw.startsWith('00')) raw = '+' + raw.slice(2);
+    let digits = raw.replace(/\D/g, '');
     if (!digits) return '';
     if (/^03\d{9}$/.test(digits)) {
       digits = '92' + digits.substring(1);
     } else if (/^920\d+/.test(digits)) {
       digits = digits.replace(/^920+/, '92');
-    } else if (digits.startsWith('0') && digits.length >= 10 && digits.length <= 11) {
+    } else if (digits.startsWith("0") && digits.length === 11) {
       digits = '92' + digits.replace(/^0+/, '');
     }
     return digits;
@@ -1051,16 +1080,36 @@
   function applyWhatsAppUrl(url) {
     if (!url) return;
     currentWaLink = url;
-    const btn = document.getElementById('digenzWhatsappBtn');
-    if (btn) btn.href = url;
-    document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
-      a.href = url;
-    });
+    try {
+      const btn = document.getElementById('digenzWhatsappBtn');
+      if (btn) {
+        btn.href = url;
+        btn.setAttribute('href', url);
+      }
+      document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+        a.href = url;
+        a.setAttribute('href', url);
+      });
+    } catch (e) {}
+    window.setButtonURL = function() {
+      window.open(currentWaLink, '_blank');
+    };
   }
 
   window.setButtonURL = function() {
     window.open(currentWaLink, '_blank');
   };
+
+  // Global click interceptor ensuring WhatsApp clicks always use currentWaLink
+  try {
+    document.addEventListener('click', function(e) {
+      const waTarget = e.target.closest('#digenzWhatsappBtn, a[href*="wa.me"]');
+      if (waTarget && currentWaLink) {
+        waTarget.href = currentWaLink;
+        waTarget.setAttribute('href', currentWaLink);
+      }
+    }, true);
+  } catch (e) {}
 
   function purgeLegacyChat() {
     const selList = [

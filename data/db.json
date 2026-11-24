@@ -4,7 +4,7 @@
       "createdAt": "2026-01-01T00:00:00.000Z",
       "email": "admin@digenz.com",
       "id": "adm-001",
-      "lastLogin": "2026-11-23T21:11:34.567Z",
+      "lastLogin": "2026-11-24T21:24:04.777Z",
       "name": "DIGENZ Admin",
       "passwordHash": "1657ffd2e8c151603032671b1f7e6a62ee6fe2bc075f266b9afe0f28f64ab605c81b7e0dc05fc775a39a8dc7ad0e86e534ce42845cd37415cce91bc220393f4b",
       "role": "superadmin",
@@ -2370,10 +2370,13 @@
       "vision": "Becoming the world’s most trusted full-service digital and freelancing agency."
     },
     "contact": {
-      "phone": "03190039048",
+      "phone": "+1 6124957435",
       "alternatePhone": "03190039048",
-      "address": "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ",
-      "email": "contact@digendigital.com"
+      "address": "515 S 4TH ST APT E 1401 MINNEAPOLIS MN 55454",
+      "email": "contact@digendigital.com",
+      "whatsapp": "+12089057548",
+      "whatsappNumber": "+12089057548",
+      "whatsappGreeting": "Hi DIGENZ, I am interested in your services. Please share more information."
     },
     "faqs": {
       "0": {
@@ -2611,11 +2614,50 @@
     },
     "maintenanceMode": false,
     "supportEmail": "contact@digendigital.com",
-    "supportPhone": "03190039048",
+    "supportPhone": "+1 6124957435",
     "enablePublicQuotes": true,
-    "businessAddress": "71-75 Shelton Street, Covent Garden, London, WC2H 9JQ"
+    "businessAddress": "515 S 4TH ST APT E 1401 MINNEAPOLIS MN 55454",
+    "whatsapp": "+12089057548",
+    "whatsappNumber": "+12089057548",
+    "whatsappGreeting": "Hi DIGENZ, I am interested in your services. Please share more information."
   },
   "auditLogs": [
+    {
+      "id": "log-1795555444781-235",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::1",
+      "timestamp": "2026-11-24T21:24:04.781Z"
+    },
+    {
+      "id": "log-1795555337079-580",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-24T21:22:17.079Z"
+    },
+    {
+      "id": "log-1795555336618-731",
+      "adminEmail": "admin@digenz.com",
+      "action": "UPDATE_SETTINGS",
+      "module": "Settings",
+      "details": "Updated website global settings",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-24T21:22:16.618Z"
+    },
+    {
+      "id": "log-1795555336282-929",
+      "adminEmail": "admin@digenz.com",
+      "action": "LOGIN_SUCCESS",
+      "module": "Auth",
+      "details": "Admin logged in successfully",
+      "ip": "::ffff:127.0.0.1",
+      "timestamp": "2026-11-24T21:22:16.282Z"
+    },
     {
       "id": "log-1795468294575-655",
       "adminEmail": "admin@digenz.com",
@@ -4103,8 +4145,8 @@
     }
   ],
   "syncState": {
-    "version": 58,
-    "lastUpdated": 1795468294571,
+    "version": 64,
+    "lastUpdated": 1795555444777,
     "lastModule": "admins",
     "modules": [
       "admins",

@@ -265,6 +265,38 @@ function syncStaticHTMLContactSettings(settings) {
       }
 
 
+      // 3C. Update WhatsApp Links across all HTML templates
+      const rawWA = (settings.whatsappNumber || settings.whatsapp || '').trim();
+      const waGreeting = (settings.whatsappGreeting || 'Hi DIGENZ, I am interested in your services. Please share more information.').trim();
+      let waDigits = '';
+      if (rawWA) {
+        let raw = rawWA;
+        if (raw.startsWith('00')) raw = '+' + raw.slice(2);
+        let d = raw.replace(/\D/g, '');
+        if (/^03\d{9}$/.test(d)) {
+          waDigits = '92' + d.substring(1);
+        } else if (/^920\d+/.test(d)) {
+          waDigits = d.replace(/^920+/, '92');
+        } else if (d.startsWith('0') && d.length === 11) {
+          waDigits = '92' + d.replace(/^0+/, '');
+        } else {
+          waDigits = d;
+        }
+      }
+      if (waDigits) {
+        const waUrl = `https://wa.me/${waDigits}?text=${encodeURIComponent(waGreeting)}`;
+        const waHrefRegex = /href="https:\/\/wa\.me\/[^"]*"/gi;
+        if (waHrefRegex.test(content)) {
+          content = content.replace(waHrefRegex, `href="${waUrl}"`);
+          changed = true;
+        }
+        const waOpenRegex = /window\.open\('https:\/\/wa\.me\/[^']*'/gi;
+        if (waOpenRegex.test(content)) {
+          content = content.replace(waOpenRegex, `window.open('${waUrl}'`);
+          changed = true;
+        }
+      }
+
       // 3B. Update visible Address across all HTML templates
       const newAddress = (settings.businessAddress || settings.address || '').trim();
       if (newAddress) {
