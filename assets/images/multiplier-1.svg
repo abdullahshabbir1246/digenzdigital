@@ -8,7 +8,7 @@
 
     <!-- Screen Bezel Clip: strictly bounds animation within the laptop screen display -->
     <clipPath id="screenDisplayClip">
-      <polygon points="575,370 864,392 818,675 554,636" />
+      <polygon points="575,363 862,396 825,482 552,451" />
     </clipPath>
 
     <!-- Brand Gradients for Animated Monogram -->
@@ -36,11 +36,11 @@
     </linearGradient>
 
     <!-- Screen Wallpaper Ambient Gradient -->
-    <radialGradient id="screenWallpaperGrad" cx="62%" cy="50%" r="65%">
-      <stop offset="0%" stop-color="#162850" />
-      <stop offset="45%" stop-color="#0b172e" />
-      <stop offset="85%" stop-color="#060d1b" />
-      <stop offset="100%" stop-color="#030811" />
+    <radialGradient id="screenWallpaperGrad" cx="60%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#14264c" />
+      <stop offset="45%" stop-color="#0a152a" />
+      <stop offset="85%" stop-color="#050c18" />
+      <stop offset="100%" stop-color="#02060e" />
     </radialGradient>
   </defs>
 
@@ -170,17 +170,17 @@
     <!-- 2. Inside the Laptop Display (strictly bounded by screenDisplayClip polygon) -->
     <g clip-path="url(#screenDisplayClip)">
       <!-- Seamless Screen Display Background and Ambient Blue Lighting -->
-      <polygon points="575,370 864,392 818,675 554,636" fill="url(#screenWallpaperGrad)" />
+      <polygon points="575,363 862,396 825,482 552,451" fill="url(#screenWallpaperGrad)" />
       
       <!-- Subtle curved wave wallpaper accents matching the photo -->
-      <path d="M 554,580 Q 690,500 840,540 L 818,675 L 554,636 Z" fill="#0d1b38" opacity="0.45" />
-      <path d="M 680,410 Q 760,490 864,440 L 864,540 Q 750,560 670,490 Z" fill="#142852" opacity="0.35" />
+      <path d="M 552,430 Q 690,380 840,410 L 825,482 L 552,451 Z" fill="#0d1b38" opacity="0.45" />
+      <path d="M 680,370 Q 760,420 862,396 L 862,450 Q 750,470 670,420 Z" fill="#142852" opacity="0.35" />
 
       <!-- Center Logo Screen Glow -->
-      <ellipse class="screen-ambient-glow" cx="705" cy="515" rx="130" ry="75" fill="#3478F6" opacity="0.5" filter="blur(25px)" />
+      <ellipse class="screen-ambient-glow" cx="703" cy="423" rx="100" ry="38" fill="#3478F6" opacity="0.5" filter="blur(20px)" />
 
-      <!-- 3. Animated DIGENZ Logo with 3D Screen Perspective Projection -->
-      <g transform="translate(605, 465) matrix(0.57, 0.05, -0.09, 0.55, 0, 0)">
+      <!-- 3. Animated DIGENZ Logo with 3D Screen Perspective Projection Centered on Screen -->
+      <g transform="translate(703, 423) matrix(0.48, 0.055, -0.06, 0.44, 0, 0) translate(-160, -42)">
         
         <!-- Light Streaks / Light Trails -->
         <g id="screenStreaks" transform="translate(42, 46) scale(1.50) translate(-45, -46)">
