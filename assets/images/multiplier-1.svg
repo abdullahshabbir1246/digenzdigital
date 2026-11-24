@@ -8,7 +8,7 @@
 
     <!-- Screen Bezel Clip: strictly bounds animation within the laptop screen display -->
     <clipPath id="screenDisplayClip">
-      <polygon points="575,363 862,396 825,482 552,451" />
+      <polygon points="618,260 872,283 830,480 585,448" />
     </clipPath>
 
     <!-- Brand Gradients for Animated Monogram -->
@@ -170,17 +170,17 @@
     <!-- 2. Inside the Laptop Display (strictly bounded by screenDisplayClip polygon) -->
     <g clip-path="url(#screenDisplayClip)">
       <!-- Seamless Screen Display Background and Ambient Blue Lighting -->
-      <polygon points="575,363 862,396 825,482 552,451" fill="url(#screenWallpaperGrad)" />
+      <polygon points="618,260 872,283 830,480 585,448" fill="url(#screenWallpaperGrad)" />
       
       <!-- Subtle curved wave wallpaper accents matching the photo -->
-      <path d="M 552,430 Q 690,380 840,410 L 825,482 L 552,451 Z" fill="#0d1b38" opacity="0.45" />
-      <path d="M 680,370 Q 760,420 862,396 L 862,450 Q 750,470 670,420 Z" fill="#142852" opacity="0.35" />
+      <path d="M 585,420 Q 720,330 872,370 L 830,480 L 585,448 Z" fill="#0d1b38" opacity="0.45" />
+      <path d="M 680,270 Q 780,340 872,300 L 872,380 Q 760,400 660,340 Z" fill="#142852" opacity="0.35" />
 
       <!-- Center Logo Screen Glow -->
-      <ellipse class="screen-ambient-glow" cx="703" cy="423" rx="100" ry="38" fill="#3478F6" opacity="0.5" filter="blur(20px)" />
+      <ellipse class="screen-ambient-glow" cx="726" cy="368" rx="110" ry="60" fill="#3478F6" opacity="0.5" filter="blur(22px)" />
 
       <!-- 3. Animated DIGENZ Logo with 3D Screen Perspective Projection Centered on Screen -->
-      <g transform="translate(703, 423) matrix(0.48, 0.055, -0.06, 0.44, 0, 0) translate(-160, -42)">
+      <g transform="translate(726, 368) matrix(0.58, 0.055, -0.09, 0.56, 0, 0) translate(-160, -42)">
         
         <!-- Light Streaks / Light Trails -->
         <g id="screenStreaks" transform="translate(42, 46) scale(1.50) translate(-45, -46)">
