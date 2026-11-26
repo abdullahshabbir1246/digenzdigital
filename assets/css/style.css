@@ -492,14 +492,14 @@ padding: 0; cursor: pointer; }
 .x-factor-section .factorlink:hover{background: var(--second-color);color:var(--third-color);border-radius: 2px;}
 /*xfactor like (techmeet) section*/
 
-.x-factor-section.techmet{min-height: 626px; background: var(--second-color) url(../images/3services.jpg); background-repeat: no-repeat; background-position: center right -224px; background-size: 50%; }
+.x-factor-section.techmet{min-height: 626px; background: var(--second-color) url(../images/3services.jpg?v=8.5); background-repeat: no-repeat; background-position: center right -224px; background-size: 50%; }
 /*dirupt section css start*/
-.disrupt-section{/*background:url(../images/disruption-home2.jpg);background-size: cover;background-attachment: fixed;*/ padding: 90px 0px;position: relative;overflow: hidden;}
+.disrupt-section{/*background:url(../images/disruption-home2.jpg?v=8.5);background-size: cover;background-attachment: fixed;*/ padding: 90px 0px;position: relative;overflow: hidden;}
 .disrupt-section .row-background,.disrupt-section .column-background {position: absolute; top: 0; bottom: 0; left: 0; right: 0; overflow: hidden; -webkit-border-radius: inherit; -webkit-background-clip: padding-box; -moz-border-radius: inherit; -moz-background-clip: padding; border-radius: inherit; background-clip: padding-box; -webkit-overflow-scrolling: touch; }
 .disrupt-section .row-background .background-wrapper{height: calc(100% + 30vh); will-change: transform;}
 .disrupt-section .background-inner{border-radius: inherit; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-attachment: scroll; }
 .disrupt-section .background-wrapper{transform: translate3d(0px, -61.5px, 0px); }
-.disrupt-section .background-inner{background-image: url(../images/disruption-home2.jpg); background-repeat: no-repeat; background-position: center center; background-size: cover; }
+.disrupt-section .background-inner{background-image: url(../images/disruption-home2.jpg?v=8.5); background-repeat: no-repeat; background-position: center center; background-size: cover; }
 .disrupt-section h6{font-size:12px; margin:0px; color:var(--second-color); font-weight: 600; padding:0px; font-family: AvenirRoman,sans-serif; }
 .disrupt-section .home-download{font-size: 45px;margin-bottom: 50px;margin-top:27px; color:var(--second-color); line-height: 1.1em; padding: 0px; }
 .disrupt-section .custom-link{background:var(--first-color);; border:1px solid var(--first-color);; color:var(--second-color); padding: 13px 31px; text-align:center; text-transform: uppercase; border-radius: 2px; -webkit-transition: color 200ms ease-in-out,background-color 200ms ease-in-out,border-color 200ms ease-in-out; -moz-transition: color 200ms ease-in-out,background-color 200ms ease-in-out,border-color 200ms ease-in-out; -o-transition: color 200ms ease-in-out,background-color 200ms ease-in-out,border-color 200ms ease-in-out; transition: color 200ms ease-in-out,background-color 200ms ease-in-out,border-color 200ms ease-in-out; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; font-weight: 600; }
@@ -1935,8 +1935,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 .innserservice-commonfolds .factorlink:hover{background: var(--second-color);color:var(--third-color);border-radius: 2px;}
 
 
-.innserservice-commonfolds.customsoftware{background: var(--second-color) url(../images/3services.jpg)no-repeat;background-position: center right 30px !important;background-size: 38% auto !important;padding: 60px 0;}
-.innserservice-commonfolds.experience{background: var(--second-color) url(../images/experience.jpg)no-repeat;background-position: center left 30px !important;background-size: 38% auto !important;margin: 70px 0 40px;}
+.innserservice-commonfolds.customsoftware{background: var(--second-color) url(../images/3services.jpg?v=8.5)no-repeat;background-position: center right 30px !important;background-size: 38% auto !important;padding: 60px 0;}
+.innserservice-commonfolds.experience{background: var(--second-color) url(../images/experience.jpg?v=8.5)no-repeat;background-position: center left 30px !important;background-size: 38% auto !important;margin: 70px 0 40px;}
 
 
 .secondlayer-innerservices-wrapper{text-align: center;padding: 60px 0;}
@@ -3099,10 +3099,10 @@ button.btn-red{border: none;cursor: pointer;}
 }
 
 .customquotepg .cta-fold{margin-top: 70px;}
-.innserservice-commonfolds.animation{background: var(--second-color) url(../images/second-fold/animation.jpg)no-repeat;}
-.innserservice-commonfolds.backend{background: var(--second-color) url(../images/second-fold/backend-development.jpg)no-repeat;}
-.innserservice-commonfolds.ecommerce{background: var(--second-color) url(../images/second-fold/ecommerce.jpg)no-repeat;}
-.innserservice-commonfolds.mobile{background: var(--second-color) url(../images/second-fold/mobile-development.jpg)no-repeat;}
+.innserservice-commonfolds.animation{background: var(--second-color) url(../images/second-fold/animation.jpg?v=8.5)no-repeat;}
+.innserservice-commonfolds.backend{background: var(--second-color) url(../images/second-fold/backend-development.jpg?v=8.5)no-repeat;}
+.innserservice-commonfolds.ecommerce{background: var(--second-color) url(../images/second-fold/ecommerce.jpg?v=8.5)no-repeat;}
+.innserservice-commonfolds.mobile{background: var(--second-color) url(../images/second-fold/mobile-development.jpg?v=8.5)no-repeat;}
 .mtech{
     text-align: center;
     padding: 60px 0;
@@ -3163,37 +3163,37 @@ button.btn-red{border: none;cursor: pointer;}
   }
 }
 .innserservice-commonfolds.cwebdesign{
-  background: var(--second-color) url(../images/abt/custom-website-design.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/custom-website-design.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.wordpress{
-  background: var(--second-color) url(../images/abt/wordpress.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/wordpress.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.ecommerce{
-  background: var(--second-color) url(../images/abt/ecommerce-website-development.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/ecommerce-website-development.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.webapp{
-  background: var(--second-color) url(../images/abt/web-application-development.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/web-application-development.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.backend{
-  background: var(--second-color) url(../images/abt/backend-development.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/backend-development.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.mobapp{
-  background: var(--second-color) url(../images/abt/mobile-application.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/mobile-application.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.webmain{
-  background: var(--second-color) url(../images/abt/web-maintanance.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/web-maintanance.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.domain{
-  background: var(--second-color) url(../images/abt/domain-and-hosting.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/domain-and-hosting.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.branding{
-  background: var(--second-color) url(../images/abt/branding.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/branding.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.video{
-  background: var(--second-color) url(../images/abt/animation.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/animation.jpg?v=8.5) no-repeat;
 }
 .innserservice-commonfolds.seo{
-  background: var(--second-color) url(../images/abt/seo.jpg) no-repeat;
+  background: var(--second-color) url(../images/abt/seo.jpg?v=8.5) no-repeat;
 }
 input.error {
     border: 1px solid red !important;
