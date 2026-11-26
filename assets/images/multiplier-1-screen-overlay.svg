@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 682" width="1024" height="682">
+  <defs>
+    <!-- Base Rounded Card Clip Path -->
+    <clipPath id="cardClip">
+      <rect x="0" y="0" width="1024" height="682" rx="24" ry="24" />
+    </clipPath>
+
+    <!-- Screen Bezel Clip: strictly bounds animation within the laptop screen display -->
+    <clipPath id="screenDisplayClip">
+      <polygon points="618,260 872,283 830,480 585,448" />
+    </clipPath>
+
+    <!-- Brand Gradients for Animated Monogram -->
+    <linearGradient id="ani_blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80B5FF" />
+      <stop offset="30%" stop-color="#3478F6" />
+      <stop offset="70%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#103c8c" />
+    </linearGradient>
+    <linearGradient id="ani_blueLight" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3478F6" />
+      <stop offset="50%" stop-color="#80B5FF" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+    <linearGradient id="ani_blueDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5dd6" />
+      <stop offset="100%" stop-color="#0f2b66" />
+    </linearGradient>
+    <linearGradient id="ani_energyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3478F6" stop-opacity="0" />
+      <stop offset="45%" stop-color="#80B5FF" stop-opacity="0.6" />
+      <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#80B5FF" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#3478F6" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Screen Wallpaper Ambient Gradient -->
+    <radialGradient id="screenWallpaperGrad" cx="60%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#14264c" />
+      <stop offset="45%" stop-color="#0a152a" />
+      <stop offset="85%" stop-color="#050c18" />
+      <stop offset="100%" stop-color="#02060e" />
+    </radialGradient>
+  </defs>
+
+  <style type="text/css">
+  <![CDATA[
+    /* ==========================================================
+       CONTINUOUS LOOPING DIGENZ LOGO REVEAL (5.5s Cycle)
+       0.0s - 0.7s: Blue light streaks draw and assemble
+       0.5s - 1.1s: Faceted 'D' segments snap into place
+       0.7s - 1.2s: D-I-G-E-N-Z text reveals letter-by-letter
+       1.1s - 1.5s: Tagline fades in with tracking
+       1.5s - 4.5s: Full logo stays brilliantly visible (~3s)
+       4.5s - 5.0s: Smooth elegant fade-out
+       5.0s - 5.5s: Brief pause before next cycle
+       ========================================================== */
+
+    /* Light Streaks Animation */
+    .screen-streak {
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px #3478F6) drop-shadow(0 0 10px #80B5FF);
+      animation: loopStreak 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .streak-p { stroke: #80B5FF; stroke-width: 2.2; stroke-dasharray: 120; stroke-dashoffset: 120; animation-delay: 0.05s; }
+    .streak-l { stroke: #3478F6; stroke-width: 2.2; stroke-dasharray: 160; stroke-dashoffset: 160; animation-delay: 0.15s; }
+    .streak-t { stroke: #80B5FF; stroke-width: 1.8; stroke-dasharray: 80; stroke-dashoffset: 80; animation-delay: 0.10s; }
+    .streak-b { stroke: #3478F6; stroke-width: 1.8; stroke-dasharray: 80; stroke-dashoffset: 80; animation-delay: 0.20s; }
+    .streak-a { stroke: #FFFFFF; stroke-width: 1.8; stroke-dasharray: 60; stroke-dashoffset: 60; animation-delay: 0.35s; }
+
+    @keyframes loopStreak {
+      0% { stroke-dashoffset: 160; opacity: 0; }
+      3% { opacity: 1; }
+      14% { stroke-dashoffset: 0; opacity: 1; }
+      18% { stroke-dashoffset: 0; opacity: 0; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+
+    /* Facets Assembly */
+    .screen-facet {
+      transform-origin: 45px 46px;
+      animation: loopFacet 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .screen-arrow {
+      animation: loopArrow 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .screen-node {
+      animation: loopNode 5.5s ease-out infinite;
+    }
+
+    @keyframes loopFacet {
+      0%, 8% { opacity: 0; transform: scale(0.85); }
+      16% { opacity: 1; transform: scale(1.03); }
+      20%, 80% { opacity: 1; transform: scale(1); }
+      88%, 100% { opacity: 0; transform: scale(0.95); }
+    }
+
+    @keyframes loopArrow {
+      0%, 10% { opacity: 0; transform: translateX(-14px) scale(0.8); }
+      17% { opacity: 1; transform: translateX(2px) scale(1.04); }
+      21%, 80% { opacity: 1; transform: translateX(0) scale(1); }
+      88%, 100% { opacity: 0; transform: translateX(-8px); }
+    }
+
+    @keyframes loopNode {
+      0%, 12% { opacity: 0; transform: scale(0); }
+      18% { opacity: 1; transform: scale(1.4); }
+      22%, 80% { opacity: 1; transform: scale(1); }
+      88%, 100% { opacity: 0; transform: scale(0.5); }
+    }
+
+    /* Energy Shimmer Beam */
+    .screen-energy-beam {
+      animation: loopBeam 5.5s ease-out infinite;
+    }
+    @keyframes loopBeam {
+      0%, 11% { opacity: 0; transform: skewX(-20deg) translateX(-60px); }
+      18% { opacity: 1; }
+      25% { opacity: 0; transform: skewX(-20deg) translateX(360px); }
+      100% { opacity: 0; transform: skewX(-20deg) translateX(360px); }
+    }
+
+    /* Wordmark Typography */
+    .screen-wm-letter {
+      animation: loopLetter 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .let-d { animation-delay: 0.70s; }
+    .let-i { animation-delay: 0.77s; }
+    .let-g { animation-delay: 0.84s; }
+    .let-e { animation-delay: 0.91s; }
+    .let-n { animation-delay: 0.98s; }
+    .let-z { animation-delay: 1.05s; }
+
+    @keyframes loopLetter {
+      0%, 11% { opacity: 0; transform: translateX(-6px); }
+      18%, 80% { opacity: 1; transform: translateX(0); }
+      88%, 100% { opacity: 0; transform: translateX(-4px); }
+    }
+
+    /* Tagline */
+    .screen-wm-tagline {
+      animation: loopTagline 5.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      animation-delay: 1.15s;
+    }
+    @keyframes loopTagline {
+      0%, 16% { opacity: 0; letter-spacing: 5px; }
+      24%, 80% { opacity: 1; letter-spacing: 3.8px; }
+      88%, 100% { opacity: 0; letter-spacing: 4px; }
+    }
+
+    /* Ambient screen glow pulse */
+    .screen-ambient-glow {
+      animation: loopGlow 5.5s ease-in-out infinite;
+    }
+    @keyframes loopGlow {
+      0%, 10% { opacity: 0.25; }
+      25%, 75% { opacity: 0.75; }
+      90%, 100% { opacity: 0.25; }
+    }
+  ]]>
+  </style>
+
+  <g clip-path="url(#cardClip)">
+    <!-- 1. The High-Resolution Office Photo (Developer, desk, laptop chassis, room, etc.) -->
+    
+
+    <!-- 2. Inside the Laptop Display (strictly bounded by screenDisplayClip polygon) -->
+    <g clip-path="url(#screenDisplayClip)">
+      <!-- Seamless Screen Display Background and Ambient Blue Lighting -->
+      <polygon points="618,260 872,283 830,480 585,448" fill="url(#screenWallpaperGrad)" />
+      
+      <!-- Subtle curved wave wallpaper accents matching the photo -->
+      <path d="M 585,420 Q 720,330 872,370 L 830,480 L 585,448 Z" fill="#0d1b38" opacity="0.45" />
+      <path d="M 680,270 Q 780,340 872,300 L 872,380 Q 760,400 660,340 Z" fill="#142852" opacity="0.35" />
+
+      <!-- Center Logo Screen Glow -->
+      <ellipse class="screen-ambient-glow" cx="726" cy="368" rx="110" ry="60" fill="#3478F6" opacity="0.5" filter="blur(22px)" />
+
+      <!-- 3. Animated DIGENZ Logo with 3D Screen Perspective Projection Centered on Screen -->
+      <g transform="translate(726, 368) matrix(0.58, 0.055, -0.09, 0.56, 0, 0) translate(-160, -42)">
+        
+        <!-- Light Streaks / Light Trails -->
+        <g id="screenStreaks" transform="translate(42, 46) scale(1.50) translate(-45, -46)">
+          <path class="screen-streak streak-p" d="M 18,27 L 26,19 L 32,19 L 32,73 L 26,73 L 18,65 Z" />
+          <path class="screen-streak streak-t" d="M 80,8 C 65,12 50,16 38,19 L 56,19" />
+          <path class="screen-streak streak-l" d="M 38,19 L 56,19 L 72,35 L 72,57 L 56,73 L 38,73 L 38,65 L 48,65 L 60,57 L 60,35 L 48,27 L 38,27 Z" />
+          <path class="screen-streak streak-b" d="M 84,80 C 74,78 62,75 56,73 L 38,73" />
+          <path class="screen-streak streak-a" d="M 41,36 L 51,46 L 41,56 L 46,56 L 56,46 L 46,36 Z" />
+        </g>
+
+        <!-- Assembled Geometric Monogram Facets -->
+        <g id="screenMonogram" transform="translate(42, 46) scale(1.50) translate(-45, -46)">
+          <polygon class="screen-facet" points="18,27 26,19 32,19 32,44 18,44" fill="url(#ani_blueLight)" />
+          <polygon class="screen-facet" points="18,48 32,48 32,73 26,73 18,65" fill="url(#ani_blueDark)" />
+          <polygon class="screen-facet" points="28,43 36,43 36,49 28,49" fill="url(#ani_blueGrad)" />
+          <polygon class="screen-facet" points="38,19 56,19 72,35 60,35 48,27 38,27" fill="url(#ani_blueLight)" />
+          <polygon class="screen-facet" points="72,35 72,57 60,57 60,35" fill="url(#ani_blueGrad)" />
+          <polygon class="screen-facet" points="72,57 56,73 38,73 38,65 48,65 60,57" fill="url(#ani_blueDark)" />
+          <polygon class="screen-arrow" points="41,36 51,46 41,56 46,56 56,46 46,36" fill="url(#ani_blueLight)" />
+          <circle class="screen-node" cx="26" cy="19" r="2.2" fill="#FFFFFF" />
+          <circle class="screen-node" cx="56" cy="19" r="2.2" fill="#FFFFFF" />
+        </g>
+
+        <!-- Electric Blue Energy Shimmer Beam -->
+        <rect class="screen-energy-beam" x="60" y="16" width="35" height="62" fill="url(#ani_energyGrad)" transform="skewX(-20)" />
+
+        <!-- Vector Typography D-I-G-E-N-Z -->
+        <g id="screenWordmark">
+          <g fill="#FFFFFF">
+            <path class="screen-wm-letter let-d" d="M 92,23 L 110,23 C 121,23 127.5,29.5 127.5,41 C 127.5,52.5 121,59 110,59 L 92,59 Z M 98,28.5 L 98,53.5 L 109.5,53.5 C 116.5,53.5 121,49 121,41 C 121,33 116.5,28.5 109.5,28.5 Z" />
+            <path class="screen-wm-letter let-i" d="M 137,23 L 143,23 L 143,59 L 137,59 Z" />
+            <path class="screen-wm-letter let-g" d="M 189,32 L 183.8,35.5 C 181,31.2 176.5,29 171.5,29 C 161.8,29 155.5,35.5 155.5,41 C 155.5,46.5 161.8,53 172,53 C 179.2,53 183.5,49.2 183.5,44.2 L 172,44.2 L 172,39.5 L 189.5,39.5 L 189.5,48.5 C 185.8,54.8 179.2,58.5 171.5,58.5 C 158.5,58.5 149.5,51 149.5,41 C 149.5,31 158.8,23.5 171.5,23.5 C 179.5,23.5 185.5,27 189,32 Z" />
+            <path class="screen-wm-letter let-e" d="M 202,23 L 228.5,23 L 228.5,28.5 L 208,28.5 L 208,37.8 L 225.5,37.8 L 225.5,43.2 L 208,43.2 L 208,53.5 L 229,53.5 L 229,59 L 202,59 Z" />
+            <path class="screen-wm-letter let-n" d="M 240,23 L 246,23 L 268.5,51.5 L 268.5,23 L 274.5,23 L 274.5,59 L 268.5,59 L 246,30.5 L 246,59 L 240,59 Z" />
+            <path class="screen-wm-letter let-z" d="M 286,23 L 319.5,23 L 319.5,28.5 L 295.5,53.5 L 320,53.5 L 320,59 L 285.5,59 L 285.5,53.5 L 310,28.5 L 286,28.5 Z" />
+          </g>
+          <text class="screen-wm-tagline" x="93" y="74" font-family="'Century Gothic', 'Montserrat', -apple-system, sans-serif" font-size="6.8" font-weight="600" letter-spacing="3.8" fill="#80B5FF">DIGITAL • CREATIVE • SERVICES</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Sleek Rounded Card Tech Border -->
+    <rect x="1.5" y="1.5" width="1021" height="679" rx="24" ry="24" fill="none" stroke="rgba(52, 120, 246, 0.45)" stroke-width="2" />
+  </g>
+</svg>

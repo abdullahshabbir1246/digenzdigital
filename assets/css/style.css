@@ -481,9 +481,10 @@ padding: 0; cursor: pointer; }
 /*xfactor section*/
 .x-factor-section{min-height: 480px;background: var(--second-color) !important;background-image: none !important;padding: 90px 0px;position: relative;overflow: hidden;}
 .xfactor-visual-col{display: flex;align-items: center;justify-content: flex-end;}
-.xfactor-showcase-wrap{position: relative;width: 100%;max-width: 530px;border-radius: 20px;overflow: hidden;box-shadow: 0 15px 45px rgba(0,0,0,0.65), 0 0 35px rgba(52,120,246,0.22);border: 1.5px solid rgba(52,120,246,0.35);transition: transform 0.4s ease, box-shadow 0.4s ease;}
+.xfactor-showcase-wrap{position: relative;width: 100%;max-width: 530px;border-radius: 20px;overflow: hidden;box-shadow: 0 15px 45px rgba(0,0,0,0.65), 0 0 35px rgba(52,120,246,0.22);border: 1.5px solid rgba(52,120,246,0.35);background: #0B132B url('../images/multiplier-1.png?v=8.2') center/cover no-repeat;min-height: 280px;transition: transform 0.4s ease, box-shadow 0.4s ease;}
 .xfactor-showcase-wrap:hover{transform: translateY(-4px);box-shadow: 0 20px 55px rgba(0,0,0,0.75), 0 0 45px rgba(52,120,246,0.38);}
-.xfactor-laptop-img{width: 100%;height: auto;display: block;}
+.xfactor-laptop-img{width: 100%;height: auto;display: block;position: relative;z-index: 1;}
+.xfactor-laptop-screen-overlay{position: absolute;top: 0;left: 0;width: 100%;height: 100%;pointer-events: none;z-index: 2;display: block;}
 .x-factor-section h2{font-size: 44px;color:var(--third-color);line-height: 1.1em;margin-bottom: 30px;padding:0px;}
 .x-factor-section h6{color:var(--third-color);line-height: 1.25em;font-size: 12px;letter-spacing: 1.1;font-family: AvenirRoman,sans-serif;}
 .x-factor-section p{font-size: 18px;text-align: left;padding-bottom: 40px;}
@@ -4720,49 +4721,61 @@ span.tick,
     color: #94A3B8 !important;
 }
 
-/* --- GET AN INSTANT QUOTE FORM (HIGH CONTRAST & VISIBILITY) --- */
-.bot-form,
-.contact-form-card,
-.contactForm-wrap {
-    background: #F5F7FA !important;
-    border-radius: 16px !important;
-    padding: 35px 30px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
-    border: 1px solid rgba(38, 52, 73, 0.3) !important;
-    box-sizing: border-box !important;
-}
-
-.bot-form form,
-.bot-form .footerForm,
-.bot-form #contactForm {
+/* --- GET AN INSTANT QUOTE FORM (BLUE ABSTRACT TEXTURE BACKGROUND - EXCLUSIVELY ON FORMS) --- */
+.bot-form {
     background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
     border: none !important;
     box-shadow: none !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
 }
 
-form.cmxform.footerForm:not(.bot-form form),
-#contactForm:not(.bot-form form) {
-    background: #F5F7FA !important;
-    border-radius: 16px !important;
-    padding: 35px 30px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35) !important;
-    border: 1px solid rgba(38, 52, 73, 0.3) !important;
+.bot-form h2 {
+    font-size: 34px !important;
+    color: #FFFFFF !important;
+    line-height: 1.15em !important;
+    margin-bottom: 25px !important;
+    padding: 0 !important;
+    font-weight: 700 !important;
+}
+
+/* Strictly applied ONLY to the form card itself */
+form.cmxform.footerForm,
+form.cmxform#contactForm,
+form.footerForm,
+form#contactForm,
+.bot-form form,
+.bot-form .footerForm,
+.bot-form #contactForm,
+.inerservice-banner form,
+.floatingform-sec .banner-form,
+.contact-form-card,
+.contactForm-wrap {
+    background: linear-gradient(rgba(10, 22, 52, 0.74), rgba(6, 16, 40, 0.84)), url('../images/form-bg-blue.jpg?v=8.2') center center / cover no-repeat !important;
+    border-radius: 20px !important;
+    padding: 38px 32px !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 35px rgba(52, 120, 246, 0.28) !important;
+    border: 1.5px solid rgba(80, 150, 255, 0.45) !important;
     box-sizing: border-box !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    margin: 0 auto !important;
 }
 
 .bot-form h4,
 .footerForm h4,
-#contactForm h4 {
-    color: #101827 !important;
+#contactForm h4,
+.inerservice-banner form h4,
+.floatingform-sec .banner-form h3 {
+    color: #FFFFFF !important;
     font-size: 32px !important;
     font-weight: 700 !important;
     text-align: center !important;
     margin-bottom: 6px !important;
     text-transform: capitalize !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+    letter-spacing: -0.3px !important;
 }
 
 .bot-form p,
@@ -4770,12 +4783,14 @@ form.cmxform.footerForm:not(.bot-form form),
 #contactForm p,
 .bot-form p.font-36,
 .footerForm p.font-36,
-#contactForm p.font-36 {
-    color: #64748B !important;
+#contactForm p.font-36,
+.inerservice-banner form p {
+    color: #E2E8F0 !important;
     font-size: 15px !important;
     text-align: center !important;
     margin-bottom: 25px !important;
     font-weight: 500 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
 }
 
 .bot-form p b,
@@ -4783,31 +4798,39 @@ form.cmxform.footerForm:not(.bot-form form),
 #contactForm p b,
 .bot-form p.font-36 b,
 .footerForm p.font-36 b,
-#contactForm p.font-36 b {
-    color: #3478F6 !important;
+#contactForm p.font-36 b,
+.footerForm p b a,
+#contactForm p b a,
+.inerservice-banner form p b {
+    color: #60A5FA !important;
     font-weight: 700 !important;
+    text-shadow: 0 0 12px rgba(96, 165, 250, 0.45) !important;
 }
 
-/* Clear, crisp labels in Midnight Navy */
+/* Clear, crisp labels in high contrast */
 .bot-form label,
 .footerForm label,
 #contactForm label,
-.from-control label {
+.from-control label,
+.inerservice-banner form label,
+.inerservice-banner form .from-control label {
     display: block !important;
-    color: #101827 !important;
+    color: #F8FAFC !important;
     font-size: 14px !important;
     font-weight: 600 !important;
     margin-bottom: 7px !important;
     text-align: left !important;
     opacity: 1 !important;
     visibility: visible !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
 }
 
 .bot-form label span,
 .footerForm label span,
 #contactForm label span,
-.from-control label span {
-    color: #3478F6 !important;
+.from-control label span,
+.inerservice-banner form label span {
+    color: #60A5FA !important;
     font-weight: 700 !important;
     margin-left: 2px !important;
 }
@@ -4833,19 +4856,36 @@ form.cmxform.footerForm:not(.bot-form form),
 #contactForm input[type="tel"],
 #contactForm input[type="number"],
 #contactForm textarea,
-.from-control input {
+.from-control input,
+.inerservice-banner form input[type="text"],
+.inerservice-banner form input[type="email"],
+.inerservice-banner form input[type="tel"],
+.inerservice-banner form input[type="number"],
+.inerservice-banner form textarea,
+.floatingform-sec .banner-form input[type="text"],
+.floatingform-sec .banner-form input[type="email"],
+.floatingform-sec .banner-form input[type="tel"] {
     width: 100% !important;
     height: 50px !important;
     background: #FFFFFF !important;
-    border: 1px solid #CBD5E1 !important;
+    border: 1.5px solid #CBD5E1 !important;
     border-radius: 8px !important;
     padding: 10px 16px !important;
     font-size: 15px !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     color: #101827 !important;
     outline: none !important;
     transition: all 0.25s ease !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.bot-form textarea,
+.footerForm textarea,
+#contactForm textarea,
+.inerservice-banner form textarea {
+    height: 120px !important;
+    min-height: 120px !important;
+    resize: vertical !important;
 }
 
 /* Focus state with glowing blue ring */
@@ -4855,9 +4895,12 @@ form.cmxform.footerForm:not(.bot-form form),
 .footerForm textarea:focus,
 #contactForm input:focus,
 #contactForm textarea:focus,
-.from-control input:focus {
+.from-control input:focus,
+.inerservice-banner form input:focus,
+.inerservice-banner form textarea:focus,
+.floatingform-sec .banner-form input:focus {
     border-color: #3478F6 !important;
-    box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.2) !important;
+    box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.35) !important;
     background: #FFFFFF !important;
     color: #101827 !important;
 }
@@ -4869,7 +4912,10 @@ form.cmxform.footerForm:not(.bot-form form),
 .footerForm textarea::placeholder,
 #contactForm input::placeholder,
 #contactForm textarea::placeholder,
-.from-control input::placeholder {
+.from-control input::placeholder,
+.inerservice-banner form input::placeholder,
+.inerservice-banner form textarea::placeholder,
+.floatingform-sec .banner-form input::placeholder {
     color: #94A3B8 !important;
     opacity: 1 !important;
     font-size: 14px !important;
@@ -4883,7 +4929,9 @@ form.cmxform.footerForm:not(.bot-form form),
 .footerForm .submit,
 #contactForm .submit,
 .submit.bg-hover-red,
-.submit {
+.submit,
+.inerservice-banner .submit,
+.floatingform-sec .banner-form input[type="submit"] {
     width: 100% !important;
     min-height: 52px !important;
     height: auto !important;
@@ -4896,7 +4944,7 @@ form.cmxform.footerForm:not(.bot-form form),
     text-align: center !important;
     cursor: pointer !important;
     transition: all 0.25s ease !important;
-    box-shadow: 0 4px 15px rgba(52, 120, 246, 0.35) !important;
+    box-shadow: 0 6px 20px rgba(52, 120, 246, 0.45) !important;
     margin-top: 10px !important;
     box-sizing: border-box !important;
     white-space: normal !important;
@@ -4913,12 +4961,38 @@ form.cmxform.footerForm:not(.bot-form form),
 .footerForm .submit:hover,
 #contactForm .submit:hover,
 .submit.bg-hover-red:hover,
-.submit:hover {
-    background: #1e5dd6 !important;
+.submit:hover,
+.inerservice-banner .submit:hover,
+.floatingform-sec .banner-form input[type="submit"]:hover {
+    background: #1D4ED8 !important;
     color: #FFFFFF !important;
-    border-color: #1e5dd6 !important;
+    border-color: #1D4ED8 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(52, 120, 246, 0.45) !important;
+    box-shadow: 0 8px 25px rgba(52, 120, 246, 0.6) !important;
+}
+
+@media (max-width: 767px) {
+    form.cmxform.footerForm,
+    form.cmxform#contactForm,
+    form.footerForm,
+    form#contactForm,
+    .bot-form form,
+    .bot-form .footerForm,
+    .bot-form #contactForm,
+    .inerservice-banner form,
+    .floatingform-sec .banner-form,
+    .contact-form-card,
+    .contactForm-wrap {
+        padding: 26px 18px !important;
+        border-radius: 16px !important;
+    }
+    .bot-form h4,
+    .footerForm h4,
+    #contactForm h4,
+    .inerservice-banner form h4,
+    .floatingform-sec .banner-form h3 {
+        font-size: 26px !important;
+    }
 }
 
 /* --- FOOTER (MIDNIGHT NAVY + PLATINUM WHITE + ELECTRIC BLUE + CHAMPAGNE GOLD) --- */
