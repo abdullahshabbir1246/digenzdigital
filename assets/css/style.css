@@ -1935,8 +1935,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 .innserservice-commonfolds .factorlink:hover{background: var(--second-color);color:var(--third-color);border-radius: 2px;}
 
 
-.innserservice-commonfolds.customsoftware{background: var(--second-color) url(../images/3services.jpg)no-repeat;background-position: top right -80px;background-size: 40%;padding: 60px 0;}
-.innserservice-commonfolds.experience{background: var(--second-color) url(../images/experience.jpg)no-repeat;background-position: top left -80px !important;background-size: 40%!important;margin: 70px 0 40px;}
+.innserservice-commonfolds.customsoftware{background: var(--second-color) url(../images/3services.jpg)no-repeat;background-position: center right 30px !important;background-size: 38% auto !important;padding: 60px 0;}
+.innserservice-commonfolds.experience{background: var(--second-color) url(../images/experience.jpg)no-repeat;background-position: center left 30px !important;background-size: 38% auto !important;margin: 70px 0 40px;}
 
 
 .secondlayer-innerservices-wrapper{text-align: center;padding: 60px 0;}
@@ -3145,71 +3145,55 @@ button.btn-red{border: none;cursor: pointer;}
 
 
 
-.innserservice-commonfolds.cwebdesign{
-  background: var(--second-color) url(../images/abt/custom-website-design.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
+.innserservice-commonfolds {
+  background-position: center right 30px !important;
+  background-size: 38% auto !important;
+  background-repeat: no-repeat !important;
   padding: 60px 0;
+}
+.innserservice-commonfolds.experience {
+  background-position: center left 30px !important;
+  background-size: 38% auto !important;
+  background-repeat: no-repeat !important;
+}
+@media (min-width: 992px) {
+  .innserservice-commonfolds:not(.experience) .col-md-8 {
+    max-width: 60%;
+    flex: 0 0 60%;
+  }
+}
+.innserservice-commonfolds.cwebdesign{
+  background: var(--second-color) url(../images/abt/custom-website-design.jpg) no-repeat;
 }
 .innserservice-commonfolds.wordpress{
-  background: var(--second-color) url(../images/abt/wordpress.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/wordpress.jpg) no-repeat;
 }
 .innserservice-commonfolds.ecommerce{
-  background: var(--second-color) url(../images/abt/ecommerce-website-development.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/ecommerce-website-development.jpg) no-repeat;
 }
 .innserservice-commonfolds.webapp{
-  background:  url(../images/abt/web-application-development.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/web-application-development.jpg) no-repeat;
 }
 .innserservice-commonfolds.backend{
-  background: url(../images/abt/backend-development.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/backend-development.jpg) no-repeat;
 }
 .innserservice-commonfolds.mobapp{
-  background: var(--second-color) url(../images/abt/mobile-application.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/mobile-application.jpg) no-repeat;
 }
 .innserservice-commonfolds.webmain{
-  background: var(--second-color) url(../images/abt/web-maintanance.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/web-maintanance.jpg) no-repeat;
 }
 .innserservice-commonfolds.domain{
-  background: var(--second-color) url(../images/abt/domain-and-hosting.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/domain-and-hosting.jpg) no-repeat;
 }
 .innserservice-commonfolds.branding{
-  background: var(--second-color) url(../images/abt/branding.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/branding.jpg) no-repeat;
 }
 .innserservice-commonfolds.video{
-  background: var(--second-color) url(../images/abt/animation.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/animation.jpg) no-repeat;
 }
 .innserservice-commonfolds.seo{
-  background: var(--second-color) url(../images/abt/seo.jpg)no-repeat;
-  background-position: top right -20px;
-  background-size: 40%;
-  padding: 60px 0;
+  background: var(--second-color) url(../images/abt/seo.jpg) no-repeat;
 }
 input.error {
     border: 1px solid red !important;
