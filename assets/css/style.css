@@ -1968,17 +1968,71 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 .build-to-win .to-win-box.threex{background: url(../images/results-firstcrush.jpg)no-repeat center;background-size: cover;}
 .build-to-win .to-win-box.o1m{background: url(../images/results-kids.jpg)no-repeat center;background-size: cover;}
 
-.whether-you{}
-.whether-you{padding: 60px 0;}
-.whether-you .main-heading{text-align: center;margin-bottom: 40px;width: 75%;margin: 0 auto 50px;}
-.whether-you .main-heading h2{font-size: 44px;font-weight: 700;color: var(--third-color);line-height: 1;padding-bottom: 30px;}
-.whether-you .main-heading p{color: var(--third-color);line-height: 1.7;padding: 0px;font-size: 18px;}
-
-.whether-you .whether-box{text-align: center;margin: 0 0 40px;padding: 0 20px;}
-.whether-you .whether-box figure{width: 20%;margin: 0 auto 30px;}
-.whether-you .whether-box figure img{width: 100%;}
-.whether-you .whether-box h3{font-size: 16px;font-weight: 700;}
-.whether-you .whether-box p{line-height: 1.4;font-size: 16px;}
+/* Agile approach to development for your business section (.whether-you) */
+.whether-you {
+    position: relative !important;
+    background: linear-gradient(135deg, rgba(8, 18, 44, 0.78) 0%, rgba(12, 24, 56, 0.72) 50%, rgba(6, 15, 38, 0.82) 100%), url('../images/agile-bg-blue.jpg?v=8.4') center center / cover no-repeat !important;
+    padding: 85px 0 75px !important;
+    overflow: hidden !important;
+}
+.whether-you .main-heading {
+    text-align: center !important;
+    width: 80% !important;
+    max-width: 900px !important;
+    margin: 0 auto 50px !important;
+}
+.whether-you .main-heading h2 {
+    font-size: 44px !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    line-height: 1.15 !important;
+    padding-bottom: 20px !important;
+    margin-bottom: 0 !important;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65) !important;
+}
+.whether-you .main-heading p {
+    color: #E2E8F0 !important;
+    line-height: 1.7 !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+}
+.whether-you .whether-box {
+    text-align: center !important;
+    margin: 0 0 35px !important;
+    padding: 0 18px !important;
+}
+.whether-you .whether-box figure {
+    width: 65px !important;
+    height: 65px !important;
+    margin: 0 auto 25px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.whether-you .whether-box figure img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+}
+.whether-you .whether-box h3 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 12px !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+}
+.whether-you .whether-box p {
+    color: #CBD5E1 !important;
+    line-height: 1.6 !important;
+    font-size: 15px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+.whether-you .whether-box p strong {
+    color: #60A5FA !important;
+    font-weight: 700 !important;
+}
 
 
 
@@ -2466,7 +2520,7 @@ and(-webkit-min-device-pixel-ratio:0)
     position: relative;
     padding: 70px 0;
     background-color: #0b1120;
-    background-image: linear-gradient(135deg, rgba(10, 16, 30, 0.82) 0%, rgba(14, 23, 42, 0.76) 50%, rgba(10, 16, 30, 0.86) 100%), url(../images/blue-abstract-texture.jpg?v=7.4);
+    background-image: linear-gradient(135deg, rgba(8, 18, 44, 0.78) 0%, rgba(12, 24, 56, 0.72) 50%, rgba(6, 15, 38, 0.82) 100%), url(../images/agile-bg-blue.jpg?v=8.4);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
