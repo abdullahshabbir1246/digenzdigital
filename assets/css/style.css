@@ -1936,7 +1936,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2545b', end
 
 
 .innserservice-commonfolds.customsoftware{background: var(--second-color) url(../images/3services.jpg?v=8.5)no-repeat;background-position: center right 30px !important;background-size: 38% auto !important;padding: 60px 0;}
-.innserservice-commonfolds.experience{background: var(--second-color) url(../images/experience.jpg?v=8.5)no-repeat;background-position: center left 30px !important;background-size: 38% auto !important;margin: 70px 0 40px;}
+.innserservice-commonfolds.experience{background: var(--second-color) url(../images/experience.jpg?v=8.5)no-repeat;background-position: center left 25px !important;background-size: 30% auto !important;margin: 70px 0 40px;}
 
 
 .secondlayer-innerservices-wrapper{text-align: center;padding: 60px 0;}
@@ -3152,14 +3152,19 @@ button.btn-red{border: none;cursor: pointer;}
   padding: 60px 0;
 }
 .innserservice-commonfolds.experience {
-  background-position: center left 30px !important;
-  background-size: 38% auto !important;
+  background-position: center left 25px !important;
+  background-size: 30% auto !important;
   background-repeat: no-repeat !important;
 }
 @media (min-width: 992px) {
   .innserservice-commonfolds:not(.experience) .col-md-8 {
     max-width: 60%;
     flex: 0 0 60%;
+  }
+  .innserservice-commonfolds.experience .offset-lg-4 {
+    margin-left: 35% !important;
+    max-width: 65% !important;
+    flex: 0 0 65% !important;
   }
 }
 .innserservice-commonfolds.cwebdesign{
