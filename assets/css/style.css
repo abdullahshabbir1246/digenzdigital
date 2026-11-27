@@ -3919,8 +3919,8 @@ a.action-chat.clearfix.pull-right.sea {
   .pckkslider .slick-next{        display: none !important;}
   .x-factor-section{    background-position: right 3% center !important; background-size: 420px auto !important; min-height: 460px; }
   .innserservice-commonfolds.experience {
-    background-position: top left 5px !important;
-    background-size: 37%!important;
+    background-position: center left 20px !important;
+    background-size: 30% auto !important;
 }
 .ourpackages .tab-custom .tabbing-links li{    padding: 18px 21px;}
 .ways .ways-box{    padding: 0 0px;}
@@ -4199,8 +4199,8 @@ a.action-chat.clearfix.pull-right.sea {
 .btn-red{    width: 166px ;    padding: 14px 10px !important;}
 .portfoliopg .build-to-win .tab-custom .tabbing-links li{padding: 18px 28px ;}
 .wbport li{    width: 29.7% !important;}
-.innserservice-commonfolds.experience{    background-position: top left 5px !important;
-    background-size: 37%!important;}
+.innserservice-commonfolds.experience{    background-position: center left 20px !important;
+    background-size: 30% auto !important;}
 
 }
 @media only screen and (max-width: 991px) {
